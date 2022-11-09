@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+[Bb]in/
+[Oo]bj/
+packages/
+.vs/
+
