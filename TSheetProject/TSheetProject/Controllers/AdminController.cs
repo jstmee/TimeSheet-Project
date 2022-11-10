@@ -6,14 +6,10 @@ using System.Web.Mvc;
 
 namespace TSheetProject.Controllers
 {
-    public class SuperAdminController : Controller
+    public class AdminController : Controller
     {
-        // GET: SuperAdmin
-        public ActionResult SuperAdmin()
-        {
-            return View();
-        }
-        public ActionResult CreateUser()
+        // GET: Admin
+        public ActionResult Index()
         {
             return View();
         }

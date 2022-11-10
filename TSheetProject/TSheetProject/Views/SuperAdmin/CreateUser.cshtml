@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,17 +30,12 @@
 
 <body>
 
-    <div class="container ">
-
-        <div class="card o-hidden border-0 shadow-lg ">
-            <div class="card-body p-0">
-
-                <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-register-image">
-                        <img class="w-100 h-100" src="https://img.freepik.com/premium-photo/hourglass-dark-background_127657-7394.jpg?w=1060">
-
-                    </div>
-                    <div class="col-lg-6">
+    <div class="container-fluid ">
+        @Html.Partial("_navbar")
+        <div class="row">
+                @Html.Partial("_sidebar")
+                
+                    <div class="col-lg-8">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
@@ -43,11 +43,11 @@
                             <form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>UserName</label>
+                                        <label>First Name</label>
                                         <input type="text" class="form-control form-control-user" id="exampleUserNAme">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Full Name</label>
+                                        <label>Last Name</label>
                                         <input type="text" class="form-control form-control-user" id="exampleFullName">
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                         <label>Role</label>
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected>Select Role</option>
-                                            <option value="1">Adnim</option>
+                                            <option value="1">Admin</option>
                                             <option value="2">User</option>
 
                                         </select>
@@ -124,9 +124,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-
     </div>
+        @*</div>
+
+    </div>*@
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -141,3 +142,4 @@
 </body>
 
 </html>
+

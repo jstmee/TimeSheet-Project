@@ -3,18 +3,9 @@
     height:600px;
 }
 
-#cart1{
-    background-color:sandybrown;
+#navcolor {
+    background-color: #838996;
 }
-
-#cart2{
-    background-color:springgreen;
-}
-
-#cart3{
-    background-color:lightgoldenrodyellow;
-}
-
 #sidebar {
-    background-color: #CCCCFF;
+    background-color:aliceblue;
 }
