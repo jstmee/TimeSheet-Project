@@ -1,0 +1,20 @@
+﻿#top-div
+{
+    height:600px;
+}
+
+#cart1{
+    background-color:sandybrown;
+}
+
+#cart2{
+    background-color:springgreen;
+}
+
+#cart3{
+    background-color:lightgoldenrodyellow;
+}
+
+#sidebar {
+    background-color: #CCCCFF;
+}
