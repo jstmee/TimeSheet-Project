@@ -7,10 +7,10 @@ namespace TSheet.Data
 {
     public partial class TSheetDB : DbContext
     {
-        public TSheetDB()
+        /*public TSheetDB()
             : base("name=TSheetDB")
         {
-        }
+        }*/
 
         public virtual DbSet<AssignedRole> AssignedRoles { get; set; }
         public virtual DbSet<DescriptionAndProjectMapping> DescriptionAndProjectMappings { get; set; }
