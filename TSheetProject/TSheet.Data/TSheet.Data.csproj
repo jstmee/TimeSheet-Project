@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TSheet.Data</RootNamespace>
     <AssemblyName>TSheet.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,15 @@
     <Compile Include="AssignedRole.cs" />
     <Compile Include="DescriptionAndProjectMapping.cs" />
     <Compile Include="EmployeeAuditTB.cs" />
+    <Compile Include="Migrations\202211100541301_initial migration.cs" />
+    <Compile Include="Migrations\202211100541301_initial migration.Designer.cs">
+      <DependentUpon>202211100541301_initial migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211100556217_remove sysdiagram.cs" />
+    <Compile Include="Migrations\202211100556217_remove sysdiagram.Designer.cs">
+      <DependentUpon>202211100556217_remove sysdiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +77,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202211100541301_initial migration.resx">
+      <DependentUpon>202211100541301_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211100556217_remove sysdiagram.resx">
+      <DependentUpon>202211100556217_remove sysdiagram.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-namespace TSheet.Data
+/*namespace TSheet.Data
 {
     using System;
     using System.Collections.Generic;
@@ -21,4 +21,4 @@ namespace TSheet.Data
 
         public byte[] definition { get; set; }
     }
-}
+}*/
