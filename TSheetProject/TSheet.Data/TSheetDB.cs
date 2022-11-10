@@ -19,7 +19,7 @@ namespace TSheet.Data
         public virtual DbSet<ProjectMaster> ProjectMasters { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        /*public virtual DbSet<sysdiagram> sysdiagrams { get; set; }*/
         public virtual DbSet<TimeSheetAuditTB> TimeSheetAuditTBs { get; set; }
         public virtual DbSet<TimeSheetDetail> TimeSheetDetails { get; set; }
         public virtual DbSet<TimeSheetMaster> TimeSheetMasters { get; set; }
