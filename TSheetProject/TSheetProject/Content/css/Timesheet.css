@@ -1,0 +1,47 @@
+﻿.navbar {
+    background-color: #3D4141;
+}
+
+#sidebar {
+    background-color: #838693;
+}
+
+ul {
+    height: 800px;
+    color: white;
+    font-size: 20px;
+}
+
+a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+body {
+    background-color: #D4E5E5;
+}
+
+@media (max-width: 575px) {
+    #sidebar {
+        height: 210px;
+    }
+}
+
+#table-div {
+    white-space: nowrap;
+}
+
+thead {
+    background-color: #B9BCC5;
+}
+
+.btn {
+    background-color: #04BA2E;
+    float: right;
+}
+
+.week {
+    padding: 10px;
+    float: right;
+}
