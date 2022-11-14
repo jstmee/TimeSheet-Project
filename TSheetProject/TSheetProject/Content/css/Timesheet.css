@@ -18,9 +18,7 @@ a {
     text-decoration: none;
 }
 
-body {
-    background-color: #D4E5E5;
-}
+
 
 @media (max-width: 575px) {
     #sidebar {

@@ -37,6 +37,14 @@ namespace TSheetMangement.Controllers
                         {
                             return RedirectToAction("Admin", "Admin");
                         }
+                        else if(RoleRow.RoleName == "SuperAdmin")
+                        {
+                            return RedirectToAction("SuperAdmin", "SuperAdmin");
+                        }
+                       /* else if (RoleRow.RoleName == "User")
+                        {
+                            return RedirectToAction("")
+                        }*/
 
                     }
                 }
