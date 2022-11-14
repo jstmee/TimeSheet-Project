@@ -1,145 +1,196 @@
-﻿
+﻿@model TSheet.Modals.RegistrationModel
+
 @{
     ViewBag.Title = "CreateUser";
 }
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
+@Html.Partial("_navbar")
+<div class="row">
+    @Html.Partial("_sidebar")
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div class="col-sm-8">
+        <div class="container">
+            <h4 class="text-center pt-3">Create an Account</h4>
+            @using (Html.BeginForm("CreateUser", "SuperAdmin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                {
+                    <div class="form-horizontal">
 
-
-    <title>SB Admin 2 - Register</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <link href="~/Content/registration.css" rel="stylesheet" />
-
-
-</head>
-
-<body>
-
-    <div class="container-fluid ">
-        @Html.Partial("_navbar")
-        <div class="row">
-                @Html.Partial("_sidebar")
-                
-                    <div class="col-lg-8">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleUserNAme">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleFullName">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                <div class="form-group row pt-2">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleEmail">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Mobile No.</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleMobile">
-                                    </div>
-                                </div>
-                                <div class="form-group row pt-2">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Gender</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleGender">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Date of Birth</label>
-                                        <input type="date" class="form-control form-control-user" id="exampleBOD">
-                                    </div>
-                                </div>
-                                <div class="form-group row pt-2">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Joining Date</label>
-                                        <input type="date" class="form-control form-control-user" id="exampleJoiningDate">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Date Of Leaving</label>
-                                        <input type="date" class="form-control form-control-user" id="exampleLeving">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row pt-2 ">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Create By</label>
-                                        <input type="text" class="form-control form-control-user" id="exampleJoiningDate">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Role</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Select Role</option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">User</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row pt-2">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control form-control-user" id="exampleJoiningDate">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Confirm Password</label>
-                                        <input type="password" class="form-control form-control-user" id="exampleLeving">
-                                    </div>
-                                </div>
-
-                                <div class="row pt-4">
-                                    <div class="form-group  pt-3col-sm">
-                                        <input type="submit" value="Register Account" class="btn bg-primary w-100">
-                                    </div>
-                                </div>
-
-                                <hr />
-                            </form>
-
-                            <!-- <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
-                            </div> -->
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                        @* @Html.TextBoxFor(model =>model.DateOfBirth , "{0:yyyy-MM-dd}", new { @class = "datut", @placeholder = "plz input date" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UpdatedOn, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UpdatedOn, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UpdatedOn, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EditedBy, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.EditedBy, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.EditedBy, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-sm" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <div class="form-group form-check-inline pt-1">
+
+
+                                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-sm" })
+
+
+                                        <div class="checkbox">
+                                            @Html.EditorFor(model => model.IsActive)
+                                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 pt-2">
+
+                                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })
+
+                                    @Html.RadioButtonFor(model => model.Gender, "Male") Male
+
+                                    @Html.RadioButtonFor(model => model.Gender, "Female") Female
+
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DateOfLeaving, htmlAttributes: new { @class = "control-label col-sm" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DateOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DateOfLeaving, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10 ps-5 ">
+                                    <input type="submit" value="Create" class="btn btn-primary w-100" />
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </div>
-    </div>
-        @*</div>
+                    @*</div>*@
 
-    </div>*@
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
-
+                }
+            }

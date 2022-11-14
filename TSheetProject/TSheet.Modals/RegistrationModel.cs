@@ -1,37 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace TSheet.Modals
 {
     public class RegistrationModel
     {
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
-        [DisplayName("First Name")]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "First Name is required")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is Required.")]
-        [DisplayName("First Name")]
+        [Required(ErrorMessage = "Last Name is required")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is Required.")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        [MaxLength(6, ErrorMessage = "Must be at least 6 characters")]
         public string Password { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [Required(ErrorMessage = "Confirm Password field is required")]
+        [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
+
+        public string ConfirmPassword { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Mobile Number")]
+        [Required(ErrorMessage = "Phone Number Required!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Entered phone format is not valid.")]
         public string MobileNumber { get; set; }
-        public string Username { get; set; }
+        [Required(ErrorMessage = "Gender Required")]
         public string Gender { get; set; }
-        public string EmployeeCode { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
         public DateTime DateOfBirth { get; set; }
+        [Display(Name = "Created On")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
         public DateTime CreatedOn { get; set; }
+        [Display(Name = "Updated On")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
         public DateTime UpdatedOn { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Edited By")]
         public string EditedBy { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public bool IsActive { get; set; }
+        [Display(Name = "Date of Joining")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
         public DateTime DateOfJoining { get; set; }
+        [Display(Name = "Date of Leaving")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
         public DateTime DateOfLeaving { get; set; }
 
     }
+
+
 }
+
+

@@ -40,10 +40,10 @@ namespace TSheet.Data
         [StringLength(12)]
         public string MobileNumber { get; set; }
 
-        [Required]
+       /* [Required]
         [StringLength(10)]
         public string EmployeeCode { get; set; }
-
+*/
         public DateTime DateOfbirth { get; set; }
 
         [Required]

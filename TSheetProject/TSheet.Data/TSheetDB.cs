@@ -76,9 +76,9 @@ namespace TSheet.Data
                 .Property(e => e.MobileNumber)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Registration>()
+            /*modelBuilder.Entity<Registration>()
                 .Property(e => e.EmployeeCode)
-                .IsFixedLength();
+                .IsFixedLength();*/
 
             modelBuilder.Entity<Registration>()
                 .Property(e => e.Gender)
