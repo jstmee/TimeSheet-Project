@@ -108,7 +108,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
-    <Compile Include="Controllers\UserdashboardController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,11 +124,11 @@
     <Content Include="Views\SuperAdmin\CreateUser.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Userdashboard\UserDashboard.cshtml" />
-    <Content Include="Views\Userdashboard\AllTimeSheet.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\User\AllTimeSheet.cshtml" />
+    <Content Include="Views\User\UserDashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

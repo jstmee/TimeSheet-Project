@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace TSheetProject.Controllers
 {
-    public class UserdashboardController : Controller
+    public class UserController : Controller
     {
-        // GET: Userdashboard
+        // GET: User
         public ActionResult UserDashboard()
         {
             return View();

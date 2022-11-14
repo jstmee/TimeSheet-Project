@@ -1,5 +1,5 @@
 ﻿.navbar {
-    background-color: #3D4141;
+    background-color: #838996;
 }
 
 #sidebar {
@@ -17,7 +17,9 @@ a {
     font-size: 20px;
     text-decoration: none;
 }
-
+body{
+    background-color:white;
+}
 
 
 @media (max-width: 575px) {
