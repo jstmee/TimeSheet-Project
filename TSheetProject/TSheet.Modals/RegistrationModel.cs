@@ -22,9 +22,10 @@ namespace TSheet.Modals
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
-        [MaxLength(6, ErrorMessage = "Must be at least 6 characters")]
+        [MinLength(6, ErrorMessage = "Must be at least 6 characters")]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]

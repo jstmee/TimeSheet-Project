@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TSheet.BL;
 using TSheet.Data;
 using TSheet.Modals;
 
@@ -10,6 +11,12 @@ namespace TSheetProject.Controllers
 {
     public class SuperAdminController : Controller
     {
+        private RegistrationRepository _registrationRepository;
+        public SuperAdminController()
+        {
+            _registrationRepository = new RegistrationRepository();
+
+        }
         // GET: SuperAdmin
         public ActionResult SuperAdmin()
         {
@@ -27,7 +34,7 @@ namespace TSheetProject.Controllers
                 using (TSheetDB db = new TSheetDB())
                 {
 
-                    Registration registration = new Registration();
+                    /*Registration registration = new Registration();
                     registration.FirstName = user.FirstName;
                     registration.LastName = user.LastName;
                     registration.Email = user.Email;
@@ -41,10 +48,10 @@ namespace TSheetProject.Controllers
                     registration.IsActive = user.IsActive;
                     registration.Password = user.Password;
                     registration.MobileNumber = user.MobileNumber;
-                    registration.UpdatedOn = user.UpdatedOn;
-
-                    db.Registrations.Add(registration);
-                    db.SaveChanges();
+                    registration.UpdatedOn = user.UpdatedOn;*/
+                    _registrationRepository.AddRegistration(user);
+                    /*db.Registrations.Add(registration);
+                    db.SaveChanges();*/
 
                 }
             }

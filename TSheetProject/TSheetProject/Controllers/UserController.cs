@@ -8,6 +8,10 @@ namespace TSheetProject.Controllers
 {
     public class UserController : Controller
     {
+        public UserController()
+        {
+
+        }
         // GET: User
         public ActionResult UserDashboard()
         {

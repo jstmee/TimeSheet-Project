@@ -42,7 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
+      <Project>{A769194B-3ED0-46CA-9B62-8E4967B3E623}</Project>
+      <Name>TSheet.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TSheet.Modals\TSheet.Modals.csproj">
+      <Project>{C5E8C657-B904-4C16-B9FC-4FD867397DC9}</Project>
+      <Name>TSheet.Modals</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

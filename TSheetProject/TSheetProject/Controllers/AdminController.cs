@@ -8,6 +8,10 @@ namespace TSheetProject.Controllers
 {
     public class AdminController : Controller
     {
+        public AdminController()
+        {
+
+        }
         // GET: Admin
         public ActionResult Index()
         {

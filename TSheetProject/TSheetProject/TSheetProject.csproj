@@ -141,6 +141,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TSheet.BL\TSheet.BL.csproj">
+      <Project>{41D411CB-7311-449E-B81B-417FF95F6741}</Project>
+      <Name>TSheet.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
       <Project>{a769194b-3ed0-46ca-9b62-8e4967b3e623}</Project>
       <Name>TSheet.Data</Name>
