@@ -63,5 +63,27 @@ namespace TSheetProject.Controllers
 
             return View(user);
         }
+        public ActionResult AssignRoles()
+        {
+            TSheetDB db = new TSheetDB();
+
+            var alluser = db.Registrations.ToList();
+            return View(alluser);
+           
+        }
+        public ActionResult edit(RegistrationModel res)
+        {
+            return View(res);
+        }
+
+        /*[HttpPost]
+        public ActionResult AssignRoles(AssignedRolesModel assigned)
+        {
+            TSheetDB db = new TSheetDB();
+
+            var alluser = db.Registrations.ToList();
+            return View(alluser);
+        }
+*/
     }
 }

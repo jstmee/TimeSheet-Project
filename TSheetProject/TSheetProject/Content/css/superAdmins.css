@@ -4,8 +4,17 @@
 }
 
 #navcolor {
-    background-color: #838996;
+    background-color: #000000;
 }
 #sidebar {
     background-color: #838693;
+    height: 753px;
+}
+/*#sidebar {
+    height: 600px;
+}*/
+
+a {
+    font-size: 20px;
+    
 }
