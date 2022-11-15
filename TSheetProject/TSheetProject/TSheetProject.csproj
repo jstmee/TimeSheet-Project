@@ -99,8 +99,44 @@
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\superAdmins.css" />
     <Content Include="Content\css\Timesheet.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap4.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap5.css" />
+    <Content Include="Content\datatablecss\dataTables.bootstrap5.min.css" />
+    <Content Include="Content\datatablecss\dataTables.bulma.css" />
+    <Content Include="Content\datatablecss\dataTables.bulma.min.css" />
+    <Content Include="Content\datatablecss\dataTables.dataTables.css" />
+    <Content Include="Content\datatablecss\dataTables.dataTables.min.css" />
+    <Content Include="Content\datatablecss\dataTables.foundation.css" />
+    <Content Include="Content\datatablecss\dataTables.foundation.min.css" />
+    <Content Include="Content\datatablecss\dataTables.jqueryui.css" />
+    <Content Include="Content\datatablecss\dataTables.jqueryui.min.css" />
+    <Content Include="Content\datatablecss\dataTables.semanticui.css" />
+    <Content Include="Content\datatablecss\dataTables.semanticui.min.css" />
+    <Content Include="Content\datatablecss\jquery.dataTables.css" />
+    <Content Include="Content\datatablecss\jquery.dataTables.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap5.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bootstrap5.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bulma.js" />
+    <Content Include="Scripts\datatablejs\dataTables.bulma.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.dataTables.js" />
+    <Content Include="Scripts\datatablejs\dataTables.dataTables.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.foundation.js" />
+    <Content Include="Scripts\datatablejs\dataTables.foundation.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatablejs\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\datatablejs\dataTables.semanticui.js" />
+    <Content Include="Scripts\datatablejs\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\datatablejs\jquery.dataTables.js" />
+    <Content Include="Scripts\datatablejs\jquery.dataTables.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +165,9 @@
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\User\AllTimeSheet.cshtml" />
     <Content Include="Views\User\UserDashboard.cshtml" />
+    <Content Include="Views\SuperAdmin\AssignRoles1.cshtml" />
+    <Content Include="Views\SuperAdmin\AssignRoles2.cshtml" />
+    <Content Include="Views\SuperAdmin\AssignRoles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

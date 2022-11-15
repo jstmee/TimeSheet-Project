@@ -1,8 +1,23 @@
-﻿<div class="col-sm-4 col-md-3 p-4" id="sidebar">
-    <ul class="">
-        <div class="pt-3">Dashboard</div>
-        <div class="pt-3"><a href="">Create Role</a></div>
-        <div class="pt-3"><a href="">Roles</a></div>
-        <div class="pt-3"><a href="">Add Projects</a></div>
+﻿@*<style>
+    #sidebar{
+        height:600px;
+    }
+
+    a{
+        font-size:22px;
+        color:white;
+    }
+
+</style>
+*@
+
+
+<div class="col-sm-4 col-md-3 p-4" id="sidebar">
+    <ul class="" id="">
+        <div class="pt-3"><a class="text-dark" href="/SuperAdmin/SuperAdmin">Dashboard</a></div>
+        <div class="pt-3"> <a class="text-dark" href="/SuperAdmin/CreateUser">Create User</a></div>
+        <div class="pt-3"> <a class="text-dark" href="/SuperAdmin/AssignRoles">Assign Roles</a></div>
+        
+        <div class="pt-3"><a class="text-dark">Add Projects</a></div>
     </ul>
 </div>
