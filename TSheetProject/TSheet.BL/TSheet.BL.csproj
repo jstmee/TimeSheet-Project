@@ -52,8 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignedRoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationRepository.cs" />
+    <Compile Include="RoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
