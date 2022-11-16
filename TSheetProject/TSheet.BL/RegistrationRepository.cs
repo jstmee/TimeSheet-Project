@@ -73,6 +73,22 @@ namespace TSheet.BL
             Registration obj = sheetDB.Registrations.Where(x => x.UserID == UserId).FirstOrDefault();
             return obj;
         }
+        public int EditUser(RegistrationModel user)
+        {
+            var v = GetRegistrationById(user.Id);
+            v.Email = user.Email;
+            v.DateOfbirth = user.DateOfBirth;
+            v.DateOfJoining = user.DateOfJoining;
+            v.FirstName = user.FirstName;
+            v.LastName = user.LastName;
+            v.Gender = user.Gender; 
+            v.CreatedOn = user.CreatedOn;
+            v.CreatedBy = user.CreatedBy;
+            v.DateOfLeaving = user.DateOfLeaving;
+
+            return sheetDB.SaveChanges();
+
+        }
 
        
     }

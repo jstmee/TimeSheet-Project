@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAssignedRole.cs" />
+    <Compile Include="IProjectMaster.cs" />
     <Compile Include="IRegistration.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
