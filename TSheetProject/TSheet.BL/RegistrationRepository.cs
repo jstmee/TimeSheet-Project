@@ -66,7 +66,7 @@ namespace TSheet.BL
         {
             Registration obj=sheetDB.Registrations.Where(x => x.Email == Email).FirstOrDefault();
             return obj;
-        }
+        } 
 
         public Registration GetRegistrationById(int UserId)
         {
