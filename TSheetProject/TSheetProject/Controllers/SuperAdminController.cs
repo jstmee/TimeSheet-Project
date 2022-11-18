@@ -43,12 +43,13 @@ namespace TSheetProject.Controllers
             return View();
         }
         public ActionResult CreateUser()
-        {
+        { 
             return View();
         }
         [HttpPost]
         public ActionResult CreateUser(RegistrationModel user)
         {
+
             if (ModelState.IsValid)
             {
                 _registrationRepository.AddRegistration(user);
@@ -58,6 +59,10 @@ namespace TSheetProject.Controllers
                 return View(user);
             }
             return View();
+
+
+            //_registrationRepository.AddRegistration(user);
+            //return View();
 
         }
         public ActionResult AssignRoles()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TSheet.Data;
 
 namespace TSheetProject.Controllers
 {
@@ -13,7 +14,18 @@ namespace TSheetProject.Controllers
 
         }
         // GET: User
-        public ActionResult UserDashboard()
+        public ActionResult UserTimeSheet()
+        {
+            
+            TSheetDB dB= new TSheetDB();
+            ViewBag.ProjectData = dB.ProjectMasters.ToList();
+            
+            return View();
+        }
+
+
+
+        public ActionResult UserLogin()
         {
             return View();
         }

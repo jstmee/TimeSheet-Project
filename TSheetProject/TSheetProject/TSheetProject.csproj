@@ -99,6 +99,9 @@
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\superAdmins.css" />
     <Content Include="Content\css\Timesheet.css" />
+    <Content Include="Content\css\TsheetImg\businessman-holding-clock-business-time-management.jpg" />
+    <Content Include="Content\css\TsheetImg\businessman-holding-hour-glass-signifies-importance-being-time.jpg" />
+    <Content Include="Content\css\TsheetImg\hourglass-dark-background.jpg" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap4.css" />
@@ -143,6 +146,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\httpPostAttribute.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,11 +168,13 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\User\AllTimeSheet.cshtml" />
-    <Content Include="Views\User\UserDashboard.cshtml" />
+    <Content Include="Views\User\UserTimeSheet.cshtml" />
     <Content Include="Views\SuperAdmin\AssignRoles.cshtml" />
     <Content Include="Views\SuperAdmin\edit.cshtml" />
     <Content Include="Views\SuperAdmin\AddProjects.cshtml" />
     <Content Include="Views\SuperAdmin\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\User\UserLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,6 +185,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\TimeSheetDetails\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.BL\TSheet.BL.csproj">
@@ -188,6 +195,10 @@
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
       <Project>{a769194b-3ed0-46ca-9b62-8e4967b3e623}</Project>
       <Name>TSheet.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TSheet.IBL\TSheet.IBL.csproj">
+      <Project>{5DCAECAA-415E-4D06-9206-09ED3736EC5F}</Project>
+      <Name>TSheet.IBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TSheet.Modals\TSheet.Modals.csproj">
       <Project>{c5e8c657-b904-4c16-b9fc-4fd867397dc9}</Project>

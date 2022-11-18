@@ -14,7 +14,7 @@ namespace TSheet.BL
         AssignedRoleRepository()
         {
             db=new TSheetDB();
-        }
+        }         
         AssignedRoleRepository(TSheetDB _db )
         {
             db = _db;

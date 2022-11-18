@@ -1,101 +1,62 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "AllTimeSheet";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="~/Content/css/Timesheet.css" rel="stylesheet" />
-    <title>Document</title>
-</head>
-<body class="">
+@section SideBarAction{
+    <h5 class="">@Html.ActionLink("Time Sheet", "UserDashboard", "", new { @class = "text-white" })</h5>
+    <hr />
+    @*<h5 class="">@Html.ActionLink("All Rolls", "CreateUser", "", new { @class = "text-white" })</h5>
+        <hr />*@
+    @*<h5 class="">@Html.ActionLink("Assign Roll", "CreateUser", "", new { @class = "text-white" })</h5>
+        <hr />*@
+    <h5 class="">@Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
 
-    <div class="fixed-top">
-
-
-        <nav class="navbar" id="navclr">
-            <div class="container-fluid p-2">
-                <a class="navbar-brand text-white ps-4">Time Manager</a>
-                <div class="d-flex">
-                    <h4 class="text-white pe-4">UserLogin</h4>
-                </div>
-            </div>
-        </nav>
-
-        <div class="row h-100" id="top-div">
-            <div class="col-sm-4 col-md-3 col-lg-3 p-4 " id="sidebar">
-                <ul class="">
-                    <div class="pt-3">Dashboard</div>
-                    <div class="pt-3"><a href="">Time Sheet</a></div>
-                    <div class="pt-3"><a href="">All Time Sheet</a></div>
-                    <div class="pt-3"><a href="">Change Password</a></div>
-                </ul>
-            </div>
+    <hr />
+    <h5 class="">@Html.ActionLink("Notification", "CreateUser", "", new { @class = "text-white" })</h5>
+    <hr />
+    <h5 class="">@Html.ActionLink("Change Password", "CreateUser", "", new { @class = "text-white" })</h5>
+}
+<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
 
 
+    <div><h3>All Time Sheet</h3></div>
 
-            <div class="col-sm-8 col-md-9 p-4  col-lg-9" id="div-2">
-                <div><h3>All Time Sheet</h3></div>
+    <div id="table-div" class="pt-5">
+        <table class="table border ">
+            <thead>
+                <tr>
+                    <th scope="col">From Date</th>
+                    <th scope="col">To Date</th>
+                    <th scope="col">Total Hours</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border border-end">
+                    <td><input type="date" class="w-75"></td>
+                    <td><input type="date" class="w-75"></td>
+                    <td><input type="date" class="w-75"></td>
+                    <td><input type="date" class="w-75"></td>
+                    <td><input type="text" class="w-75"></td>
+                    <td><input type="text" class="w-75"></td>
+                    <td><input type="submit" value="Details" class="w-100 bg-denger"></td>
+                    <td><input type="submit" value="Delete" class="w-100 bg-denger  "></td>
+                </tr>
 
-
-
-
-                <div id="table-div" class="pt-5">
-                    <table class="table border ">
-                        <thead>
-                            <tr>
-                                <th scope="col">From Date</th>
-                                <th scope="col">To Date</th>
-                                <th scope="col">Total Hours</th>
-                                <th scope="col">Created On</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Comment</th>
-                                <th scope="col">Details</th>
-                                <th scope="col">Delete</th>
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border border-end">
-                                <td><input type="date" class="w-75"></td>
-                                <td><input type="date" class="w-75"></td>
-                                <td><input type="date" class="w-75"></td>
-                                <td><input type="date" class="w-75"></td>
-                                <td><input type="text" class="w-75"></td>
-                                <td><input type="text" class="w-75"></td>
-                                <td><input type="submit" value="Details" class="w-100 bg-info"></td>
-                                <td><input type="submit" value="Delete" class="w-100 bg-denger  "></td>
-
-
-                            </tr>
-                            @*<tr>
-                                    <th scope="row">p-2</th>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="number" class="w-50"></td>
-                                    <td><input type="text" class="w-75"></td>
-
-                                </tr>*@
-
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-
-        </div>
+            </tbody>
+        </table>
 
     </div>
-</body>
-</html>
+
+
+</div>
+
+
 

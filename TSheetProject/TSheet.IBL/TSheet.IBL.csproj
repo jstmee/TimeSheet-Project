@@ -57,6 +57,7 @@
     <Compile Include="IProjectMaster.cs" />
     <Compile Include="IRegistration.cs" />
     <Compile Include="IRole.cs" />
+    <Compile Include="IUserTimeSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,8 +15,5 @@ namespace TSheet.IBL
 
         ProjectMaster GetProject(int id);
 
-
-
-
     }
 }

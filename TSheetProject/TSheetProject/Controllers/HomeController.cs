@@ -43,7 +43,7 @@ namespace TSheetMangement.Controllers
                         var RoleRow = db.Roles.Where(a => a.RoleID == HisRoleId).FirstOrDefault();
                         if (RoleRow.RoleName == "Admin")
                         {
-                            return RedirectToAction("Admin", "Admin");
+                            return RedirectToAction("SuperAdmin", "SuperAdmin");
                         }
                         else if (RoleRow.RoleName == "SuperAdmin")
                         {
@@ -61,10 +61,7 @@ namespace TSheetMangement.Controllers
             }
             return View();
         }
-        public ActionResult Registration()
-        {
-            return View();
-        }
+       
 
         public ActionResult forgetPassword()
         {

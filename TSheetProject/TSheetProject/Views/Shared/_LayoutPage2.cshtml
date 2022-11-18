@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/leyoutFile.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="" style="background-color: #DDE7EC; height:60px">
+        <nav class="navbar ">
+            <div class="nav-hedding-box">
+                <h4 class=" text">
+                    <i class="fa-thin fa-timer"></i>  Time Manager 
+                </h4>
+            </div>
+            <div class="nav-user-box">
+                <h4 class="text"> UserLogin  <i class="fa-regular fa-user"></i>
+                </h4>
+            </div>
+           
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-md-3 bg-gradient-primary">
+            <hr />
+            <h3 class="text-white text-center" id="Side-Bar-items">Dashboard</h3>
+            <hr />
+
+            <div class="pt-3 p-3">
+                @RenderSection("SideBarAction")
+            </div>
+        </div>
+      
+            @RenderBody()
+
+    </div>
+    
+</body>
+</html>

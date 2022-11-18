@@ -1,45 +1,69 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 
-<body>
-    
-    @Html.Partial("_navbar")
-    <div class="row">
-
+@section SideBarAction{
+    <h5 class="">@Html.ActionLink("Create User", "CreateUser", "", new { @class = "text-white" })</h5>
+    <hr />
+    <h5 class="">@Html.ActionLink("All Rolls", "CreateUser", "", new { @class = "text-white" })</h5>
+    <hr />
+    <h5 class="">@Html.ActionLink("Assign Roll", "AssignRoles","SuperAdmin" ,"", new { @class = "text-white" })</h5>
+    <hr />
+    <h5 class="">@Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
   
-    @Html.Partial("_sidebar")
-        <div class="col-sm-8 col-md-9 p-4 " id="div-2">
-            <div><h3>Dashboard</h3></div>
+    <hr />
+    <h5 class="">@Html.ActionLink("Add Projects", "CreateUser", "", new { @class = "text-white" })</h5>
+    <hr />
+    <h5 class="">@Html.ActionLink("Send Notification", "CreateUser", "", new { @class = "text-white" })</h5>
+}
 
-            <div class="row text-center ">
-                <div class="card col-md m-4">
-                    <div class="card-body">
-                        <h5 class="card-title">User Count </h5>
-                       <h1 class="text-dark font-weight-bolder"> @ViewBag.NoOfUsers</h1>
-                        @*<a href="#" class="btn btn-primary bp-0">View details...</a>*@
+<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+    <div><h3>Dashboard</h3></div>
+
+
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row text-center ">
+                    <div class="card col-md m-4">
+                        <div class="card-body">
+                            <h5 class="card-title">User Count </h5>
+                            <h1 class="text-dark font-weight-bolder"> @ViewBag.NoOfUsers</h1>
+                            @*<a href="#" class="btn btn-primary bp-0">View details...</a>*@
+                        </div>
                     </div>
                 </div>
-                <div class="card col-md m-4">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Admin Count</h5>
+        </div>
+    </div>
 
-                        @*<a href="#" class="btn btn-primary">View details...</a>*@
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <h3>Count Admin</h3>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> 0 : 0</h3></div>
                     </div>
-                </div>
-                <div class="card col-md m-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Projects</h5>
-                        <h1 class="text-dark font-weight-bolder"> @ViewBag.NoOfProjects</h1>
-                        @*<a href="#" class="btn btn-primary">View details... </a>*@
-                    </div>
+
+                    <a href="#" class="btn btn-primary">View details...</a>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</body>
-</html>
+
+
+
+
+</div>
+</div>
+
 
 
