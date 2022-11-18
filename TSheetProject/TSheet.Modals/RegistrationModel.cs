@@ -35,7 +35,7 @@ namespace TSheet.Modals
         public string ConfirmPassword { get; set; }
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Mobile Number")]
-        [Required(ErrorMessage = "Phone Number Required!")]
+        [Required(ErrorMessage = "Phone Number Required")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
                    ErrorMessage = "Entered phone format is not valid.")]
         public string MobileNumber { get; set; }
@@ -43,33 +43,40 @@ namespace TSheet.Modals
         public string Gender { get; set; }
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
+        /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]*/
         public DateTime DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreatedOn { get; set; }
         [Display(Name = "Updated On")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime UpdatedOn { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        
         [Display(Name = "Edited By")]
         public string EditedBy { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        /*[Required(ErrorMessage = "This field is required")]
         [Display(Name = "Created By")]
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; set; }*/
         [Required(ErrorMessage = "This field is required")]
         public bool IsActive { get; set; }
         [Display(Name = "Date of Joining")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
+        /*[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]*/
         public DateTime DateOfJoining { get; set; }
         [Display(Name = "Date of Leaving")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/yyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateOfLeaving { get; set; }
+        public string DemoAssignedRole { get; set; }
 
+       /* public enum rolee
+        {
+            User,
+            Admin,
+            SuperAdmin
+        }*/
     }
 
 

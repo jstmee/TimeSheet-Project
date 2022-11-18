@@ -20,6 +20,26 @@ namespace TSheetProject.Controllers
         // GET: SuperAdmin
         public ActionResult SuperAdmin()
         {
+            using (TSheetDB dB = new TSheetDB())
+            {
+                var v=dB.Registrations.ToList();
+                ViewBag.NoOfUsers=v.Count;
+                /*var countuser = 0;
+                foreach (var item in v)
+                {
+                    countuser++;
+                }
+                ViewBag.NoOfUers = countuser;*/
+                
+
+                var p =dB.ProjectMasters.ToList();
+                ViewBag.NoOfProjects=p.Count;
+            }
+            /*ViewBag.countuser = _registrationRepository.count(user);
+            ViewBag.countuser = _registrationRepository.count(admin);
+            ViewBag.countuser = _registrationRepository.count(Projects);*/
+
+
             return View();
         }
         public ActionResult CreateUser()
@@ -31,37 +51,14 @@ namespace TSheetProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (TSheetDB db = new TSheetDB())
-                {
-
-                    /*Registration registration = new Registration();
-                    registration.FirstName = user.FirstName;
-                    registration.LastName = user.LastName;
-                    registration.Email = user.Email;
-                    registration.EditedBy = user.EditedBy;
-                    registration.CreatedBy = user.CreatedBy;
-                    registration.DateOfJoining = user.DateOfJoining;
-                    registration.DateOfLeaving = user.DateOfLeaving;
-                    registration.DateOfbirth = user.DateOfBirth;
-                    registration.CreatedOn = user.CreatedOn;
-                    registration.Gender = user.Gender;
-                    registration.IsActive = user.IsActive;
-                    registration.Password = user.Password;
-                    registration.MobileNumber = user.MobileNumber;
-                    registration.UpdatedOn = user.UpdatedOn;*/
-                    _registrationRepository.AddRegistration(user);
-                    /*db.Registrations.Add(registration);
-                    db.SaveChanges();*/
-
-                }
+                _registrationRepository.AddRegistration(user);
             }
             else
             {
-                return View();
+                return View(user);
             }
+            return View();
 
-
-            return View(user);
         }
         public ActionResult AssignRoles()
         {
@@ -71,9 +68,21 @@ namespace TSheetProject.Controllers
             return View(alluser);
            
         }
-        public ActionResult edit(RegistrationModel res)
+        public ActionResult edit(RegistrationModel user)
         {
-            return View(res);
+            if (user != null)
+            {
+                return View(user);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult edit1(RegistrationModel user)
+        {
+            /*_registrationRepository.EditUser(user);*/
+
+
+            return RedirectToAction("edit","SuperAdmin");
         }
 
         /*[HttpPost]
@@ -85,5 +94,47 @@ namespace TSheetProject.Controllers
             return View(alluser);
         }
 */
+        public ActionResult AddProjects()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddProjects(ProjectsModel projects)
+        {
+
+            using(TSheetDB dB= new TSheetDB())
+            {
+                ProjectMaster projectMaster = new ProjectMaster();
+                /* projects.ProjectName = projectMaster.ProjectName;
+                 projects.ProjectDescription = projectMaster.ProjectDescription;*/
+                projectMaster.ProjectName = projects.ProjectName;
+                projectMaster.ProjectDescription = projects.ProjectDescription;
+                dB.ProjectMasters.Add(projectMaster);
+                dB.SaveChanges();
+
+            }
+            return View(projects);
+        }
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPassword resetPassword,int id)
+        {
+            using (TSheetDB dB = new TSheetDB())
+            {
+                var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
+                v.Password = resetPassword.Password;
+                dB.SaveChanges();
+                /*Registration registration= new Registration();  
+                registration.Email = resetPassword.Email;
+                registration.Password = resetPassword.Password;
+                dB.SaveChanges();*/
+            }
+
+                return View();
+        }
+
     }
 }

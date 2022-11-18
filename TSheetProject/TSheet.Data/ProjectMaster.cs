@@ -22,6 +22,7 @@ namespace TSheet.Data
         [Required]
         [StringLength(50)]
         public string ProjectName { get; set; }
+        public string ProjectDescription { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DescriptionAndProjectMapping> DescriptionAndProjectMappings { get; set; }

@@ -23,17 +23,19 @@ namespace TSheet.BL
             registration.FirstName = user.FirstName;
             registration.LastName = user.LastName;
             registration.Email = user.Email;
-            registration.EditedBy = user.EditedBy;
-            registration.CreatedBy = user.CreatedBy;
+/*            registration.EditedBy = user.EditedBy;*/
+            /*registration.CreatedBy = user.CreatedBy;*/
             registration.DateOfJoining = user.DateOfJoining;
-            registration.DateOfLeaving = user.DateOfLeaving;
+            /*registration.DateOfLeaving = user.DateOfLeaving;*/
             registration.DateOfbirth = user.DateOfBirth;
-            registration.CreatedOn = user.CreatedOn;
+            /*registration.CreatedOn = user.CreatedOn;*/
             registration.Gender = user.Gender;
             registration.IsActive = user.IsActive;
             registration.Password = user.Password;
             registration.MobileNumber = user.MobileNumber;
-            registration.UpdatedOn = user.UpdatedOn;
+            /*registration.UpdatedOn = user.UpdatedOn;*/
+            registration.CreatedBy = "admin";
+            registration.CreatedOn=DateTime.Now;
             sheetDB.Registrations.Add(registration);
             
             return sheetDB.SaveChanges();

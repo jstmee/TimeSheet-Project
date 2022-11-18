@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202211140915057_RemoveEmployeeCodeinTB.designer.cs">
       <DependentUpon>202211140915057_RemoveEmployeeCodeinTB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211170620328_addnewcol.cs" />
+    <Compile Include="Migrations\202211170620328_addnewcol.designer.cs">
+      <DependentUpon>202211170620328_addnewcol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211140915057_RemoveEmployeeCodeinTB.resx">
       <DependentUpon>202211140915057_RemoveEmployeeCodeinTB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211170620328_addnewcol.resx">
+      <DependentUpon>202211170620328_addnewcol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

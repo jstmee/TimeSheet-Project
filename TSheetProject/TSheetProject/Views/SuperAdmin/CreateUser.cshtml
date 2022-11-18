@@ -22,6 +22,7 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="col-sm-6">
+                                @Html.HiddenFor(x=>x.Id)
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-sm" })
                                     <div class="col-md-10">
@@ -96,43 +97,18 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-sm" })
+                                    @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.UpdatedOn, htmlAttributes: new { @class = "control-label col-sm" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.UpdatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.UpdatedOn, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.EditedBy, htmlAttributes: new { @class = "control-label col-sm" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.EditedBy, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.EditedBy, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
+                       
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-sm" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
+                              
                                 <div class="col-sm-3">
 
                                     <div class="form-group form-check-inline pt-1">
@@ -161,35 +137,16 @@
 
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.DateOfLeaving, htmlAttributes: new { @class = "control-label col-sm" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.DateOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.DateOfLeaving, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            
+                               
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10 ps-5 ">
-                                    <input type="submit" value="Create" class="btn btn-default btn-block btn-primary" />
+                                <div>
+                                    <input type="submit" value="Create" class="btn btn-default btn-primary" />
                                 </div>
                             </div>
                         </div>
 
-                    </div>
+                    @*</div>*@
                     @*</div>*@
 
                 }
