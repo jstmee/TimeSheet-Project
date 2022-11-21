@@ -7,9 +7,9 @@ using TSheet.Data;
 
 namespace TSheet.IBL
 {
-    public interface ProjectMaster
+    public interface IProjectMaster
     {
-        IEnumerable<ProjectMaster> GetAllProjects();
+        IList<ProjectMaster> GetAllProjects();
 
         int AddProject(ProjectMaster project);
 

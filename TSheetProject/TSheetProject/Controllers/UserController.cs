@@ -34,5 +34,13 @@ namespace TSheetProject.Controllers
         {
             return View();
         }
+
+        public ActionResult DashBoard()
+        {
+            
+            // we will fetch 
+            return View();
+        }
+
     }
 }

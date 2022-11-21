@@ -44,13 +44,13 @@ namespace TSheet.Data
         [StringLength(10)]
         public string EmployeeCode { get; set; }
 */
-        public DateTime DateOfbirth { get; set; }
+        public DateTime? DateOfbirth { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Gender { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         public DateTime? UpdatedOn { get; set; }
 
@@ -61,7 +61,7 @@ namespace TSheet.Data
         [StringLength(50)]
         public string CreatedBy { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         public DateTime? DateOfLeaving { get; set; }
 

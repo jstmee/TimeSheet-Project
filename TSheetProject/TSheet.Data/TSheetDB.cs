@@ -38,6 +38,10 @@ namespace TSheet.Data
                 .Property(e => e.Comment)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ProjectMaster>()
+                .Property(e => e.ProjectDescription)
+                .IsUnicode(false);
+
             modelBuilder.Entity<NotificationsTB>()
                 .Property(e => e.Status)
                 .IsUnicode(false);
@@ -59,6 +63,7 @@ namespace TSheet.Data
             modelBuilder.Entity<Registration>()
                 .Property(e => e.FirstName)
                 .IsUnicode(false);
+            
 
             modelBuilder.Entity<Registration>()
                 .Property(e => e.LastName)

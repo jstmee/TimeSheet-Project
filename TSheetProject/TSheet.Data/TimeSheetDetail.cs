@@ -11,13 +11,13 @@ namespace TSheet.Data
     {
         public int TimeSheetDetailID { get; set; }
 
-        public int Hours { get; set; }
+        public int? Hours { get; set; }
 
         public int TimeSheetMasterID { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         public virtual TimeSheetMaster TimeSheetMaster { get; set; }
 
