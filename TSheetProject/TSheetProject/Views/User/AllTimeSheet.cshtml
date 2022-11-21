@@ -4,22 +4,22 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
+<link href="~/Content/css/user.css" rel="stylesheet" />
 @section SideBarAction{
-    <h5 class="">@Html.ActionLink("Time Sheet", "UserDashboard", "", new { @class = "text-white" })</h5>
-    <hr />
-    @*<h5 class="">@Html.ActionLink("All Rolls", "CreateUser", "", new { @class = "text-white" })</h5>
-        <hr />*@
-    @*<h5 class="">@Html.ActionLink("Assign Roll", "CreateUser", "", new { @class = "text-white" })</h5>
-        <hr />*@
-    <h5 class="">@Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "UserLogin", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-clock"></i> @Html.ActionLink("Time Sheet", "UserTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "", "", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white" })</h5>
 
-    <hr />
-    <h5 class="">@Html.ActionLink("Notification", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Change Password", "CreateUser", "", new { @class = "text-white" })</h5>
+    </div>
 }
-<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:750px" id="top-box">
 
 
     <div><h3>All Time Sheet</h3></div>
@@ -27,29 +27,26 @@
     <div id="table-div" class="pt-5">
         <table class="table border ">
             <thead>
-                <tr>
+                <tr class="">
                     <th scope="col">From Date</th>
-                    <th scope="col">To Date</th>
-                    <th scope="col">Total Hours</th>
-                    <th scope="col">Created On</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Comment</th>
+                    <th scope="col">To date</th>
+                    <th scope="col">total Hrs</th>
+                    <th scope="col">Create on</th>
+                    <th scope="col">Commant</th>
                     <th scope="col">Details</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="border border-end">
-                    <td><input type="date" class="w-75"></td>
-                    <td><input type="date" class="w-75"></td>
-                    <td><input type="date" class="w-75"></td>
-                    <td><input type="date" class="w-75"></td>
-                    <td><input type="text" class="w-75"></td>
-                    <td><input type="text" class="w-75"></td>
-                    <td><input type="submit" value="Details" class="w-100 bg-denger"></td>
-                    <td><input type="submit" value="Delete" class="w-100 bg-denger  "></td>
+                    <td><input type="date" class="  rounded w-75" id="inputfiled"></td>
+                    <td><input type="date" class=" rounded w-75" id="inputfiled"></td>
+                    <td><input type="number" class=" rounded w-75" id="inputfiled"></td>
+                    <td><input type="Date" class=" rounded w-75" id="inputfiled"></td>
+                    <td><input type="text" class="rounded w-75" id="inputfiled"></td>
+                    <td><input type="submit" value="Details" class=" rounded bg-primary" id="inputfiled"></td>
+                    <td><input type="submit" value="Delete" class=" rounded bg-danger" id="inputfiled"></td>
                 </tr>
-
             </tbody>
         </table>
 

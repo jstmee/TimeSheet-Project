@@ -1,190 +1,154 @@
 ﻿@model TSheet.Modals.TimeSheetModal
 
 @{
-    Layout = null;
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+
+
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "UserLogin", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-clock"></i> @Html.ActionLink("Time Sheet", "Add", "TimeSheet", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "", "", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white" })</h5>
+
+    </div>
 }
 
-<!DOCTYPE html>
+    <div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:760px" id="main-box">
+    <div><h3>Time Sheet</h3></div>
+
+   
+
+
+    <div class="pt-3">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.Date1)
+
+                    @Html.EditorFor(model => model.Date1, new { htmlAttributes = new { @class = "form-control w-50 rounded-pill " } })
+                    @Html.ValidationMessageFor(model => model.Date1, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-6">
+                    <input type="submit" value="Save Details" class="btn bg-primary w-25 rounded-pill text-white" id="input-box" style="float:right">
+                </div>
+            </div>
+          
+            <table class="table border ">
+                <thead>
+                    <tr>
+                        <th scope="col">Projects</th>
+                        <th scope="col">Monday</th>
+                        <th scope="col">Tuesday</th>
+                        <th scope="col">Wednesday</th>
+                        <th scope="col">Thursday</th>
+                        <th scope="col">Friday</th>
+                        <th scope="col">Saturday</th>
+                        <th scope="col">Sunday</th>
+                        <th scope="col">Discription</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border border-end">
+                        <th scope="row">
+                            @Html.DropDownListFor(model => model.ProjectID1,
+                       new SelectList(ViewBag.Projects, "Id", "Name"),
+                       "Select Projects",
+                       new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectID1, "", new { @class = "text-danger w-75" })
+                        </th>
+                        <td>   @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                        <td> @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                      
+
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr class="border border-end">
+                        <th scope="row">
+                            @Html.DropDownListFor(model => model.ProjectID2,
+             new SelectList(ViewBag.Projects, "Id", "Name"),
+             "Select Projects",
+             new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectID2, "", new { @class = "text-danger" })
+                        </th>
+                        <td>   @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                        <td> @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                       
+
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr class="border border-end">
+                        <th scope="row">
+                            @Html.DropDownListFor(model => model.ProjectID3,
+                            new SelectList(ViewBag.Projects, "Id", "Name"),
+                            "Select Projects",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectID3, "", new { @class = "text-danger" })
+                        </th>
+                        <td>   @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                        <td> @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr class="border border-end">
+                        <th scope="row">
+                            @Html.DropDownListFor(model => model.ProjectID4,
+                            new SelectList(ViewBag.Projects, "Id", "Name"),
+                            "Select Projects",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectID4, "", new { @class = "text-danger" })
+
+                        </th>
+                        <td>   @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                        <td> @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
-</head>
-<body>
-
-    <p>herer is the timesheet</p>
-    <br />
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        @Html.LabelFor(model => model.Date1)
-
-        @Html.EditorFor(model => model.Date1, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Date1, "", new { @class = "text-danger" })
-        <br />
-
-        <br />
-
-        //start of project 1
-
-
-        @Html.DropDownListFor(model => model.ProjectID1,
-                new SelectList(ViewBag.Projects, "Id", "Name"),
-                "Select Projects",
-                new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ProjectID1, "", new { @class = "text-danger" })
-
-
-
-
-        @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-
-        //end of project 1
-
-
-
-        <br />
-        <br />
-        <br />
-
-        //start of project 2
-
-
-        @Html.DropDownListFor(model => model.ProjectID2,
-               new SelectList(ViewBag.Projects, "Id", "Name"),
-               "Select Projects",
-               new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ProjectID2, "", new { @class = "text-danger" })
-
-
-
-        @Html.EditorFor(model => model.Text1_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text2_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text3_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text4_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text5_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text6_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text7_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Description_ProjectID2, new { htmlAttributes = new { @class = "form-control" } })
-
-
-        //end of project2
-        <br />
-        <br />
-        <br />
-
-        //start of project 3
-
-
-
-        @Html.DropDownListFor(model => model.ProjectID3,
-                new SelectList(ViewBag.Projects, "Id", "Name"),
-                "Select Projects",
-                new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ProjectID3, "", new { @class = "text-danger" })
-
-
-
-
-
-        @Html.EditorFor(model => model.Text1_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text2_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text3_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text4_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text5_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text6_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text7_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Description_ProjectID3, new { htmlAttributes = new { @class = "form-control" } })
-
-
-        //end of project 3
-        <br />
-        <br />
-        <br />
-
-        //start of project 4
-
-
-        @Html.DropDownListFor(model => model.ProjectID4,
-                new SelectList(ViewBag.Projects, "Id", "Name"),
-                "Select Projects",
-                new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ProjectID4, "", new { @class = "text-danger" })
-
-
-
-
-
-        @Html.EditorFor(model => model.Text1_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text2_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text3_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text4_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text5_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text6_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Text7_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.EditorFor(model => model.Description_ProjectID4, new { htmlAttributes = new { @class = "form-control" } })
-
-
-        //end of project 4
-        <br />
-        <br />
-        <br />
-
-
-
-
-
-
-
-
-
-        <div class="form-group  pt-5">
-            <input type="submit" value="Submit" class="btn bg-primary w-100 rounded-pill text-white" id="input-box">
-        </div>
-
-
-
-    }
-
-
-</body>
-</html>

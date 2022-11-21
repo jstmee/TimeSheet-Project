@@ -102,6 +102,7 @@
     <Content Include="Content\css\TsheetImg\businessman-holding-clock-business-time-management.jpg" />
     <Content Include="Content\css\TsheetImg\businessman-holding-hour-glass-signifies-importance-being-time.jpg" />
     <Content Include="Content\css\TsheetImg\hourglass-dark-background.jpg" />
+    <Content Include="Content\css\user.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap4.css" />
@@ -170,7 +171,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\User\AllTimeSheet.cshtml" />
-    <Content Include="Views\User\UserTimeSheet.cshtml" />
     <Content Include="Views\SuperAdmin\AssignRoles.cshtml" />
     <Content Include="Views\SuperAdmin\edit.cshtml" />
     <Content Include="Views\SuperAdmin\AddProjects.cshtml" />

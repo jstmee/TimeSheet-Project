@@ -6,22 +6,29 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
+<link href="~/Content/css/user.css" rel="stylesheet" />
 @section SideBarAction{
-    <h5 class="">@Html.ActionLink("Create User", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("All Rolls", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Assign Roll", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Add Projects", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Send Notification", "CreateUser", "", new { @class = "text-white" })</h5>
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <hr />
+        @*<h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("create Admin", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+            <hr />*@
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperUser", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-business-time"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "no", "", "", new { @class = "text-white" })</h5>
+        @*<hr />
+            <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Reset Password", "no", "User", "", new { @class = "text-white" })</h5>*@
+        <hr />
+        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Sent Notification", "no", "User", "", new { @class = "text-white" })</h5>
+
+    </div>
 }
 
-<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:780px" id="top-box">
+<div class="col-lg-10 col-md-9 p-4" id="main-box">
     <div class="container-fluid ">
         <h4 class="text-center pt-3">Create an Account</h4>
         @using (Html.BeginForm("CreateUser", "SuperAdmin", FormMethod.Post))
@@ -77,7 +84,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control " } })
                                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -95,6 +102,7 @@
 
 
                     </div>
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -103,26 +111,6 @@
                                     @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                                     @* @Html.TextBoxFor(model =>model.DateOfBirth , "{0:yyyy-MM-dd}", new { @class = "datut", @placeholder = "plz input date" })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.UpdatedOn, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.UpdatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.UpdatedOn, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -147,13 +135,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DateOfLeaving, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.DateOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DateOfLeaving, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="col-sm-6 pt-4 ">
+                            <div class="row">
+                                <div class="col-lg-2">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div> 
+
+                                <div class="col-lg-2"> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
+
+                                <div class="col-lg-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
                             </div>
                         </div>
                     </div>
@@ -163,22 +151,15 @@
                                 <div>@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-sm " })</div>
                                 <div class="checkbox ">
                                     @Html.EditorFor(model => model.IsActive)
-                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger " })
+                                    <div class="ps-4">@Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger " })</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 ">
-                            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })
-
-                            @Html.RadioButtonFor(model => model.Gender, "Male") Male
-
-                            @Html.RadioButtonFor(model => model.Gender, "Female") Female
-                        </div>
                     </div>
 
-                    <div class="form-group pt-4">
-                        <div class="col-md-offset-2 ">
-                            <input type="submit" value="Create" class="btn btn-default btn-block btn-primary  rounded-pill w-25" id="btn-submit" style="float:right"/>
+                    <div class="form-group pt-3">
+                        <div class="col-md-offset-2 ps-3">
+                            <input type="submit" value="Create" class="btn btn-default btn-block btn-primary  rounded-pill w-25 h-25" id="btn-submit" />
                         </div>
                         <a href="#" class=" w-50">
                             <i class="fab fa-facef fa-"></i>

@@ -4,65 +4,96 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
 
 @section SideBarAction{
-    <h5 class="">@Html.ActionLink("Create User", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("All Rolls", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Assign Roll", "AssignRoles","SuperAdmin" ,"", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
-  
-    <hr />
-    <h5 class="">@Html.ActionLink("Add Projects", "CreateUser", "", new { @class = "text-white" })</h5>
-    <hr />
-    <h5 class="">@Html.ActionLink("Send Notification", "CreateUser", "", new { @class = "text-white" })</h5>
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <hr />
+        @*<h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("create Admin", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+            <hr />*@
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperUser", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-business-time"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "no", "", "", new { @class = "text-white" })</h5>
+        @*<hr />
+            <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Reset Password", "no", "User", "", new { @class = "text-white" })</h5>*@
+        <hr />
+        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Sent Notification", "no", "User", "", new { @class = "text-white" })</h5>
+
+    </div>
 }
 
-<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
-    <div><h3>Dashboard</h3></div>
+<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:750px" id="top-box">
+    <div><h3>Super Admin Dashboard</h3></div>
 
-
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row text-center ">
-                    <div class="card col-md m-4">
-                        <div class="card-body">
-                            <h5 class="card-title">User Count </h5>
-                            <h1 class="text-dark font-weight-bolder"> @ViewBag.NoOfUsers</h1>
-                            @*<a href="#" class="btn btn-primary bp-0">View details...</a>*@
+    <div class="row text-center ">
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
+                                <div class="col">
+                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
+                                </div>
+                                <div class="col pt-4"><h3> Total User Count</h3></div>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3></h3></div>
                         </div>
+
                     </div>
-                </div>
-
-        </div>
-    </div>
-
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <h3>Count Admin</h3>
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> 0 : 0</h3></div>
-                    </div>
-
-                    <a href="#" class="btn btn-primary">View details...</a>
                 </div>
             </div>
-
         </div>
+        <div class="col-xl-4 col-md-6  mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
+                                <div class="col">
+                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
+                                </div>
+                                <div class="col pt-4"><h3> Total Admin Count </h3></div>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-4 col-md-6  mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
+                                <div class="col">
+                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
+                                </div>
+                                <div class="col pt-4"><h3> Total Projects </h3></div>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
     </div>
-
-
-
-
-</div>
 </div>
 
 

@@ -1,49 +1,64 @@
 ﻿@model TSheet.Modals.ProjectsModel
 @{
-    ViewBag.Title = "AddProjects";
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
 
-
-@Html.Partial("_navbar")
-<div class="row">
-    @Html.Partial("_sidebar")
-    <div class="col-8">
-        <div class="container">
-            <h3 class="font-weight-bold pt-3 pl-3">Add Projects</h3>
-            @using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post)) 
-            { 
-                
-
-                <div class="form-horizontal">
-                    <div class="col-sm-6">
-
-                        <div class="form-group pt-4">
-                            @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-sm" })
-                            <div class="col-lg">
-                                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label col-sm" })
-                            <div class="col-lg">
-                                @Html.TextAreaFor(model => model.ProjectDescription, new { @class = "whatever-class", @cols = 50, @rows = 7 })
-
-                                @*@Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })*@
-                                @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="form-group">
-                <div class="pl-4">
-                    <input type="submit" value="Save" class="btn btn-default btn-primary" />
-                </div>
-            </div>
-       @* </div>*@
-        }
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "UserLogin", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-clock"></i> @Html.ActionLink("Time Sheet", "UserTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "", "", "", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white" })</h5>
 
     </div>
+}
+
+<div class="col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:750px" id="top-box">
+
+
+    <h3 class="font-weight-bold pt-3 pl-3">Add Projects</h3>
+    @using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post))
+    {
+
+
+        <div class="form-horizontal">
+            <div class="col-sm-6">
+
+                <div class="form-group pt-4">
+                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-sm" })
+                    <div class="col-lg">
+                        @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label col-sm" })
+                    <div class="col-lg">
+                        @Html.TextAreaFor(model => model.ProjectDescription, new { @class = "whatever-class", @cols = 50, @rows = 7 })
+
+                        @*@Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="form-group">
+            <div class="pl-4">
+                <input type="submit" value="Save" class="btn btn-default btn-primary" />
+            </div>
+        </div>
+        @* </div>*@
+    }
+
 
 </div>
