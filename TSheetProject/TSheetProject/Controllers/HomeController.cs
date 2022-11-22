@@ -22,7 +22,7 @@ namespace TSheetMangement.Controllers
         {
             return View();
         }
-        public ActionResult Login()
+       /* public ActionResult Login()
         {
             return View();
         }
@@ -61,12 +61,12 @@ namespace TSheetMangement.Controllers
             }
             return View();
         }
-       
+       */
 
-        public ActionResult forgetPassword()
+        /*public ActionResult forgetPassword()
         {
             return View();
-        }
+        }*/
         
 
     }

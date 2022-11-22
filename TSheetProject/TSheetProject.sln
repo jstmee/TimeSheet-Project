@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSheetProject", "TSheetProj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSheet.Data", "TSheet.Data\TSheet.Data.csproj", "{A769194B-3ED0-46CA-9B62-8E4967B3E623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSheet.Modals", "TSheet.Modals\TSheet.Modals.csproj", "{C5E8C657-B904-4C16-B9FC-4FD867397DC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSheet.Models", "TSheet.Modals\TSheet.Models.csproj", "{C5E8C657-B904-4C16-B9FC-4FD867397DC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSheet.BL", "TSheet.BL\TSheet.BL.csproj", "{41D411CB-7311-449E-B81B-417FF95F6741}"
 EndProject

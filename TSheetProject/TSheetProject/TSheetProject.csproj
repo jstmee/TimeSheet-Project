@@ -162,23 +162,24 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\forgetPassword.cshtml" />
-    <Content Include="Views\SuperAdmin\SuperAdmin.cshtml" />
+    <Content Include="Views\SuperAdmin\DashBoard.cshtml" />
     <Content Include="Views\SuperAdmin\CreateUser.cshtml" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\User\AllTimeSheet.cshtml" />
     <Content Include="Views\SuperAdmin\AssignRoles.cshtml" />
-    <Content Include="Views\SuperAdmin\edit.cshtml" />
+    <Content Include="Views\SuperAdmin\EditUser.cshtml" />
     <Content Include="Views\SuperAdmin\AddProjects.cshtml" />
     <Content Include="Views\SuperAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutPage2.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\TimeSheet\Add.cshtml" />
+    <Content Include="Views\User\DashBoard.cshtml" />
+    <Content Include="Views\Admin\DashBoard.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -204,9 +205,9 @@
       <Project>{5DCAECAA-415E-4D06-9206-09ED3736EC5F}</Project>
       <Name>TSheet.IBL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TSheet.Modals\TSheet.Modals.csproj">
+    <ProjectReference Include="..\TSheet.Modals\TSheet.Models.csproj">
       <Project>{c5e8c657-b904-4c16-b9fc-4fd867397dc9}</Project>
-      <Name>TSheet.Modals</Name>
+      <Name>TSheet.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

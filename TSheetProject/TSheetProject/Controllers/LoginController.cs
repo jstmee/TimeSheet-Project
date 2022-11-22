@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TSheet.Data;
 using TSheet.Modals;
 
@@ -17,39 +18,55 @@ namespace TSheetProject.Controllers
             return View();
         }
 
-        [httpPost]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel login)
         {
             using (TSheetDB db = new TSheetDB())
             {
-                var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
-                if (b != null)
+                if (ModelState.IsValid)
                 {
-                    if (b.Password == login.Password)
+                    bool isValidUser=db.Registrations.Any(u=>u.Email== login.Email && u.Password==login.Password);
+                    if (isValidUser)
                     {
-                        var c = b.UserID;
-                        var d = db.AssignedRoles.Where(a => a.UserID == c).FirstOrDefault();
-                        var HisRoleId = d.RoleID;
-                        var RoleRow = db.Roles.Where(a => a.RoleID == HisRoleId).FirstOrDefault();
-                        if (RoleRow.RoleName == "Admin")
+                        /*FormsAuthentication.SetAuthCookie(login.Email, false);*/
+                        var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
+                        if (b != null)
                         {
-                            return RedirectToAction("SuperAdmin", "SuperAdmin");
-                        }
-                        else if (RoleRow.RoleName == "SuperAdmin")
-                        {
-                            return RedirectToAction("SuperAdmin", "SuperAdmin");
-                        }
-                        else if (RoleRow.RoleName == "User")
-                        {
-                            return RedirectToAction("User", "UserDashboard");
+                            if (b.Password == login.Password)
+                            {
+                                var c = b.UserID;
+                                var d = db.AssignedRoles.Where(a => a.UserID == c).FirstOrDefault();
+                                var HisRoleId = d.RoleID;
+                                var RoleRow = db.Roles.Where(a => a.RoleID == HisRoleId).FirstOrDefault();
+                                if (RoleRow.RoleName == "Admin")
+                                {
+                                    return RedirectToAction("DashBoard", "Admin");
+                                }
+                                else if (RoleRow.RoleName == "SuperAdmin")
+                                {
+                                    return RedirectToAction("DashBoard", "SuperAdmin");
+                                }
+                                else if (RoleRow.RoleName == "User")
+                                {
+                                    return RedirectToAction("Dashboard", "User");
+                                }
+
+                            }
                         }
 
                     }
+                    ModelState.AddModelError("", "invalid Username or Password");
+                    return View();
                 }
-
-
             }
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login");
         }
     }
 }

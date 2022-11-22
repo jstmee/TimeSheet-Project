@@ -41,6 +41,10 @@ namespace TSheetProject.Controllers
             // we will fetch 
             return View();
         }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
 
     }
 }

@@ -26,7 +26,7 @@ namespace TSheetProject.Controllers
             
         }
         [HttpPost]
-        public ActionResult Add(TimeSheetModal obj)
+        public ActionResult Add(TimeSheetModel obj)
         {
             //for initializing the dropdownlist with project
             ViewBag.Projects = MyCustom();
@@ -42,9 +42,9 @@ namespace TSheetProject.Controllers
 
         //a non action method for initializing the dropdownlist in view of timehseetadd
         [NonAction]
-        public List<Project> MyCustom()
+        public List<ProjectModel> MyCustom()
         {
-            List<Project> ListProjects = new List<Project>();
+            List<ProjectModel> ListProjects = new List<ProjectModel>();
 
             var v = _projectrepository.GetAllProjects();
 
@@ -52,14 +52,14 @@ namespace TSheetProject.Controllers
 
             foreach (var p in v)
             {
-                ListProjects.Add(new Project { Id = p.ProjectID, Name = p.ProjectName });
+                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
             }
             return ListProjects;
         }
 
         //a function to initilize the total hours of all the projects
         [NonAction]
-        public void Initilizing(TimeSheetModal obj)
+        public void Initilizing(TimeSheetModel obj)
         {
             // initilization of all the dates which should not be null
 
@@ -96,7 +96,7 @@ namespace TSheetProject.Controllers
         }
 
         [NonAction]
-        public void nullfieldtozero(TimeSheetModal obj)
+        public void nullfieldtozero(TimeSheetModel obj)
         {
 
 

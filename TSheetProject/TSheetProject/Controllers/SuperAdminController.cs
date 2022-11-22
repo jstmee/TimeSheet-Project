@@ -9,6 +9,7 @@ using TSheet.Modals;
 
 namespace TSheetProject.Controllers
 {
+    
     public class SuperAdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
@@ -18,28 +19,13 @@ namespace TSheetProject.Controllers
 
         }
         // GET: SuperAdmin
-        public ActionResult SuperAdmin()
+        public ActionResult DashBoard()
         {
             using (TSheetDB dB = new TSheetDB())
             {
-                var v=dB.Registrations.ToList();
-                ViewBag.NoOfUsers=v.Count;
-                /*var countuser = 0;
-                foreach (var item in v)
-                {
-                    countuser++;
-                }
-                ViewBag.NoOfUers = countuser;*/
-                
-
-                var p =dB.ProjectMasters.ToList();
-                ViewBag.NoOfProjects=p.Count;
+                ViewBag.NoOfUsers = dB.Registrations.Count();
+                ViewBag.NoOfProjects= dB.ProjectMasters.Count();
             }
-            /*ViewBag.countuser = _registrationRepository.count(user);
-            ViewBag.countuser = _registrationRepository.count(admin);
-            ViewBag.countuser = _registrationRepository.count(Projects);*/
-
-
             return View();
         }
         public ActionResult CreateUser()
@@ -49,20 +35,20 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult CreateUser(RegistrationModel user)
         {
-
+            string message = "";
             if (ModelState.IsValid)
             {
                 _registrationRepository.AddRegistration(user);
+                message = "User Added successfully";
             }
             else
             {
+                message = "Invalid Request";
                 return View(user);
             }
+            ViewBag.Message = message;  
             return View();
 
-
-            //_registrationRepository.AddRegistration(user);
-            //return View();
 
         }
         public ActionResult AssignRoles()
@@ -73,7 +59,7 @@ namespace TSheetProject.Controllers
             return View(alluser);
            
         }
-        public ActionResult edit(RegistrationModel user)
+        public ActionResult EditUser(RegistrationModel user)
         {
             if (user != null)
             {
@@ -110,8 +96,6 @@ namespace TSheetProject.Controllers
             using(TSheetDB dB= new TSheetDB())
             {
                 ProjectMaster projectMaster = new ProjectMaster();
-                /* projects.ProjectName = projectMaster.ProjectName;
-                 projects.ProjectDescription = projectMaster.ProjectDescription;*/
                 projectMaster.ProjectName = projects.ProjectName;
                 projectMaster.ProjectDescription = projects.ProjectDescription;
                 dB.ProjectMasters.Add(projectMaster);
@@ -125,20 +109,19 @@ namespace TSheetProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ResetPassword(ResetPassword resetPassword,int id)
+        public ActionResult ResetPassword(ResetPasswordModel resetPassword,int id)
         {
+            string message = "";
             using (TSheetDB dB = new TSheetDB())
             {
                 var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
                 v.Password = resetPassword.Password;
                 dB.SaveChanges();
-                /*Registration registration= new Registration();  
-                registration.Email = resetPassword.Email;
-                registration.Password = resetPassword.Password;
-                dB.SaveChanges();*/
+                message = "Password Changed successfully";
+               
             }
-
-                return View();
+            ViewBag.message = message;
+            return View();
         }
 
     }

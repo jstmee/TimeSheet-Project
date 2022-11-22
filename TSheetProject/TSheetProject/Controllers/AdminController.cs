@@ -13,13 +13,28 @@ namespace TSheetProject.Controllers
 
         }
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult DashBoard()
         {
             return View();
         }
-        public ActionResult Admin()
+
+        public ActionResult CreateUser()
+        {
+
+            return View();
+        }
+
+
+        public ActionResult AllTimeSheet()
         {
             return View();
         }
+
+       public ActionResult ProjectList()
+       {
+            return View();
+       }
+       
+
     }
 }

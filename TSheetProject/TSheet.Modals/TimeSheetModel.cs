@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TSheet.Modals
 {
-    public class TimeSheetModal
+    public class TimeSheetModel
     {
         [Required]
         [Display(Name = "Select Date")]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TSheet.Modals
 {
-    public class ResetPassword
+    public class ResetPasswordModel
     {
        
         

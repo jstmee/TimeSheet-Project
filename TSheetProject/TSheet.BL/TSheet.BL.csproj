@@ -67,9 +67,9 @@
       <Project>{5DCAECAA-415E-4D06-9206-09ED3736EC5F}</Project>
       <Name>TSheet.IBL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TSheet.Modals\TSheet.Modals.csproj">
+    <ProjectReference Include="..\TSheet.Modals\TSheet.Models.csproj">
       <Project>{C5E8C657-B904-4C16-B9FC-4FD867397DC9}</Project>
-      <Name>TSheet.Modals</Name>
+      <Name>TSheet.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
