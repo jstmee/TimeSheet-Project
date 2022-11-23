@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TSheet.Data;
-using TSheet.Modals;
+using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
@@ -18,7 +18,10 @@ namespace TSheetProject.Controllers
         }
         // GET: User
         
-
+        public ActionResult DashBoard()
+        {
+            return View();
+        }
 
 
 

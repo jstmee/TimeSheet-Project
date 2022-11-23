@@ -26,10 +26,12 @@ namespace TSheetProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
                     bool isValidUser = db.Registrations.Any(u => u.Email == login.Email && u.Password == login.Password);
+
                     if (isValidUser)
                     {
-                        
+                        FormsAuthentication.SetAuthCookie(login.Email, false);
                         var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
                         if (b != null)
                         {
@@ -52,7 +54,7 @@ namespace TSheetProject.Controllers
                                 else if (RoleRow.RoleName == "User")
                                 {
                                     FormsAuthentication.SetAuthCookie(login.Email, false);
-                                    return RedirectToAction("Dashboard", "User");
+                                    return RedirectToAction("DashBoard", "User");
                                 }
 
                             }

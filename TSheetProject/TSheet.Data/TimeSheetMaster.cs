@@ -29,7 +29,7 @@ namespace TSheet.Data
 
         [Required]
         [MaxLength(50)]
-        public byte[] Comment { get; set; }
+        public string Comment { get; set; }
 
         [StringLength(50)]
         public string TimeSheetStatus { get; set; }

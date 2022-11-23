@@ -89,6 +89,10 @@
     <Compile Include="Migrations\202211191522284_allowdsomefieldnullableagain1.designer.cs">
       <DependentUpon>202211191522284_allowdsomefieldnullableagain1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211231232318_changedatatype.cs" />
+    <Compile Include="Migrations\202211231232318_changedatatype.designer.cs">
+      <DependentUpon>202211231232318_changedatatype.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211191522284_allowdsomefieldnullableagain1.resx">
       <DependentUpon>202211191522284_allowdsomefieldnullableagain1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211231232318_changedatatype.resx">
+      <DependentUpon>202211231232318_changedatatype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

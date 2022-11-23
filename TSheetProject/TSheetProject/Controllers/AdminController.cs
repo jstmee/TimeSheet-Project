@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TSheet.BL;
 using TSheet.Data;
-using TSheet.Modals;
+using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {

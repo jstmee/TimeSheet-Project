@@ -13,11 +13,10 @@
         <hr />
         <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white" })</h5>
         <hr />
-        <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "SuperAdmin", "", new { @class = "text-white" })</h5>
-        <hr/>
         <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white" })</h5>
         <hr />
         @* <h5 class=""><i class="fa-solid fa-business-time"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
+            <hr />*@
         <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white" })</h5>
 
         <hr />
@@ -29,7 +28,7 @@
 <style>
     td {
         font-size: 18px;
-        font-family:OpenSymbol
+        font-family: OpenSymbol
     }
 </style>
 
@@ -38,7 +37,7 @@
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" >
+    <table id="table_id">
         <thead class="bg-white">
             <tr>
                 <th>Name</th>
@@ -46,10 +45,10 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody>
             @foreach (var item in Model)
             {
-                <tr >
+                <tr>
                     <td class="p-3">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
@@ -75,4 +74,4 @@
         });
     </script>
 
-    </div>
+</div>
