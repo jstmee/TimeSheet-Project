@@ -29,7 +29,7 @@ namespace TSheetProject.Controllers
                     bool isValidUser=db.Registrations.Any(u=>u.Email== login.Email && u.Password==login.Password);
                     if (isValidUser)
                     {
-                        /*FormsAuthentication.SetAuthCookie(login.Email, false);*/
+                        FormsAuthentication.SetAuthCookie(login.Email, false);
                         var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
                         if (b != null)
                         {
