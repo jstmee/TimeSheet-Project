@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -8,7 +9,7 @@
     <link href="~/Content/css/leyoutFile.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="" style="background-color: #DDE7EC; height:70px">
+    <div class="" style="background-color: #DDE7EC; height:75px">
         <nav class="navbar ">
             <div class="nav-hedding-box">
                 <h2 style="font-weight: 500; color: #59646A">
@@ -19,6 +20,8 @@
                 <h4 class="text">
                     @HttpContext.Current.User.Identity.Name <i class="fa-regular fa-user"></i>
                 </h4>
+                <h5 class="justify-content-end">
+                <i class="fa fa-sign-out pl-4"></i> @Html.ActionLink("Logout", "Logout", "Login")</h5>
             </div>
         </nav>
     </div>

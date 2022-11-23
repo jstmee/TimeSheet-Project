@@ -10,13 +10,13 @@
 
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "UserLogin", "User", "", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "User", "", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""><i class="fa-solid fa-clock"></i> @Html.ActionLink("Time Sheet", "Add", "TimeSheet", "", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "ChangePassword ", "User", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "ChangePassword", "User","", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white" })</h5>
 
@@ -36,7 +36,7 @@
                                 <div class="col">
                                     <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
                                 </div>
-                                <div class="col"><h3> Total TimeSheet Approved</h3></div>
+                                <div class="col"><h3> Total TimeSheets</h3></div>
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
                         </div>
@@ -74,7 +74,7 @@
                                 <div class="col">
                                     <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
                                 </div>
-                                <div class="col"><h3> Total TimeSheet Approved</h3></div>
+                                <div class="col"><h3> Total TimeSheet Rejected</h3></div>
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
                         </div>

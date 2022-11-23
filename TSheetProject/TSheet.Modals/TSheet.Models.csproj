@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssignedRolesModel.cs" />
+    <Compile Include="ChangeUserPassword.cs" />
     <Compile Include="ProjectModel.cs" />
     <Compile Include="ResetPasswordModel.cs" />
     <Compile Include="ProjectsModel.cs" />

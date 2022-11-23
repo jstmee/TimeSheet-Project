@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TSheet.BL;
+using TSheet.Data;
+using TSheet.Modals;
 
 namespace TSheetProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
+        private RegistrationRepository _registrationRepository;
         public AdminController()
         {
 
@@ -23,18 +28,47 @@ namespace TSheetProject.Controllers
 
             return View();
         }
+        [HttpPost]
+        public ActionResult CreateUser(RegistrationModel user)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                _registrationRepository.AddRegistration(user);
+                message = "User Added successfully";
+            }
+            else
+            {
+                message = "Invalid Request";
+                return View(user);
+            }
+            ViewBag.Message = message;
+            return View();
 
+
+        }
 
         public ActionResult AllTimeSheet()
         {
             return View();
         }
 
+
        public ActionResult ProjectList()
        {
-            return View();
+            TSheetDB dB= new TSheetDB();
+            var projectlist = dB.ProjectMasters.ToList();
+            return View(projectlist);
        }
-       
+
+        public ActionResult ApproveTimesheet()
+        {
+            return View();
+        }
+        public ActionResult RejectTimeSheet()
+        {
+            return View();
+        }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model TSheet.Modals.TimeSheetModal
+﻿@model TSheet.Modals.TimeSheetModel
 
 @{
     ViewBag.Title = "CreateUser";
@@ -12,13 +12,13 @@
 
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "UserLogin", "User", "", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "User", "", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""><i class="fa-solid fa-clock"></i> @Html.ActionLink("Time Sheet", "Add", "TimeSheet", "", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "", "", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-lock"></i> @Html.ActionLink("Change Password", "ChangePassword", "User", "", new { @class = "text-white" })</h5>
         <hr />
         <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white" })</h5>
 
@@ -74,14 +74,43 @@
                        new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ProjectID1, "", new { @class = "text-danger w-75" })
                         </th>
-                        <td>   @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
-                        <td> @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>
+                            @Html.EditorFor(model => model.Text1_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Text2_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Text3_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Text4_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+
+                        <td>
+                            @Html.EditorFor(model => model.Text5_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Text6_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Text7_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+
+                                            </td>
+                        <td>
+                            @Html.EditorFor(model => model.Description_ProjectID1, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Text1_ProjectID1, "", new { @class = "text-danger w-75" })
+
+                                            </td>
                       
 
                     </tr>

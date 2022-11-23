@@ -11,7 +11,7 @@ namespace TSheet.Modals
     {
         public string ProjectName { get; set; } 
 
-        public int hours { get; set; }  
+        public int Hours { get; set; }  
 
         public DateTime Date { get; set; }
 

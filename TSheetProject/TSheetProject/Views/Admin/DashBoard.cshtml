@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "CreateUser";
+    ViewBag.Title = "DashBoard";
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
@@ -15,15 +15,16 @@
         <hr />
         <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
         <hr />
-        @*<h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("create Admin", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
-            <hr />*@
+
         <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "Admin", new { @class = "text-white" })</h5>
         <hr />
-        
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
         <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
-        @*<hr />
-            <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Reset Password", "no", "User", "", new { @class = "text-white" })</h5>*@
-      
+
+
 
     </div>
 }

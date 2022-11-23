@@ -55,7 +55,7 @@ namespace TSheet.Modals
         public int? Text6_ProjectID1 { get; set; }
 
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "P0 to 24")]
+        [Range(0, 24, ErrorMessage = "0 to 24")]
         public int? Text7_ProjectID1 { get; set; }
 
         [StringLength(50, ErrorMessage = "Length Exceeds")]
