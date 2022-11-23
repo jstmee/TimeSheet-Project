@@ -17,29 +17,20 @@ namespace TSheetProject.Controllers
 
         }
         // GET: User
-        public ActionResult UserTimeSheet()
-        {
-            
-            TSheetDB dB= new TSheetDB();
-            ViewBag.ProjectData = dB.ProjectMasters.ToList();
-            
-            return View();
-        }
+        
 
 
 
 
+  
         public ActionResult AllTimeSheet()
         {
+
+            
+
             return View();
         }
 
-        public ActionResult DashBoard()
-        {
-            
-            // we will fetch 
-            return View();
-        }
         public ActionResult ChangePassword()
         {
             return View();

@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TSheet.Data;
-using TSheet.Modals;
+using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
-        // GET: Login
+        // GET: Account
         [HttpGet]
         public ActionResult Login()
         {
@@ -26,10 +26,10 @@ namespace TSheetProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    bool isValidUser=db.Registrations.Any(u=>u.Email== login.Email && u.Password==login.Password);
+                    bool isValidUser = db.Registrations.Any(u => u.Email == login.Email && u.Password == login.Password);
                     if (isValidUser)
                     {
-                        FormsAuthentication.SetAuthCookie(login.Email, false);
+                        
                         var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
                         if (b != null)
                         {
@@ -41,14 +41,17 @@ namespace TSheetProject.Controllers
                                 var RoleRow = db.Roles.Where(a => a.RoleID == HisRoleId).FirstOrDefault();
                                 if (RoleRow.RoleName == "Admin")
                                 {
+                                    FormsAuthentication.SetAuthCookie(login.Email, false);
                                     return RedirectToAction("DashBoard", "Admin");
                                 }
                                 else if (RoleRow.RoleName == "SuperAdmin")
                                 {
+                                    FormsAuthentication.SetAuthCookie(login.Email, false);
                                     return RedirectToAction("DashBoard", "SuperAdmin");
                                 }
                                 else if (RoleRow.RoleName == "User")
                                 {
+                                    FormsAuthentication.SetAuthCookie(login.Email, false);
                                     return RedirectToAction("Dashboard", "User");
                                 }
 
@@ -65,8 +68,8 @@ namespace TSheetProject.Controllers
 
         public ActionResult Logout()
         {
-                FormsAuthentication.SignOut();
-                return RedirectToAction("Login");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

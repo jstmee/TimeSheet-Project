@@ -145,10 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\httpPostAttribute.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -160,13 +158,8 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\SuperAdmin\DashBoard.cshtml" />
     <Content Include="Views\SuperAdmin\CreateUser.cshtml" />
-    <Content Include="Views\Shared\_navbar.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\User\AllTimeSheet.cshtml" />
     <Content Include="Views\SuperAdmin\AssignRoles.cshtml" />

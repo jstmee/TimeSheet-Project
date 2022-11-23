@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using TSheet.BL;
 using TSheet.Data;
-using TSheet.Modals;
+using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {

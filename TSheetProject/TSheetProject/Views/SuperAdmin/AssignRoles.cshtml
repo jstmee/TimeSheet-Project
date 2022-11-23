@@ -17,7 +17,7 @@
         <hr/>
         <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white" })</h5>
         <hr />
-
+        @* <h5 class=""><i class="fa-solid fa-business-time"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white" })</h5>
         <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white" })</h5>
 
         <hr />
@@ -26,49 +26,53 @@
     </div>
 }
 
-<div class="row col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+<style>
+    td {
+        font-size: 18px;
+        font-family:OpenSymbol
+    }
+</style>
 
-    <div class="col-8">
 
-        <table class="table" id="dtable">
+<div class=" col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" >
+        <thead class="bg-white">
             <tr>
-                <th>
-                    Name
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    Actions
-                </th>
-
-                <th></th>
+                <th>Name</th>
+                <th> @Html.DisplayNameFor(model => model.Email)</th>
+                <th>Action</th>
             </tr>
-
+        </thead>
+        <tbody >
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
+                <tr >
+                    <td class="p-3">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Email)</td>
+                    <td class="pt-3">
                         @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-                        @Html.ActionLink("Reset Password","ResetPassword","SuperAdmin", new {id=item.UserID}, null)
+                        @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
                     </td>
                 </tr>
             }
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
 
-        </table>
     </div>
-</div>
-<script src="~/Scripts/datatablejs/jquery.dataTables.js"></script>
-<script src="~/Scripts/datatablejs/dataTables.bootstrap.js"></script>
-<script>
-    $(document).ready(function () { $('#dtable').DataTable(); });
-
-</script>
