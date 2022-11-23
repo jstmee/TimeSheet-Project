@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 
 
-namespace TSheet.Modals
+namespace TSheet.Models
 {
     public class RegistrationModel
     {

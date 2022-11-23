@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TSheetProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public AdminController()
