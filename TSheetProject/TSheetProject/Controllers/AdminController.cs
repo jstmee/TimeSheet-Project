@@ -50,7 +50,10 @@ namespace TSheetProject.Controllers
 
         public ActionResult AllTimeSheet()
         {
-            return View();
+            TSheetDB dB= new TSheetDB();
+            var alltsheetdata= dB.TimeSheetDetails.ToList();
+
+            return View(alltsheetdata);
         }
 
 

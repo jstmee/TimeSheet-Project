@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TSheet.Data.TimeSheetDetail>
+
+@{
+    ViewBag.Title = "All Tsheet Detail";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
+        <hr />
+
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
+
+
+
+    </div>
+}
+<style>
+    td {
+        font-size: 18px;
+        
+    }
+</style>
+
+
+
+<div class=" col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id">
+        <thead class="bg-white">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.Hours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeSheetMaster.Comment)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hours)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.TimeSheetDetailID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TimeSheetDetailID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TimeSheetDetailID })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+    </div>
