@@ -1,0 +1,97 @@
+﻿@model List<TSheet.Models.AllTimeSheetModel>
+@{
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
+        <hr />
+
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveSheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
+
+
+
+    </div>
+}
+
+
+
+
+<div class=" col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id">
+        <thead class="bg-white">
+            <tr>
+                <th>Name</th>
+                <th> Hours</th>
+                <th>Date</th>
+                <th>Created On</th>
+                <th>Project Name</th>
+                @if (ViewBag.b == true)
+                {
+                    <th>Aprroved</th>
+                }
+                @*@if(ViewBag.b== false)
+            {
+                <th>Rejected</th>
+            }*@
+
+                @* <th>Action</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="p-3">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
+                    @if (ViewBag.b == true)
+                    {
+                        <td class="p-3">  @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name })</td>
+                    }
+                    @if (ViewBag.b == null)
+                    {
+                        <td class="p-3">  @Html.ActionLink("RejectTimesheet", "RejectTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name })</td>
+                    }
+
+                    @*<td class="p-3"> @Html.DisplayFor(modelItem => item.Comment)</td>*@
+                    @* <td class="pt-3">
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+            @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
+        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+
+</div>

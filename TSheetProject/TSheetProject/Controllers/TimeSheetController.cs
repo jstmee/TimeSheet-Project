@@ -103,82 +103,22 @@ namespace TSheetProject.Controllers
         [NonAction]
         public void nullfieldtozero(TimeSheetModel obj)
         {
-
-
-
         }
         [HttpGet]
         public ActionResult AllTimeSheet()
-        {
-
-            /*AllTimeSheetModel viewmodal=new AllTimeSheetModel();*//*
-           TimeSheetRepository _timeSheetRepository= new TimeSheetRepository();
-            var v=_timeSheetRepository.AllTimeSheet();
-            return View();*/
-
+        { 
             ViewBag.b = false;
-
-            /*List<AllTimeSheetModel> viewmodellists = new List<AllTimeSheetModel>();
-
-
-
-            TSheetDB db = new TSheetDB();
-            var tsheetdetailtb = db.TimeSheetDetails.ToList();
-            foreach (var v in tsheetdetailtb)
-            {
-                AllTimeSheetModel viewmodel = new AllTimeSheetModel();
-                viewmodel.Hours = v.Hours;
-                viewmodel.CreatedOn = v.CreatedOn;
-                viewmodel.Date = v.Date;
-                viewmodel.AllTimesheetId = v.TimeSheetDetailID;
-
-
-
-                var masterid = v.TimeSheetMasterID;
-                var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
-                var userid = masteridmatchedrow.UserID;
-                var projectid = masteridmatchedrow.ProjectId;
-                var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
-                var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
-                viewmodel.FirstName = useridmatchedrow.FirstName;
-                viewmodel.LastName = useridmatchedrow.LastName;
-                viewmodel.ProjectName = projectmatchedrow.ProjectName;
-
-
-
-                viewmodellists.Add(viewmodel);
-            }*/
-
-
-            var v = myyy();
-
-
-
-
-
+            var v = alltsheetdata();
             return View(v);
-
-          
-
-
-
-
-
-
-
         }
         public ActionResult ApproveSheet()
         {
             ViewBag.b = true;
-
-
-            var v = myyy();
+            var v = alltsheetdata();
             return View("AllTimeSheet", v);
         }
         public ActionResult ApproveTimesheet(int id,string Email)
         {
-
-
             TSheetDB db = new TSheetDB();
             var v=db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
             
@@ -194,7 +134,7 @@ namespace TSheetProject.Controllers
         public ActionResult RejectTimeSheet()
         {
             
-            var v = myyy();
+            var v = alltsheetdata();
             return View("AllTimeSheet", v);
            
         }
@@ -212,7 +152,7 @@ namespace TSheetProject.Controllers
             return RedirectToAction("RejectSheet");
         }
         [NonAction]
-        public List<AllTimeSheetModel> myyy()
+        public List<AllTimeSheetModel> alltsheetdata()
         {
             List<AllTimeSheetModel> viewmodellists = new List<AllTimeSheetModel>();
 
