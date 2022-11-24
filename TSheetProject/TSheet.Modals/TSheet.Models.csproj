@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="AssignedRolesModel.cs" />
     <Compile Include="ChangeUserPassword.cs" />
+    <Compile Include="AllTimeSheetModel.cs" />
+    <Compile Include="TsheetAuditModel.cs" />
     <Compile Include="ProjectModel.cs" />
     <Compile Include="ResetPasswordModel.cs" />
     <Compile Include="ProjectsModel.cs" />

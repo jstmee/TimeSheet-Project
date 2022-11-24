@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using TSheet.BL;
 using TSheet.Data;
 using TSheet.Models;
@@ -103,6 +107,147 @@ namespace TSheetProject.Controllers
 
 
         }
+        [HttpGet]
+        public ActionResult AllTimeSheet()
+        {
+
+            /*AllTimeSheetModel viewmodal=new AllTimeSheetModel();*//*
+           TimeSheetRepository _timeSheetRepository= new TimeSheetRepository();
+            var v=_timeSheetRepository.AllTimeSheet();
+            return View();*/
+
+            ViewBag.b = false;
+
+            /*List<AllTimeSheetModel> viewmodellists = new List<AllTimeSheetModel>();
+
+
+
+            TSheetDB db = new TSheetDB();
+            var tsheetdetailtb = db.TimeSheetDetails.ToList();
+            foreach (var v in tsheetdetailtb)
+            {
+                AllTimeSheetModel viewmodel = new AllTimeSheetModel();
+                viewmodel.Hours = v.Hours;
+                viewmodel.CreatedOn = v.CreatedOn;
+                viewmodel.Date = v.Date;
+                viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+
+
+
+                var masterid = v.TimeSheetMasterID;
+                var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
+                var userid = masteridmatchedrow.UserID;
+                var projectid = masteridmatchedrow.ProjectId;
+                var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
+                var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
+                viewmodel.FirstName = useridmatchedrow.FirstName;
+                viewmodel.LastName = useridmatchedrow.LastName;
+                viewmodel.ProjectName = projectmatchedrow.ProjectName;
+
+
+
+                viewmodellists.Add(viewmodel);
+            }*/
+
+
+            var v = myyy();
+
+
+
+
+
+            return View(v);
+
+          
+
+
+
+
+
+
+
+        }
+        public ActionResult ApproveSheet()
+        {
+            ViewBag.b = true;
+
+
+            var v = myyy();
+            return View("AllTimeSheet", v);
+        }
+        public ActionResult ApproveTimesheet(int id,string Email)
+        {
+
+
+            TSheetDB db = new TSheetDB();
+            var v=db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
+            
+            TimeSheetAuditTB obj= new TimeSheetAuditTB();
+            
+            obj.UserID= v.UserID;
+            obj.Status = "Approved";
+            obj.ApprovedBy = Email;
+            db.TimeSheetAuditTBs.Add(obj);
+            db.SaveChanges();
+           return RedirectToAction("ApproveSheet");
+        }
+        public ActionResult RejectTimeSheet()
+        {
+            
+            var v = myyy();
+            return View("AllTimeSheet", v);
+           
+        }
+        public ActionResult RejectTimeSheet(int id, string Email)
+        {
+            TSheetDB db = new TSheetDB();
+            var v = db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
+
+            TimeSheetAuditTB obj = new TimeSheetAuditTB();
+            obj.UserID = v.UserID;
+            obj.Status = "Rejected";
+            obj.ApprovedBy = Email;
+            db.TimeSheetAuditTBs.Add(obj);
+            db.SaveChanges();
+            return RedirectToAction("RejectSheet");
+        }
+        [NonAction]
+        public List<AllTimeSheetModel> myyy()
+        {
+            List<AllTimeSheetModel> viewmodellists = new List<AllTimeSheetModel>();
+
+
+
+            TSheetDB db = new TSheetDB();
+            var tsheetdetailtb = db.TimeSheetDetails.ToList();
+            foreach (var v in tsheetdetailtb)
+            {
+                AllTimeSheetModel viewmodel = new AllTimeSheetModel();
+                viewmodel.Hours = v.Hours;
+                viewmodel.CreatedOn = v.CreatedOn;
+                viewmodel.Date = v.Date;
+                viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+
+
+
+                var masterid = v.TimeSheetMasterID;
+                var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
+                var userid = masteridmatchedrow.UserID;
+                var projectid = masteridmatchedrow.ProjectId;
+                var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
+                var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
+                viewmodel.FirstName = useridmatchedrow.FirstName;
+                viewmodel.LastName = useridmatchedrow.LastName;
+                viewmodel.ProjectName = projectmatchedrow.ProjectName;
+
+
+
+                viewmodellists.Add(viewmodel);
+            }
+            return viewmodellists;
+
+        }
+
     }
     
 }

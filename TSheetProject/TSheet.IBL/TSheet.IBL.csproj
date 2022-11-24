@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITimeSheet.cs" />
     <Compile Include="IAssignedRole.cs" />
     <Compile Include="IGenericRepository.cs" />
     <Compile Include="IProjectMaster.cs" />

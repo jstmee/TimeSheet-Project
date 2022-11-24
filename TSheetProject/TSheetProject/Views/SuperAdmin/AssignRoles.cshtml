@@ -55,7 +55,7 @@
                     </td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.Email)</td>
                     <td class="pt-3">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID ,item.Gender}) |
                         @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
                     </td>
                 </tr>

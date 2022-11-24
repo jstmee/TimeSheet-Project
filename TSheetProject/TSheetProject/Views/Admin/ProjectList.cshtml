@@ -1,19 +1,39 @@
 ﻿@model IEnumerable<TSheet.Data.ProjectMaster>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ProjectList</title>
-</head>
-<body>
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
+        <hr />
+
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet")</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
+
+
+
+    </div>
+}
+
+
+
+<div class="col-lg-10 col-md-9 p-4" id="main-box">
+
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Add New", "Create")
     </p>
     <table class="table">
         <tr>
@@ -25,23 +45,24 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectDescription)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDescription)
+                </td>
+                @* <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
+                    </td>*@
+            </tr>
+        }
+
     </table>
-</body>
-</html>
+
+</div>

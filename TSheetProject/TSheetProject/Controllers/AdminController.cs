@@ -15,11 +15,13 @@ namespace TSheetProject.Controllers
         private RegistrationRepository _registrationRepository;
         public AdminController()
         {
+            _registrationRepository = new RegistrationRepository();
 
         }
         // GET: Admin
         public ActionResult DashBoard()
         {
+            
             return View();
         }
 
@@ -48,14 +50,7 @@ namespace TSheetProject.Controllers
 
         }
 
-        public ActionResult AllTimeSheet()
-        {
-            TSheetDB dB= new TSheetDB();
-            var alltsheetdata= dB.TimeSheetDetails.ToList();
-
-            return View(alltsheetdata);
-        }
-
+     
 
        public ActionResult ProjectList()
        {
@@ -64,14 +59,10 @@ namespace TSheetProject.Controllers
             return View(projectlist);
        }
 
-        public ActionResult ApproveTimesheet()
-        {
-            return View();
-        }
-        public ActionResult RejectTimeSheet()
-        {
-            return View();
-        }
+
+
+
+        
 
     }
 }
