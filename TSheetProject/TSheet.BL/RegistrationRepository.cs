@@ -35,7 +35,7 @@ namespace TSheet.BL
             registration.Password = user.Password;
             registration.MobileNumber = user.MobileNumber;
         
-            registration.CreatedBy = "admin";
+            registration.CreatedBy = user.CreatedBy;
             registration.CreatedOn=DateTime.Now;
             sheetDB.Registrations.Add(registration);
             

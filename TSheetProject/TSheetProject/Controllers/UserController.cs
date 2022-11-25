@@ -9,7 +9,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="User")]
     public class UserController : Controller
     {
         public UserController()
@@ -22,16 +22,9 @@ namespace TSheetProject.Controllers
         {
             return View();
         }
-
-
-
-  
         public ActionResult AllTimeSheet()
         {
-
-            
-
-            return View();
+           return View();
         }
 
         public ActionResult ChangePassword()

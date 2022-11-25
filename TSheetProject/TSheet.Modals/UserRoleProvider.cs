@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
@@ -40,20 +42,17 @@ namespace TSheet.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string Email)
         {
-           /* using (TSheetDB dB = new TSheetDB())
+            using(TSheetDB dB= new TSheetDB())
             {
-                var userRoles = (from Registration in dB.Registrations
-                                 join 
-                                 
-                                 );
-            }*/
+                var userRoles=(from Role in dB.Roles join AssignedRole in dB.AssignedRoles on Role.RoleID equals AssignedRole.RoleID             join Registration in dB.Registrations on AssignedRole.UserID equals Registration.UserID
+                               where Registration.Email == Email select Role.RoleName).ToArray();
+                return userRoles;
+            }
 
-
-                throw new NotImplementedException();
+           
         }
-
         public override string[] GetUsersInRole(string roleName)
         {
             throw new NotImplementedException();

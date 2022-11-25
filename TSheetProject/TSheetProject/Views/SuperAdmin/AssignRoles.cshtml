@@ -28,7 +28,6 @@
 <style>
     td {
         font-size: 18px;
-        font-family: OpenSymbol
     }
 </style>
 
@@ -55,7 +54,7 @@
                     </td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.Email)</td>
                     <td class="pt-3">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID ,item.Gender}) |
+                        @Html.ActionLink("Edit", "EditUser","SuperAdmin",new { id = item.UserID ,item.Gender, item.FirstName,item.LastName,item.MobileNumber,item.IsActive, item.DateOfbirth,item.DateOfJoining,item.Email},null) |
                         @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
                     </td>
                 </tr>
