@@ -10,7 +10,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    
+    [Authorize(Roles="SuperAdmin")]
     public class SuperAdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
@@ -62,6 +62,9 @@ namespace TSheetProject.Controllers
         }
         public ActionResult EditUser(RegistrationModel user)
         {
+            TSheetDB dB = new TSheetDB();
+            ViewBag.projectlist = dB.ProjectMasters.ToList();
+
             if (user != null)
             {
                 return View(user);
@@ -93,7 +96,6 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult AddProjects(ProjectsModel projects)
         {
-
             using(TSheetDB dB= new TSheetDB())
             {
                 ProjectMaster projectMaster = new ProjectMaster();

@@ -123,15 +123,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.EditedBy, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.EditedBy, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EditedBy, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
+                        @Html.HiddenFor(model => model.EditedBy, new { @Value = HttpContext.Current.User.Identity.Name })
+                        @* <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.EditedBy, htmlAttributes: new { @class = "control-label col-sm" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EditedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EditedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
                         <div class="row">
                             <div class="col-sm-6">
                                 <select class="form-control" id="StudentGender" name="StudentGender">
@@ -177,7 +178,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.DisplayFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -190,6 +191,16 @@
                                     @Html.ValidationMessageFor(model => model.DateOfLeaving, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AssignProject, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.AssignProject,
+             new SelectList(ViewBag.projectlist,"ProjectName"),
+             "Select Projects",
+             new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AssignProject, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

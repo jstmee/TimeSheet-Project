@@ -13,7 +13,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    
+    [Authorize(Roles="Admin, SuperAdmin")]
     public class TimeSheetController : Controller
     {
         private ProjectRepository _projectrepository;
