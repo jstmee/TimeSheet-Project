@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TSheet.BL;
 using TSheet.Data;
+using TSheet.Modals;
 using TSheet.Models;
 
 namespace TSheetProject.Controllers
@@ -22,10 +24,13 @@ namespace TSheetProject.Controllers
             _projectrepository = new ProjectRepository();
         }
         // GET: TimeSheet
+        [HttpGet]
         public ActionResult Add()
         {
             //for initializing the dropdownlist with project
             ViewBag.Projects = MyCustom();
+
+
 
             return View();
             
@@ -35,75 +40,47 @@ namespace TSheetProject.Controllers
         {
             //for initializing the dropdownlist with project
             ViewBag.Projects = MyCustom();
+            List<ProjectRow> projectRows= Rowfun(obj);
+            foreach(var vv in projectRows)
+            {
+               TimeSheetMaster masterobj=new TimeSheetMaster();
+                masterobj.ProjectId = vv.Id;
+                masterobj.UserID = 13;
+                masterobj.FromDate = obj.Date1;
+                masterobj.ToDate = obj.Date7;
+                masterobj.TimeSheetStatus = "Not Approved";
+                masterobj.Comment = vv.comment;
+                List<int> listOfHrs = li(vv);
+                var totalhrs = 0 ;
+                var count = 0;
+                foreach(var v in listOfHrs)
+                {
+                    count++;
+                    totalhrs+= v;
+                }
+                masterobj.TotalHours= totalhrs;
+                TSheetDB db = new TSheetDB();
+                db.TimeSheetMasters.Add(masterobj);
+                db.SaveChanges();
+                var dayys = 0;
+                for(int i = 0; i < count; i++)
+                {
+                    dayys++;
+                    TimeSheetDetail detailobj = new TimeSheetDetail();
+                    detailobj.Hours = listOfHrs[i];
 
-            //initializing the total for all field of the project
-            //and the dates of subsequent 6 days from date started
-            Initilizing(obj);
-
+                    detailobj.TimeSheetMasterID = masterobj.TimeSheetMasterID;
+                    detailobj.Date = obj.Date1.AddDays(dayys-1);
+                    detailobj.CreatedOn = DateTime.Now;
+                    db.TimeSheetDetails.Add(detailobj);
+                    db.SaveChanges();
+                }
+            }
             return View();
         }
 
+        
 
-
-        //a non action method for initializing the dropdownlist in view of timehseetadd
-        [NonAction]
-        public List<ProjectModel> MyCustom()
-        {
-            List<ProjectModel> ListProjects = new List<ProjectModel>();
-
-            var v = _projectrepository.GetAllProjects();
-
-
-
-            foreach (var p in v)
-            {
-                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
-            }
-            return ListProjects;
-        }
-
-        //a function to initilize the total hours of all the projects
-        [NonAction]
-        public void Initilizing(TimeSheetModel obj)
-        {
-            // initilization of all the dates which should not be null
-
-            obj.Date2 = obj.Date1.AddDays(1);
-            obj.Date3 = obj.Date1.AddDays(2);
-            obj.Date4 = obj.Date1.AddDays(3);
-            obj.Date5 = obj.Date1.AddDays(4);
-            obj.Date6 = obj.Date1.AddDays(5);
-            obj.Date7 = obj.Date1.AddDays(6);
-
-            /*NullFieldToZero(obj);*/
-            obj.totalhr_ProjectID1=obj.Text1_ProjectID1+obj.Text2_ProjectID1+ obj.Text3_ProjectID1+ obj.Text4_ProjectID1+ obj.Text5_ProjectID1+ obj.Text6_ProjectID1+ obj.Text7_ProjectID1;
-
-            if (obj.ProjectID2 != null)
-            {
-                obj.totalhr_ProjectID2 = obj.Text1_ProjectID2 + obj.Text2_ProjectID2 + obj.Text3_ProjectID2 + obj.Text4_ProjectID2 + obj.Text5_ProjectID2 + obj.Text6_ProjectID2 + obj.Text7_ProjectID2;
-
-            }
-            
-            if(obj.ProjectID3 != null)
-            {
-                obj.totalhr_ProjectID3 = obj.Text1_ProjectID3 + obj.Text2_ProjectID3 + obj.Text3_ProjectID3 + obj.Text4_ProjectID3 + obj.Text5_ProjectID3 + obj.Text6_ProjectID3 + obj.Text7_ProjectID3;
-            }
-            
-            if(obj.ProjectID4 != null)
-            {
-                obj.totalhr_ProjectID4 = obj.Text1_ProjectID4 + obj.Text2_ProjectID4 + obj.Text3_ProjectID4 + obj.Text4_ProjectID4 + obj.Text5_ProjectID4 + obj.Text6_ProjectID4 + obj.Text7_ProjectID4;
-
-            }
-
-            
-
-
-        }
-
-        [NonAction]
-        public void nullfieldtozero(TimeSheetModel obj)
-        {
-        }
         [HttpGet]
         public ActionResult AllTimeSheet()
         { 
@@ -151,6 +128,8 @@ namespace TSheetProject.Controllers
             db.SaveChanges();
             return RedirectToAction("RejectSheet");
         }
+
+
         [NonAction]
         public List<AllTimeSheetModel> alltsheetdata()
         {
@@ -186,6 +165,296 @@ namespace TSheetProject.Controllers
             }
             return viewmodellists;
 
+        }
+
+        [NonAction]
+        public List<int> ProjectForIterate(TimeSheetModel obj)
+        {
+            var projectslist = new List<int>();
+            projectslist.Add((obj.ProjectID1));
+            if (obj.ProjectID2 != null)
+            {
+                projectslist.Add(((int)obj.ProjectID2));
+
+            }
+
+            if (obj.ProjectID3 != null)
+            {
+                projectslist.Add(((int)obj.ProjectID3));
+
+            }
+
+            if (obj.ProjectID4 != null)
+            {
+                projectslist.Add(((int)obj.ProjectID4));
+
+            }
+            return projectslist;
+        }
+
+        [NonAction]
+        public List<int> li(ProjectRow vv)
+        {
+            var l= new List<int>();
+            l.Add((int)vv.day1);
+            if (vv.day2 != null)
+            {
+                l.Add((int)vv.day2);
+            }
+            if (vv.day3 != null)
+            {
+                l.Add((int)vv.day3);
+            }
+            if (vv.day4 != null)
+            {
+                l.Add((int)vv.day4);
+            }
+            if (vv.day5 != null)
+            {
+                l.Add((int)vv.day5);
+            }
+            if (vv.day6 != null)
+            {
+                l.Add((int)vv.day6);
+            }
+            if (vv.day7 != null)
+            {
+                l.Add((int)vv.day7);
+            }
+
+            return l;
+
+        }
+
+        [NonAction]
+        public List<ProjectRow> Rowfun(TimeSheetModel obj)
+        {
+
+
+            List<ProjectRow> projectRows = new List<ProjectRow>();
+            int p = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                p++;
+                if (p == 1)
+                {
+                    ProjectRow row1 = new ProjectRow();
+                    row1.Id = obj.ProjectID1;
+                    row1.day1 = (int)obj.Text1_ProjectID1;
+                    if (obj.Text2_ProjectID1 != null)
+                    {
+                        row1.day2 = (int)obj.Text2_ProjectID1;
+
+                    }
+                    if (obj.Text3_ProjectID1 != null)
+                    {
+                        row1.day3 = (int)obj.Text3_ProjectID1;
+
+                    }
+                    if (obj.Text4_ProjectID1 != null)
+                    {
+                        row1.day4 = (int)obj.Text4_ProjectID1;
+
+
+                    }
+                    if (obj.Text5_ProjectID1 != null)
+                    {
+                        row1.day5 = (int)obj.Text5_ProjectID1;
+
+                    }
+
+                    if (obj.Text6_ProjectID1 != null)
+                    {
+                        row1.day6 = (int)obj.Text6_ProjectID1;
+
+                    }
+                    if (obj.Text7_ProjectID1 != null)
+                    {
+                        row1.day7 = (int)obj.Text7_ProjectID1;
+
+                    }
+                    if (obj.Description_ProjectID1 != null)
+                    {
+                        row1.comment = (string)obj.Description_ProjectID1;
+
+                    }
+
+
+                    projectRows.Add(row1);
+                }
+                if (p == 2)
+                {
+                    if (obj.ProjectID2 != null)
+                    {
+                        ProjectRow row2 = new ProjectRow();
+                        row2.Id = (int)obj.ProjectID2;
+                        row2.day1 = (int)obj.Text1_ProjectID2;
+                        if (obj.Text2_ProjectID2 != null)
+                        {
+                            row2.day2 = (int)obj.Text2_ProjectID2;
+
+                        }
+                        if (obj.Text3_ProjectID2 != null)
+                        {
+                            row2.day3 = (int)obj.Text3_ProjectID2;
+
+                        }
+                        if (obj.Text4_ProjectID2 != null)
+                        {
+                            row2.day4 = (int)obj.Text4_ProjectID2;
+
+
+                        }
+                        if (obj.Text5_ProjectID2 != null)
+                        {
+                            row2.day5 = (int)obj.Text5_ProjectID2;
+
+                        }
+
+                        if (obj.Text6_ProjectID2 != null)
+                        {
+                            row2.day6 = (int)obj.Text6_ProjectID2;
+
+                        }
+                        if (obj.Text7_ProjectID2 != null)
+                        {
+                            row2.day7 = (int)obj.Text7_ProjectID2;
+
+                        }
+
+                        if (obj.Description_ProjectID2 != null)
+                        {
+                            row2.comment = (string)obj.Description_ProjectID2;
+
+                        }
+                        projectRows.Add(row2);
+
+                    }
+
+                }
+
+                if (p == 3)
+                {
+                    if (obj.ProjectID3 != null)
+                    {
+                        ProjectRow row3 = new ProjectRow();
+                        row3.Id = (int)obj.ProjectID3;
+                        row3.day1 = (int)obj.Text1_ProjectID3;
+                        if (obj.Text2_ProjectID3 != null)
+                        {
+                            row3.day2 = (int)obj.Text2_ProjectID3;
+
+                        }
+                        if (obj.Text3_ProjectID3 != null)
+                        {
+                            row3.day3 = (int)obj.Text3_ProjectID3;
+
+                        }
+                        if (obj.Text4_ProjectID3 != null)
+                        {
+                            row3.day4 = (int)obj.Text4_ProjectID3;
+
+
+                        }
+                        if (obj.Text5_ProjectID3 != null)
+                        {
+                            row3.day5 = (int)obj.Text5_ProjectID3;
+
+                        }
+
+                        if (obj.Text6_ProjectID3 != null)
+                        {
+                            row3.day6 = (int)obj.Text6_ProjectID3;
+
+                        }
+                        if (obj.Text7_ProjectID3 != null)
+                        {
+                            row3.day7 = (int)obj.Text7_ProjectID3;
+
+                        }
+
+                        if (obj.Description_ProjectID3 != null)
+                        {
+                            row3.comment = (string)obj.Description_ProjectID3;
+
+                        }
+                        projectRows.Add(row3);
+
+                    }
+
+                }
+
+                if (p == 4)
+                {
+                    if (obj.ProjectID4 != null)
+                    {
+                        ProjectRow row4 = new ProjectRow();
+                        row4.Id = (int)obj.ProjectID4;
+                        row4.day1 = (int)obj.Text1_ProjectID4;
+                        if (obj.Text2_ProjectID4 != null)
+                        {
+                            row4.day2 = (int)obj.Text2_ProjectID4;
+
+                        }
+                        if (obj.Text3_ProjectID4 != null)
+                        {
+                            row4.day3 = (int)obj.Text3_ProjectID4;
+
+                        }
+                        if (obj.Text4_ProjectID4 != null)
+                        {
+                            row4.day4 = (int)obj.Text4_ProjectID4;
+
+
+                        }
+                        if (obj.Text5_ProjectID4 != null)
+                        {
+                            row4.day5 = (int)obj.Text5_ProjectID4;
+
+                        }
+
+                        if (obj.Text6_ProjectID4 != null)
+                        {
+                            row4.day6 = (int)obj.Text6_ProjectID4;
+
+                        }
+                        if (obj.Text7_ProjectID4 != null)
+                        {
+                            row4.day7 = (int)obj.Text7_ProjectID4;
+
+                        }
+
+                        if (obj.Description_ProjectID4 != null)
+                        {
+                            row4.comment = (string)obj.Description_ProjectID4;
+
+                        }
+                        projectRows.Add(row4);
+
+                    }
+
+                }
+
+            }
+            return projectRows;
+
+        }
+
+        //a non action method for initializing the dropdownlist in view of timehseetadd
+        [NonAction]
+        public List<ProjectModel> MyCustom()
+        {
+            List<ProjectModel> ListProjects = new List<ProjectModel>();
+
+            var v = _projectrepository.GetAllProjects();
+
+
+
+            foreach (var p in v)
+            {
+                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
+            }
+            return ListProjects;
         }
 
     }

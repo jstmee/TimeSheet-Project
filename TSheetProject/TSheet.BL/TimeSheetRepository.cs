@@ -12,7 +12,11 @@ namespace TSheet.BL
     public class TimeSheetRepository : IUserTimeSheet
     {
         TSheetDB db;
-        
+        TimeSheetRepository()
+        {
+            db= new TSheetDB();
+        }
+
 
         public IList<AllTimeSheetModel> AllTimeSheet()
         {
