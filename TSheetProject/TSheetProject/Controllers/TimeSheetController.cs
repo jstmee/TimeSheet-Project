@@ -10,7 +10,6 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TSheet.BL;
 using TSheet.Data;
-using TSheet.Modals;
 using TSheet.Models;
 
 namespace TSheetProject.Controllers
