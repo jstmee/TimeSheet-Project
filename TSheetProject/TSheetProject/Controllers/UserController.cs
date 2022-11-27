@@ -20,6 +20,9 @@ namespace TSheetProject.Controllers
         
         public ActionResult DashBoard()
         {
+            ViewBag.TotalsheetUser = TotalSheet();
+            ViewBag.Approved = ApprovedSheet();
+            ViewBag.Rejected = RejectedSheet();
             return View();
         }
         public ActionResult AllTimeSheet()
@@ -45,6 +48,52 @@ namespace TSheetProject.Controllers
             }
             ViewBag.Message = message;
             return View();
+        }
+
+
+        [NonAction]
+        public int TotalSheet()
+        {
+            int Number;
+            TSheetDB db = new TSheetDB();
+            var LoggedUser = HttpContext.User?.Identity.Name;
+            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+            var UserIdMatchedRow=db.TimeSheetMasters.Where(a => a.UserID == UserIdLogged).ToList();
+            int sum = 0;
+            foreach(var v in UserIdMatchedRow)
+            {
+                sum+= db.TimeSheetDetails.Where(b => b.TimeSheetMasterID == v.TimeSheetMasterID).ToList().Count();
+                
+            }
+            Number= sum;
+
+            return Number;
+        }
+        [NonAction]
+        public int ApprovedSheet()
+        {
+            int Number;
+            TSheetDB db = new TSheetDB();
+            var LoggedUser = HttpContext.User?.Identity.Name;
+            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+            var UserIdMatchedRow=db.TimeSheetAuditTBs.Where(b=>b.UserID== UserIdLogged && b.Status=="Approved").ToList().Count();
+            Number = UserIdMatchedRow;
+
+            return Number;
+        }
+        [NonAction]
+        public int RejectedSheet()
+        {
+            int Number;
+            TSheetDB db = new TSheetDB();
+            var LoggedUser = HttpContext.User?.Identity.Name;
+            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+            var UserIdMatchedRow = db.TimeSheetAuditTBs.Where(b => b.UserID == UserIdLogged && b.Status == "Rejected").ToList().Count();
+            Number = UserIdMatchedRow;
+            return Number;
         }
 
     }
