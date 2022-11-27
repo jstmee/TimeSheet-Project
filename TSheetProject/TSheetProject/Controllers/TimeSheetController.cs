@@ -26,9 +26,6 @@ namespace TSheetProject.Controllers
         {
             //for initializing the dropdownlist with project
             ViewBag.Projects = MyCustom();
-
-
-
             return View();
             
         }
