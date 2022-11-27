@@ -14,9 +14,11 @@ namespace TSheetProject.Controllers
     public class SuperAdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
+        private ProjectRepository _projectrepository;
         public SuperAdminController()
         {
             _registrationRepository = new RegistrationRepository();
+            _projectrepository = new ProjectRepository();
 
         }
         // GET: SuperAdmin
@@ -55,6 +57,7 @@ namespace TSheetProject.Controllers
 
 
         }
+        [HttpGet]
         public ActionResult AssignRoles()
         {
             TSheetDB db = new TSheetDB();
@@ -63,10 +66,13 @@ namespace TSheetProject.Controllers
             return View(alluser);
            
         }
+        [HttpGet]
         public ActionResult EditUser(RegistrationModel user)
         {
             TSheetDB dB = new TSheetDB();
-            ViewBag.projectlist = dB.ProjectMasters.ToList();
+            /*ViewBag.projectlist = dB.ProjectMasters.ToList();*/
+            ViewBag.projectlist = MyCustom();
+            ViewBag.Roles = MyCustom2();
 
             if (user != null)
             {
@@ -79,8 +85,46 @@ namespace TSheetProject.Controllers
         {
             /*_registrationRepository.EditUser(user);*/
 
+            TSheetDB db=new TSheetDB();
+            var v=db.Registrations.Where(a=>a.UserID==user.Id).FirstOrDefault();
+            v.DateOfbirth = user.DateOfBirth;
+            v.FirstName= user.FirstName;
+            v.LastName= user.LastName;
+            v.Email= user.Email;
+            v.MobileNumber = user.MobileNumber;
+            v.IsActive= user.IsActive;
+            v.Gender= user.Gender;
+            v.DateOfLeaving = user.DateOfLeaving;
 
-            return RedirectToAction("edit","SuperAdmin");
+
+            AssignedRole assignedRole=new AssignedRole();
+            assignedRole.RoleID = user.AssignedRole;
+            assignedRole.UserID = user.Id;
+
+            var LoggedUser = HttpContext.User?.Identity.Name;
+            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+
+            v.UpdatedOn=DateTime.Now;
+            v.EditedBy = UserIdLogged.ToString();
+            db.SaveChanges();
+            assignedRole.CreatedById = UserIdLogged;
+            assignedRole.UpdatedById = 0;
+            db.AssignedRoles.Add(assignedRole);
+
+            db.SaveChanges();
+
+            DescriptionAndProjectMapping projectMapping= new DescriptionAndProjectMapping();
+            projectMapping.ProjectID = user.AssignProject;
+            projectMapping.UserID= user.Id;
+            db.DescriptionAndProjectMappings.Add(projectMapping);
+            db.SaveChanges();
+
+
+
+
+
+            return RedirectToAction("AssignRoles", "SuperAdmin");
         }
 
         /*[HttpPost]
@@ -129,6 +173,43 @@ namespace TSheetProject.Controllers
             ViewBag.message = message;
             return View();
         }
-       
+
+
+
+        //a non action method for initializing the dropdownlist in view of timehseetadd
+        [NonAction]
+        public List<ProjectModel> MyCustom()
+        {
+            List<ProjectModel> ListProjects = new List<ProjectModel>();
+
+            var v = _projectrepository.GetAllProjects();
+
+
+
+            foreach (var p in v)
+            {
+                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
+            }
+            return ListProjects;
+        }
+
+        [NonAction]
+        public List<RolesModel> MyCustom2()
+        {
+            List<RolesModel> ListRoles = new List<RolesModel>();
+
+            /*var v = _projectrepository.GetAllProjects();*/
+            TSheetDB dB= new TSheetDB();
+            var v=dB.Roles.ToList();
+
+
+
+            foreach (var p in v)
+            {
+                ListRoles.Add(new RolesModel { Id = p.RoleID, RoleName = p.RoleName });
+            }
+            return ListRoles;
+        }
+
     }
 }

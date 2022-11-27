@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TSheet.Models
 {
-    public class Class1
+    public class RolesModel
     {
+        public int Id { get; set; }
+        public string RoleName { get; set; }
     }
 }

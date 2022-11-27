@@ -104,24 +104,24 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.UpdatedOn, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.UpdatedOn, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.UpdatedOn, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         @Html.HiddenFor(model => model.EditedBy, new { @Value = HttpContext.Current.User.Identity.Name })
                         @* <div class="col-sm-6">
@@ -135,12 +135,24 @@
         </div>*@
                         <div class="row">
                             <div class="col-sm-6">
-                                <select class="form-control" id="StudentGender" name="StudentGender">
+                                @*<select class="form-control" id="StudentGender" name="StudentGender">
                                     <option>Select Role</option>
                                     <option>User</option>
                                     <option>Admin</option>
                                     <option>SuperAdmin</option>
-                                </select>
+                                </select>*@
+                                <div class="form-group">
+                        @Html.LabelFor(model => model.AssignedRole, htmlAttributes: new { @class = "control-label col-md-2" })
+                        
+                            
+                            @Html.DropDownListFor(model=>model.AssignedRole,
+                           new SelectList(ViewBag.Roles, "Id", "RoleName"),"Select Roles",new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AssignedRole, "", new { @class = "text-danger" })
+                        
+                    </div>
+
+
+
                             </div>
 
 
@@ -175,13 +187,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
                                     @Html.DisplayFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -196,10 +208,12 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.AssignProject, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.AssignProject,
+                            @*@Html.DropDownListFor(model => model.AssignProject,
              new SelectList(ViewBag.projectlist,"ProjectName"),
              "Select Projects",
-             new { @class = "form-control" })
+             new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model=>model.AssignProject,
+                           new SelectList(ViewBag.projectlist,"Id","Name"),"Select Projects",new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.AssignProject, "", new { @class = "text-danger" })
                         </div>
                     </div>
