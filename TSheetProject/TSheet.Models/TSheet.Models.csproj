@@ -5,17 +5,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5E8C657-B904-4C16-B9FC-4FD867397DC9}</ProjectGuid>
+    <ProjectGuid>{5EAC4E79-3F79-4971-B0FC-C9B3721FDD2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TSheet.Modals</RootNamespace>
-    <AssemblyName>TSheet.Modals</AssemblyName>
+    <RootNamespace>TSheet.Models</RootNamespace>
+    <AssemblyName>TSheet.Models</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,23 +54,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllTimeSheetModel.cs" />
     <Compile Include="AssignedRolesModel.cs" />
     <Compile Include="ChangeUserPassword.cs" />
-    <Compile Include="AllTimeSheetModel.cs" />
-    <Compile Include="UserRoleProvider.cs" />
-    <Compile Include="TsheetAuditModel.cs" />
-    <Compile Include="ProjectModel.cs" />
-    <Compile Include="ResetPasswordModel.cs" />
-    <Compile Include="ProjectsModel.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="LoginModel.cs" />
+    <Compile Include="ProjectLists.cs" />
+    <Compile Include="ProjectModel.cs" />
+    <Compile Include="ProjectRow.cs" />
+    <Compile Include="ProjectsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationModel.cs" />
+    <Compile Include="ResetPasswordModel.cs" />
     <Compile Include="TimeSheetModel.cs" />
+    <Compile Include="UserRoleProvider.cs" />
     <Compile Include="UserTimeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
-      <Project>{A769194B-3ED0-46CA-9B62-8E4967B3E623}</Project>
+      <Project>{a769194b-3ed0-46ca-9b62-8e4967b3e623}</Project>
       <Name>TSheet.Data</Name>
     </ProjectReference>
   </ItemGroup>

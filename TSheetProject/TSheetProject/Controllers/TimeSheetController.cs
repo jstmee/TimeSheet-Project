@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Policy;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TSheet.BL;
@@ -14,7 +12,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    [Authorize(Roles="Admin, SuperAdmin")]
+    [Authorize]
     public class TimeSheetController : Controller
     {
         private ProjectRepository _projectrepository;
@@ -39,43 +37,62 @@ namespace TSheetProject.Controllers
         {
             //for initializing the dropdownlist with project
             ViewBag.Projects = MyCustom();
-            List<ProjectRow> projectRows= Rowfun(obj);
-            foreach(var vv in projectRows)
+            ViewBag.DataSaved = false;
+            if (ModelState.IsValid == true)
             {
-               TimeSheetMaster masterobj=new TimeSheetMaster();
-                masterobj.ProjectId = vv.Id;
-                masterobj.UserID = 13;
-                masterobj.FromDate = obj.Date1;
-                masterobj.ToDate = obj.Date7;
-                masterobj.TimeSheetStatus = "Not Approved";
-                masterobj.Comment = vv.comment;
-                List<int> listOfHrs = li(vv);
-                var totalhrs = 0 ;
-                var count = 0;
-                foreach(var v in listOfHrs)
-                {
-                    count++;
-                    totalhrs+= v;
-                }
-                masterobj.TotalHours= totalhrs;
-                TSheetDB db = new TSheetDB();
-                db.TimeSheetMasters.Add(masterobj);
-                db.SaveChanges();
-                var dayys = 0;
-                for(int i = 0; i < count; i++)
-                {
-                    dayys++;
-                    TimeSheetDetail detailobj = new TimeSheetDetail();
-                    detailobj.Hours = listOfHrs[i];
 
-                    detailobj.TimeSheetMasterID = masterobj.TimeSheetMasterID;
-                    detailobj.Date = obj.Date1.AddDays(dayys-1);
-                    detailobj.CreatedOn = DateTime.Now;
-                    db.TimeSheetDetails.Add(detailobj);
+                List<ProjectRow> projectRows = Rowfun(obj);
+                foreach (var vv in projectRows)
+                {
+                    TimeSheetMaster masterobj = new TimeSheetMaster();
+                    masterobj.ProjectId = vv.Id;
+                    /*HttpContext.Current.User.Identity.Name*/
+                    var LoggedUser = HttpContext.User?.Identity.Name;
+                    TSheetDB db = new TSheetDB();
+                    var userrow=db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+                    var UserIdLogged = userrow.UserID;
+
+                    masterobj.UserID = UserIdLogged;
+                    masterobj.FromDate = obj.Date1;
+                    masterobj.ToDate = obj.Date7;
+                    masterobj.TimeSheetStatus = "Not Approved";
+                    masterobj.Comment = vv.comment;
+                    List<int> listOfHrs = li(vv);
+                    var totalhrs = 0;
+                    var count = 0;
+                    foreach (var v in listOfHrs)
+                    {
+
+                        count++;
+                        totalhrs += v;
+                    }
+                    if (count == 5)
+                    {
+                        obj.Date7 = obj.Date1.AddDays(7);
+                    }
+                    masterobj.TotalHours = totalhrs;
+                    /*TSheetDB db = new TSheetDB();*/
+                    db.TimeSheetMasters.Add(masterobj);
                     db.SaveChanges();
+                    var dayys = 0;
+                    for (int i = 0; i < count; i++)
+                    {
+                        dayys++;
+                        TimeSheetDetail detailobj = new TimeSheetDetail();
+                        detailobj.Hours = listOfHrs[i];
+
+                        detailobj.TimeSheetMasterID = masterobj.TimeSheetMasterID;
+                        detailobj.Date = obj.Date1.AddDays(dayys - 1);
+                        detailobj.CreatedOn = DateTime.Now;
+                        db.TimeSheetDetails.Add(detailobj);
+                        db.SaveChanges();
+                    }
+                    ViewBag.DataSaved = true;
                 }
+
             }
-            return View();
+            
+            return View(obj);
         }
 
         
@@ -239,6 +256,10 @@ namespace TSheetProject.Controllers
                 {
                     ProjectRow row1 = new ProjectRow();
                     row1.Id = obj.ProjectID1;
+                    if (obj.Text1_ProjectID1 == null)
+                    {
+                        return projectRows;
+                    }
                     row1.day1 = (int)obj.Text1_ProjectID1;
                     if (obj.Text2_ProjectID1 != null)
                     {

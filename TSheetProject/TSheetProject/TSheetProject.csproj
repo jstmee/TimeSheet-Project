@@ -199,8 +199,8 @@
       <Project>{5DCAECAA-415E-4D06-9206-09ED3736EC5F}</Project>
       <Name>TSheet.IBL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TSheet.Modals\TSheet.Models.csproj">
-      <Project>{c5e8c657-b904-4c16-b9fc-4fd867397dc9}</Project>
+    <ProjectReference Include="..\TSheet.Models\TSheet.Models.csproj">
+      <Project>{5eac4e79-3f79-4971-b0fc-c9b3721fdd2d}</Project>
       <Name>TSheet.Models</Name>
     </ProjectReference>
   </ItemGroup>

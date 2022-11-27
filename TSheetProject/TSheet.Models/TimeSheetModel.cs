@@ -14,6 +14,7 @@ namespace TSheet.Models
         [Display(Name = "Select Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [RestrictedDate]
         public DateTime Date1 { get; set; }
 
         public DateTime? Date2 { get; set; }
@@ -32,6 +33,7 @@ namespace TSheet.Models
         //for project 1
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
         [Range(0, 24, ErrorMessage = "0 to 24")]
+        [Required(ErrorMessage = "Enter Hours")]
         public int? Text1_ProjectID1 { get; set; }
 
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
@@ -169,5 +171,14 @@ namespace TSheet.Models
 
 
 
+    }
+
+    public class RestrictedDate : ValidationAttribute
+    {
+        public override bool IsValid(object date)
+        {
+            DateTime date1 = (DateTime)date;
+            return date1 < DateTime.Now;
+        }
     }
 }

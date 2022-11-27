@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TSheet.Modals")]
+[assembly: AssemblyTitle("TSheet.Models")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TSheet.Modals")]
+[assembly: AssemblyProduct("TSheet.Models")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c5e8c657-b904-4c16-b9fc-4fd867397dc9")]
+[assembly: Guid("5eac4e79-3f79-4971-b0fc-c9b3721fdd2d")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -66,8 +66,8 @@
       <Project>{A769194B-3ED0-46CA-9B62-8E4967B3E623}</Project>
       <Name>TSheet.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TSheet.Modals\TSheet.Models.csproj">
-      <Project>{C5E8C657-B904-4C16-B9FC-4FD867397DC9}</Project>
+    <ProjectReference Include="..\TSheet.Models\TSheet.Models.csproj">
+      <Project>{5EAC4E79-3F79-4971-B0FC-C9B3721FDD2D}</Project>
       <Name>TSheet.Models</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,7 +10,7 @@ using TSheet.Data;
 
 namespace TSheet.Models
 {
-    public class UserRoleProvider : RoleProvider
+    public class UserRoleProvider :RoleProvider
     {
         public override string ApplicationName 
         { 
