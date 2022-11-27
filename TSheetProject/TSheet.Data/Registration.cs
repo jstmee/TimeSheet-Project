@@ -55,10 +55,12 @@ namespace TSheet.Data
         public DateTime? UpdatedOn { get; set; }
 
         [StringLength(50)]
+        [Column("EditedById")]
         public string EditedBy { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Column("CreatedById")]
         public string CreatedBy { get; set; }
 
         public bool? IsActive { get; set; }

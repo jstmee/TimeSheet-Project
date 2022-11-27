@@ -36,9 +36,12 @@ namespace TSheet.BL
             var LoggedUser = user.CreatedBy;
             
             var userrow = sheetDB.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
-            var UserIdLogged = userrow.UserID;
-            /*registration.CreatedBy = UserIdLogged;*/
+            var UserIdLogged = userrow.UserID.ToString();
+            registration.CreatedBy = UserIdLogged;
+            
             registration.CreatedOn=DateTime.Now;
+            
+            
             sheetDB.Registrations.Add(registration);
             
             return sheetDB.SaveChanges();
