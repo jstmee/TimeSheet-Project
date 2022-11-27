@@ -69,6 +69,7 @@
     <Compile Include="TimeSheetModel.cs" />
     <Compile Include="UserRoleProvider.cs" />
     <Compile Include="UserTimeModel.cs" />
+    <Compile Include="UserTimeSheetModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">

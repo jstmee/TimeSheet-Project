@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<TSheet.Models.UserTimeSheetModel>
+
+@{
     ViewBag.Title = "AllTimeSheet";
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
@@ -31,22 +33,32 @@
                     <th scope="col">From Date</th>
                     <th scope="col">To date</th>
                     <th scope="col">total Hrs</th>
-                    <th scope="col">Create on</th>
-                    <th scope="col">Commant</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">ProjectName</th>
+                    @*<th scope="col">Details</th>
+                        <th scope="col">Delete</th>*@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border border-end">
-                    <td><input type="date" class="  rounded w-75" id="inputfiled"></td>
-                    <td><input type="date" class=" rounded w-75" id="inputfiled"></td>
-                    <td><input type="number" class=" rounded w-75" id="inputfiled"></td>
-                    <td><input type="Date" class=" rounded w-75" id="inputfiled"></td>
-                    <td><input type="text" class="rounded w-75" id="inputfiled"></td>
-                    <td><input type="submit" value="Details" class=" rounded bg-primary" id="inputfiled"></td>
-                    <td><input type="submit" value="Delete" class=" rounded bg-danger" id="inputfiled"></td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="border border-end">
+
+
+
+                        <td>@Html.DisplayFor(modelItem => item.FromDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ToDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalHrs)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
+
+
+
+                    </tr>
+                }
+
             </tbody>
         </table>
 

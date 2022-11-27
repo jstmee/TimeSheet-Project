@@ -17,7 +17,7 @@ namespace TSheetProject.Controllers
 
         }
         // GET: User
-        
+        [HttpGet]
         public ActionResult DashBoard()
         {
             ViewBag.TotalsheetUser = TotalSheet();
@@ -25,9 +25,38 @@ namespace TSheetProject.Controllers
             ViewBag.Rejected = RejectedSheet();
             return View();
         }
+        [HttpGet]
         public ActionResult AllTimeSheet()
         {
-           return View();
+            List<UserTimeSheetModel> userTimeSheetModels= new List<UserTimeSheetModel>();
+            var LoggedUser = HttpContext.User?.Identity.Name;
+            TSheetDB db = new TSheetDB();
+            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+            var v=db.TimeSheetMasters.Where(a => a.UserID == UserIdLogged).ToList();
+            foreach(var item in v)
+            {
+                UserTimeSheetModel obj = new UserTimeSheetModel();
+                obj.Id = item.ProjectId;
+                obj.TotalHrs = item.TotalHours;
+                obj.FromDate = (DateTime)item.FromDate;
+                if(item.ToDate!= null)
+                {
+                    obj.ToDate = (DateTime)item.ToDate;
+
+                }
+                
+                obj.Status = item.TimeSheetStatus;
+                obj.Comment = item.Comment;
+                var ProjectListRow=db.ProjectMasters.Where(a => a.ProjectID == item.ProjectId).FirstOrDefault();
+                obj.ProjectName = ProjectListRow.ProjectName;
+                userTimeSheetModels.Add(obj);
+
+            }
+            
+
+
+            return View(userTimeSheetModels);
         }
 
         public ActionResult ChangePassword()
