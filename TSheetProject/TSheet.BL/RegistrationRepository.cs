@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TSheet.IBL;
 using TSheet.Data;
 using TSheet.Models;
+using System.Web;
 
 namespace TSheet.BL
 {
@@ -24,18 +25,19 @@ namespace TSheet.BL
             registration.LastName = user.LastName;
             registration.Email = user.Email;
 
-            registration.EditedBy = user.EditedBy;
-
             registration.DateOfJoining = user.DateOfJoining;
             
             registration.DateOfbirth = user.DateOfBirth;
        
             registration.Gender = user.Gender;
-            registration.IsActive = user.IsActive;
+            registration.IsActive = true;
             registration.Password = user.Password;
             registration.MobileNumber = user.MobileNumber;
-        
-            registration.CreatedBy = user.CreatedBy;
+            var LoggedUser = user.CreatedBy;
+            
+            var userrow = sheetDB.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+            var UserIdLogged = userrow.UserID;
+            /*registration.CreatedBy = UserIdLogged;*/
             registration.CreatedOn=DateTime.Now;
             sheetDB.Registrations.Add(registration);
             

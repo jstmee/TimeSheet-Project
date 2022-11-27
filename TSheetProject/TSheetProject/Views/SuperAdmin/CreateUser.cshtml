@@ -146,21 +146,22 @@
             <div class="col-sm-6 pt-4 ">
                 <div class="row">
                     <div class="col-lg-2">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
+                    <br />
 
                     <div class="col-lg-2"> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
 
-                    <div class="col-lg-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
+                    <div class="col-lg-4">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
                 </div>
             </div>
         </div>
         <div class="row ps-2">
             <div class="col-sm-6">
                 <div class="form-group  pt-1">
-                    <div>@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-sm " })</div>
+                    @*<div>@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-sm " })</div>
                     <div class="checkbox ">
                         @Html.EditorFor(model => model.IsActive)
                         <div class="ps-4">@Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger " })</div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
