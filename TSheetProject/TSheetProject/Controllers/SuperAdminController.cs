@@ -20,13 +20,16 @@ namespace TSheetProject.Controllers
 
         }
         // GET: SuperAdmin
+        [HttpGet]
         public ActionResult DashBoard()
         {
             using (TSheetDB dB = new TSheetDB())
             {
                 ViewBag.NoOfUsers = dB.Registrations.Count();
                 ViewBag.NoOfProjects= dB.ProjectMasters.Count();
+                ViewBag.NoOfAdmin=dB.AssignedRoles.Where(a=>a.RoleID==2).ToList().Count();
             }
+            
             return View();
         }
         public ActionResult CreateUser()
