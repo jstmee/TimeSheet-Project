@@ -1,4 +1,5 @@
-﻿@model List<TSheet.Models.AllTimeSheetModel>
+﻿
+@model List<TSheet.Models.AllTimeSheetModel>
 @{
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
@@ -40,18 +41,13 @@
                 <th>Date</th>
                 <th>Created On</th>
                 <th>Project Name</th>
-                @if (ViewBag.b == true)
-                {
-                    <th>Aprroved</th>
-                }
-                @if (ViewBag.my == true)
-                {
-                    <th>Rejected</th>
-                }
+               
+                    <th>Reject</th>
+                
                 @*@if(ViewBag.b== false)
-        {
-            <th>Rejected</th>
-        }*@
+                    {
+                        <th>Rejected</th>
+                    }*@
 
                 @* <th>Action</th>*@
             </tr>
@@ -68,22 +64,16 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
-                    @if (ViewBag.b == true)
-                    {
-                        <td class="p-3">  @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId })</td>
-                    }
-
-                    @if (ViewBag.my == true)
-                    {
-                        <td class="p-3">  @Html.ActionLink("RejectTimesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name ,id2=item.UserUniqueId})</td>
-                    }
-
+                   
+                   
+                        <td class="p-3">  @Html.ActionLink("RejectTimesheet", "RejectTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name })</td>
+                    
 
                     @*<td class="p-3"> @Html.DisplayFor(modelItem => item.Comment)</td>*@
                     @* <td class="pt-3">
-            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-            @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
-        </td>*@
+                            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                            @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
+                        </td>*@
                 </tr>
             }
         </tbody>

@@ -21,7 +21,12 @@ namespace TSheetProject.Controllers
         // GET: Admin
         public ActionResult DashBoard()
         {
-            
+            using (TSheetDB dB = new TSheetDB())
+            {
+                ViewBag.NoOfProject = dB.ProjectMasters.Count();
+                ViewBag.NoOfUser = dB.AssignedRoles.Where(a => a.RoleID == 3).ToList().Count();
+            }
+
             return View();
         }
 

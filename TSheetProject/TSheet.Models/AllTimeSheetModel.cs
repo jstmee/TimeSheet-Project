@@ -9,7 +9,7 @@ namespace TSheet.Models
 {
     public class AllTimeSheetModel
     {
-
+        public int? UserUniqueId { get; set; }
         public int AllTimesheetId { get; set; }
        public string FirstName { get; set; }
         public string LastName { get; set; }

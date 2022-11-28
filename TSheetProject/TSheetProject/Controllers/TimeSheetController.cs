@@ -106,39 +106,41 @@ namespace TSheetProject.Controllers
             var v = alltsheetdata();
             return View("AllTimeSheet", v);
         }
-        public ActionResult ApproveTimesheet(int id,string Email)
+        public ActionResult ApproveTimesheet(int id,string Email,int id2)
         {
             TSheetDB db = new TSheetDB();
             var v=db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
             
             TimeSheetAuditTB obj= new TimeSheetAuditTB();
             
-            obj.UserID= v.UserID;
+            obj.UserID= id2;
             obj.Status = "Approved";
             obj.ApprovedBy = Email;
             db.TimeSheetAuditTBs.Add(obj);
             db.SaveChanges();
            return RedirectToAction("ApproveSheet");
         }
+        [HttpGet]
         public ActionResult RejectTimeSheet()
         {
-            
+            ViewBag.my = true;
             var v = alltsheetdata();
-            return View("AllTimeSheet", v);
+            return View("AllTimeSheet",v);
            
         }
-        public ActionResult RejectTimeSheet(int id, string Email)
+        [HttpGet]
+        public ActionResult RejectSheet(int id, string Email,int id2)
         {
             TSheetDB db = new TSheetDB();
             var v = db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
 
             TimeSheetAuditTB obj = new TimeSheetAuditTB();
-            obj.UserID = v.UserID;
+            obj.UserID = id2;
             obj.Status = "Rejected";
             obj.ApprovedBy = Email;
             db.TimeSheetAuditTBs.Add(obj);
             db.SaveChanges();
-            return RedirectToAction("RejectSheet");
+            return RedirectToAction("RejectTimeSheet");
         }
 
 
@@ -158,12 +160,14 @@ namespace TSheetProject.Controllers
                 viewmodel.CreatedOn = v.CreatedOn;
                 viewmodel.Date = v.Date;
                 viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+                /*viewmodel.UserUniqueId=v.*/
 
 
 
                 var masterid = v.TimeSheetMasterID;
                 var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
                 var userid = masteridmatchedrow.UserID;
+                viewmodel.UserUniqueId= userid;
                 var projectid = masteridmatchedrow.ProjectId;
                 var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
                 var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();

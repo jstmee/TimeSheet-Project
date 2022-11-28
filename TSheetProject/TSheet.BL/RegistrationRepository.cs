@@ -13,13 +13,18 @@ namespace TSheet.BL
     public class RegistrationRepository : IRegistration
     {
         private TSheetDB sheetDB;
+        private Crypto crypto;
        public RegistrationRepository()
         {
             this.sheetDB = new TSheetDB();
+            crypto = new Crypto();
         }
+       
 
         public int AddRegistration(RegistrationModel user)
         {
+            
+            
             Registration registration = new Registration();
             registration.FirstName = user.FirstName;
             registration.LastName = user.LastName;
