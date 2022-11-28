@@ -1,4 +1,75 @@
-﻿
+﻿.navbar {
+    background-color: #CAD4DD;
+  
+}
+#navBar-Title{
+    font-size:28px;
+    font-weight:700;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+#Side-Bar-top-item {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+#SideBar-Icons {
+    color: #DEE6EE
+}
+
+#SideBar-items{
+    font-size:15px;
+   
+}
+hr {
+    border-color: #E8EDF1;
+}
+
+#sidebar {
+    height: 669px;
+  
+}
+
+#input-box{
+    width:300px;
+}
+
+#top-body-box {
+    background-color: #F0F4F7;
+}
+
+#SideBar-items-input{
+    color:white;
+    font-size:15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 #Side-Bar-items {
     font-weight: 500;
 }
@@ -45,4 +116,4 @@ i {
 
 .conut{
     float:right;
-}
+}*/

@@ -9,26 +9,22 @@
 <link href="~/Content/css/user.css" rel="stylesheet" />
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "SuperAdmin", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "SuperAdmin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""> <i class="fa-solid fa-calendar-days"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fa-solid fa-calendar-days" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
 
         <hr />
-        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white" })</h5>
-
-        <hr />
-        <h5 class=""><i class="fa-solid fa-bell"></i> @Html.ActionLink("Send Notification", "no", "User", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-bell" id="SideBar-Icons"></i> @Html.ActionLink("Send Notification", "no", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
 
     </div>
 }
-
-
-<div class="col-lg-10 col-md-9 p-4" id="main-box">
+<div class="col-lg-10 col-md-9 p-4" id="top-body-box">
     <div class="container-fluid ">
         <h4 class="text-center pt-3">Create an Account</h4>
 
@@ -51,130 +47,116 @@
             {
                 @Html.AntiForgeryToken()
                 {
-    <div class="form-horizontal ">
+                    <div class="form-horizontal ">
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        @Html.HiddenFor(model => model.CreatedBy, new { @Value = HttpContext.Current.User.Identity.Name })
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                        @* @Html.TextBoxFor(model =>model.DateOfBirth , "{0:yyyy-MM-dd}", new { @class = "datut", @placeholder = "plz input date" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row pl-2">
+                            <div class="col-sm-8 pt-4  ">
+                                <div class="row">
+                                    <div class="">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
+
+                                    <div class=""> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
+
+                                    <div class="pl-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                        <div class="form-group pt-3">
+                            <div class="col-md-offset-2 ps-3">
+                                <input type="submit" value="Create" class="btn btn-default btn-block btn-primary  rounded-pill w-25 h-25" id="btn-submit" />
+                            </div>
+                            <a href="#" class=" w-50">
+                                <i class="fab fa-facef fa-"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control " } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-        @Html.HiddenFor(model => model.CreatedBy, new { @Value = HttpContext.Current.User.Identity.Name })
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
-                        @* @Html.TextBoxFor(model =>model.DateOfBirth , "{0:yyyy-MM-dd}", new { @class = "datut", @placeholder = "plz input date" })*@
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-sm" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-6 pt-4 ">
-                <div class="row">
-                    <div class="col-lg-2">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
-                    <br />
-
-                    <div class="col-lg-2"> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
-
-                    <div class="col-lg-4">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
-                </div>
-            </div>
-        </div>
-        <div class="row ps-2">
-            <div class="col-sm-6">
-                <div class="form-group  pt-1">
-                    @*<div>@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-sm " })</div>
-                    <div class="checkbox ">
-                        @Html.EditorFor(model => model.IsActive)
-                        <div class="ps-4">@Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger " })</div>
-                    </div>*@
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group pt-3">
-            <div class="col-md-offset-2 ps-3">
-                <input type="submit" value="Create" class="btn btn-default btn-block btn-primary  rounded-pill w-25 h-25" id="btn-submit" />
-            </div>
-            <a href="#" class=" w-50">
-                <i class="fab fa-facef fa-"></i>
-            </a>
-        </div>
-    </div>
                 }
                 if (ViewBag.Message != null)
                 {
@@ -184,8 +166,6 @@
                         </strong>@ViewBag.Message
                     </div>
                 }
-
-                @*</div>*@
 
 
             }

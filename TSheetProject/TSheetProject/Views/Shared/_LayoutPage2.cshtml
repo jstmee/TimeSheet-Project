@@ -9,34 +9,29 @@
     <link href="~/Content/css/leyoutFile.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="" style="background-color: lightgrey; height:75px">
-        <nav class="navbar ">
-            <div class="nav-hedding-box">
-                <h2 style="font-weight: 500; color: #59646A">
-                    <i class="fa-sharp fa-solid fa-hourglass-start" style=" color: #59646A"></i>  Time Manager
-                </h2>
-            </div>
-            <div class="nav-user-box">
-                <h4 class="text">
-                    @HttpContext.Current.User.Identity.Name <i class="fa-regular fa-user"></i>
-                </h4>
-                <h5 class="justify-content-end">
-                <i class="fa fa-sign-out pl-4"></i> @Html.ActionLink("Logout", "Logout", "Account")</h5>
+    
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" id="navBar-Title">Time Manager</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right ">
+                    <li>@HttpContext.Current.User.Identity.Name</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                </ul>
             </div>
         </nav>
-    </div>
+    
 
     <div class="row">
-        <div class="col-lg-2 col-md-3  bg-gradient-primary">
-            <h3 class="text-white text-center pt-4" id="Side-Bar-items">TIME SHEET</h3>
+        <div class="col-lg-2 col-md-3   bg-gradient-primary " id="sidebar">
+            <h3 class="text-white text-center pt-4" id="Side-Bar-top-item">TIME SHEET</h3>
             <hr />
 
-            <div class="pt-3 p-3">
+            <div class="pt-2 ">
                 @RenderSection("SideBarAction")
             </div>
         </div>
-
-
 
         @RenderBody()
 

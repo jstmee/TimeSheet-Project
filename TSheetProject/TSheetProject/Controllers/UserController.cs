@@ -9,7 +9,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    [Authorize(Roles ="User")]
+    /*Authorize(Roles ="User")]*/
     public class UserController : Controller
     {
         public UserController()
@@ -78,7 +78,6 @@ namespace TSheetProject.Controllers
             ViewBag.Message = message;
             return View();
         }
-
 
         [NonAction]
         public int TotalSheet()

@@ -5,30 +5,32 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link href="~/Content/css/user.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <h5 class="text-white"><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveSheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Approve TimeSheet", "ApproveSheet", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "TimeSheet", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
-
-
-
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
     </div>
 }
+<script>
+    $(document).ready(function () {
+        $("#approve").click(function () {
+            alert("Approved");
+        });
+    });
+</script>
 
-
-
-
-<div class=" col-lg-10 col-md-9 p-4" style="background-color: #F9FBFC ; height:740px" id="top-box">
+<div class="col-lg-10 col-md-9 p-4" id="top-body-box">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
@@ -45,9 +47,9 @@
                     <th>Aprroved</th>
                 }
                 @*@if(ViewBag.b== false)
-            {
-                <th>Rejected</th>
-            }*@
+                    {
+                        <th>Rejected</th>
+                    }*@
 
                 @* <th>Action</th>*@
             </tr>
@@ -66,18 +68,13 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
                     @if (ViewBag.b == true)
                     {
-                        <td class="p-3">  @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name })</td>
+                        <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name , onclick = "return false" }, new { @id = "approve" })</td>
                     }
                     @if (ViewBag.b == null)
                     {
                         <td class="p-3">  @Html.ActionLink("RejectTimesheet", "RejectTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name })</td>
                     }
 
-                    @*<td class="p-3"> @Html.DisplayFor(modelItem => item.Comment)</td>*@
-                    @* <td class="pt-3">
-            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-            @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
-        </td>*@
                 </tr>
             }
         </tbody>

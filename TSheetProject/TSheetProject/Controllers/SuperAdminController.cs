@@ -10,7 +10,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    [Authorize(Roles="SuperAdmin")]
+    //[Authorize(Roles="SuperAdmin")]
     public class SuperAdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
