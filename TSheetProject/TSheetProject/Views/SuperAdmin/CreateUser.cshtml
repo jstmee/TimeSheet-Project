@@ -17,8 +17,6 @@
         <hr />
         <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white" })</h5>
         <hr />
-
-        <hr />
         <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white" })</h5>
 
         <hr />
@@ -140,18 +138,21 @@
             </div>
         </div>
 
-        <div class="row">
-
-            <div class="col-sm-6 pt-4 ">
+        <div class="row pl-2">
+            <div class="col-sm-7 pt-4">
                 <div class="row">
-                    <div class="col-lg-2">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
-                    <br />
+                    <div class="">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
 
-                    <div class="col-lg-2"> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
 
-                    <div class="col-lg-4">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
+
+                    <div class=""> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
+
+
+
+                    <div class="pl-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
                 </div>
             </div>
+
         </div>
         <div class="row ps-2">
             <div class="col-sm-6">

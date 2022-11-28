@@ -84,47 +84,58 @@ namespace TSheetProject.Controllers
         public ActionResult edit1(RegistrationModel user)
         {
             /*_registrationRepository.EditUser(user);*/
-
+            ViewBag.projectlist = MyCustom();
+            ViewBag.Roles = MyCustom2();
             TSheetDB db=new TSheetDB();
-            var v=db.Registrations.Where(a=>a.UserID==user.Id).FirstOrDefault();
-            v.DateOfbirth = user.DateOfBirth;
-            v.FirstName= user.FirstName;
-            v.LastName= user.LastName;
-            v.Email= user.Email;
-            v.MobileNumber = user.MobileNumber;
-            v.IsActive= user.IsActive;
-            v.Gender= user.Gender;
-            v.DateOfLeaving = user.DateOfLeaving;
+            if (user.FirstName!=null && user.LastName!=null && user.DateOfBirth!=null && user.Gender!=null && user.Email!=null && user.MobileNumber!=null  && user.AssignProject!=null && user.AssignProject!=null)
+            {
+
+                var v = db.Registrations.Where(a => a.UserID == user.Id).FirstOrDefault();
+                v.DateOfbirth = user.DateOfBirth;
+                v.FirstName = user.FirstName;
+                v.LastName = user.LastName;
+                v.Email = user.Email;
+                v.MobileNumber = user.MobileNumber;
+                v.IsActive = user.IsActive;
+                v.Gender = user.Gender;
+                v.DateOfLeaving = user.DateOfLeaving;
+                /*v.Password = user.Password;*/
+
+                
+                AssignedRole assignedRole = new AssignedRole();
+                assignedRole.RoleID = (int)user.AssignedRole;
+                assignedRole.UserID = user.Id;
+
+                var LoggedUser = HttpContext.User?.Identity.Name;
+                
+                var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
+                var UserIdLogged = userrow.UserID;
+
+                v.UpdatedOn = DateTime.Now;
+                v.EditedBy = UserIdLogged.ToString();
+                db.SaveChanges();
+                assignedRole.CreatedById = UserIdLogged;
+                assignedRole.UpdatedById = 0;
+                db.AssignedRoles.Add(assignedRole);
+
+                db.SaveChanges();
+
+                DescriptionAndProjectMapping projectMapping = new DescriptionAndProjectMapping();
+                projectMapping.ProjectID = (int)user.AssignProject;
+                projectMapping.UserID = user.Id;
+                db.DescriptionAndProjectMappings.Add(projectMapping);
+                db.SaveChanges();
+                return RedirectToAction("AssignRoles", "SuperAdmin");
 
 
-            AssignedRole assignedRole=new AssignedRole();
-            assignedRole.RoleID = user.AssignedRole;
-            assignedRole.UserID = user.Id;
 
-            var LoggedUser = HttpContext.User?.Identity.Name;
-            var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
-            var UserIdLogged = userrow.UserID;
+            }
+            else
+            {
+                return View("EditUser");
+            }
 
-            v.UpdatedOn=DateTime.Now;
-            v.EditedBy = UserIdLogged.ToString();
-            db.SaveChanges();
-            assignedRole.CreatedById = UserIdLogged;
-            assignedRole.UpdatedById = 0;
-            db.AssignedRoles.Add(assignedRole);
-
-            db.SaveChanges();
-
-            DescriptionAndProjectMapping projectMapping= new DescriptionAndProjectMapping();
-            projectMapping.ProjectID = user.AssignProject;
-            projectMapping.UserID= user.Id;
-            db.DescriptionAndProjectMappings.Add(projectMapping);
-            db.SaveChanges();
-
-
-
-
-
-            return RedirectToAction("AssignRoles", "SuperAdmin");
+            
         }
 
         /*[HttpPost]
@@ -165,7 +176,7 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
                 var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
-                v.Password = resetPassword.Password;
+                v.Password = Crypto.Hash(resetPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
                

@@ -123,7 +123,7 @@ namespace TSheetProject.Controllers
         [HttpGet]
         public ActionResult RejectTimeSheet()
         {
-            ViewBag.my = true;
+            ViewBag.rejectview = true;
             var v = alltsheetdata();
             return View("AllTimeSheet",v);
            
