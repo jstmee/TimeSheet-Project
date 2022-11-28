@@ -141,6 +141,7 @@
     <Content Include="Scripts\datatablejs\dataTables.semanticui.min.js" />
     <Content Include="Scripts\datatablejs\jquery.dataTables.js" />
     <Content Include="Scripts\datatablejs\jquery.dataTables.min.js" />
+    <Content Include="Views\Shared\_AdminLayout.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -8,33 +8,25 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link href="~/Content/css/user.css" rel="stylesheet" />
+
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white" })</h5>
+        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-user"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet")</h5>
+        <h5 class="text-white"><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Approve TimeSheet", "ApproveTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Approve TimeSheet", "ApproveTimesheet", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", new { @class = "text-white" })</h5>
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-sharp fa-solid fa-address-card"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white" })</h5>
-
-
-
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
     </div>
 }
 
+<div class="col-lg-10 col-md-9 p-4" id="top-body-box">
 
-
-<div class="col-lg-10 col-md-9 p-4" id="main-box">
-
-    <p>
-        @Html.ActionLink("Add New", "Create")
-    </p>
     <table class="table">
         <tr>
             <th>

@@ -70,7 +70,9 @@ namespace TSheet.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DateOfLeaving { get; set; }
         public string CreatedBy { get; set; }
+        [Display(Name = "Assign Role")]
         public int AssignedRole { get; set; }
+        [Display(Name = "Assign Project")]
         public int AssignProject { get; set; }
 
        /* public enum rolee
