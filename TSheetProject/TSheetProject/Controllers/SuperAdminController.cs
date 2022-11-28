@@ -176,7 +176,8 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
                 var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
-                v.Password = Crypto.Hash(resetPassword.Password);
+                Crypto crypto=new Crypto();
+                v.Password = crypto.Hash(resetPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
                
