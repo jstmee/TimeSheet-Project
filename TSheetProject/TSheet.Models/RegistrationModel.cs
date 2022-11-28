@@ -41,10 +41,13 @@ namespace TSheet.Models
         public string MobileNumber { get; set; }
         [Required(ErrorMessage = "Gender Required")]
         public string Gender { get; set; }
+        [Required(ErrorMessage ="DateOfBirth is Required")]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]*/
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -70,17 +73,13 @@ namespace TSheet.Models
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DateOfLeaving { get; set; }
         public string CreatedBy { get; set; }
-        [Display(Name = "Assign Role")]
-        public int AssignedRole { get; set; }
-        [Display(Name = "Assign Project")]
-        public int AssignProject { get; set; }
 
-       /* public enum rolee
-        {
-            User,
-            Admin,
-            SuperAdmin
-        }*/
+        [Display(Name = "Assign Role")]
+        public int? AssignedRole { get; set; }
+
+        [Display(Name = "Assign Project")]
+        public int? AssignProject { get; set; }
+
     }
 
 

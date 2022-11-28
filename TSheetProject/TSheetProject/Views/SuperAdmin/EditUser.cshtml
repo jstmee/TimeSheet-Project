@@ -45,6 +45,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             @Html.HiddenFor(x => x.Id)
+                           
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-sm" })
                                 <div class="col-md-10">
@@ -92,7 +93,7 @@
                                     @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
 
-                                    @* @Html.TextBoxFor(model =>model.DateOfBirth , "{0:yyyy-MM-dd}", new { @class = "datut", @placeholder = "plz input date" })*@
+                                   
                                 </div>
                             </div>
                         </div>
@@ -231,7 +232,8 @@
 
                     @*</div>*@
 
-                </div>
+                @*</div>
+                </div>*@
 
             }
         }

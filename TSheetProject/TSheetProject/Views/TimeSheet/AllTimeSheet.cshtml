@@ -46,7 +46,7 @@
                 {
                     <th>Aprroved</th>
                 }
-                @if (ViewBag.my == true)
+                @if (ViewBag.rejectview == true)
                 {
                     <th>Rejected</th>
                 }
@@ -75,9 +75,9 @@
                         <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name , onclick = "return false" }, new { @id = "approve" })</td>
                     }
 
-                    @if (ViewBag.my == true)
+                    @if (ViewBag.rejectview == true)
                     {
-                        <td class="p-3">  @Html.ActionLink("RejectTimesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name ,id2=item.UserUniqueId})</td>
+                        <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name ,id2=item.UserUniqueId})</td>
                     }
 
                 </tr>

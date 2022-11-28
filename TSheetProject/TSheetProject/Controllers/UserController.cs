@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TSheet.Data;
@@ -71,7 +72,7 @@ namespace TSheetProject.Controllers
             {
 
                 var v = dB.Registrations.Where(x => x.Email == userPassword.Email).FirstOrDefault();
-                v.Password= userPassword.Password;
+                v.Password= Crypto.Hash(userPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
             }

@@ -36,7 +36,7 @@ namespace TSheet.BL
        
             registration.Gender = user.Gender;
             registration.IsActive = true;
-            registration.Password = user.Password;
+            registration.Password = crypto.Hash(user.Password);
             registration.MobileNumber = user.MobileNumber;
             var LoggedUser = user.CreatedBy;
             
