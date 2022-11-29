@@ -71,8 +71,8 @@ namespace TSheetProject.Controllers
         {
             TSheetDB dB = new TSheetDB();
             /*ViewBag.projectlist = dB.ProjectMasters.ToList();*/
-            ViewBag.projectlist = MyCustom();
-            ViewBag.Roles = MyCustom2();
+            ViewBag.projectlist = GetProjectList();
+            ViewBag.Roles = GetRolesList();
 
             if (user != null)
             {
@@ -84,8 +84,8 @@ namespace TSheetProject.Controllers
         public ActionResult edit1(RegistrationModel user)
         {
             /*_registrationRepository.EditUser(user);*/
-            ViewBag.projectlist = MyCustom();
-            ViewBag.Roles = MyCustom2();
+            ViewBag.projectlist = GetProjectList();
+            ViewBag.Roles = GetRolesList();
             TSheetDB db=new TSheetDB();
             if (user.FirstName!=null && user.LastName!=null && user.DateOfBirth!=null && user.Gender!=null && user.Email!=null && user.MobileNumber!=null  && user.AssignProject!=null && user.AssignProject!=null)
             {
@@ -190,7 +190,7 @@ namespace TSheetProject.Controllers
 
         //a non action method for initializing the dropdownlist in view of timehseetadd
         [NonAction]
-        public List<ProjectModel> MyCustom()
+        public List<ProjectModel> GetProjectList()
         {
             List<ProjectModel> ListProjects = new List<ProjectModel>();
 
@@ -206,7 +206,7 @@ namespace TSheetProject.Controllers
         }
 
         [NonAction]
-        public List<RolesModel> MyCustom2()
+        public List<RolesModel> GetRolesList()
         {
             List<RolesModel> ListRoles = new List<RolesModel>();
 

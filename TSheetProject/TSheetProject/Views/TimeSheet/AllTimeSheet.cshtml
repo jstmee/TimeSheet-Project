@@ -71,14 +71,14 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
                     @if (ViewBag.b == true)
-                    {
+                     {
                         <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name , onclick = "return false" }, new { @id = "approve" })</td>
-                    }
+                     }
 
                     @if (ViewBag.rejectview == true)
-                    {
+                     {
                         <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name ,id2=item.UserUniqueId})</td>
-                    }
+                     }
 
                 </tr>
             }

@@ -14,7 +14,7 @@ namespace TSheet.Models
         [Display(Name = "Select Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [RestrictedDate]
+        /*[RestrictedDate]*/
         public DateTime Date1 { get; set; }
 
         public DateTime? Date2 { get; set; }
@@ -25,6 +25,7 @@ namespace TSheet.Models
         public DateTime? Date7 { get; set; }
 
         [Required(ErrorMessage = "Choose Project")]
+
         public int ProjectID1 { get; set; }
         public int? ProjectID2 { get; set; }
         public int? ProjectID3 { get; set; }

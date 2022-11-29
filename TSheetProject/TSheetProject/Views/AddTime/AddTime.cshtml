@@ -1,0 +1,72 @@
+﻿@model List<TSheet.Models.AddTimeSheetModel>
+
+
+
+@using (Html.BeginForm("AddTime", "AddTime", FormMethod.Post))
+{
+
+    <div class="col-4">
+        <input type="submit" value="Save Details" class="btn bg-primary w-25 rounded-pill text-white" id="input-box" style="float:right">
+    </div>
+
+
+    /*foreach (var item in Model)*/
+    if (Model != null)
+    {
+        for (var i = 0; i < Model.Count; i++)
+        {
+            <table class="table">
+                <tr>
+                    <td>
+                        <b>Date</b> @Html.EditorFor(m => Model[i].Date)
+                        
+                    </td>
+                    <td>
+                        <b>Project</b> @Html.EditorFor(m => Model[i].ProjectId)
+                        
+                    </td>
+                    <td>
+                        <b>Monday</b> @Html.EditorFor(m => Model[i].MondayLogTime)
+                    </td>
+                    <td>
+                        <b>Tuesday</b> @Html.EditorFor(m => Model[i].TuesdayLogTime)
+                    </td>
+                    <td>
+                        <b>Wednesday</b> @Html.EditorFor(m => Model[i].WednesdayLogTime)
+                    </td>
+                    <td>
+                        <b>Thursday</b> @Html.EditorFor(m => Model[i].ThursdayLogTime)
+                    </td>
+                    <td>
+                        <b>Friday</b> @Html.EditorFor(m => Model[i].FridayLogTime)
+                    </td>
+                    <td>
+                        <b>Saturday</b> @Html.EditorFor( m=> Model[i].SaturdayLogTime)
+                    </td>
+                    <td>
+                        <b>Sunday</b> @Html.EditorFor(m => Model[i].SundayLogTime)
+                    </td>
+                    <td>
+                        <b>Description</b> @Html.EditorFor(m => Model[i].Description)
+                    </td>
+
+                </tr>
+            </table>
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+

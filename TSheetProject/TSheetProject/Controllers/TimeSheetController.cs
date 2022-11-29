@@ -25,7 +25,7 @@ namespace TSheetProject.Controllers
         public ActionResult Add()
         {
             //for initializing the dropdownlist with project
-            ViewBag.Projects = MyCustom();
+            ViewBag.Projects = DisplayProjectList();
             return View();
             
         }
@@ -33,7 +33,7 @@ namespace TSheetProject.Controllers
         public ActionResult Add(TimeSheetModel obj)
         {
             //for initializing the dropdownlist with project
-            ViewBag.Projects = MyCustom();
+            ViewBag.Projects = DisplayProjectList();
             ViewBag.DataSaved = false;
             if (ModelState.IsValid == true)
             {
@@ -462,7 +462,7 @@ namespace TSheetProject.Controllers
 
         //a non action method for initializing the dropdownlist in view of timehseetadd
         [NonAction]
-        public List<ProjectModel> MyCustom()
+        public List<ProjectModel> DisplayProjectList()
         {
             List<ProjectModel> ListProjects = new List<ProjectModel>();
 
