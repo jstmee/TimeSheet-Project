@@ -11,11 +11,7 @@ namespace TSheet.Models
     public class AddTimeSheetModel
     {
         public int id { get; set; } 
-        [Required]
-        [Display(Name = "Select Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime? Date { get; set; }
+        
         
         public int? ProjectId { get; set; }
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]

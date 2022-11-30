@@ -31,7 +31,7 @@ namespace TSheetProject.Controllers
             return View(addTimeSheetModels);
         }
         [HttpPost]
-        public ActionResult AddTime(List<AddTimeSheetModel> addTime)
+        public ActionResult AddTime(List<AddTimeSheetModel> addTime,DateTime userdate)
         {
 
             return View(addTime);

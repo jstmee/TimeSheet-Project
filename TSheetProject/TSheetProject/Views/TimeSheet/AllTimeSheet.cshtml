@@ -21,14 +21,11 @@
         <hr />
         <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Project List", "ProjectList", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
     </div>
+
+
 }
-<script>
-    $(document).ready(function () {
-        $("#approve").click(function () {
-            alert("Approved");
-        });
-    });
-</script>
+
+
 
 <div class="col-lg-10 col-md-9 p-4" id="top-body-box">
     <link rel="stylesheet"
@@ -71,14 +68,14 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
                     @if (ViewBag.b == true)
-                     {
-                        <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name , onclick = "return false" }, new { @id = "approve" })</td>
-                     }
+                    {
+                        <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
+                    }
 
                     @if (ViewBag.rejectview == true)
-                     {
-                        <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name ,id2=item.UserUniqueId})</td>
-                     }
+                    {
+                        <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
+                    }
 
                 </tr>
             }
@@ -94,6 +91,30 @@
         $(function () {
             $("#table_id").dataTable();
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".reject").click(function () {
+                return false;
+            })
+        })
+        $(document).ready(function () {
+            $(".reject").click(function () {
+                alert("Rejected")
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".approve").click(function () {
+                return false;
+            })
+        })
+        $(document).ready(function () {
+            $(".approve").click(function () {
+                alert("Approved")
+            })
+        })
     </script>
 
 </div>

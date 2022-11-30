@@ -1,72 +1,98 @@
 ﻿@model List<TSheet.Models.AddTimeSheetModel>
 
+@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+@section SideBarAction{
+    <div class="p-3">
+        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "SuperAdmin", new { @class = "text-white ", @id = "SideBar-items" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white ", @id = "SideBar-items" })</h5>
+        <hr />
+        <h5 class=""> <i class="fa-solid fa-calendar-days" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", "TimeSheet", new { @class = "text-white ", @id = "SideBar-items " })</h5>
+        <hr />
+        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
+        <hr />
+        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
 
-
-@using (Html.BeginForm("AddTime", "AddTime", FormMethod.Post))
-{
-
-    <div class="col-4">
-        <input type="submit" value="Save Details" class="btn bg-primary w-25 rounded-pill text-white" id="input-box" style="float:right">
     </div>
+}
+
+<style>
+    .Input-Entry {
+        width: 90px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+    #AddTimeBtn {
+        float: right;
+        margin-right: 20px;
+        width: 200px;
+        height: 40px;
+        border-radius: 13px;
+        background-color: #2E63DD;
+    }
+</style>
 
 
-    /*foreach (var item in Model)*/
-    if (Model != null)
+<div class="col-lg-10 col-md-9 p-4 " id="top-body-box" , style="overflow: auto;">
+    @using (Html.BeginForm("AddTime", "AddTime", FormMethod.Post))
     {
-        for (var i = 0; i < Model.Count; i++)
+
+        <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white ">
+
+        <input type="date" id="date_id" name="userdate" />
+
+
+        if (Model != null)
         {
-            <table class="table">
-                <tr>
-                    <td>
-                        <b>Date</b> @Html.EditorFor(m => Model[i].Date)
-                        
-                    </td>
-                    <td>
-                        <b>Project</b> @Html.EditorFor(m => Model[i].ProjectId)
-                        
-                    </td>
-                    <td>
-                        <b>Monday</b> @Html.EditorFor(m => Model[i].MondayLogTime)
-                    </td>
-                    <td>
-                        <b>Tuesday</b> @Html.EditorFor(m => Model[i].TuesdayLogTime)
-                    </td>
-                    <td>
-                        <b>Wednesday</b> @Html.EditorFor(m => Model[i].WednesdayLogTime)
-                    </td>
-                    <td>
-                        <b>Thursday</b> @Html.EditorFor(m => Model[i].ThursdayLogTime)
-                    </td>
-                    <td>
-                        <b>Friday</b> @Html.EditorFor(m => Model[i].FridayLogTime)
-                    </td>
-                    <td>
-                        <b>Saturday</b> @Html.EditorFor( m=> Model[i].SaturdayLogTime)
-                    </td>
-                    <td>
-                        <b>Sunday</b> @Html.EditorFor(m => Model[i].SundayLogTime)
-                    </td>
-                    <td>
-                        <b>Description</b> @Html.EditorFor(m => Model[i].Description)
-                    </td>
+            for (var i = 0; i < Model.Count; i++)
+            {
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b>Project</b> @Html.EditorFor(m => Model[i].ProjectId, "", new { htmlAttributes = new { @class = "Input-Entry" } })
 
-                </tr>
-            </table>
+                        </td>
+                        <td>
+                            <b>Monday</b> @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Tuesday</b> @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Wednesday</b> @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Thursday</b> @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Friday</b> @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Saturday</b> @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Sunday</b> @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                        </td>
+                        <td>
+                            <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "w-100" } })
+                        </td>
 
+                    </tr>
+                </table>
+
+            }
         }
+
     }
 
 
 
-
-
-
-
-
-
-
-
-}
-
-
-
+</div>
