@@ -57,7 +57,12 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <b>Project</b> @Html.EditorFor(m => Model[i].ProjectId, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            <b>Project</b>@* @Html.EditorFor(m => Model[i].ProjectId, "", new { htmlAttributes = new { @class = "Input-Entry" } })*@
+                            @Html.DropDownListFor(model => model[i].ProjectId,
+                      new SelectList(ViewBag.Projects, "Id", "Name"),
+                      "Select Projects",
+                      new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })
 
                         </td>
                         <td>

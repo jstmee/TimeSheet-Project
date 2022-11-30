@@ -194,13 +194,13 @@ namespace TSheetProject.Controllers
         {
             List<ProjectModel> ListProjects = new List<ProjectModel>();
 
-            var v = _projectrepository.GetAllProjects();
+            var getallprojects = _projectrepository.GetAllProjects();
 
 
 
-            foreach (var p in v)
+            foreach (var project in getallprojects)
             {
-                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
+                ListProjects.Add(new ProjectModel { Id = project.ProjectID, Name = project.ProjectName });
             }
             return ListProjects;
         }
@@ -212,13 +212,13 @@ namespace TSheetProject.Controllers
 
             /*var v = _projectrepository.GetAllProjects();*/
             TSheetDB dB= new TSheetDB();
-            var v=dB.Roles.ToList();
+            var roles=dB.Roles.ToList();
 
 
 
-            foreach (var p in v)
+            foreach (var addrole in roles)
             {
-                ListRoles.Add(new RolesModel { Id = p.RoleID, RoleName = p.RoleName });
+                ListRoles.Add(new RolesModel { Id = addrole.RoleID, RoleName = addrole.RoleName });
             }
             return ListRoles;
         }

@@ -97,14 +97,14 @@ namespace TSheetProject.Controllers
         public ActionResult AllTimeSheet()
         { 
             ViewBag.b = false;
-            var v = alltsheetdata();
-            return View(v);
+            var alldatatsheet = alltsheetdata();
+            return View(alldatatsheet);
         }
         public ActionResult ApproveSheet()
         {
             ViewBag.b = true;
-            var v = alltsheetdata();
-            return View("AllTimeSheet", v);
+            var alldatatsheet = alltsheetdata();
+            return View("AllTimeSheet", alldatatsheet);
         }
         public ActionResult ApproveTimesheet(int id,string Email,int id2)
         {
@@ -466,13 +466,13 @@ namespace TSheetProject.Controllers
         {
             List<ProjectModel> ListProjects = new List<ProjectModel>();
 
-            var v = _projectrepository.GetAllProjects();
+            var getprojects = _projectrepository.GetAllProjects();
 
 
 
-            foreach (var p in v)
+            foreach (var project in getprojects)
             {
-                ListProjects.Add(new ProjectModel { Id = p.ProjectID, Name = p.ProjectName });
+                ListProjects.Add(new ProjectModel { Id = project.ProjectID, Name = project.ProjectName });
             }
             return ListProjects;
         }

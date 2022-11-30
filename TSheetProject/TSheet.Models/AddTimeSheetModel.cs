@@ -11,9 +11,7 @@ namespace TSheet.Models
     public class AddTimeSheetModel
     {
         public int id { get; set; } 
-        
-        
-        public int? ProjectId { get; set; }
+         public int? ProjectId { get; set; }
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
         [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
         public int? MondayLogTime { get; set; }

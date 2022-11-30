@@ -32,14 +32,14 @@ namespace TSheetProject.Controllers
                     if (isValidUser)
                     {
                         FormsAuthentication.SetAuthCookie(login.Email, false);
-                        var b = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
-                        if (b != null)
+                        var userlogin = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
+                        if (userlogin != null)
                         {
-                            if (b.Password == login.Password)
+                            if (userlogin.Password == login.Password)
                             {
-                                var c = b.UserID;
-                                var d = db.AssignedRoles.Where(a => a.UserID == c).FirstOrDefault();
-                                var HisRoleId = d.RoleID;
+                                var userloginid = userlogin.UserID;
+                                var userassignedrole = db.AssignedRoles.Where(a => a.UserID == userloginid).FirstOrDefault();
+                                var HisRoleId = userassignedrole.RoleID;
                                 var RoleRow = db.Roles.Where(a => a.RoleID == HisRoleId).FirstOrDefault();
                                 if (RoleRow.RoleName == "Admin")
                                 {
