@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationRepository.cs" />
     <Compile Include="RoleRepository.cs" />
+    <Compile Include="TimeSheetDetailRepository.cs" />
+    <Compile Include="TimeSheetMasterRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">

@@ -23,13 +23,17 @@ namespace TSheet.BL
 
         public IList<ProjectMaster> GetAllProjects()
         {
-            var v=sheetDB.ProjectMasters.ToList();
-            return v;
+            IList<ProjectMaster> projectMasters =sheetDB.ProjectMasters.ToList();
+            return projectMasters;
         }
 
         public ProjectMaster GetProject(int id)
         {
-            throw new NotImplementedException();
+            ProjectMaster project  = sheetDB.ProjectMasters.Where(a => a.ProjectID == id).SingleOrDefault();
+
+            return project;
+            
+            
         }
     }
 

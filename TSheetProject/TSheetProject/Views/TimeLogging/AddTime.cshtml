@@ -42,12 +42,12 @@
 
 
 <div class="col-lg-10 col-md-9 p-4 " id="top-body-box" , style="overflow: auto;">
-    @using (Html.BeginForm("AddTime", "AddTime", FormMethod.Post))
+    @using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
     {
 
         <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white ">
 
-        <input type="date" id="date_id" name="userdate" />
+        <input type="date" id="date_id" name="userdate" required />
 
 
         if (Model != null)
@@ -57,7 +57,7 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <b>Project</b>@* @Html.EditorFor(m => Model[i].ProjectId, "", new { htmlAttributes = new { @class = "Input-Entry" } })*@
+                            <b>Project</b>
                             @Html.DropDownListFor(model => model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
                       "Select Projects",
