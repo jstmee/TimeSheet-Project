@@ -11,6 +11,7 @@ namespace TSheetProject.Controllers
 {
     public class TimeLoggingController : Controller
     {
+
         private ProjectRepository _projectRepository;
         private TimeSheetMasterRepository _timesheetmasterRepository;
         private RegistrationRepository _RegistrationRepository;
