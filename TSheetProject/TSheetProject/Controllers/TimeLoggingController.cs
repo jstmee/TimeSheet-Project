@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,19 +26,55 @@ namespace TSheetProject.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult TimeLog()
+        {
+            return View();  
+        }
+        [HttpPost]
+        public ActionResult TimeLog(string userweek)
+        {
+            int year = GetYear(userweek);
+            
+            int week = GetWeekNo(userweek);
+            
+            
+
+            //convert userweek to dates
+            var ListOfDays = FirstDateOfWeek(year,week);
+
+
+
+            //if user has already data
+            //fetching of data required
+
+
+
+
+
+            //if user has not data
+            //simply returning view
+
+
+
+
+            return RedirectToAction("AddTime");
+        }
+
+
         //Get Method for user time logging page
         [HttpGet]
         public ActionResult AddTime()
         {
             //fetching list of projects from database for showing it on dropdownlist in view
-            ViewBag.Projects = DisplayProjectList();
+            List<ProjectModel> projectModels= DisplayProjectList();
+            ViewBag.Projects = projectModels;
+
 
             //initializing the empty timesheetmodal for use in view
             List<AddTimeSheetModel> addTimeSheetModels = new List<AddTimeSheetModel>();
 
-            //getting the total count of the projects
-            var projectcount = _projectRepository.GetAllProjects().Count();
-            for (int i = 0; i < projectcount; i++)
+            for (int i = 0; i < projectModels.Count(); i++)
             {
                 AddTimeSheetModel addTimeSheetobj = new AddTimeSheetModel();
                 addTimeSheetobj.id = i + 1;
@@ -59,7 +96,7 @@ namespace TSheetProject.Controllers
 
             //checking views model state is valid or not
             if (ModelState.IsValid)
-            {
+            { 
                 foreach (var userrowdata in addTime)
                 {
                     if (userrowdata.ProjectId != null)
@@ -100,12 +137,14 @@ namespace TSheetProject.Controllers
         [NonAction]
         public List<ProjectModel> DisplayProjectList()
         {
+           
             List<ProjectModel> ListProjects = new List<ProjectModel>();
             var getprojects = _projectRepository.GetAllProjects();
             foreach (var project in getprojects)
             {
                 ListProjects.Add(new ProjectModel { Id = project.ProjectID, Name = project.ProjectName });
             }
+
             return ListProjects;
         }
 
@@ -164,6 +203,66 @@ namespace TSheetProject.Controllers
                 intMap.Add(userdate.AddDays(7), (int)userrowdata.SundayLogTime);
             }
             return intMap;
+
+        }
+
+        [NonAction]
+        public static DateTime FirstDateOfWeek(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            // Use first Thursday in January to get first week of the year as
+            // it will never be in Week 52/53
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            // As we're adding days to a date in Week 1,
+            // we need to subtract 1 in order to get the right date for week #1
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+
+            // Using the first Thursday as starting week ensures that we are starting in the right year
+            // then we add number of weeks multiplied with days
+            var result = firstThursday.AddDays(weekNum * 7);
+
+            // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
+            return result.AddDays(-3);
+        }
+
+        [NonAction]
+        public int GetYear(string userweek)
+        {
+            
+            string yr;
+            /*for (int i = 0; i < 4; i++)
+            {
+                
+                yr[]= (userweek[i]);
+            }*/
+            yr = userweek.Substring(0,4);
+            int yearint= int.Parse(yr);
+            return yearint;
+
+        }
+
+        [NonAction]
+        public int GetWeekNo(string userweek)
+        {
+            
+            int WeekNo = 0;
+            string week;
+            /*for (int i = 6; i < 8; i++)
+            {
+                week.Append(userweek[i]);
+            }*/
+            week= userweek.Substring(6);
+            WeekNo = int.Parse(week);
+            return WeekNo;
 
         }
     }

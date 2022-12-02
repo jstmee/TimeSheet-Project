@@ -70,7 +70,7 @@ namespace TSheetProject.Controllers
         public ActionResult EditUser(RegistrationModel user)
         {
             TSheetDB dB = new TSheetDB();
-            /*ViewBag.projectlist = dB.ProjectMasters.ToList();*/
+            
             ViewBag.projectlist = GetProjectList();
             ViewBag.Roles = GetRolesList();
 
@@ -83,7 +83,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult edit1(RegistrationModel user)
         {
-            /*_registrationRepository.EditUser(user);*/
+            
             ViewBag.projectlist = GetProjectList();
             ViewBag.Roles = GetRolesList();
             TSheetDB db=new TSheetDB();
@@ -99,7 +99,7 @@ namespace TSheetProject.Controllers
                 v.IsActive = user.IsActive;
                 v.Gender = user.Gender;
                 v.DateOfLeaving = user.DateOfLeaving;
-                /*v.Password = user.Password;*/
+                
 
                 
                 AssignedRole assignedRole = new AssignedRole();
@@ -138,15 +138,6 @@ namespace TSheetProject.Controllers
             
         }
 
-        /*[HttpPost]
-        public ActionResult AssignRoles(AssignedRolesModel assigned)
-        {
-            TSheetDB db = new TSheetDB();
-
-            var alluser = db.Registrations.ToList();
-            return View(alluser);
-        }
-*/
         public ActionResult AddProjects()
         {
             return View();
@@ -209,13 +200,8 @@ namespace TSheetProject.Controllers
         public List<RolesModel> GetRolesList()
         {
             List<RolesModel> ListRoles = new List<RolesModel>();
-
-            /*var v = _projectrepository.GetAllProjects();*/
             TSheetDB dB= new TSheetDB();
             var roles=dB.Roles.ToList();
-
-
-
             foreach (var addrole in roles)
             {
                 ListRoles.Add(new RolesModel { Id = addrole.RoleID, RoleName = addrole.RoleName });
