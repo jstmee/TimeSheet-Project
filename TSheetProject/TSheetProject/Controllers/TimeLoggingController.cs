@@ -29,36 +29,55 @@ namespace TSheetProject.Controllers
         [HttpGet]
         public ActionResult TimeLog()
         {
-            return View();  
+            return View();
         }
         [HttpPost]
         public ActionResult TimeLog(string userweek)
         {
-            int year = GetYear(userweek);
+
+            if (ModelState.IsValid)
+            {
+                int year = int.Parse(userweek.Substring(0, 4));
+
+                int week = int.Parse(userweek.Substring(6));
+
+                //convert userweek to dates
+                var FirstDays = FirstDateOfWeek(year, week);
+
+                var LoggedUser = HttpContext.User?.Identity.Name;
+                var userrow = _RegistrationRepository.GetRegistrationByEmail(LoggedUser);
+                var UserIdLogged = userrow.UserID;
+
+                TSheetDB sheetdb = new TSheetDB();
+                var timeSheetMasterlist = sheetdb.TimeSheetMasters.Where(a => a.UserID == UserIdLogged && a.FromDate == FirstDays).ToList();
+
+                //if user has already data
+                //fetching of data required
+
+                if (timeSheetMasterlist == null)
+                {
+                    return RedirectToAction("AddTime");
+
+                }
+                else
+                {
+                    //fetch the user data and pass that data to addtime controller
+                    foreach(var timeSheetMaster in timeSheetMasterlist)
+                    {
+                        var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
+                    }
+                    
+
+                }
+
+                return RedirectToAction("AddTime");
+
+            }
+
             
-            int week = GetWeekNo(userweek);
+            return View(userweek);
             
             
-
-            //convert userweek to dates
-            var ListOfDays = FirstDateOfWeek(year,week);
-
-
-
-            //if user has already data
-            //fetching of data required
-
-
-
-
-
-            //if user has not data
-            //simply returning view
-
-
-
-
-            return RedirectToAction("AddTime");
         }
 
 
@@ -70,6 +89,7 @@ namespace TSheetProject.Controllers
             List<ProjectModel> projectModels= DisplayProjectList();
             ViewBag.Projects = projectModels;
 
+            var userLogData = TempData["UserTimeLogData"];
 
             //initializing the empty timesheetmodal for use in view
             List<AddTimeSheetModel> addTimeSheetModels = new List<AddTimeSheetModel>();
@@ -82,7 +102,6 @@ namespace TSheetProject.Controllers
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
             }
-
             //passing list which is initially has no of row equal to the no of projects in the database
             return View(addTimeSheetModels);
         }
@@ -234,36 +253,7 @@ namespace TSheetProject.Controllers
             return result.AddDays(-3);
         }
 
-        [NonAction]
-        public int GetYear(string userweek)
-        {
-            
-            string yr;
-            /*for (int i = 0; i < 4; i++)
-            {
-                
-                yr[]= (userweek[i]);
-            }*/
-            yr = userweek.Substring(0,4);
-            int yearint= int.Parse(yr);
-            return yearint;
 
-        }
-
-        [NonAction]
-        public int GetWeekNo(string userweek)
-        {
-            
-            int WeekNo = 0;
-            string week;
-            /*for (int i = 6; i < 8; i++)
-            {
-                week.Append(userweek[i]);
-            }*/
-            week= userweek.Substring(6);
-            WeekNo = int.Parse(week);
-            return WeekNo;
-
-        }
+        
     }
 }
