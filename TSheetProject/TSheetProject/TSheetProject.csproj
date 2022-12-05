@@ -95,13 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\Addtime.css" />
     <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\superAdmins.css" />
     <Content Include="Content\css\Timesheet.css" />
-    <Content Include="Content\css\TsheetImg\businessman-holding-clock-business-time-management.jpg" />
-    <Content Include="Content\css\TsheetImg\businessman-holding-hour-glass-signifies-importance-being-time.jpg" />
-    <Content Include="Content\css\TsheetImg\hourglass-dark-background.jpg" />
+    <Content Include="Content\css\TsheetImg\five-o-clock-sea-blue-office-wal %281%29.jpg" />
     <Content Include="Content\css\user.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
@@ -141,7 +140,6 @@
     <Content Include="Scripts\datatablejs\dataTables.semanticui.min.js" />
     <Content Include="Scripts\datatablejs\jquery.dataTables.js" />
     <Content Include="Scripts\datatablejs\jquery.dataTables.min.js" />
-    <Content Include="Views\Shared\_AdminLayout.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +175,8 @@
     <Content Include="Views\Admin\ProjectList.cshtml" />
     <Content Include="Views\TimeSheet\AllTimeSheet.cshtml" />
     <Content Include="Views\TimeLogging\AddTime.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

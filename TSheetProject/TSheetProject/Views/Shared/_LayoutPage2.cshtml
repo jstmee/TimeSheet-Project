@@ -12,9 +12,6 @@
     
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" id="navBar-Title">Time Manager</a>
-                </div>
                 <ul class="nav navbar-nav navbar-right ">
                     <li>@HttpContext.Current.User.Identity.Name</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
@@ -33,7 +30,7 @@
             </div>
         </div>
 
-        @RenderBody()
+         @RenderBody()
 
     </div>
 

@@ -1,77 +1,38 @@
-﻿
+﻿@model TSheet.Models.RegistrationModel
 @{
     ViewBag.Title = "DashBoard";
-    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="~/Content/css/user.css" rel="stylesheet" />
 
 
-@section SideBarAction{
-    <div class="p-3">
-        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "Admin", "TimeSheet", new { @class = "text-white" ,@id="SideBar-items"})</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class="text-white"><i class="fa-solid fa-users" id="SideBar-Icons" ></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons" ></i> @Html.ActionLink("Approve TimeSheet", "ApproveSheet", "AllTimeSheet", "AllTimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-users"  id="SideBar-Icons"></i> @Html.ActionLink("Reject TimeSheet", "RejectTimesheet", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons" ></i> @Html.ActionLink("Project List", "ProjectList", "Admin", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-   </div>
-}
+<div><h4>Admin Dashboard</h4></div>
+<div class="">
 
-<div class="col-lg-10 col-md-9 p-4" id="top-body-box">
-    <div><h3>Admin Dashboard</h3></div>
-
-    <div class="row text-center ">
-        <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
-                                <div class="col">
-                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
-                                </div>
-                                <div class="col pt-4"><h3> Total User Count</h3></div>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h1>@ViewBag.NoOfUser </h1></div>
-                        </div>
-
+    <div class="row pt-3">
+        <div class="col-lg-3 col-md-6 ">
+            <div class="card border-left-dark shadow  py-2">
+                <div class="card-body id=" user-Card"">
+                    <div class=" row">
+                        <div class="col-lg-8" id="text-cart"> Total User Counts</div>
+                        <div class=" col-lg-4"> <h4 class="count pt-3 pl-5 text-primary"> @ViewBag.NoOfUser</h4></div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-        <div class="col-xl-6 col-md-6  mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="col-lg-3  col-md-6 ">
+            <div class="card border-left-dark shadow  py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
-                                <div class="col">
-                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
-                                </div>
-                                <div class="col pt-4"><h3> Total Projects </h3></div>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h1>@ViewBag.NoOfProject </h1></div>
-                        </div>
-
+                    <div class=" row">
+                        <div class="col-lg-8" id="text-cart"> Total Projects Counts   </div>
+                        <div class=" col-lg-4"> <h4 class=" count pt-3 pl-5 text-primary"> @ViewBag.NoOfProject</h4></div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
 
     </div>
 </div>

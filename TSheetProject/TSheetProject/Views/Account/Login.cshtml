@@ -14,70 +14,97 @@
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom styles for this template-->
     <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
     <link href="~/Content/css/userLogin.css" rel="stylesheet" />
     <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+    <style>
+        #Login-Box {
+            width: 420px;
+            background-color: #EEF8FE;
+            border-radius: 17px;
+            margin-left: 700px;
+            margin-top: 100px
+        }
+
+        #Login-input {
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        #input-box-btn {
+            background-color: #054973;
+            width: 385px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        #login-hedding {
+            font-weight: 800;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+
+        .control-label {
+            font-weight: 800;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+
+        #llc {
+            font-weight: 500;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        i {
+            font-size: 28px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
-<body style="background-color: #257DB2;">
 
-    <div class="container pt-5">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block">
-
-                                <img class="w-100 h-100" src="~/Content/css/TsheetImg/businessman-holding-clock-business-time-management.jpg" />
-                            </div>
-
-                            <div class="col-lg-5">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
-                                    </div>
-
-                                    @using (Html.BeginForm())
-                                    {
-                                        @Html.AntiForgeryToken()
-
-                                        <div class="form-horizontal">
-
-                                            <hr />
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control w-100 rounded-pill " } })
-                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group pt-3">
-                                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded-pill " } })
-                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group  pt-5">
-                                                <input type="submit" value="Login" class="btn bg-primary w-100 rounded-pill text-white" id="input-box">
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<body style="background-color: #1089D2;">
+    <div class="container pt-5 ">
+        <div class="bg-white" id="Login-Box" >
+            <div class="pt-3 bt-5 pl-2 pr-2 ">
+                <div class="text-center">
+                    <h1 class="h4 mb-4" id="login-hedding">Welcome</h1>
                 </div>
 
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group pt-2">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control  rounded " ,@id="Login-input" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-1">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded ", @id = "Login-input" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group  pt-3 pl-2">
+                            <input type="submit" value="Login" class="btn  rounded text-white" id="input-box-btn">
+                        </div>
+                        <div class="text-center  pt-3">
+                            <h5>Follow Us On</h5>
+                            <i class="fa-brands fa-square-facebook "></i>
+                            <i class="fa-brands fa-square-twitter pl-2"></i>
+                            <i class="fa-brands fa-linkedin pl-2"></i>
+                        </div>
+                        <div class="text-center pt-5 pb-3" id="llc">
+                            FUnctionstak LLC, 2022
+                        </div>
+                    </div>
+                }
             </div>
 
         </div>

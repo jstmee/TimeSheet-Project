@@ -1,95 +1,73 @@
-﻿@{
+﻿
+@model TSheet.Models.RegistrationModel
+
+
+@{
     ViewBag.Title = "User DashBoard";
-    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="~/Content/css/user.css" rel="stylesheet" />
+
+<style>
+    #user-Card {
+        background-color: red
+    }
+
+    .count {
+        font-size: 28px;
+        font-weight: 600;
+        font-family: 'Times New Roman', Times, serif
+    }
+
+    #text-cart {
+        font-size: 22px;
+        font-weight: 500;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
 
 
-@section SideBarAction{
-    <div class="p-3">
-        <h5 class=""> <i class="fas fa-home " id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-clock" id="SideBar-Icons"></i> @Html.ActionLink("Time Sheet", "Add", "TimeSheet", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""> <i class="fa-solid fa-calendar-days" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-lock" id="SideBar-Icons"></i> @Html.ActionLink("Change Password", "ChangePassword", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        <h5 class=""><i class="fa-solid fa-bell" id="SideBar-Icons"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-        <hr />
-        
+<h4>User Dashboard</h4>
+
+<div class="row pt-3">
+    <div class="col-lg-3 col-md-6 ">
+        <div class="card border-left-dark shadow  py-2">
+            <div class="card-body id=" user-Card"">
+                <div class=" row">
+                    <div class="col-lg-8" id="text-cart"> Total TimeSheet Counts</div>
+                    <div class=" col-lg-4"> <h4 class="count pt-3 pl-5 text-primary">@ViewBag.TotalsheetUser</h4></div>
+                </div>
+            </div>
+        </div>
     </div>
-}
-<div class="col-lg-10 col-md-9 p-4" id="top-body-box">
-    <div><h3>Dashboard</h3></div>
 
-    <div class="row text-center ">
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
-                                <div class="col">
-                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
-                                </div>
-                                <div class="col"><h3> Total TimeSheets @ViewBag.TotalsheetUser</h3></div>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
-                        </div>
-
-                    </div>
+    <div class="col-lg-3  col-md-6 ">
+        <div class="card border-left-dark shadow  py-2">
+            <div class="card-body">
+                <div class=" row">
+                    <div class="col-lg-8" id="text-cart"> Total TimeSheet Approved   </div>
+                    <div class=" col-lg-4"> <h4 class=" count pt-3 pl-3 text-primary">@ViewBag.Approved</h4></div>
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
-                                <div class="col">
-                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
-                                </div>
-                                <div class="col"><h3> Total TimeSheet Approved @ViewBag.Approved </h3></div>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3></h3></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 row">
-                                <div class="col">
-                                    <i class="fa-solid fa-clock fa-9x " id="cart-icon"></i>
-                                </div>
-                                <div class="col"><h3> Total TimeSheet Rejected @ViewBag.Rejected</h3></div>
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <h3> </h3></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
     </div>
+
+    <div class="col-lg-3 col-md-6 ">
+        <div class="card border-left-dark shadow  py-2">
+            <div class="card-body">
+                <div class=" row">
+                    <div class="col-lg-8" id="text-cart"> Total TimeSheet Rejected </div>
+                    <div class=" col-lg-4"> <h4 class="count pt-3 pl-4 text-primary">@ViewBag.Rejected</h4></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 
 
 

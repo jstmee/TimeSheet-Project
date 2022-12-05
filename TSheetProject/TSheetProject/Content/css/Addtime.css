@@ -1,0 +1,26 @@
+﻿.Input-Entry {
+    width: 90px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+#AddTimeBtn {
+    float: right;
+    margin-right: 20px;
+    width: 200px;
+    height: 40px;
+    border-radius: 13px;
+    background-color: #2E63DD;
+}
+
+.Input-Entry-Project {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.Input-Entry-discription {
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+}
