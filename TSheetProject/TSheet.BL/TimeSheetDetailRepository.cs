@@ -32,5 +32,11 @@ namespace TSheet.BL
         {
             throw new NotImplementedException();
         }
+
+        public IList<TimeSheetDetail> GetAllTimeSheetDetailByMasterId(int id)
+        {
+            return _tsheetdb.TimeSheetDetails.Where(a => a.TimeSheetMasterID == id).ToList();
+            
+        }
     }
 }

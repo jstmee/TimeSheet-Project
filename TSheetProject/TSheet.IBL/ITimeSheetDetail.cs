@@ -14,5 +14,7 @@ namespace TSheet.IBL
         int AddTimeSheetDetail(TimeSheetDetail obj);
 
         TimeSheetDetail GetTimeSheetDetail(int id);
+
+        IList<TimeSheetDetail> GetAllTimeSheetDetailByMasterId(int id);
     }
 }

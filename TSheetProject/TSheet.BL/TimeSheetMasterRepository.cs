@@ -32,5 +32,11 @@ namespace TSheet.BL
         {
             throw new NotImplementedException();
         }
+
+        public IList<TimeSheetMaster> GetTimeSheetMasterByUserIDFromDate(int UserId,DateTime fromDate)
+        {
+            return _TSheetDB.TimeSheetMasters.Where(a=>a.UserID==UserId && a.FromDate==fromDate).ToList();
+            
+        }
     }
 }

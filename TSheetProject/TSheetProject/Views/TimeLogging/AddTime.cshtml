@@ -10,15 +10,16 @@
 <link href="~/Content/css/user.css" rel="stylesheet" />
 @section SideBarAction{
     <div class="p-3">
-        <h5 class=""> <i class="fas fa-home" id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "SuperAdmin", new { @class = "text-white ", @id = "SideBar-items" })</h5>
+        <h5 class=""> <i class="fas fa-home " id="SideBar-Icons"></i> @Html.ActionLink("Dashboard", "DashBoard", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-user" id="SideBar-Icons"></i> @Html.ActionLink("Create User", "CreateUser", "SuperAdmin", "", new { @class = "text-white ", @id = "SideBar-items" })</h5>
+        <h5 class=""><i class="fa-solid fa-clock" id="SideBar-Icons"></i> @Html.ActionLink("Time Sheet", "TimeLog", "TimeLogging", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""> <i class="fa-solid fa-calendar-days" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "TimeSheet", "TimeSheet", new { @class = "text-white ", @id = "SideBar-items " })</h5>
+        <h5 class=""> <i class="fa-solid fa-calendar-days" id="SideBar-Icons"></i> @Html.ActionLink("All Time Sheet", "AllTimeSheet", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-solid fa-users" id="SideBar-Icons"></i> @Html.ActionLink("Assign Roles", "AssignRoles", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
+        <h5 class=""><i class="fa-solid fa-lock" id="SideBar-Icons"></i> @Html.ActionLink("Change Password", "ChangePassword", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
         <hr />
-        <h5 class=""><i class="fa-sharp fa-solid fa-address-card" id="SideBar-Icons"></i> @Html.ActionLink("Add Projects", "AddProjects", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
+        <h5 class=""><i class="fa-solid fa-bell" id="SideBar-Icons"></i> @Html.ActionLink("Notification", "Notification", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
+        <hr />
 
     </div>
 }
@@ -57,8 +58,17 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <b>Project</b>
-                            @Html.DropDownListFor(model => model[i].ProjectId,
+                            @if (i == 0)
+                            {
+                                <b>
+                                    Project
+                                    <br />
+                                </b>
+                                <br />
+                                <br />
+                            }
+
+                            @Html.DropDownListFor(m => Model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
                       "Select Projects",
                       new { @class = "form-control" })
@@ -66,28 +76,78 @@
 
                         </td>
                         <td>
-                            <b>Monday</b> @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Monday 
+                            <br />@ViewBag.userDates[0].ToShortDateString()</b>
+                                <br /><br />
+                            }
+
+                            @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].MondayLogTimeId)
                         </td>
                         <td>
-                            <b>Tuesday</b> @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Tuesday <br />@ViewBag.userDates[1].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
                         </td>
                         <td>
-                            <b>Wednesday</b> @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Wednesday <br />@ViewBag.userDates[2].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
                         </td>
                         <td>
-                            <b>Thursday</b> @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Thursday <br />@ViewBag.userDates[3].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
                         </td>
                         <td>
-                            <b>Friday</b> @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Friday <br />@ViewBag.userDates[4].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].FridayLogTimeId)
                         </td>
                         <td>
-                            <b>Saturday</b> @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Saturday <br />@ViewBag.userDates[5].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].SaturdayLogTimeId)
                         </td>
                         <td>
-                            <b>Sunday</b> @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Sunday <br />@ViewBag.userDates[6].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @Html.HiddenFor(m => Model[i].SundayLogTimeId)
                         </td>
                         <td>
-                            <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "w-100" } })
+                            @if (i == 0)
+                            {
+                                <b>Description<br /></b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "w-100" } })
+                            @Html.HiddenFor(m => Model[i].DescriptionId)
                         </td>
 
                     </tr>

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TSheet.BL;
 using TSheet.Data;
+using TSheet.IBL;
 using TSheet.Models;
 
 namespace TSheetProject.Controllers
@@ -31,55 +32,106 @@ namespace TSheetProject.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult TimeLog(string userweek)
         {
 
             if (ModelState.IsValid)
             {
-                int year = int.Parse(userweek.Substring(0, 4));
-
-                int week = int.Parse(userweek.Substring(6));
-
                 //convert userweek to dates
+                int year = int.Parse(userweek.Substring(0, 4));
+                int week = int.Parse(userweek.Substring(6));
                 var FirstDays = FirstDateOfWeek(year, week);
+                List<DateTime> ListOfDates = GetListOfDates(FirstDays);
+                
+                var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
 
-                var LoggedUser = HttpContext.User?.Identity.Name;
-                var userrow = _RegistrationRepository.GetRegistrationByEmail(LoggedUser);
-                var UserIdLogged = userrow.UserID;
-
-                TSheetDB sheetdb = new TSheetDB();
-                var timeSheetMasterlist = sheetdb.TimeSheetMasters.Where(a => a.UserID == UserIdLogged && a.FromDate == FirstDays).ToList();
+                var timeSheetMasterlist = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, FirstDays);
 
                 //if user has already data
                 //fetching of data required
-
-                if (timeSheetMasterlist == null)
+                if (timeSheetMasterlist.Count==0)
                 {
+                    TempData["userDates"] = ListOfDates;
+                    TempData["UserTimeLogData"] = null;
                     return RedirectToAction("AddTime");
 
                 }
                 else
                 {
+                    List<AddTimeSheetModel> addTimeSheetModelsList = new List<AddTimeSheetModel>();
                     //fetch the user data and pass that data to addtime controller
-                    foreach(var timeSheetMaster in timeSheetMasterlist)
+                    foreach (var timeSheetMaster in timeSheetMasterlist)
                     {
+                        AddTimeSheetModel addTimeSheetModel = new AddTimeSheetModel();
                         var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
+                        addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
+                        if (timeSheetMaster.Comment != null)
+                        {
+                            addTimeSheetModel.Description = timeSheetMaster.Comment;
+                            addTimeSheetModel.DescriptionId = 1;
+                        }
+                        var timeSheetDetail = _TimeSheetDetailRepository.GetAllTimeSheetDetailByMasterId(timesheetmasterid);
+
+                        if (timeSheetDetail != null)
+                        {
+                            Dictionary<DateTime?, int?> DaysWiseHrsUserDataInDB = GetDaysWiseHrsUserDataInDB(timeSheetDetail);
+                            #region 
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays, out int? value1) != false)
+                            {
+                                addTimeSheetModel.MondayLogTime = DaysWiseHrsUserDataInDB[FirstDays];
+                                addTimeSheetModel.MondayLogTimeId = 1;
+                            }
+
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(1) ,out int? value2) != false)
+                            {
+                                addTimeSheetModel.TuesdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(1)];
+                                addTimeSheetModel.TuesdayLogTimeId = 1;
+                            }
+
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(2), out int? value3) != false)
+                            {
+                                addTimeSheetModel.WednesdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(2)];
+                                addTimeSheetModel.WednesdayLogTimeId = 1;
+                            }
+
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(3), out int? value4) != false)
+                            {
+                                addTimeSheetModel.ThursdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(3)];
+                                addTimeSheetModel.ThursdayLogTimeId = 1;
+                            }
+                            
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(4), out int? value5) != false)
+                            {
+                                addTimeSheetModel.FridayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(4)];
+                                addTimeSheetModel.FridayLogTimeId = 1;
+                            }
+
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(5), out int? value6) != false)
+                            {
+                                addTimeSheetModel.SaturdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(5)];
+                                addTimeSheetModel.SaturdayLogTimeId = 1;
+                            }
+
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(6), out int? value7) != false)
+                            {
+                                addTimeSheetModel.SundayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(6)];
+                                addTimeSheetModel.SundayLogTimeId = 1;
+                            }
+                            #endregion
+                            addTimeSheetModelsList.Add(addTimeSheetModel);
+
+                        }
                     }
-                    
+                    TempData["userDates"] = ListOfDates;
+                    TempData["UserTimeLogData"] = addTimeSheetModelsList;
+                    return RedirectToAction("AddTime");
 
                 }
-
-                return RedirectToAction("AddTime");
-
             }
-
-            
             return View(userweek);
-            
-            
         }
-
 
         //Get Method for user time logging page
         [HttpGet]
@@ -87,9 +139,11 @@ namespace TSheetProject.Controllers
         {
             //fetching list of projects from database for showing it on dropdownlist in view
             List<ProjectModel> projectModels= DisplayProjectList();
-            ViewBag.Projects = projectModels;
 
-            var userLogData = TempData["UserTimeLogData"];
+            ViewBag.Projects = projectModels;
+            ViewBag.userDates = TempData["userDates"];
+            TempData["Dates"]= TempData["userDates"];
+
 
             //initializing the empty timesheetmodal for use in view
             List<AddTimeSheetModel> addTimeSheetModels = new List<AddTimeSheetModel>();
@@ -102,20 +156,54 @@ namespace TSheetProject.Controllers
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
             }
+            if (TempData["UserTimeLogData"] != null)
+            {
+                List<AddTimeSheetModel> userLogData = (List<AddTimeSheetModel>)TempData["UserTimeLogData"];
+                
+                if (userLogData != null)
+                {
+                    int count = 0;
+                    foreach (var vv in userLogData)
+                    {
+                        #region
+                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
+                        addTimeSheetModels[count].MondayLogTime = vv.MondayLogTime;
+                        addTimeSheetModels[count].MondayLogTimeId = vv.MondayLogTimeId;
+                        addTimeSheetModels[count].TuesdayLogTime = vv.TuesdayLogTime;
+                        addTimeSheetModels[count].TuesdayLogTimeId = vv.TuesdayLogTimeId;
+                        addTimeSheetModels[count].WednesdayLogTime = vv.WednesdayLogTime;
+                        addTimeSheetModels[count].WednesdayLogTimeId = vv.WednesdayLogTimeId;
+                        addTimeSheetModels[count].ThursdayLogTime = vv.ThursdayLogTime;
+                        addTimeSheetModels[count].ThursdayLogTimeId = vv.ThursdayLogTimeId;
+                        addTimeSheetModels[count].FridayLogTime = vv.FridayLogTime;
+                        addTimeSheetModels[count].FridayLogTimeId = vv.FridayLogTimeId;
+                        addTimeSheetModels[count].SaturdayLogTime = vv.SaturdayLogTime;
+                        addTimeSheetModels[count].SaturdayLogTimeId = vv.SaturdayLogTimeId;
+                        addTimeSheetModels[count].SundayLogTime = vv.SundayLogTime;
+                        addTimeSheetModels[count].SundayLogTimeId = vv.SundayLogTimeId;
+                        addTimeSheetModels[count].Description = vv.Description;
+                        addTimeSheetModels[count].DescriptionId = vv.DescriptionId;
+                        #endregion
+                        count++;
+                    }
+                }
+
+            }
+            
             //passing list which is initially has no of row equal to the no of projects in the database
             return View(addTimeSheetModels);
         }
 
         //post method for the user time logging ie submiting the time logging by the user
         [HttpPost]
-        public ActionResult AddTime(List<AddTimeSheetModel> addTime, DateTime userdate)
+        public ActionResult AddTime(List<AddTimeSheetModel> addTime,DateTime userdate)
         {
             // again initializing the dropdownlist so the if anything goes wrong he can again select them
             ViewBag.Projects = DisplayProjectList();
-
+            ViewBag.userDates = TempData["Dates"];
             //checking views model state is valid or not
             if (ModelState.IsValid)
-            { 
+            {
                 foreach (var userrowdata in addTime)
                 {
                     if (userrowdata.ProjectId != null)
@@ -133,7 +221,7 @@ namespace TSheetProject.Controllers
                         timesheetmasterobj.TotalHours = (int)CalculateTotalHours(userrowdata);
                         _timesheetmasterRepository.AddTimeSheetMaster(timesheetmasterobj);
                         Dictionary<DateTime, int> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
-                        foreach(var DictionaryDaywiseHrs in DaysWiseHrs)
+                        foreach (var DictionaryDaywiseHrs in DaysWiseHrs)
                         {
                             TimeSheetDetail timeSheetDetail = new TimeSheetDetail();
                             timeSheetDetail.TimeSheetMasterID = timesheetmasterobj.TimeSheetMasterID;
@@ -182,7 +270,6 @@ namespace TSheetProject.Controllers
             Total = val1 + val2 + val3 + val4 + val5 + val6 + val7;
             return Total;
         }
-
 
         // a non action method for getting daywise hrs in form of dicionary
         [NonAction]
@@ -253,7 +340,34 @@ namespace TSheetProject.Controllers
             return result.AddDays(-3);
         }
 
+        [NonAction]
+        public List<DateTime> GetListOfDates(DateTime FirstDays)
+        {
+            List<DateTime> ListOfDates = new List<DateTime>();
+            for (int i = 0; i < 7; i++)
+            {
+                ListOfDates.Add(FirstDays.AddDays(i));
+            }
 
-        
+            return ListOfDates;
+
+        }
+
+        [NonAction]
+        public Dictionary<DateTime?, int?> GetDaysWiseHrsUserDataInDB(IList<TimeSheetDetail> timeSheetDetail)
+        {
+            Dictionary<DateTime?, int?> DaysWiseHrsUserDataInDB = new Dictionary<DateTime?, int?>();
+            foreach (var vv in timeSheetDetail)
+            {
+                DaysWiseHrsUserDataInDB[vv.Date] = vv.Hours;
+            }
+
+            return DaysWiseHrsUserDataInDB;
+
+        }
+
+
+
+
     }
 }
