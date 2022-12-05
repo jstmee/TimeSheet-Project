@@ -68,6 +68,8 @@ namespace TSheetProject.Controllers
                         AddTimeSheetModel addTimeSheetModel = new AddTimeSheetModel();
                         var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
                         addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
+                        addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
+                        /*addTimeSheetModel.ProjectName=timeSheetMaster.ProjectId.*/
                         if (timeSheetMaster.Comment != null)
                         {
                             addTimeSheetModel.Description = timeSheetMaster.Comment;
@@ -153,7 +155,7 @@ namespace TSheetProject.Controllers
             for (int i = 0; i < projectModels.Count(); i++)
             {
                 AddTimeSheetModel addTimeSheetobj = new AddTimeSheetModel();
-                addTimeSheetobj.id = i + 1;
+                addTimeSheetobj.id = i;
 
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
@@ -169,6 +171,8 @@ namespace TSheetProject.Controllers
                     {
                         #region
                         addTimeSheetModels[count].ProjectId = vv.ProjectId;
+                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
+                        addTimeSheetModels[count].ProjectName = vv.ProjectName;
                         addTimeSheetModels[count].MondayLogTime = vv.MondayLogTime;
                         addTimeSheetModels[count].MondayLogTimeId = vv.MondayLogTimeId;
                         addTimeSheetModels[count].TuesdayLogTime = vv.TuesdayLogTime;
@@ -203,8 +207,7 @@ namespace TSheetProject.Controllers
             // again initializing the dropdownlist so the if anything goes wrong he can again select them
             ViewBag.Projects = DisplayProjectList();
             ViewBag.userDates = TempData["Dates"];
-
-            var userdate=ViewBag.userDates;
+            var userdate = ViewBag.userDates[0];
             //checking views model state is valid or not
             if (ModelState.IsValid)
             {

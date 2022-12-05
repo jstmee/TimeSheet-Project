@@ -13,6 +13,7 @@ namespace TSheet.Models
         public int id { get; set; }
 
         public int? ProjectId { get; set; }
+        public string ProjectName { get; set; }
 
         [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
         [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
