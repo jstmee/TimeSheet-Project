@@ -38,5 +38,11 @@ namespace TSheet.BL
             return _TSheetDB.TimeSheetMasters.Where(a=>a.UserID==UserId && a.FromDate==fromDate).ToList();
             
         }
+
+        public TimeSheetMaster GetTimeSheetMasterByUserIDFromDate(int UserId, DateTime fromDate,int id)
+        {
+            return _TSheetDB.TimeSheetMasters.Where(a => a.UserID == UserId && a.FromDate == fromDate && a.ProjectId==id).SingleOrDefault();
+
+        }
     }
 }

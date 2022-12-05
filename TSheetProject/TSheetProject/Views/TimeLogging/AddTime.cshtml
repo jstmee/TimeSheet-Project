@@ -54,7 +54,7 @@
                               
                             @Html.DropDownListFor(m => Model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
-                      ((Model[i].ProjectName)!=null)? Model[i].ProjectName:"Select Projects",
+                      "Select Projects",
                       new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })
 

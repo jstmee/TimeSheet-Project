@@ -38,5 +38,13 @@ namespace TSheet.BL
             return _tsheetdb.TimeSheetDetails.Where(a => a.TimeSheetMasterID == id).ToList();
             
         }
+
+        public TimeSheetDetail GetAllTimeSheetDetailByMasterIdDate(int id,DateTime date)
+        {
+            return _tsheetdb.TimeSheetDetails.Where(a => a.TimeSheetMasterID == id && a.Date==date).SingleOrDefault();
+
+        }
+
+
     }
 }

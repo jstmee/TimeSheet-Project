@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -147,6 +148,7 @@ namespace TSheetProject.Controllers
             ViewBag.userDates = TempData["userDates"];
             TempData["Dates"]= TempData["userDates"];
             ViewBag.userWeek = TempData["WeekNo"];
+            TempData["WeekNo"] = ViewBag.userWeek;
 
 
             //initializing the empty timesheetmodal for use in view
@@ -208,6 +210,7 @@ namespace TSheetProject.Controllers
             ViewBag.Projects = DisplayProjectList();
             ViewBag.userDates = TempData["Dates"];
             var userdate = ViewBag.userDates[0];
+            ViewBag.userWeek = TempData["WeekNo"];
             //checking views model state is valid or not
             if (ModelState.IsValid)
             {
@@ -226,7 +229,24 @@ namespace TSheetProject.Controllers
                         timesheetmasterobj.Comment = userrowdata.Description;
                         timesheetmasterobj.TimeSheetStatus = "Not Approved";
                         timesheetmasterobj.TotalHours = (int)CalculateTotalHours(userrowdata);
-                        _timesheetmasterRepository.AddTimeSheetMaster(timesheetmasterobj);
+
+                        TSheetDB db= new TSheetDB();
+                        
+                        var getTimeSheetMasterByUserIDFromDate = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, userdate, (int)userrowdata.ProjectId);
+
+                        if (getTimeSheetMasterByUserIDFromDate != null)
+                        {
+                            timesheetmasterobj.TimeSheetMasterID = getTimeSheetMasterByUserIDFromDate.TimeSheetMasterID;
+                            db.Entry(timesheetmasterobj).State = EntityState.Modified;
+                            db.SaveChanges();
+
+                        }
+                        else
+                        {
+                            _timesheetmasterRepository.AddTimeSheetMaster(timesheetmasterobj);
+                        }
+
+                        
                         Dictionary<DateTime, int> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
                         foreach (var DictionaryDaywiseHrs in DaysWiseHrs)
                         {
@@ -235,7 +255,20 @@ namespace TSheetProject.Controllers
                             timeSheetDetail.Hours = DictionaryDaywiseHrs.Value;
                             timeSheetDetail.Date = DictionaryDaywiseHrs.Key;
                             timeSheetDetail.CreatedOn = DateTime.Now;
-                            _TimeSheetDetailRepository.AddTimeSheetDetail(timeSheetDetail);
+                            var getTimeSheetDetailByMasterIDDate = _TimeSheetDetailRepository.GetAllTimeSheetDetailByMasterIdDate(timesheetmasterobj.TimeSheetMasterID, DictionaryDaywiseHrs.Key);
+
+                            if (getTimeSheetDetailByMasterIDDate != null)
+                            {
+                                timeSheetDetail.TimeSheetDetailID = getTimeSheetDetailByMasterIDDate.TimeSheetDetailID;
+                                db.Entry(timeSheetDetail).State = EntityState.Modified;
+                                db.SaveChanges();
+
+                            }
+                            else
+                            {
+                                _TimeSheetDetailRepository.AddTimeSheetDetail(timeSheetDetail);
+                            }
+                            
                         }
                     }
                 }
