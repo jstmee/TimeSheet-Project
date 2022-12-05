@@ -14,5 +14,7 @@ namespace TSheet.IBL
         int AddTimeSheetMaster(TimeSheetMaster obj);
 
         TimeSheetMaster GetTimeSheetMaster(int id);
+
+        IList<TimeSheetMaster> GetTimeSheetMasterByUserIDFromDate(int UserId, DateTime fromDate);
     }
 }

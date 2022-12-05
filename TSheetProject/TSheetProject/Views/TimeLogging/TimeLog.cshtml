@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    Layout ="~/Views/Shared/_UserLayoutPage1.cshtml"  ;
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    .Input-Entry {
+        width: 90px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+    #AddTimeBtn {
+        float: right;
+        margin-right: 20px;
+        width: 200px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #02461C;
+    }
+    .weekdata {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 22px;
+        font-weight: 600;
+    }
+</style>
+
+
+<div class="container">
+
+    @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post))
+    {
+      
+        <div class="p-3">
+            <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white ">
+
+            <input type="week" id="date_id" name="userweek" required  class="weekdata"/>
+        </div>
+
+    }
+    <table class="table">
+        <tr>
+            <td>
+                <b></b>
+
+
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+            <td>
+                <b></b>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+
+
+</div>

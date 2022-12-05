@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,12 @@ namespace TSheet.BL
         public TimeSheetMaster GetTimeSheetMaster(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<TimeSheetMaster> GetTimeSheetMasterByUserIDFromDate(int UserId,DateTime fromDate)
+        {
+            return _TSheetDB.TimeSheetMasters.Where(a=>a.UserID==UserId && a.FromDate==fromDate).ToList();
+            
         }
     }
 }

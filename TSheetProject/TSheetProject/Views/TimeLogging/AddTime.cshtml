@@ -1,12 +1,12 @@
 ﻿@model List<TSheet.Models.AddTimeSheetModel>
-
 @{
-    ViewBag.Title = "User DashBoard";
-    Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
+    ViewBag.Title = "DashBoard";
+    Layout ="~/Views/Shared/_UserLayoutPage1.cshtml"  ;
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 <link href="~/Content/css/Addtime.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -29,9 +29,10 @@
     {
 
 
-        <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white ">
+        <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
 
-        <input type="date" id="date_id" name="userdate" required />
+        @*<input type="date" id="date_id" name="userdate" required />*@
+<div class="text-center text-dark">Weel @ViewBag.userWeek</div>
 
 
         if (Model != null)
@@ -41,8 +42,17 @@
                 <table class="table  pt-3">
                     <tr>
                         <td>
-                            <b>Project</b>
-                            @Html.DropDownListFor(model => model[i].ProjectId,
+                            @if (i == 0)
+                            {
+                                <b>
+                                    Project
+                                    <br />
+                                </b>
+                                <br />
+                                <br />
+                            }
+
+                            @Html.DropDownListFor(m => Model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
                       "Select Projects",
                       new { @class = "form-control" })
@@ -50,28 +60,81 @@
 
                         </td>
                         <td>
-                            <b>Monday</b> @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>
+                                    Monday
+                                    <br />@ViewBag.userDates[0].ToShortDateString()
+                                </b>
+                                <br /><br />
+                            }
+
+                            @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].MondayLogTimeId)
                         </td>
                         <td>
-                            <b>Tuesday</b> @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Tuesday <br />@ViewBag.userDates[1].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white " } })
+                            @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
                         </td>
                         <td>
-                            <b>Wednesday</b> @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Wednesday <br />@ViewBag.userDates[2].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
                         </td>
                         <td>
-                            <b>Thursday</b> @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Thursday <br />@ViewBag.userDates[3].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
                         </td>
                         <td>
-                            <b>Friday</b> @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Friday <br />@ViewBag.userDates[4].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].FridayLogTimeId)
                         </td>
                         <td>
-                            <b>Saturday</b> @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Saturday <br />@ViewBag.userDates[5].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].SaturdayLogTimeId)
                         </td>
                         <td>
-                            <b>Sunday</b> @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry" } })
+                            @if (i == 0)
+                            {
+                                <b>Sunday <br />@ViewBag.userDates[6].ToShortDateString()</b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                            @Html.HiddenFor(m => Model[i].SundayLogTimeId)
                         </td>
                         <td>
-                            <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })
+                           @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
+                            @if (i == 0)
+                            {
+                                <b>Description<br /></b>
+                                <br /><br />
+                            }
+                            @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry border-white w-75" } })
+                            @Html.HiddenFor(m => Model[i].DescriptionId)
                         </td>
 
                     </tr>
