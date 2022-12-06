@@ -24,13 +24,14 @@
 
 
 
-<input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
-
-<a id="weekCounts">Week - @ViewBag.userWeek</a>
 <div class="pt-3">
     @using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
 
     {
+
+        <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
+
+        <a id="weekCounts">Week - @ViewBag.userWeek</a>
 
 
         if (Model != null)
@@ -52,7 +53,6 @@
 
                             @Html.DropDownListFor(m => Model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
-                      ((Model[i].ProjectName) != null) ? Model[i].ProjectName : "Select Projects",
                       "Select Projects",
                       new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })
