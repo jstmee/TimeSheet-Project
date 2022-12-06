@@ -70,7 +70,7 @@ namespace TSheetProject.Controllers
                         var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
                         addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
                         addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
-                        /*addTimeSheetModel.ProjectName=timeSheetMaster.ProjectId.*/
+                        
                         if (timeSheetMaster.Comment != null)
                         {
                             addTimeSheetModel.Description = timeSheetMaster.Comment;
@@ -169,28 +169,28 @@ namespace TSheetProject.Controllers
                 if (userLogData != null)
                 {
                     int count = 0;
-                    foreach (var vv in userLogData)
+                    foreach (var AddTimeSheetModelData in userLogData)
                     {
                         #region
-                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
-                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
-                        addTimeSheetModels[count].ProjectName = vv.ProjectName;
-                        addTimeSheetModels[count].MondayLogTime = vv.MondayLogTime;
-                        addTimeSheetModels[count].MondayLogTimeId = vv.MondayLogTimeId;
-                        addTimeSheetModels[count].TuesdayLogTime = vv.TuesdayLogTime;
-                        addTimeSheetModels[count].TuesdayLogTimeId = vv.TuesdayLogTimeId;
-                        addTimeSheetModels[count].WednesdayLogTime = vv.WednesdayLogTime;
-                        addTimeSheetModels[count].WednesdayLogTimeId = vv.WednesdayLogTimeId;
-                        addTimeSheetModels[count].ThursdayLogTime = vv.ThursdayLogTime;
-                        addTimeSheetModels[count].ThursdayLogTimeId = vv.ThursdayLogTimeId;
-                        addTimeSheetModels[count].FridayLogTime = vv.FridayLogTime;
-                        addTimeSheetModels[count].FridayLogTimeId = vv.FridayLogTimeId;
-                        addTimeSheetModels[count].SaturdayLogTime = vv.SaturdayLogTime;
-                        addTimeSheetModels[count].SaturdayLogTimeId = vv.SaturdayLogTimeId;
-                        addTimeSheetModels[count].SundayLogTime = vv.SundayLogTime;
-                        addTimeSheetModels[count].SundayLogTimeId = vv.SundayLogTimeId;
-                        addTimeSheetModels[count].Description = vv.Description;
-                        addTimeSheetModels[count].DescriptionId = vv.DescriptionId;
+                        addTimeSheetModels[count].ProjectId = AddTimeSheetModelData.ProjectId;
+                        addTimeSheetModels[count].ProjectId = AddTimeSheetModelData.ProjectId;
+                        addTimeSheetModels[count].ProjectName = AddTimeSheetModelData.ProjectName;
+                        addTimeSheetModels[count].MondayLogTime = AddTimeSheetModelData.MondayLogTime;
+                        addTimeSheetModels[count].MondayLogTimeId = AddTimeSheetModelData.MondayLogTimeId;
+                        addTimeSheetModels[count].TuesdayLogTime = AddTimeSheetModelData.TuesdayLogTime;
+                        addTimeSheetModels[count].TuesdayLogTimeId = AddTimeSheetModelData.TuesdayLogTimeId;
+                        addTimeSheetModels[count].WednesdayLogTime = AddTimeSheetModelData.WednesdayLogTime;
+                        addTimeSheetModels[count].WednesdayLogTimeId = AddTimeSheetModelData.WednesdayLogTimeId;
+                        addTimeSheetModels[count].ThursdayLogTime = AddTimeSheetModelData.ThursdayLogTime;
+                        addTimeSheetModels[count].ThursdayLogTimeId = AddTimeSheetModelData.ThursdayLogTimeId;
+                        addTimeSheetModels[count].FridayLogTime = AddTimeSheetModelData.FridayLogTime;
+                        addTimeSheetModels[count].FridayLogTimeId = AddTimeSheetModelData.FridayLogTimeId;
+                        addTimeSheetModels[count].SaturdayLogTime = AddTimeSheetModelData.SaturdayLogTime;
+                        addTimeSheetModels[count].SaturdayLogTimeId = AddTimeSheetModelData.SaturdayLogTimeId;
+                        addTimeSheetModels[count].SundayLogTime = AddTimeSheetModelData.SundayLogTime;
+                        addTimeSheetModels[count].SundayLogTimeId = AddTimeSheetModelData.SundayLogTimeId;
+                        addTimeSheetModels[count].Description = AddTimeSheetModelData.Description;
+                        addTimeSheetModels[count].DescriptionId = AddTimeSheetModelData.DescriptionId;
                         #endregion
                         count++;
                     }
