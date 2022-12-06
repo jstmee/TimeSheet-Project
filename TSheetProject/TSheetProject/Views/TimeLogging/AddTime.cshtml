@@ -1,7 +1,7 @@
 ﻿@model List<TSheet.Models.AddTimeSheetModel>
 @{
     ViewBag.Title = "DashBoard";
-    Layout ="~/Views/Shared/_UserLayoutPage1.cshtml"  ;
+    Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
@@ -10,29 +10,27 @@
 
 <link href="~/Content/css/Addtime.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+    #weekCounts {
+        font-size: 25px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        color: #097DCD;
+        padding-left: 10px;
+    }
+</style>
 
 
-<script>
-    $(document).ready(function () {
-        var = ("#Input0").val();
-        $("#submit0").click(function () {
-            alert(6)
-        })
-    });
-</script>
 
 
 
-<div class="">
+<input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
+
+<a id="weekCounts">Week - @ViewBag.userWeek</a>
+<div class="pt-3">
     @using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
 
     {
-
-
-        <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
-
-        @*<input type="date" id="date_id" name="userdate" required />*@
-<div class="text-center text-dark">Weel @ViewBag.userWeek</div>
 
 
         if (Model != null)
@@ -51,9 +49,10 @@
                                 <br />
                                 <br />
                             }
-                              
+
                             @Html.DropDownListFor(m => Model[i].ProjectId,
                       new SelectList(ViewBag.Projects, "Id", "Name"),
+                      ((Model[i].ProjectName) != null) ? Model[i].ProjectName : "Select Projects",
                       "Select Projects",
                       new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })
@@ -127,7 +126,7 @@
                             @Html.HiddenFor(m => Model[i].SundayLogTimeId)
                         </td>
                         <td>
-                           @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
+                            @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
                             @if (i == 0)
                             {
                                 <b>Description<br /></b>

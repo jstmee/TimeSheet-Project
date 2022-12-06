@@ -102,7 +102,8 @@
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\superAdmins.css" />
     <Content Include="Content\css\Timesheet.css" />
-    <Content Include="Content\css\TsheetImg\five-o-clock-sea-blue-office-wal %281%29.jpg" />
+    <Content Include="Content\css\TsheetImg\Group 35579 %281%29.png" />
+    <Content Include="Content\css\TsheetImg\MicrosoftTeams-image %283%29 %281%29 %281%29.png" />
     <Content Include="Content\css\user.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
