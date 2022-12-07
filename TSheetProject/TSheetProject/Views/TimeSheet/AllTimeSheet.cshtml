@@ -1,6 +1,6 @@
 ﻿@model List<TSheet.Models.AllTimeSheetModel>
 @{
-    ViewBag.Title = "User DashBoard";
+    ViewBag.Title = "TimeSheet";
     Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
@@ -21,20 +21,21 @@
                 <th>Date</th>
                 <th>Created On</th>
                 <th>Project Name</th>
-                @if (ViewBag.b == true)
+               @* @if (ViewBag.b == true)
                 {
-                    <th>Aprroved</th>
+                    <th>Aprrove</th>
                 }
                 @if (ViewBag.rejectview == true)
                 {
-                    <th>Rejected</th>
+                    <th>Reject</th>
+                }*@
+                @if (ViewBag.b == true)
+                { 
+                   <th>Approve</th>
+                   <th>Reject</th>
+                
                 }
-                @*@if(ViewBag.b== false)
-                    {
-                        <th>Rejected</th>
-                    }*@
-
-                @* <th>Action</th>*@
+               
             </tr>
         </thead>
         <tbody>
@@ -49,14 +50,21 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
+                    @*@if (ViewBag.b == true)
+        {
+            <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
+        }
+
+        @if (ViewBag.rejectview == true)
+        {
+            <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
+        }*@
                     @if (ViewBag.b == true)
                     {
-                        <td class="p-3"> @Html.ActionLink("ApproveTimesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
-                    }
+                        <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
 
-                    @if (ViewBag.rejectview == true)
-                    {
                         <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
+
                     }
 
                 </tr>

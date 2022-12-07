@@ -100,12 +100,13 @@ namespace TSheetProject.Controllers
             var alldatatsheet = alltsheetdata();
             return View(alldatatsheet);
         }
-        public ActionResult ApproveSheet()
+        public ActionResult ApproveTimeSheet()
         {
             ViewBag.b = true;
             var alldatatsheet = alltsheetdata();
             return View("AllTimeSheet", alldatatsheet);
         }
+        [HttpPost]
         public ActionResult ApproveTimesheet(int id,string Email,int id2)
         {
             TSheetDB db = new TSheetDB();
@@ -128,8 +129,8 @@ namespace TSheetProject.Controllers
             return View("AllTimeSheet",v);
            
         }
-        [HttpGet]
-        public ActionResult RejectSheet(int id, string Email,int id2)
+        [HttpPost]
+        public ActionResult RejectTimeSheet(int id, string Email,int id2)
         {
             TSheetDB db = new TSheetDB();
             var v = db.Registrations.Where(a => a.Email == Email).FirstOrDefault();

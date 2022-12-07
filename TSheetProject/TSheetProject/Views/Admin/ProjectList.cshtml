@@ -9,8 +9,9 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 
-<div >
+<div>
 
+    <a href='@Url.Action("AddProjects", "SuperAdmin","SuperAdmin")'>Add New</a>
     <table class="table">
         <tr>
             <th>
@@ -19,7 +20,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProjectDescription)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
 
         @foreach (var item in Model)
@@ -36,6 +37,7 @@
                         @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
                         @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
                     </td>*@
+                <td> @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID },null)</td>
             </tr>
         }
 
