@@ -37,7 +37,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult TimeLog(string userweek)
         {
-
+            
             if (ModelState.IsValid)
             {
                 //convert userweek to dates
@@ -131,7 +131,7 @@ namespace TSheetProject.Controllers
                     TempData["userDates"] = ListOfDates;
                     TempData["UserTimeLogData"] = addTimeSheetModelsList;
                     return RedirectToAction("AddTime");
-
+                    
                 }
             }
             return View(userweek);
@@ -158,9 +158,13 @@ namespace TSheetProject.Controllers
             {
                 AddTimeSheetModel addTimeSheetobj = new AddTimeSheetModel();
                 addTimeSheetobj.id = i;
-
+                addTimeSheetobj.ProjectId = projectModels[i].Id;
+                addTimeSheetobj.ProjectName = projectModels[i].Name;
+                
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
+
+
             }
             if (TempData["UserTimeLogData"] != null)
             {
@@ -169,32 +173,36 @@ namespace TSheetProject.Controllers
                 if (userLogData != null)
                 {
                     int count = 0;
-                    foreach (var vv in userLogData)
+                    foreach (var filleddata in userLogData)
                     {
                         #region
-                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
-                        addTimeSheetModels[count].ProjectId = vv.ProjectId;
-                        addTimeSheetModels[count].ProjectName = vv.ProjectName;
-                        addTimeSheetModels[count].MondayLogTime = vv.MondayLogTime;
-                        addTimeSheetModels[count].MondayLogTimeId = vv.MondayLogTimeId;
-                        addTimeSheetModels[count].TuesdayLogTime = vv.TuesdayLogTime;
-                        addTimeSheetModels[count].TuesdayLogTimeId = vv.TuesdayLogTimeId;
-                        addTimeSheetModels[count].WednesdayLogTime = vv.WednesdayLogTime;
-                        addTimeSheetModels[count].WednesdayLogTimeId = vv.WednesdayLogTimeId;
-                        addTimeSheetModels[count].ThursdayLogTime = vv.ThursdayLogTime;
-                        addTimeSheetModels[count].ThursdayLogTimeId = vv.ThursdayLogTimeId;
-                        addTimeSheetModels[count].FridayLogTime = vv.FridayLogTime;
-                        addTimeSheetModels[count].FridayLogTimeId = vv.FridayLogTimeId;
-                        addTimeSheetModels[count].SaturdayLogTime = vv.SaturdayLogTime;
-                        addTimeSheetModels[count].SaturdayLogTimeId = vv.SaturdayLogTimeId;
-                        addTimeSheetModels[count].SundayLogTime = vv.SundayLogTime;
-                        addTimeSheetModels[count].SundayLogTimeId = vv.SundayLogTimeId;
-                        addTimeSheetModels[count].Description = vv.Description;
-                        addTimeSheetModels[count].DescriptionId = vv.DescriptionId;
+                        addTimeSheetModels[count].ProjectId = filleddata.ProjectId;
+                        addTimeSheetModels[count].ProjectId = filleddata.ProjectId;
+                        addTimeSheetModels[count].ProjectName = filleddata.ProjectName;
+                        addTimeSheetModels[count].MondayLogTime = filleddata.MondayLogTime;
+                        addTimeSheetModels[count].MondayLogTimeId = filleddata.MondayLogTimeId;
+                        addTimeSheetModels[count].TuesdayLogTime = filleddata.TuesdayLogTime;
+                        addTimeSheetModels[count].TuesdayLogTimeId = filleddata.TuesdayLogTimeId;
+                        addTimeSheetModels[count].WednesdayLogTime = filleddata.WednesdayLogTime;
+                        addTimeSheetModels[count].WednesdayLogTimeId = filleddata.WednesdayLogTimeId;
+                        addTimeSheetModels[count].ThursdayLogTime = filleddata.ThursdayLogTime;
+                        addTimeSheetModels[count].ThursdayLogTimeId = filleddata.ThursdayLogTimeId;
+                        addTimeSheetModels[count].FridayLogTime = filleddata.FridayLogTime;
+                        addTimeSheetModels[count].FridayLogTimeId = filleddata.FridayLogTimeId;
+                        addTimeSheetModels[count].SaturdayLogTime = filleddata.SaturdayLogTime;
+                        addTimeSheetModels[count].SaturdayLogTimeId = filleddata.SaturdayLogTimeId;
+                        addTimeSheetModels[count].SundayLogTime = filleddata.SundayLogTime;
+                        addTimeSheetModels[count].SundayLogTimeId = filleddata.SundayLogTimeId;
+                        addTimeSheetModels[count].Description = filleddata.Description;
+                        addTimeSheetModels[count].DescriptionId = filleddata.DescriptionId;
                         #endregion
                         count++;
                     }
                 }
+
+            }
+            else
+            {
 
             }
             
@@ -206,6 +214,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult AddTime(List<AddTimeSheetModel> addTime)
         {
+            string message = "";
             // again initializing the dropdownlist so the if anything goes wrong he can again select them
             ViewBag.Projects = DisplayProjectList();
             ViewBag.userDates = TempData["Dates"];
@@ -262,21 +271,25 @@ namespace TSheetProject.Controllers
                                 timeSheetDetail.TimeSheetDetailID = getTimeSheetDetailByMasterIDDate.TimeSheetDetailID;
                                 db.Entry(timeSheetDetail).State = EntityState.Modified;
                                 db.SaveChanges();
+                                message = "TimeSheet filled !";
 
                             }
                             else
                             {
                                 _TimeSheetDetailRepository.AddTimeSheetDetail(timeSheetDetail);
+                                message = "TimeSheet filled !";
                             }
                             
                         }
                     }
                 }
+                
             }
             else
             {
                 return View(addTime);
             }
+            ViewBag.Message = message;
             return View(addTime);
         }
 

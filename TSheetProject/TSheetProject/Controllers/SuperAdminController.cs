@@ -63,6 +63,9 @@ namespace TSheetProject.Controllers
             TSheetDB db = new TSheetDB();
 
             var alluser = db.Registrations.ToList();
+            AssignedRole assignedRole = new AssignedRole();
+            
+
             return View(alluser);
            
         }
