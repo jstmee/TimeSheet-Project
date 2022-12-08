@@ -187,6 +187,23 @@ namespace TSheetProject.Controllers
             }
             return View(projects);
         }
+        public ActionResult ProjectList()
+        {
+            TSheetDB dB = new TSheetDB();
+            var projectlist = dB.ProjectMasters.ToList();
+            return View(projectlist);
+        }
+
+
+        public ActionResult DeleteProject(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var delproject = dB.ProjectMasters.Where(x => x.ProjectID == id).First();
+            dB.ProjectMasters.Remove(delproject);
+            dB.SaveChanges();
+            var list = dB.ProjectMasters.ToList();
+            return View("ProjectList", list);
+        }
         public ActionResult ResetPassword()
         {
             return View();

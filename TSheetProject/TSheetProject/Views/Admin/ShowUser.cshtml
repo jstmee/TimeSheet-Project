@@ -6,73 +6,94 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="container">
 
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class="table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>
+                    Name
+                </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.MobileNumber)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MobileNumber)
+                </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
 
-        <th>Action</th>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.MobileNumber)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-
-            @if (item.IsActive == true)
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                <td>Yes</td>
+                <tr class="bg-white">
+                    <td class="bg-white">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+
+                    @if (item.IsActive == true)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    <td>@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
+
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })*@
+
+
+
+
+
+
+                </tr>
+
             }
-            else
-            {
-                <td>No</td>
-            }
-        <td>@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
+        </tbody>
 
-
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserID })*@
-
-
-
-
-
-
-        </tr>
-        
-    }
-
-</table>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+</div>

@@ -9,12 +9,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<div class="">
+<div class="container">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id">
-        <thead class="bg-white">
+    <table id="table_id" class="table-bordered" >
+        <thead class="bg-dark text-white">
             <tr>
                 <th>Name</th>
                 <th> Hours</th>
@@ -41,8 +41,8 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td class="p-3">
+                <tr class="bg-white">
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
@@ -50,15 +50,7 @@
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
                     <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
-                    @*@if (ViewBag.b == true)
-        {
-            <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
-        }
-
-        @if (ViewBag.rejectview == true)
-        {
-            <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
-        }*@
+                   
                     @if (ViewBag.b == true)
                     {
                         <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>

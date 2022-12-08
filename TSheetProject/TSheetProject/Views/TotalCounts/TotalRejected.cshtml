@@ -23,7 +23,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-           
+           <th>
+               Rejected By
+           </th>
 
         </tr>
 
@@ -37,7 +39,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-               
+               <td>
+                   @Html.DisplayFor(modelItem=>item.ApprovedBy)
+               </td>
 
             </tr>
         }

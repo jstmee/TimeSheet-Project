@@ -153,8 +153,9 @@ namespace TSheetProject.Controllers
 
 
             TSheetDB db = new TSheetDB();
-            AssignedRole assigned = new AssignedRole();
-            if (assigned.RoleID == 3)
+            /*AssignedRole assigned = new AssignedRole();*/
+            var logged= db.AssignedRoles.Where(a=>a.Registration.Email== User.Identity.Name).SingleOrDefault().RoleID;
+            if (logged == 3)
             {
                 var tsheetdetailtb = db.TimeSheetDetails.Where(x => x.TimeSheetMaster.Registration.Email == User.Identity.Name).ToList();
                 foreach (var v in tsheetdetailtb)

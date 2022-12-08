@@ -192,6 +192,7 @@
     <Content Include="Views\TotalCounts\TotalApproved.cshtml" />
     <Content Include="Views\TotalCounts\TotalRejected.cshtml" />
     <Content Include="Views\TotalCounts\TotalTimesheet.cshtml" />
+    <Content Include="Views\SuperAdmin\ProjectList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

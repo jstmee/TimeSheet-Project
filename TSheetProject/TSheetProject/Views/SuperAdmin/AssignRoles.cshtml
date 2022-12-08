@@ -9,12 +9,12 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 
-<div>
+<div class="container">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id">
-        <thead class="bg-white">
+    <table id="table_id" class=" table-bordered">
+        <thead class="bg-dark text-white">
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -26,8 +26,8 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td class="p-3">
+                <tr class="bg-white">
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
