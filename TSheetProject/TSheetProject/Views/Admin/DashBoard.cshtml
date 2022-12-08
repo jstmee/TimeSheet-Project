@@ -17,7 +17,7 @@
                 <div class="card-body id=" user-Card"">
                     <div class=" row">
                         <div class="col-lg-8" id="text-cart"> Total User Counts</div>
-                        <div class=" col-lg-4"> <h4 class="count pt-3 pl-5 text-primary"> @ViewBag.NoOfUser</h4></div>
+                        <div class=" col-lg-4"> <a class="count pt-3 pl-5 text-primary"> @ViewBag.NoOfUser</a></div>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,10 @@
                 <div class="card-body">
                     <div class=" row">
                         <div class="col-lg-8" id="text-cart"> Total Projects Counts   </div>
-                        <div class=" col-lg-4"> <h4 class=" count pt-3 pl-5 text-primary"> @ViewBag.NoOfProject</h4></div>
+                        <div class=" col-lg-4"> 
+                        <a href="~/Admin/ProjectList" class=" count pt-3 pl-5 text-primary"> @ViewBag.NoOfProject</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

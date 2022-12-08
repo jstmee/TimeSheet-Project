@@ -184,6 +184,7 @@
     <Content Include="Views\Shared\_UserLayoutPage1.cshtml" />
     <Content Include="Views\Admin\ShowUser.cshtml" />
     <Content Include="Views\Admin\ViewUser.cshtml" />
+    <Content Include="Views\Shared\_TimeSheetLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

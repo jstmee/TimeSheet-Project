@@ -7,7 +7,17 @@
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<style>
+    td {
+        border: solid 1px black;
+        background-color: white;
+    }
 
+    th {
+        border: solid 1px black;
+        background-color: white;
+    }
+</style>
 
 <div>
 
@@ -32,7 +42,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ProjectDescription)
                 </td>
-                @* <td>
+                 <td>
                         @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
                         @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
                         @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
@@ -42,5 +52,5 @@
         }
 
     </table>
-
+    
 </div>

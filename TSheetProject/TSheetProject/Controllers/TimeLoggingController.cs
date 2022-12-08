@@ -37,6 +37,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult TimeLog(string userweek)
         {
+            ViewBag.userweek = userweek;
             
             if (ModelState.IsValid)
             {
@@ -207,7 +208,7 @@ namespace TSheetProject.Controllers
             }
             
             //passing list which is initially has no of row equal to the no of projects in the database
-            return View(addTimeSheetModels);
+            return Json(new { Redirect= "AddTime" },JsonRequestBehavior.AllowGet);
         }
 
         //post method for the user time logging ie submiting the time logging by the user

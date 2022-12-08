@@ -1,15 +1,25 @@
 ﻿@model List<TSheet.Models.AllTimeSheetModel>
 @{
-    ViewBag.Title = "TimeSheet";
-    Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
+    ViewBag.Title = "User DashBoard";
+    Layout = "~/Views/Shared/_TimeSheetLayout.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+    td {
+        border: solid 1px black;
+        background-color: white;
+    }
 
-<div class="">
+    th {
+        border: solid 1px black;
+        background-color: white;
+    }
+</style>
+<div class=" container">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
@@ -42,7 +52,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="p-3">
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>

@@ -52,10 +52,7 @@ namespace TSheetProject.Controllers
             ViewBag.Message = message;
             return View();
 
-
         }
-
-     
 
        public ActionResult ProjectList()
        {

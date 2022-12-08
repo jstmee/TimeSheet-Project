@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,6 +62,8 @@ namespace TSheetProject.Controllers
         [HttpGet]
         public ActionResult AssignRoles()
         {
+            /*List<Registration> registrations = new List<Registration>();*/
+            
             TSheetDB db = new TSheetDB();
 
             var alluser = db.Registrations.ToList();
@@ -90,7 +94,7 @@ namespace TSheetProject.Controllers
             ViewBag.projectlist = GetProjectList();
             ViewBag.Roles = GetRolesList();
             TSheetDB db=new TSheetDB();
-            if (user.FirstName!=null && user.LastName!=null && user.DateOfBirth!=null && user.Gender!=null && user.Email!=null && user.MobileNumber!=null  && user.AssignProject!=null && user.AssignProject!=null)
+            if (user.FirstName!=null && user.LastName!=null && user.DateOfBirth!=null && user.Gender!=null && user.Email!=null && user.MobileNumber!=null  && user.AssignProject!=null )
             {
 
                 var v = db.Registrations.Where(a => a.UserID == user.Id).FirstOrDefault();
