@@ -22,17 +22,10 @@
 
 
 
-<script>
-    var weekData =@ViewBag.userweek
-        console.log(weekData)
-</script>
 
 
 
-<a id="weekCounts">Week - @ViewBag.userWeek</a>
 <div class="pt-3">
-    
-    <div>@ViewBag.userweek</div>
     @if (ViewBag.Message != null)
     {
         <div class="alert alert-success">
@@ -47,15 +40,14 @@
     {
         using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
 
-
         {
             <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
 
             <a id="weekCounts">Week - @ViewBag.userWeek</a>
 
-        @*<input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
+            @*<input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
 
-        <a id="weekCounts">Week - @ViewBag.userWeek</a>*@
+                <a id="weekCounts">Week - @ViewBag.userWeek</a>*@
 
 
             if (Model != null)
@@ -77,7 +69,11 @@
                                 @Html.HiddenFor(m => Model[i].ProjectId)
                                 @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "form-control" })
 
-
+                                @*@Html.DropDownListFor(m => Model[i].ProjectId,
+                                     new SelectList(ViewBag.Projects, "Id", "Name"),
+                                    "Sekect Projects",
+                                     new { @class = "form-control" })
+                                                  @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })*@
 
                             </td>
                             <td>
