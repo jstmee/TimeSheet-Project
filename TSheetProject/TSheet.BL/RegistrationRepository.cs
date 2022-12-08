@@ -13,11 +13,11 @@ namespace TSheet.BL
     public class RegistrationRepository : IRegistration
     {
         private TSheetDB sheetDB;
-        private Crypto crypto;
+        
        public RegistrationRepository()
         {
             this.sheetDB = new TSheetDB();
-            crypto = new Crypto();
+            
         }
        
 
@@ -36,7 +36,7 @@ namespace TSheet.BL
        
             registration.Gender = user.Gender;
             registration.IsActive = true;
-            registration.Password = crypto.Hash(user.Password);
+            registration.Password = Crypto.Hash(user.Password);
             registration.MobileNumber = user.MobileNumber;
             var LoggedUser = user.CreatedBy;
             

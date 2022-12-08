@@ -45,7 +45,7 @@ namespace TSheetProject.Controllers
                 int week = int.Parse(userweek.Substring(6));
                 TempData["WeekNo"] = week;
                 var FirstDays = FirstDateOfWeek(year, week);
-                List<DateTime> ListOfDates = GetListOfDates(FirstDays);
+                List<DateTime> ListOfDates = GetListOfDates(FirstDays); 
                 
                 var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
 
@@ -70,7 +70,7 @@ namespace TSheetProject.Controllers
                         var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
                         addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
                         addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
-                        /*addTimeSheetModel.ProjectName=timeSheetMaster.ProjectId.*/
+                        
                         if (timeSheetMaster.Comment != null)
                         {
                             addTimeSheetModel.Description = timeSheetMaster.Comment;
@@ -157,7 +157,7 @@ namespace TSheetProject.Controllers
             for (int i = 0; i < projectModels.Count(); i++)
             {
                 AddTimeSheetModel addTimeSheetobj = new AddTimeSheetModel();
-                addTimeSheetobj.id = i;
+                addTimeSheetobj.id = 0;
                 addTimeSheetobj.ProjectId = projectModels[i].Id;
                 addTimeSheetobj.ProjectName = projectModels[i].Name;
                 
@@ -172,31 +172,37 @@ namespace TSheetProject.Controllers
                 
                 if (userLogData != null)
                 {
-                    int count = 0;
+                    
                     foreach (var filleddata in userLogData)
                     {
-                        #region
-                        addTimeSheetModels[count].ProjectId = filleddata.ProjectId;
-                        addTimeSheetModels[count].ProjectId = filleddata.ProjectId;
-                        addTimeSheetModels[count].ProjectName = filleddata.ProjectName;
-                        addTimeSheetModels[count].MondayLogTime = filleddata.MondayLogTime;
-                        addTimeSheetModels[count].MondayLogTimeId = filleddata.MondayLogTimeId;
-                        addTimeSheetModels[count].TuesdayLogTime = filleddata.TuesdayLogTime;
-                        addTimeSheetModels[count].TuesdayLogTimeId = filleddata.TuesdayLogTimeId;
-                        addTimeSheetModels[count].WednesdayLogTime = filleddata.WednesdayLogTime;
-                        addTimeSheetModels[count].WednesdayLogTimeId = filleddata.WednesdayLogTimeId;
-                        addTimeSheetModels[count].ThursdayLogTime = filleddata.ThursdayLogTime;
-                        addTimeSheetModels[count].ThursdayLogTimeId = filleddata.ThursdayLogTimeId;
-                        addTimeSheetModels[count].FridayLogTime = filleddata.FridayLogTime;
-                        addTimeSheetModels[count].FridayLogTimeId = filleddata.FridayLogTimeId;
-                        addTimeSheetModels[count].SaturdayLogTime = filleddata.SaturdayLogTime;
-                        addTimeSheetModels[count].SaturdayLogTimeId = filleddata.SaturdayLogTimeId;
-                        addTimeSheetModels[count].SundayLogTime = filleddata.SundayLogTime;
-                        addTimeSheetModels[count].SundayLogTimeId = filleddata.SundayLogTimeId;
-                        addTimeSheetModels[count].Description = filleddata.Description;
-                        addTimeSheetModels[count].DescriptionId = filleddata.DescriptionId;
-                        #endregion
-                        count++;
+                        for(int i = 0; i < projectModels.Count(); i++)
+                        {
+                            if (addTimeSheetModels[i].ProjectName == filleddata.ProjectName)
+                            {
+                                addTimeSheetModels[i].id = 5;
+                                addTimeSheetModels[i].ProjectId = filleddata.ProjectId;
+                                addTimeSheetModels[i].ProjectName = filleddata.ProjectName;
+                                addTimeSheetModels[i].MondayLogTime = filleddata.MondayLogTime;
+                                addTimeSheetModels[i].MondayLogTimeId = filleddata.MondayLogTimeId;
+                                addTimeSheetModels[i].TuesdayLogTime = filleddata.TuesdayLogTime;
+                                addTimeSheetModels[i].TuesdayLogTimeId = filleddata.TuesdayLogTimeId;
+                                addTimeSheetModels[i].WednesdayLogTime = filleddata.WednesdayLogTime;
+                                addTimeSheetModels[i].WednesdayLogTimeId = filleddata.WednesdayLogTimeId;
+                                addTimeSheetModels[i].ThursdayLogTime = filleddata.ThursdayLogTime;
+                                addTimeSheetModels[i].ThursdayLogTimeId = filleddata.ThursdayLogTimeId;
+                                addTimeSheetModels[i].FridayLogTime = filleddata.FridayLogTime;
+                                addTimeSheetModels[i].FridayLogTimeId = filleddata.FridayLogTimeId;
+                                addTimeSheetModels[i].SaturdayLogTime = filleddata.SaturdayLogTime;
+                                addTimeSheetModels[i].SaturdayLogTimeId = filleddata.SaturdayLogTimeId;
+                                addTimeSheetModels[i].SundayLogTime = filleddata.SundayLogTime;
+                                addTimeSheetModels[i].SundayLogTimeId = filleddata.SundayLogTimeId;
+                                addTimeSheetModels[i].Description = filleddata.Description;
+                                addTimeSheetModels[i].DescriptionId = filleddata.DescriptionId;
+                            }
+
+                        }
+                        
+                        
                     }
                 }
 
@@ -235,7 +241,16 @@ namespace TSheetProject.Controllers
                         timesheetmasterobj.UserID = UserIdLogged;
                         timesheetmasterobj.FromDate = userdate;
                         timesheetmasterobj.ToDate = userdate.AddDays(6);
-                        timesheetmasterobj.Comment = userrowdata.Description;
+                        if (userrowdata.Description == null)
+                        {
+                            userrowdata.Description = "";
+
+                        }
+                        else
+                        {
+                            timesheetmasterobj.Comment = userrowdata.Description;
+                        }
+                        
                         timesheetmasterobj.TimeSheetStatus = "Not Approved";
                         timesheetmasterobj.TotalHours = (int)CalculateTotalHours(userrowdata);
 

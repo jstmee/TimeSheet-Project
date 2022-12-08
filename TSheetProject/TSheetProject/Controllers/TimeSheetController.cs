@@ -96,6 +96,7 @@ namespace TSheetProject.Controllers
         [HttpGet]
         public ActionResult AllTimeSheet()
         { 
+            
             ViewBag.b = false;
             var alldatatsheet = alltsheetdata();
             return View(alldatatsheet);
@@ -149,14 +150,12 @@ namespace TSheetProject.Controllers
         public List<AllTimeSheetModel> alltsheetdata()
         {
             List<AllTimeSheetModel> viewmodellists = new List<AllTimeSheetModel>();
-
-
-
             TSheetDB db = new TSheetDB();
             /*AssignedRole assigned = new AssignedRole();*/
             var logged= db.AssignedRoles.Where(a=>a.Registration.Email== User.Identity.Name).SingleOrDefault().RoleID;
             if (logged == 3)
             {
+                ViewBag.Showname = false;
                 var tsheetdetailtb = db.TimeSheetDetails.Where(x => x.TimeSheetMaster.Registration.Email == User.Identity.Name).ToList();
                 foreach (var v in tsheetdetailtb)
                 {

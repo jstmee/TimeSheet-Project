@@ -18,6 +18,10 @@ namespace TSheet.BL
         }
         public int AddTimeSheetMaster(TimeSheetMaster obj)
         {
+            if (obj.Comment == null)
+            {
+                obj.Comment = "Write here";
+            }
             _TSheetDB.TimeSheetMasters.Add(obj);
             return _TSheetDB.SaveChanges();
             

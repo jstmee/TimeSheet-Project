@@ -12,7 +12,7 @@ namespace TSheet.BL
 	{
 
 
-		public  string Hash(string value)
+		public static string Hash(string value)
 		{
 			return Convert.ToBase64String(
 				System.Security.Cryptography.SHA256.Create()
