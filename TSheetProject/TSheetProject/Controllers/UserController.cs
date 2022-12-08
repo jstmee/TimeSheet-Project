@@ -34,8 +34,8 @@ namespace TSheetProject.Controllers
             TSheetDB db = new TSheetDB();
             var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
             var UserIdLogged = userrow.UserID;
-            var v=db.TimeSheetMasters.Where(a => a.UserID == UserIdLogged).ToList();
-            foreach(var item in v)
+            var matchedId=db.TimeSheetMasters.Where(a => a.UserID == UserIdLogged).ToList();
+            foreach(var item in matchedId)
             {
                 UserTimeSheetModel obj = new UserTimeSheetModel();
                 obj.Id = item.ProjectId;
@@ -71,8 +71,8 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
 
-                var v = dB.Registrations.Where(x => x.Email == userPassword.Email).FirstOrDefault();
-                v.Password= Crypto.Hash(userPassword.Password);
+                var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).FirstOrDefault();
+                getuser.Password= Crypto.Hash(userPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
             }
@@ -90,9 +90,9 @@ namespace TSheetProject.Controllers
             var UserIdLogged = userrow.UserID;
             var UserIdMatchedRow=db.TimeSheetMasters.Where(a => a.UserID == UserIdLogged).ToList();
             int sum = 0;
-            foreach(var v in UserIdMatchedRow)
+            foreach(var data in UserIdMatchedRow)
             {
-                sum+= db.TimeSheetDetails.Where(b => b.TimeSheetMasterID == v.TimeSheetMasterID).ToList().Count();
+                sum+= db.TimeSheetDetails.Where(b => b.TimeSheetMasterID == data.TimeSheetMasterID).ToList().Count();
                 
             }
             Number= sum;

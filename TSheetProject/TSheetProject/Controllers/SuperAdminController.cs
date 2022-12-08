@@ -30,6 +30,7 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
                 ViewBag.NoOfUsers = dB.Registrations.Count();
+
                 ViewBag.NoOfProjects= dB.ProjectMasters.Count();
                 ViewBag.NoOfAdmin=dB.AssignedRoles.Where(a=>a.RoleID==2).ToList().Count();
             }
@@ -67,10 +68,37 @@ namespace TSheetProject.Controllers
             TSheetDB db = new TSheetDB();
 
             var alluser = db.Registrations.ToList();
-            AssignedRole assignedRole = new AssignedRole();
-            
+            List<AssignRoleViewModel> Detaillist = new List<AssignRoleViewModel>();
 
-            return View(alluser);
+            foreach (var item in alluser)
+            {
+                AssignRoleViewModel assignRoleViewModel= new AssignRoleViewModel();
+                
+                assignRoleViewModel.FirstName = item.FirstName;
+                assignRoleViewModel.LastName = item.LastName;
+                assignRoleViewModel.Email = item.Email;
+                assignRoleViewModel.UserID= item.UserID;
+                assignRoleViewModel.DateOfBirth = item.DateOfbirth;
+                assignRoleViewModel.DateOfJoining=item.DateOfJoining;
+                assignRoleViewModel.MobileNumber= item.MobileNumber;
+                assignRoleViewModel.Gender= item.Gender;
+                var userrow = item.UserID;
+                var findrole = db.AssignedRoles.Where(x => x.UserID == userrow).FirstOrDefault();
+                if (findrole == null)
+                {
+                    assignRoleViewModel.RoleName = "Not Assigned";
+                }
+                else
+                {
+                    assignRoleViewModel.RoleName = findrole.Role.RoleName;
+                }
+                
+                
+                Detaillist.Add(assignRoleViewModel);
+
+
+            }
+            return View(Detaillist);
            
         }
         [HttpGet]
@@ -163,6 +191,23 @@ namespace TSheetProject.Controllers
             }
             return View(projects);
         }
+        public ActionResult ProjectList()
+        {
+            TSheetDB dB = new TSheetDB();
+            var projectlist = dB.ProjectMasters.ToList();
+            return View(projectlist);
+        }
+
+
+        public ActionResult DeleteProject(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var delproject = dB.ProjectMasters.Where(x => x.ProjectID == id).First();
+            dB.ProjectMasters.Remove(delproject);
+            dB.SaveChanges();
+            var list = dB.ProjectMasters.ToList();
+            return View("ProjectList", list);
+        }
         public ActionResult ResetPassword()
         {
             return View();
@@ -174,8 +219,8 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
                 var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
-                Crypto crypto=new Crypto();
-                v.Password = crypto.Hash(resetPassword.Password);
+                /*Crypto crypto=new Crypto();*/
+                v.Password = Crypto.Hash(resetPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
                
@@ -183,9 +228,13 @@ namespace TSheetProject.Controllers
             ViewBag.message = message;
             return View();
         }
-
-
-
+        public ActionResult ViewUser(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var seedetail = dB.Registrations.Where(x => x.UserID == id).First();
+            return View(seedetail);
+        }
+       
         //a non action method for initializing the dropdownlist in view of timehseetadd
         [NonAction]
         public List<ProjectModel> GetProjectList()

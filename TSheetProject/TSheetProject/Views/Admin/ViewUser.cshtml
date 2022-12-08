@@ -4,8 +4,9 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
+<div class="container-fluid">
 <h3>User's Info</h3>
+
 <dl class="dl-horizontal">
     <dt>
         Name:
@@ -23,11 +24,12 @@
         @Html.DisplayFor(model => model.Email)
     </dd>
     <dt>
-        @Html.DisplayNameFor((model => (model.DateOfJoining))) :
+        @Html.DisplayNameFor(model => model.DateOfJoining) :
     </dt>
 
     <dd>
-        @Html.DisplayFor(model => model.DateOfJoining)
+        @Convert.ToDateTime(Model.DateOfJoining).ToString("dd/MM/yyyy")
+        @* @Html.DisplayFor(model => model.DateOfJoining)*@
     </dd>
     <dt>
         @Html.DisplayNameFor(model => model.Gender) :
@@ -36,5 +38,13 @@
     <dd>
         @Html.DisplayFor(model => model.Gender)
     </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.DateOfbirth) :
+    </dt>
 
-</dl>  
+    <dd>
+        @Convert.ToDateTime(Model.DateOfbirth).ToString("dd/MM/yyyy")
+    </dd>
+
+</dl>
+    </div>

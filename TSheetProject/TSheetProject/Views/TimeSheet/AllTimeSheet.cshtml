@@ -14,70 +14,67 @@
         background-color: white;
     }
 
-    th {
-        border: solid 1px black;
-        background-color: white;
-    }
-</style>
-<div class=" container">
+<div class="container">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id">
-        <thead class="bg-white">
+    <table id="table_id" class="table-bordered" >
+        <thead class="bg-dark text-white">
             <tr>
-                <th>Name</th>
+                <th>Project Name</th>
+                @if (ViewBag.Showname == true)
+                {
+                    <th>Name</th>
+                }
+
                 <th> Hours</th>
                 <th>Date</th>
                 <th>Created On</th>
-                <th>Project Name</th>
-               @* @if (ViewBag.b == true)
-                {
-                    <th>Aprrove</th>
-                }
-                @if (ViewBag.rejectview == true)
-                {
-                    <th>Reject</th>
-                }*@
+                @* @if (ViewBag.b == true)
+        {
+            <th>Aprrove</th>
+        }
+        @if (ViewBag.rejectview == true)
+        {
+            <th>Reject</th>
+        }*@
                 @if (ViewBag.b == true)
-                { 
-                   <th>Approve</th>
-                   <th>Reject</th>
-                
+                {
+                    <th>Approve</th>
+                    <th>Reject</th>
+
                 }
-               
+
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td class="p-3 bg-white">
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
-                    @*@if (ViewBag.b == true)
-        {
-            <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
-        }
 
-        @if (ViewBag.rejectview == true)
-        {
-            <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
-        }*@
-                    @if (ViewBag.b == true)
-                    {
-                        <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
 
-                        <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
+<tr class="bg-white">
+    @if (ViewBag.Showname == true)
+    {
+        <td class="p-3 bg-white">
+            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+    }
 
-                    }
+    <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
+    <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
+    <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
+    <td class="p-3"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
 
-                </tr>
+    @if (ViewBag.b == true)
+    {
+        <td class="p-3"> @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "approve" })</td>
+
+        <td class="p-3">  @Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })</td>
+
+    }
+
+</tr>
             }
         </tbody>
     </table>

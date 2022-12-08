@@ -2,17 +2,12 @@
 @model IEnumerable<TSheet.Data.ProjectMaster>
 @{
     ViewBag.Title = "DashBoard";
-    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
 }
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<style>
-    td {
-        border: solid 1px black;
-        background-color: white;
-    }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <a href='@Url.Action("AddProjects", "SuperAdmin","SuperAdmin")'>
@@ -22,7 +17,7 @@
 </a>
 <div class="container pt-3">
 
-
+    
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />

@@ -16,8 +16,9 @@
             <div class="card border-left-dark shadow  py-2">
                 <div class="card-body id=" user-Card"">
                     <div class=" row">
-                        <div class="col-lg-8" id="text-cart"> Total User Counts</div>
-                        <div class=" col-lg-4"> <a class="count pt-3 pl-5 text-primary"> @ViewBag.NoOfUser</a></div>
+                        <div class="col-lg-8" id="text-cart"> <button type="button" class="btn btn-dark" onclick="location.href='@Url.Action("TotalUsers", "TotalCounts")'">Total User Count</button>
+                            </div>
+                        <div class=" col-lg-4"> <h4 class="count pt-3 pl-5 text-primary"> @ViewBag.NoOfUser</h4></div>
                     </div>
                 </div>
             </div>
@@ -27,11 +28,8 @@
             <div class="card border-left-dark shadow  py-2">
                 <div class="card-body">
                     <div class=" row">
-                        <div class="col-lg-8" id="text-cart"> Total Projects Counts   </div>
-                        <div class=" col-lg-4"> 
-                        <a href="~/Admin/ProjectList" class=" count pt-3 pl-5 text-primary"> @ViewBag.NoOfProject</a>
-                        </div>
-                        
+                        <div class="col-lg-8" id="text-cart"> <button type="button" class="btn btn-dark" onclick="location.href='@Url.Action("TotalProjects", "TotalCounts")'">Total Project Count</button>  </div>
+                        <div class=" col-lg-4"> <h4 class=" count pt-3 pl-5 text-primary"> @ViewBag.NoOfProject</h4></div>
                     </div>
                 </div>
             </div>

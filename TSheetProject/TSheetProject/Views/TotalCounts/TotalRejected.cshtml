@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TSheet.Data.TimeSheetAuditTB>
+
+@{
+    Layout = null;
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TotalRejected</title>
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           <th>
+               Rejected By
+           </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registration.FirstName)
+                    @Html.DisplayFor(modelItem => item.Registration.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+               <td>
+                   @Html.DisplayFor(modelItem=>item.ApprovedBy)
+               </td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

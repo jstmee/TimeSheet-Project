@@ -1,5 +1,5 @@
-﻿@model IEnumerable<TSheet.Data.AssignedRole>
-
+﻿
+@model List<TSheet.Models.AssignRoleViewModel>
 @{
     ViewBag.Title = "DashBoard";
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
@@ -23,45 +23,31 @@
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id">
-        <thead class="bg-white">
+    <table id="table_id" class=" table-bordered">
+        <thead class="bg-dark text-white">
             <tr>
                 <th>Name</th>
-                <th>E-mail</th>
-                <th>Role </th>
+                <th>Email</th>
+                <th>Role</th>
                 <th>Action</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @*<td class="p-3 bg-white">
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>*@
-                    @*<td class="p-1  "> @Html.DisplayFor(modelItem => item.Email)</td>*@
-
-                    <td class="p-1 bg-white">
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                        @Html.DisplayFor(modelItem => item.Registration.LastName)
+                <tr class="bg-white">
+                    <td class="p-3 bg-white">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                    <td> @Html.DisplayFor(modelItem => item.Registration.Email)</td>
-                    @*<td class="p-1 text-center">*@
-                    @if (item.Role.RoleName == null)
-                    {
-                        <td>Not Assigned</td>
-                    }
-                    else
-                    {
-                        <td>@Html.DisplayFor(modelItem => item.Role.RoleName)</td>
-                    }
-
-                    @*@Html.DisplayFor(modelItem => item.Role.RoleName)*@@*</td>*@
-                    <td class="pt-1 ">
-                        @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Registration.Gender, item.Registration.FirstName, item.Registration.LastName, item.Registration.MobileNumber, item.Registration.IsActive, item.Registration.DateOfbirth, item.Registration.DateOfJoining, item.Registration.Email }, null) |
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Email)</td>
+                    <td class="p-3"> @Html.DisplayFor(modelItem => item.RoleName)</td>
+                    <td class="pt-3">
+                        @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Gender, item.FirstName, item.LastName, item.MobileNumber, item.IsActive, item.DateOfBirth, item.DateOfJoining, item.Email }, null) |
                         @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
                     </td>
+                    <td>@Html.ActionLink("View", "ViewUser",new { id = item.UserID })</td>
                 </tr>
             }
         </tbody>
