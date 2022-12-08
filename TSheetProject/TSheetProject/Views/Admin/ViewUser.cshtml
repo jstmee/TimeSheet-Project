@@ -6,35 +6,58 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 <h3>User's Info</h3>
-<dl class="dl-horizontal">
-    <dt>
-        Name:
-    </dt>
+@*<dl class="dl-horizontal">
+        <dt>
+            Name:
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Email) :
-    </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email) :
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Email)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor((model => (model.DateOfJoining))) :
-    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor((model => (model.DateOfJoining))) :
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.DateOfJoining)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Gender) :
-    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfJoining)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender) :
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Gender)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
 
-</dl>  
+
+    </dl>
+*@
+<h5>Name :</h5>  @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+<br />
+<h5>Email :</h5>  @Html.DisplayFor(model => model.Email)
+<br />
+<h5>Mobile Number :</h5>  @Html.DisplayFor(model => model.MobileNumber)
+<br />
+<h5>Date of Birth :</h5>  @Html.DisplayFor(model => model.DateOfbirth)
+<br />
+<h5>Gender :</h5>  @Html.DisplayFor(model => model.Gender)
+<br />
+<h5>Date of Joining</h5> @Html.DisplayFor(model => model.DateOfJoining)
+<br />
+<h5>Is Active :</h5> @if (Model.IsActive == true)
+                      {
+                      <h6>Yes</h6>
+                      }
+                      else
+                      {
+                      <h6>No</h6>
+                      }
+<br />

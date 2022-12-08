@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TSheet.Data.ProjectMaster>
+
+@{
+    Layout = null;
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TotalProjects</title>
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectDescription)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDescription)
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

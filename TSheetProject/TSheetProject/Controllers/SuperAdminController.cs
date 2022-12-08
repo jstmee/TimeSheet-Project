@@ -28,6 +28,7 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
                 ViewBag.NoOfUsers = dB.Registrations.Count();
+
                 ViewBag.NoOfProjects= dB.ProjectMasters.Count();
                 ViewBag.NoOfAdmin=dB.AssignedRoles.Where(a=>a.RoleID==2).ToList().Count();
             }
@@ -63,10 +64,37 @@ namespace TSheetProject.Controllers
             TSheetDB db = new TSheetDB();
 
             var alluser = db.Registrations.ToList();
-            AssignedRole assignedRole = new AssignedRole();
-            
+            List<AssignRoleViewModel> Detaillist = new List<AssignRoleViewModel>();
 
-            return View(alluser);
+            foreach (var item in alluser)
+            {
+                AssignRoleViewModel assignRoleViewModel= new AssignRoleViewModel();
+                
+                assignRoleViewModel.FirstName = item.FirstName;
+                assignRoleViewModel.LastName = item.LastName;
+                assignRoleViewModel.Email = item.Email;
+                assignRoleViewModel.UserID= item.UserID;
+                assignRoleViewModel.DateOfBirth = item.DateOfbirth;
+                assignRoleViewModel.DateOfJoining=item.DateOfJoining;
+                assignRoleViewModel.MobileNumber= item.MobileNumber;
+                assignRoleViewModel.Gender= item.Gender;
+                var userrow = item.UserID;
+                var findrole = db.AssignedRoles.Where(x => x.UserID == userrow).FirstOrDefault();
+                if (findrole == null)
+                {
+                    assignRoleViewModel.RoleName = "Not Assigned";
+                }
+                else
+                {
+                    assignRoleViewModel.RoleName = findrole.Role.RoleName;
+                }
+                
+                
+                Detaillist.Add(assignRoleViewModel);
+
+
+            }
+            return View(Detaillist);
            
         }
         [HttpGet]
@@ -179,9 +207,13 @@ namespace TSheetProject.Controllers
             ViewBag.message = message;
             return View();
         }
-
-
-
+        public ActionResult ViewUser(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var seedetail = dB.Registrations.Where(x => x.UserID == id).First();
+            return View(seedetail);
+        }
+       
         //a non action method for initializing the dropdownlist in view of timehseetadd
         [NonAction]
         public List<ProjectModel> GetProjectList()

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
+    <Compile Include="Controllers\TotalCountsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +185,13 @@
     <Content Include="Views\Shared\_UserLayoutPage1.cshtml" />
     <Content Include="Views\Admin\ShowUser.cshtml" />
     <Content Include="Views\Admin\ViewUser.cshtml" />
+    <Content Include="Views\SuperAdmin\ViewUser.cshtml" />
+    <Content Include="Views\TotalCounts\Totaladmin.cshtml" />
+    <Content Include="Views\TotalCounts\TotalUsers.cshtml" />
+    <Content Include="Views\TotalCounts\TotalProjects.cshtml" />
+    <Content Include="Views\TotalCounts\TotalApproved.cshtml" />
+    <Content Include="Views\TotalCounts\TotalRejected.cshtml" />
+    <Content Include="Views\TotalCounts\TotalTimesheet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

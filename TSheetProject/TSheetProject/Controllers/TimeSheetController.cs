@@ -153,33 +153,71 @@ namespace TSheetProject.Controllers
 
 
             TSheetDB db = new TSheetDB();
-            var tsheetdetailtb = db.TimeSheetDetails.ToList();
-            foreach (var v in tsheetdetailtb)
+            AssignedRole assigned = new AssignedRole();
+            if (assigned.RoleID == 3)
             {
-                AllTimeSheetModel viewmodel = new AllTimeSheetModel();
-                viewmodel.Hours = v.Hours;
-                viewmodel.CreatedOn = v.CreatedOn;
-                viewmodel.Date = v.Date;
-                viewmodel.AllTimesheetId = v.TimeSheetDetailID;
-                /*viewmodel.UserUniqueId=v.*/
+                var tsheetdetailtb = db.TimeSheetDetails.Where(x => x.TimeSheetMaster.Registration.Email == User.Identity.Name).ToList();
+                foreach (var v in tsheetdetailtb)
+                {
+                    AllTimeSheetModel viewmodel = new AllTimeSheetModel();
+                    viewmodel.Hours = v.Hours;
+                    viewmodel.CreatedOn = v.CreatedOn;
+                    viewmodel.Date = v.Date;
+                    viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+                    /*viewmodel.UserUniqueId=v.*/
 
 
 
-                var masterid = v.TimeSheetMasterID;
-                var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
-                var userid = masteridmatchedrow.UserID;
-                viewmodel.UserUniqueId= userid;
-                var projectid = masteridmatchedrow.ProjectId;
-                var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
-                var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
-                viewmodel.FirstName = useridmatchedrow.FirstName;
-                viewmodel.LastName = useridmatchedrow.LastName;
-                viewmodel.ProjectName = projectmatchedrow.ProjectName;
+                    var masterid = v.TimeSheetMasterID;
+                    var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
+                    var userid = masteridmatchedrow.UserID;
+                    viewmodel.UserUniqueId = userid;
+                    var projectid = masteridmatchedrow.ProjectId;
+                    var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
+                    var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
+                    viewmodel.FirstName = useridmatchedrow.FirstName;
+                    viewmodel.LastName = useridmatchedrow.LastName;
+                    viewmodel.ProjectName = projectmatchedrow.ProjectName;
 
 
 
-                viewmodellists.Add(viewmodel);
+                    viewmodellists.Add(viewmodel);
+                }
             }
+            else
+            {
+                var tsheetdetailtb = db.TimeSheetDetails.ToList();
+                foreach (var v in tsheetdetailtb)
+                {
+                    AllTimeSheetModel viewmodel = new AllTimeSheetModel();
+                    viewmodel.Hours = v.Hours;
+                    viewmodel.CreatedOn = v.CreatedOn;
+                    viewmodel.Date = v.Date;
+                    viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+                    /*viewmodel.UserUniqueId=v.*/
+
+
+
+                    var masterid = v.TimeSheetMasterID;
+                    var masteridmatchedrow = db.TimeSheetMasters.Where(a => a.TimeSheetMasterID == masterid).FirstOrDefault();
+                    var userid = masteridmatchedrow.UserID;
+                    viewmodel.UserUniqueId = userid;
+                    var projectid = masteridmatchedrow.ProjectId;
+                    var projectmatchedrow = db.ProjectMasters.Where(a => a.ProjectID == projectid).FirstOrDefault();
+                    var useridmatchedrow = db.Registrations.Where(a => a.UserID == userid).FirstOrDefault();
+                    viewmodel.FirstName = useridmatchedrow.FirstName;
+                    viewmodel.LastName = useridmatchedrow.LastName;
+                    viewmodel.ProjectName = projectmatchedrow.ProjectName;
+
+
+
+                    viewmodellists.Add(viewmodel);
+                }
+
+            }
+           
+
+            
             return viewmodellists;
 
         }

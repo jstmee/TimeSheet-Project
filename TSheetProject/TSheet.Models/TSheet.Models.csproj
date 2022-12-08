@@ -58,6 +58,7 @@
     <Compile Include="AssignedRolesModel.cs" />
     <Compile Include="ChangeUserPassword.cs" />
     <Compile Include="AddTimeSheetModel.cs" />
+    <Compile Include="AssignRoleViewModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="ProjectLists.cs" />
     <Compile Include="ProjectModel.cs" />

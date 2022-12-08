@@ -1,0 +1,41 @@
+﻿
+@model TSheet.Data.Registration
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+<h3>User's Info</h3>
+<dl class="dl-horizontal">
+    <dt>
+        Name:
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Email) :
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Email)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor((model => (model.DateOfJoining))) :
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.DateOfJoining)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Gender) :
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Gender)
+    </dd>
+
+</dl>  

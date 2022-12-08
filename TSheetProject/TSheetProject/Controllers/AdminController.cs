@@ -77,6 +77,7 @@ namespace TSheetProject.Controllers
 
         public ActionResult ShowUser()
         {
+
             TSheetDB dB=new TSheetDB();
             var showuser = dB.Registrations.ToList();
 
@@ -86,6 +87,7 @@ namespace TSheetProject.Controllers
         {
             TSheetDB dB =new TSheetDB();
             var seedetail=dB.Registrations.Where(x=>x.UserID==id).First();
+            
             return View(seedetail);
         }
 
