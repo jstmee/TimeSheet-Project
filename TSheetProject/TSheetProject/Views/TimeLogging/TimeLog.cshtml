@@ -1,6 +1,4 @@
-﻿@model List<TSheet.Models.AddTimeSheetModel>
-
-@{
+﻿@{
     ViewBag.Title = "DashBoard";
     Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
 }
@@ -30,34 +28,26 @@
         font-weight: 600;
     }
 </style>
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-3.6.1.intellisense.js"></script>
-<script>
-    function getval() {
-        var a = 5
-        for (i = 0; i  < a; i--) {
-            alert(i)
-        }
-        
-    }
-</script>
+
 
 <div class="container">
-    
-        <div class="p-3">
-            <input type="submit" value="Submit Week" id="AddTimeBtn" class="btn  text-white ">
 
-            <input type="week" id="date_id" name="userweek" required onchange=getval() class="weekdata" />
+    @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post))
+    {
+
+        <div class="p-3">
+            <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white ">
+
+            <input type="week" id="date_id" name="userweek" required class="weekdata" />
         </div>
 
-    
+    }
     <table class="table">
-
-
         <tr>
             <td>
                 <b></b>
+
+
             </td>
             <td>
                 <b></b>
