@@ -22,9 +22,9 @@ namespace TSheetProject.Controllers
         public TimeLoggingController()
         {
             _projectRepository = new ProjectRepository();
-            _timesheetmasterRepository=new TimeSheetMasterRepository();
-            _RegistrationRepository=new RegistrationRepository();
-            _TimeSheetDetailRepository=new TimeSheetDetailRepository();
+            _timesheetmasterRepository = new TimeSheetMasterRepository();
+            _RegistrationRepository = new RegistrationRepository();
+            _TimeSheetDetailRepository = new TimeSheetDetailRepository();
 
         }
 
@@ -37,8 +37,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult TimeLog(string userweek)
         {
-            ViewBag.userweek = userweek;
-            
+
             if (ModelState.IsValid)
             {
                 //convert userweek to dates
@@ -46,15 +45,15 @@ namespace TSheetProject.Controllers
                 int week = int.Parse(userweek.Substring(6));
                 TempData["WeekNo"] = week;
                 var FirstDays = FirstDateOfWeek(year, week);
-                List<DateTime> ListOfDates = GetListOfDates(FirstDays); 
-                
+                List<DateTime> ListOfDates = GetListOfDates(FirstDays);
+
                 var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
 
                 var timeSheetMasterlist = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, FirstDays);
 
                 //if user has already data
                 //fetching of data required
-                if (timeSheetMasterlist.Count==0)
+                if (timeSheetMasterlist.Count == 0)
                 {
                     TempData["userDates"] = ListOfDates;
                     TempData["UserTimeLogData"] = null;
@@ -71,7 +70,7 @@ namespace TSheetProject.Controllers
                         var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
                         addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
                         addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
-                        
+
                         if (timeSheetMaster.Comment != null)
                         {
                             addTimeSheetModel.Description = timeSheetMaster.Comment;
@@ -89,7 +88,7 @@ namespace TSheetProject.Controllers
                                 addTimeSheetModel.MondayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(1) ,out int? value2) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(1), out int? value2) != false)
                             {
                                 addTimeSheetModel.TuesdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(1)];
                                 addTimeSheetModel.TuesdayLogTimeId = 1;
@@ -106,7 +105,7 @@ namespace TSheetProject.Controllers
                                 addTimeSheetModel.ThursdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(3)];
                                 addTimeSheetModel.ThursdayLogTimeId = 1;
                             }
-                            
+
                             if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(4), out int? value5) != false)
                             {
                                 addTimeSheetModel.FridayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(4)];
@@ -132,7 +131,7 @@ namespace TSheetProject.Controllers
                     TempData["userDates"] = ListOfDates;
                     TempData["UserTimeLogData"] = addTimeSheetModelsList;
                     return RedirectToAction("AddTime");
-                    
+
                 }
             }
             return View(userweek);
@@ -143,11 +142,11 @@ namespace TSheetProject.Controllers
         public ActionResult AddTime()
         {
             //fetching list of projects from database for showing it on dropdownlist in view
-            List<ProjectModel> projectModels= DisplayProjectList();
+            List<ProjectModel> projectModels = DisplayProjectList();
 
             ViewBag.Projects = projectModels;
             ViewBag.userDates = TempData["userDates"];
-            TempData["Dates"]= TempData["userDates"];
+            TempData["Dates"] = TempData["userDates"];
             ViewBag.userWeek = TempData["WeekNo"];
             TempData["WeekNo"] = ViewBag.userWeek;
 
@@ -161,7 +160,7 @@ namespace TSheetProject.Controllers
                 addTimeSheetobj.id = 0;
                 addTimeSheetobj.ProjectId = projectModels[i].Id;
                 addTimeSheetobj.ProjectName = projectModels[i].Name;
-                
+
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
 
@@ -170,13 +169,13 @@ namespace TSheetProject.Controllers
             if (TempData["UserTimeLogData"] != null)
             {
                 List<AddTimeSheetModel> userLogData = (List<AddTimeSheetModel>)TempData["UserTimeLogData"];
-                
+
                 if (userLogData != null)
                 {
-                    
+
                     foreach (var filleddata in userLogData)
                     {
-                        for(int i = 0; i < projectModels.Count(); i++)
+                        for (int i = 0; i < projectModels.Count(); i++)
                         {
                             if (addTimeSheetModels[i].ProjectName == filleddata.ProjectName)
                             {
@@ -202,8 +201,8 @@ namespace TSheetProject.Controllers
                             }
 
                         }
-                        
-                        
+
+
                     }
                 }
 
@@ -212,9 +211,9 @@ namespace TSheetProject.Controllers
             {
 
             }
-            
+
             //passing list which is initially has no of row equal to the no of projects in the database
-            return Json(new { Redirect= "AddTime" },JsonRequestBehavior.AllowGet);
+            return View(addTimeSheetModels);
         }
 
         //post method for the user time logging ie submiting the time logging by the user
@@ -251,12 +250,12 @@ namespace TSheetProject.Controllers
                         {
                             timesheetmasterobj.Comment = userrowdata.Description;
                         }
-                        
+
                         timesheetmasterobj.TimeSheetStatus = "Not Approved";
                         timesheetmasterobj.TotalHours = (int)CalculateTotalHours(userrowdata);
 
-                        TSheetDB db= new TSheetDB();
-                        
+                        TSheetDB db = new TSheetDB();
+
                         var getTimeSheetMasterByUserIDFromDate = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, userdate, (int)userrowdata.ProjectId);
 
                         if (getTimeSheetMasterByUserIDFromDate != null)
@@ -271,7 +270,7 @@ namespace TSheetProject.Controllers
                             _timesheetmasterRepository.AddTimeSheetMaster(timesheetmasterobj);
                         }
 
-                        
+
                         Dictionary<DateTime, int> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
                         foreach (var DictionaryDaywiseHrs in DaysWiseHrs)
                         {
@@ -295,11 +294,11 @@ namespace TSheetProject.Controllers
                                 _TimeSheetDetailRepository.AddTimeSheetDetail(timeSheetDetail);
                                 message = "TimeSheet filled !";
                             }
-                            
+
                         }
                     }
                 }
-                
+
             }
             else
             {
@@ -313,7 +312,7 @@ namespace TSheetProject.Controllers
         [NonAction]
         public List<ProjectModel> DisplayProjectList()
         {
-           
+
             List<ProjectModel> ListProjects = new List<ProjectModel>();
             var getprojects = _projectRepository.GetAllProjects();
             foreach (var project in getprojects)
@@ -347,7 +346,7 @@ namespace TSheetProject.Controllers
             Dictionary<DateTime, int> intMap = new Dictionary<DateTime, int>();
             if (userrowdata.MondayLogTime != null)
             {
-                intMap.Add(userdate,(int)userrowdata.MondayLogTime);
+                intMap.Add(userdate, (int)userrowdata.MondayLogTime);
             }
             if (userrowdata.TuesdayLogTime != null)
             {
@@ -359,19 +358,19 @@ namespace TSheetProject.Controllers
             }
             if (userrowdata.ThursdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(3),(int)userrowdata.ThursdayLogTime);
+                intMap.Add(userdate.AddDays(3), (int)userrowdata.ThursdayLogTime);
             }
             if (userrowdata.FridayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(4),(int)userrowdata.FridayLogTime);
+                intMap.Add(userdate.AddDays(4), (int)userrowdata.FridayLogTime);
             }
             if (userrowdata.SaturdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(5),(int)userrowdata.SaturdayLogTime);
+                intMap.Add(userdate.AddDays(5), (int)userrowdata.SaturdayLogTime);
             }
             if (userrowdata.SundayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(6) ,(int)userrowdata.SundayLogTime);
+                intMap.Add(userdate.AddDays(6), (int)userrowdata.SundayLogTime);
             }
             if (userrowdata.SundayLogTime != null)
             {
