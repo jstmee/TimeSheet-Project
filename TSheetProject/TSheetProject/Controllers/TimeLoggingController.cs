@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -38,14 +39,20 @@ namespace TSheetProject.Controllers
         public ActionResult TimeLog(string userweek)
         {
 
+           
             if (ModelState.IsValid)
+
             {
                 //convert userweek to dates
                 int year = int.Parse(userweek.Substring(0, 4));
+                TempData["Year"] = year;
                 int week = int.Parse(userweek.Substring(6));
                 TempData["WeekNo"] = week;
+                /*int month = */
                 var FirstDays = FirstDateOfWeek(year, week);
+                TempData["FirstDateOfWeek"] = FirstDays;
                 List<DateTime> ListOfDates = GetListOfDates(FirstDays);
+                TempData["LastDateOfWeek"] = ListOfDates;
 
                 var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
 
@@ -149,6 +156,10 @@ namespace TSheetProject.Controllers
             TempData["Dates"] = TempData["userDates"];
             ViewBag.userWeek = TempData["WeekNo"];
             TempData["WeekNo"] = ViewBag.userWeek;
+            ViewBag.year = TempData["Year"];
+            ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
+            ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
+            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
 
 
             //initializing the empty timesheetmodal for use in view
@@ -202,7 +213,6 @@ namespace TSheetProject.Controllers
 
                         }
 
-
                     }
                 }
 
@@ -210,7 +220,7 @@ namespace TSheetProject.Controllers
             else
             {
 
-            }
+            } 
 
             //passing list which is initially has no of row equal to the no of projects in the database
             return View(addTimeSheetModels);
@@ -433,6 +443,20 @@ namespace TSheetProject.Controllers
             return DaysWiseHrsUserDataInDB;
 
         }
+
+        [NonAction]
+        public string GetMonthName(int weekNumber)
+        {
+            // Create a DateTime object for the first week of the year
+            DateTime firstWeek = new DateTime(DateTime.Now.Year, 1, 1);
+
+            // Add the number of weeks to the first week of the year
+            DateTime targetWeek = firstWeek.AddDays(weekNumber * 7);
+
+            // Get the name of the month that the target week belongs to
+            return targetWeek.ToString("MMMM");
+        }
+
 
 
 

@@ -18,14 +18,53 @@
         color: #097DCD;
         padding-left: 10px;
     }
+    .MonthYear{
+        font-size:25px;
+        color:forestgreen;
+        font-weight:600;
+    }
+    #weekValue {
+        font-size: 25px;
+        color: forestgreen;
+        font-weight: 600;
+        
+    }
+    #date_id-input {
+        width: 200px;
+        height: 30px;
+        font-size: 16px;
+    }
 </style>
 
+<script>
+    $(document).ready(function () {
+        // Hide 
+        $("#date_id").hide();
 
-
-
-
+        // Show 
+        $("#weekValue").click(function () {
+            $("#date_id").show().slideDown();
+        });
+    });
+</script>
+>
 
 <div class="pt-3">
+    
+    @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post))
+    {
+        <div class="p-3">
+            <div class="">
+                <div class="MonthYear ">@ViewBag.monthName - @ViewBag.year</div>
+                <div class=""><input type="week" id="date_id" name="userweek" required class="weekdata" onchange="this.form.submit()" /></div>
+                <div id="weekValue" class="">Week - @ViewBag.UserWeek  </div>
+                <div>First Date Of Week - @ViewBag.FirstDayOfWeek</div>
+                @*<div>Last Date Of Week - @ViewBag.LastDateOfWeek</div>*@
+            </div>
+
+        </div>
+    }
+
     @if (ViewBag.Message != null)
     {
         <div class="alert alert-success">
@@ -35,20 +74,12 @@
         @Html.ActionLink("Go Back", "TimeLog", "TimeLogging")
     }
 
-
     else
     {
         using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
 
         {
             <input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
-
-            <a id="weekCounts">Week - @ViewBag.userWeek</a>
-
-            @*<input type="submit" value="Save Details" id="AddTimeBtn" class="btn  text-white  p-2">
-
-                <a id="weekCounts">Week - @ViewBag.userWeek</a>*@
-
 
             if (Model != null)
             {
@@ -68,12 +99,6 @@
                                 }
                                 @Html.HiddenFor(m => Model[i].ProjectId)
                                 @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "form-control" })
-
-                                @*@Html.DropDownListFor(m => Model[i].ProjectId,
-                                     new SelectList(ViewBag.Projects, "Id", "Name"),
-                                    "Sekect Projects",
-                                     new { @class = "form-control" })
-                                                  @Html.ValidationMessageFor(model => model[i].ProjectId, "", new { @class = "text-danger w-75" })*@
 
                             </td>
                             <td>
