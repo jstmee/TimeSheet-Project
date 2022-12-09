@@ -22,5 +22,8 @@ namespace TSheet.Data
         public string ApprovedBy { get; set; }
 
         public virtual Registration Registration { get; set; }
+        public int TimeSheetDetailID { get; set; }
+        public virtual TimeSheetDetail TimeSheetDetail { get; set; }
+
     }
 }

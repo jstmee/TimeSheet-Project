@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202211272029593_LittleChangeInRegistraionTb.designer.cs">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212091216127_tablecolumnadded.cs" />
+    <Compile Include="Migrations\202212091216127_tablecolumnadded.designer.cs">
+      <DependentUpon>202212091216127_tablecolumnadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211272029593_LittleChangeInRegistraionTb.resx">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212091216127_tablecolumnadded.resx">
+      <DependentUpon>202212091216127_tablecolumnadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

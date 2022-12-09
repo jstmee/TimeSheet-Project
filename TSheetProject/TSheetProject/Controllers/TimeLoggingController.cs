@@ -325,9 +325,9 @@ namespace TSheetProject.Controllers
 
         //non action method for calculating the total hours of the user time logging for a particular project
         [NonAction]
-        public int? CalculateTotalHours(AddTimeSheetModel totalhours)
+        public decimal? CalculateTotalHours(AddTimeSheetModel totalhours)
         {
-            int? Total = 0;
+            decimal? Total = 0;
             var val1 = totalhours.MondayLogTime == null ? 0 : totalhours.MondayLogTime;
             var val2 = totalhours.TuesdayLogTime == null ? 0 : totalhours.TuesdayLogTime;
             var val3 = totalhours.WednesdayLogTime == null ? 0 : totalhours.WednesdayLogTime;

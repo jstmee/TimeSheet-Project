@@ -29,10 +29,10 @@ namespace TSheetProject.Controllers
         {
             using (TSheetDB dB = new TSheetDB())
             {
-                ViewBag.NoOfUsers = dB.Registrations.Count();
+                ViewBag.NoOfUsers = dB.AssignedRoles.Where(a=>a.RoleID==3).Count();
 
                 ViewBag.NoOfProjects= dB.ProjectMasters.Count();
-                ViewBag.NoOfAdmin=dB.AssignedRoles.Where(a=>a.RoleID==2).ToList().Count();
+                ViewBag.NoOfAdmin=dB.AssignedRoles.Where(a=>a.RoleID==2).Count();
             }
             
             return View();
@@ -180,6 +180,7 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult AddProjects(ProjectsModel projects)
         {
+            string message = "";
             using(TSheetDB dB= new TSheetDB())
             {
                 ProjectMaster projectMaster = new ProjectMaster();
@@ -187,8 +188,10 @@ namespace TSheetProject.Controllers
                 projectMaster.ProjectDescription = projects.ProjectDescription;
                 dB.ProjectMasters.Add(projectMaster);
                 dB.SaveChanges();
+                message = "Project added";
 
             }
+            ViewBag.Message = message;
             return View(projects);
         }
         public ActionResult ProjectList()
