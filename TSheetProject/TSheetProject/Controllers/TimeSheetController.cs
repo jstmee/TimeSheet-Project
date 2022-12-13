@@ -95,32 +95,31 @@ namespace TSheetProject.Controllers
 
         [HttpGet]
         public ActionResult AllTimeSheet()
-        { 
-            
+        {
             ViewBag.b = false;
             var alldatatsheet = alltsheetdata();
             return View(alldatatsheet);
         }
-        public ActionResult ApproveTimeSheet()
-        {
-            ViewBag.b = true;
-            var alldatatsheet = alltsheetdata();
-            return View("AllTimeSheet", alldatatsheet);
-        }
+         public ActionResult ApproveTimeSheet()
+         {
+             ViewBag.b = true;
+             var alldatatsheet = alltsheetdata();
+             return View("AllTimeSheet", alldatatsheet);
+         }
         [HttpPost]
-        public ActionResult ApproveTimesheet(int id,string Email,int id2)
+        public ActionResult ApproveTimesheet(int Id, int Id2, string Identity)
         {
             TSheetDB db = new TSheetDB();
-            var v=db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
-            
+            var v=db.Registrations.Where(a => a.Email == Identity).FirstOrDefault();
             TimeSheetAuditTB obj= new TimeSheetAuditTB();
-            
-            obj.UserID= id2;
+            obj.UserID= Id2;
             obj.Status = "Approved";
-            obj.ApprovedBy = Email;
+            obj.ApprovedBy = Identity;
+            obj.TimeSheetDetailID = Id;
+            ViewBag.Status=obj.Status;
             db.TimeSheetAuditTBs.Add(obj);
             db.SaveChanges();
-           return RedirectToAction("ApproveSheet");
+            return RedirectToAction("ApproveTimeSheet");
         }
         [HttpGet]
         public ActionResult RejectTimeSheet()
@@ -131,20 +130,22 @@ namespace TSheetProject.Controllers
            
         }
         [HttpPost]
-        public ActionResult RejectTimeSheet(int id, string Email,int id2)
+        public ActionResult RejectTimeSheet(int Id, string Identity,int Id2)
         {
             TSheetDB db = new TSheetDB();
-            var v = db.Registrations.Where(a => a.Email == Email).FirstOrDefault();
+            var v = db.Registrations.Where(a => a.Email == Identity).FirstOrDefault();
 
             TimeSheetAuditTB obj = new TimeSheetAuditTB();
-            obj.UserID = id2;
+            obj.UserID = Id2;
             obj.Status = "Rejected";
-            obj.ApprovedBy = Email;
+            obj.ApprovedBy = Identity;
+            ViewBag.Status=obj.Status;
+            var value = obj.Status;
             db.TimeSheetAuditTBs.Add(obj);
             db.SaveChanges();
-            return RedirectToAction("RejectTimeSheet");
+            return RedirectToAction("RejectTimeSheet", value);
         }
-
+       
 
         [NonAction]
         public List<AllTimeSheetModel> alltsheetdata()
@@ -155,7 +156,7 @@ namespace TSheetProject.Controllers
             var logged= db.AssignedRoles.Where(a=>a.Registration.Email== User.Identity.Name).SingleOrDefault().RoleID;
             if (logged == 3)
             {
-                ViewBag.Showname = false;
+                ViewBag.Showname = true;
                 var tsheetdetailtb = db.TimeSheetDetails.Where(x => x.TimeSheetMaster.Registration.Email == User.Identity.Name).ToList();
                 foreach (var v in tsheetdetailtb)
                 {
@@ -164,6 +165,7 @@ namespace TSheetProject.Controllers
                     viewmodel.CreatedOn = v.CreatedOn;
                     viewmodel.Date = v.Date;
                     viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+                    viewmodel.TimeSheetDetailID=v.TimeSheetDetailID;
                     /*viewmodel.UserUniqueId=v.*/
 
 
@@ -187,13 +189,15 @@ namespace TSheetProject.Controllers
             else
             {
                 var tsheetdetailtb = db.TimeSheetDetails.ToList();
+                ViewBag.Showname = true;
                 foreach (var v in tsheetdetailtb)
                 {
                     AllTimeSheetModel viewmodel = new AllTimeSheetModel();
                     viewmodel.Hours = v.Hours;
                     viewmodel.CreatedOn = v.CreatedOn;
                     viewmodel.Date = v.Date;
-                    viewmodel.AllTimesheetId = v.TimeSheetDetailID;
+                    /*viewmodel.AllTimesheetId = v.TimeSheetDetailID;*/
+                    viewmodel.TimeSheetDetailID = v.TimeSheetDetailID;
                     /*viewmodel.UserUniqueId=v.*/
 
 

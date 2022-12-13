@@ -11,7 +11,17 @@
 <div class="">
 
     <h3 class="font-weight-bold pt-3 pl-3">Add Projects</h3>
-    @using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post))
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            <strong>
+                @ViewBag.Message
+                    </strong>
+        </div>
+    }
+    else
+    {
+     using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post))
     {
 
         <div class="form-horizontal">
@@ -42,6 +52,6 @@
         </div>
         @* </div>*@
     }
-
+    }
 
 </div>

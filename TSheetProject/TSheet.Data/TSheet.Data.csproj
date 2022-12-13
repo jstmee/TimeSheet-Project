@@ -109,6 +109,10 @@
     <Compile Include="Migrations\202212121135345_ChangeMasterDataType.designer.cs">
       <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212130747174_changedviewdatatype.cs" />
+    <Compile Include="Migrations\202212130747174_changedviewdatatype.designer.cs">
+      <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212121135345_ChangeMasterDataType.resx">
       <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212130747174_changedviewdatatype.resx">
+      <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

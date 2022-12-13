@@ -23,6 +23,9 @@ namespace TSheet.Data
 
 
         public virtual Registration Registration { get; set; }
+        public int? TimeSheetDetailID { get; set; }
+        public virtual TimeSheetDetail TimeSheetDetail { get; set; }
+
 
         
     }
