@@ -21,6 +21,9 @@ namespace TSheet.Data
         [StringLength(50)]
         public string ApprovedBy { get; set; }
 
+
         public virtual Registration Registration { get; set; }
+
+        
     }
 }

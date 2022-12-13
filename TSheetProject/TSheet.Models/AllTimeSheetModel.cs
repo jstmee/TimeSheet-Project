@@ -13,7 +13,7 @@ namespace TSheet.Models
         public int AllTimesheetId { get; set; }
        public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? Hours { get; set; }
+        public decimal? Hours { get; set; }
         public DateTime? Date { get; set; }
         public DateTime? CreatedOn { get; set; }
         

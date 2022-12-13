@@ -87,47 +87,47 @@ namespace TSheetProject.Controllers
 
                         if (timeSheetDetail != null)
                         {
-                            Dictionary<DateTime?, int?> DaysWiseHrsUserDataInDB = GetDaysWiseHrsUserDataInDB(timeSheetDetail);
+                            Dictionary<DateTime?, decimal?> DaysWiseHrsUserDataInDB = GetDaysWiseHrsUserDataInDB(timeSheetDetail);
                             #region 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays, out int? value1) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays, out decimal? value1) != false)
                             {
-                                addTimeSheetModel.MondayLogTime = DaysWiseHrsUserDataInDB[FirstDays];
+                                addTimeSheetModel.MondayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays];
                                 addTimeSheetModel.MondayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(1), out int? value2) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(1), out decimal? value2) != false)
                             {
-                                addTimeSheetModel.TuesdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(1)];
+                                addTimeSheetModel.TuesdayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(1)];
                                 addTimeSheetModel.TuesdayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(2), out int? value3) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(2), out decimal? value3) != false)
                             {
-                                addTimeSheetModel.WednesdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(2)];
+                                addTimeSheetModel.WednesdayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(2)];
                                 addTimeSheetModel.WednesdayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(3), out int? value4) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(3), out decimal? value4) != false)
                             {
-                                addTimeSheetModel.ThursdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(3)];
+                                addTimeSheetModel.ThursdayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(3)];
                                 addTimeSheetModel.ThursdayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(4), out int? value5) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(4), out decimal? value5) != false)
                             {
-                                addTimeSheetModel.FridayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(4)];
+                                addTimeSheetModel.FridayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(4)];
                                 addTimeSheetModel.FridayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(5), out int? value6) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(5), out decimal? value6) != false)
                             {
-                                addTimeSheetModel.SaturdayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(5)];
+                                addTimeSheetModel.SaturdayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(5)];
                                 addTimeSheetModel.SaturdayLogTimeId = 1;
                             }
 
-                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(6), out int? value7) != false)
+                            if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays.AddDays(6), out decimal? value7) != false)
                             {
-                                addTimeSheetModel.SundayLogTime = DaysWiseHrsUserDataInDB[FirstDays.AddDays(6)];
+                                addTimeSheetModel.SundayLogTime = (float?)DaysWiseHrsUserDataInDB[FirstDays.AddDays(6)];
                                 addTimeSheetModel.SundayLogTimeId = 1;
                             }
                             #endregion
@@ -159,7 +159,7 @@ namespace TSheetProject.Controllers
             ViewBag.year = TempData["Year"];
             ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
             ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
-            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
+          ViewBag.monthName = GetMonthName(ViewBag.userWeek);
 
 
             //initializing the empty timesheetmodal for use in view
@@ -262,7 +262,7 @@ namespace TSheetProject.Controllers
                         }
 
                         timesheetmasterobj.TimeSheetStatus = "Not Approved";
-                        timesheetmasterobj.TotalHours = (int)CalculateTotalHours(userrowdata);
+                        timesheetmasterobj.TotalHours = (decimal)CalculateTotalHours(userrowdata);
 
                         TSheetDB db = new TSheetDB();
 
@@ -281,7 +281,7 @@ namespace TSheetProject.Controllers
                         }
 
 
-                        Dictionary<DateTime, int> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
+                        Dictionary<DateTime, decimal> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
                         foreach (var DictionaryDaywiseHrs in DaysWiseHrs)
                         {
                             TimeSheetDetail timeSheetDetail = new TimeSheetDetail();
@@ -335,9 +335,9 @@ namespace TSheetProject.Controllers
 
         //non action method for calculating the total hours of the user time logging for a particular project
         [NonAction]
-        public int? CalculateTotalHours(AddTimeSheetModel totalhours)
+        public float? CalculateTotalHours(AddTimeSheetModel totalhours)
         {
-            int? Total = 0;
+            float? Total = 0;
             var val1 = totalhours.MondayLogTime == null ? 0 : totalhours.MondayLogTime;
             var val2 = totalhours.TuesdayLogTime == null ? 0 : totalhours.TuesdayLogTime;
             var val3 = totalhours.WednesdayLogTime == null ? 0 : totalhours.WednesdayLogTime;
@@ -345,46 +345,53 @@ namespace TSheetProject.Controllers
             var val5 = totalhours.FridayLogTime == null ? 0 : totalhours.FridayLogTime;
             var val6 = totalhours.SaturdayLogTime == null ? 0 : totalhours.SaturdayLogTime;
             var val7 = totalhours.SundayLogTime == null ? 0 : totalhours.SundayLogTime;
+            float myFloat1 = Convert.ToSingle(val1);
+            float myFloat2 = Convert.ToSingle(val2);
+            float myFloat3 = Convert.ToSingle(val3);
+            float myFloat4 = Convert.ToSingle(val4);
+            float myFloat5 = Convert.ToSingle(val5);
+            float myFloat6 = Convert.ToSingle(val6);
+            float myFloat7 = Convert.ToSingle(val7);
             Total = val1 + val2 + val3 + val4 + val5 + val6 + val7;
             return Total;
         }
 
         // a non action method for getting daywise hrs in form of dicionary
         [NonAction]
-        public Dictionary<DateTime, int> GettingDayWiseHrs1(AddTimeSheetModel userrowdata, DateTime userdate)
+        public Dictionary<DateTime, decimal> GettingDayWiseHrs1(AddTimeSheetModel userrowdata, DateTime userdate)
         {
-            Dictionary<DateTime, int> intMap = new Dictionary<DateTime, int>();
+            Dictionary<DateTime, decimal> intMap = new Dictionary<DateTime, decimal>();
             if (userrowdata.MondayLogTime != null)
             {
-                intMap.Add(userdate, (int)userrowdata.MondayLogTime);
+                intMap.Add(userdate, (decimal)userrowdata.MondayLogTime);
             }
             if (userrowdata.TuesdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(1), (int)userrowdata.TuesdayLogTime);
+                intMap.Add(userdate.AddDays(1), (decimal)userrowdata.TuesdayLogTime);
             }
             if (userrowdata.WednesdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(2), (int)userrowdata.WednesdayLogTime);
+                intMap.Add(userdate.AddDays(2), (decimal)userrowdata.WednesdayLogTime);
             }
             if (userrowdata.ThursdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(3), (int)userrowdata.ThursdayLogTime);
+                intMap.Add(userdate.AddDays(3), (decimal)userrowdata.ThursdayLogTime);
             }
             if (userrowdata.FridayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(4), (int)userrowdata.FridayLogTime);
+                intMap.Add(userdate.AddDays(4), (decimal)userrowdata.FridayLogTime);
             }
             if (userrowdata.SaturdayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(5), (int)userrowdata.SaturdayLogTime);
+                intMap.Add(userdate.AddDays(5), (decimal)userrowdata.SaturdayLogTime);
             }
             if (userrowdata.SundayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(6), (int)userrowdata.SundayLogTime);
+                intMap.Add(userdate.AddDays(6), (decimal)userrowdata.SundayLogTime);
             }
             if (userrowdata.SundayLogTime != null)
             {
-                intMap.Add(userdate.AddDays(7), (int)userrowdata.SundayLogTime);
+                intMap.Add(userdate.AddDays(7), (decimal)userrowdata.SundayLogTime);
             }
             return intMap;
 
@@ -432,9 +439,9 @@ namespace TSheetProject.Controllers
         }
 
         [NonAction]
-        public Dictionary<DateTime?, int?> GetDaysWiseHrsUserDataInDB(IList<TimeSheetDetail> timeSheetDetail)
+        public Dictionary<DateTime?, decimal?> GetDaysWiseHrsUserDataInDB(IList<TimeSheetDetail> timeSheetDetail)
         {
-            Dictionary<DateTime?, int?> DaysWiseHrsUserDataInDB = new Dictionary<DateTime?, int?>();
+            Dictionary<DateTime?, decimal?> DaysWiseHrsUserDataInDB = new Dictionary<DateTime?, decimal?>();
             foreach (var vv in timeSheetDetail)
             {
                 DaysWiseHrsUserDataInDB[vv.Date] = vv.Hours;

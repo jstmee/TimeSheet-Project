@@ -21,7 +21,7 @@ namespace TSheet.Data
 
         public int UserID { get; set; }
 
-        public int TotalHours { get; set; }
+        public decimal TotalHours { get; set; }
 
         public DateTime? FromDate { get; set; }
 

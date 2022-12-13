@@ -97,6 +97,18 @@
     <Compile Include="Migrations\202211272029593_LittleChangeInRegistraionTb.designer.cs">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212121027104_datatypeData.cs" />
+    <Compile Include="Migrations\202212121027104_datatypeData.designer.cs">
+      <DependentUpon>202212121027104_datatypeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212121034129_ChnageDataType.cs" />
+    <Compile Include="Migrations\202212121034129_ChnageDataType.designer.cs">
+      <DependentUpon>202212121034129_ChnageDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212121135345_ChangeMasterDataType.cs" />
+    <Compile Include="Migrations\202212121135345_ChangeMasterDataType.designer.cs">
+      <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -142,6 +154,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211272029593_LittleChangeInRegistraionTb.resx">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212121027104_datatypeData.resx">
+      <DependentUpon>202212121027104_datatypeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212121034129_ChnageDataType.resx">
+      <DependentUpon>202212121034129_ChnageDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212121135345_ChangeMasterDataType.resx">
+      <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
