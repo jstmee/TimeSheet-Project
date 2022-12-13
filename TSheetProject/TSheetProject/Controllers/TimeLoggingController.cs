@@ -281,7 +281,7 @@ namespace TSheetProject.Controllers
                         }
 
 
-                        Dictionary<DateTime, decimal> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
+                        Dictionary<DateTime, decimal?> DaysWiseHrs = GettingDayWiseHrs1(userrowdata, userdate);
                         foreach (var DictionaryDaywiseHrs in DaysWiseHrs)
                         {
                             TimeSheetDetail timeSheetDetail = new TimeSheetDetail();
@@ -293,10 +293,15 @@ namespace TSheetProject.Controllers
 
                             if (getTimeSheetDetailByMasterIDDate != null)
                             {
+
+
+                                
                                 timeSheetDetail.TimeSheetDetailID = getTimeSheetDetailByMasterIDDate.TimeSheetDetailID;
                                 db.Entry(timeSheetDetail).State = EntityState.Modified;
                                 db.SaveChanges();
                                 message = "TimeSheet filled !";
+                                
+                                
 
                             }
                             else
@@ -358,41 +363,89 @@ namespace TSheetProject.Controllers
 
         // a non action method for getting daywise hrs in form of dicionary
         [NonAction]
-        public Dictionary<DateTime, decimal> GettingDayWiseHrs1(AddTimeSheetModel userrowdata, DateTime userdate)
+        public Dictionary<DateTime, decimal?> GettingDayWiseHrs1(AddTimeSheetModel userrowdata, DateTime userdate)
         {
-            Dictionary<DateTime, decimal> intMap = new Dictionary<DateTime, decimal>();
+            Dictionary<DateTime, decimal?> intMap = new Dictionary<DateTime, decimal?>();
             if (userrowdata.MondayLogTime != null)
             {
+
                 intMap.Add(userdate, (decimal)userrowdata.MondayLogTime);
             }
+            else
+            {
+                if (userrowdata.MondayLogTimeId != null)
+                {
+                    intMap.Add(userdate, null);
+                }
+            }
+
             if (userrowdata.TuesdayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(1), (decimal)userrowdata.TuesdayLogTime);
+            }
+            else
+            {
+                if (userrowdata.TuesdayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(1), null);
+                }
             }
             if (userrowdata.WednesdayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(2), (decimal)userrowdata.WednesdayLogTime);
             }
+            else
+            {
+                if (userrowdata.WednesdayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(2), null);
+                }
+            }
             if (userrowdata.ThursdayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(3), (decimal)userrowdata.ThursdayLogTime);
+            }
+            else
+            {
+                if (userrowdata.ThursdayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(3), null);
+                }
             }
             if (userrowdata.FridayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(4), (decimal)userrowdata.FridayLogTime);
             }
+            else
+            {
+                if (userrowdata.FridayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(4), null);
+                }
+            }
             if (userrowdata.SaturdayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(5), (decimal)userrowdata.SaturdayLogTime);
+            }
+            else
+            {
+                if (userrowdata.SaturdayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(5), null);
+                }
             }
             if (userrowdata.SundayLogTime != null)
             {
                 intMap.Add(userdate.AddDays(6), (decimal)userrowdata.SundayLogTime);
             }
-            if (userrowdata.SundayLogTime != null)
+            else
             {
-                intMap.Add(userdate.AddDays(7), (decimal)userrowdata.SundayLogTime);
+                if (userrowdata.SundayLogTimeId != null)
+                {
+                    intMap.Add(userdate.AddDays(6), null);
+                }
             }
+
             return intMap;
 
         }
