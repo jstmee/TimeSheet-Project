@@ -220,15 +220,7 @@ namespace TSheetProject.Controllers
 
             }
 
-            if (TempData["UserTimeLogData"] != null)
-            {
-                List<AddTimeSheetModel> userLogData = (List<AddTimeSheetModel>)TempData["UserTimeLogData"];
-                if (userLogData != null)
-                {
-
-                }
-
-            }
+        
 
 
             else
