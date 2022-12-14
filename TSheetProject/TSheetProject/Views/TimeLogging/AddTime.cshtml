@@ -191,43 +191,42 @@
 
                             </td>
                             <td>
-                                @Html.TextBoxFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white w-25" , } })
+                                @Html.EditorFor(m => Model[i].MondayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white w-25" , } })
                                 @Html.HiddenFor(m => Model[i].MondayLogTimeId)
                             </td>
                             <td>
-                               
-                                @Html.TextBoxFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white " ,  } })
+                                @Html.EditorFor(m => Model[i].TuesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white " ,  } })
                                 @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
                             </td>
                             <td>
                                
-                                @Html.TextBoxFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
+                                @Html.EditorFor(m => Model[i].WednesdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
                                 @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
                             </td>
                             <td>
                                
-                                @Html.TextBoxFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
+                                @Html.EditorFor(m => Model[i].ThursdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
                                 @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
                             </td>
                             <td>
                                
-                                @Html.TextBoxFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
+                                @Html.EditorFor(m => Model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white",  } })
                                 @Html.HiddenFor(m => Model[i].FridayLogTimeId)
                             </td>
                             <td>
                                
-                                @Html.TextBoxFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white", } })
+                                @Html.EditorFor(m => Model[i].SaturdayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white", } })
                                 @Html.HiddenFor(m => Model[i].SaturdayLogTimeId)
                             </td>
                             <td>
                                
-                                @Html.TextBoxFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white", } })
+                                @Html.EditorFor(m => Model[i].SundayLogTime, "", new { htmlAttributes = new { @class = "Input-Entry border-white", } })
                                 @Html.HiddenFor(m => Model[i].SundayLogTimeId)
                             </td>
                             <td>
                                 @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
                                
-                                @Html.TextBoxFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
+                                @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry border-white" } })
                                 @Html.HiddenFor(m => Model[i].DescriptionId)
                             </td>
 

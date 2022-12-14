@@ -20,12 +20,14 @@ namespace TSheetProject.Controllers
         private TimeSheetMasterRepository _timesheetmasterRepository;
         private RegistrationRepository _RegistrationRepository;
         private TimeSheetDetailRepository _TimeSheetDetailRepository;
+        private DescriptionAndProjectMappingRepository _descriptionAndProjectMappingRepository;
         public TimeLoggingController()
         {
             _projectRepository = new ProjectRepository();
             _timesheetmasterRepository = new TimeSheetMasterRepository();
             _RegistrationRepository = new RegistrationRepository();
             _TimeSheetDetailRepository = new TimeSheetDetailRepository();
+            _descriptionAndProjectMappingRepository = new DescriptionAndProjectMappingRepository();
 
         }
 
@@ -159,7 +161,7 @@ namespace TSheetProject.Controllers
             ViewBag.year = TempData["Year"];
             ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
             ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
-          ViewBag.monthName = GetMonthName(ViewBag.userWeek);
+            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
 
 
             //initializing the empty timesheetmodal for use in view
@@ -317,7 +319,7 @@ namespace TSheetProject.Controllers
             }
             else
             {
-                return View(addTime);
+                 return View(addTime);
             }
             ViewBag.Message = message;
             return View(addTime);
@@ -330,7 +332,9 @@ namespace TSheetProject.Controllers
 
             List<ProjectModel> ListProjects = new List<ProjectModel>();
             var getprojects = _projectRepository.GetAllProjects();
-            foreach (var project in getprojects)
+            var userid = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User.Identity.Name).UserID;
+            var getUserProjects = _descriptionAndProjectMappingRepository.GetAllProjectsOfUser(userid);
+            foreach (var project in getUserProjects)
             {
                 ListProjects.Add(new ProjectModel { Id = project.ProjectID, Name = project.ProjectName });
             }

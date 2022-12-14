@@ -21,8 +21,8 @@ namespace TSheet.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
         public float? MondayLogTime { get; set; }
         public int? MondayLogTimeId { get; set; }
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        /*[DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
 
         /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
         [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
