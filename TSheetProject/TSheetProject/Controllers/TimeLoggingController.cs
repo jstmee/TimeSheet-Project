@@ -157,6 +157,10 @@ namespace TSheetProject.Controllers
             List<ProjectModel> projectModels = DisplayProjectList();
 
             ViewBag.Projects = projectModels;
+            if (TempData["userDates"] == null)
+            {
+                return RedirectToAction("Timelog");
+            }
             ViewBag.userDates = TempData["userDates"];
             TempData["Dates"] = TempData["userDates"];
             ViewBag.userWeek = TempData["WeekNo"];
