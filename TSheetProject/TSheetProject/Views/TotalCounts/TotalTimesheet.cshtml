@@ -1,63 +1,74 @@
 ﻿@model IEnumerable<TSheet.Data.TimeSheetDetail>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_UserLayoutPage1.cshtml";
+
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <div class="container">
+        <table id="table_id" class="table-bordered">
+            <thead class="bg-dark text-white">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>TotalTimesheet</title>
-</head>
-<body>
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hours)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
-            </th>
-
-            
-
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedOn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hours)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeSheetMaster.Comment)
-                </td>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Hours)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
+                    </th>
 
 
 
 
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
-            </tr>
-        }
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
+                        <td class="bg-white">
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeSheetMaster.Comment)
+                        </td>
 
-    </table>
-</body>
-</html>
+
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>

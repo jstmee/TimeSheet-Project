@@ -1,0 +1,66 @@
+﻿@model List<TSheet.Models.WeekInfoModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="container">
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class="table-bordered">
+        <thead class="bg-dark text-white">
+            <tr class="">
+                <th scope="col">Date</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+                @*<th scope="col">Details</th>
+                    <th scope="col">Delete</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white">
+                    <td class="bg-white">@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Hours)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        @Html.ActionLink("Approve", "ApproveDay", new { id = item.Id}, null) |
+                        @Html.ActionLink("Reject", "Reject", new { masterid = item.Id }, null)
+                        
+                    </td>
+
+
+
+
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+</div>

@@ -59,7 +59,9 @@
     <Compile Include="ChangeUserPassword.cs" />
     <Compile Include="AddTimeSheetModel.cs" />
     <Compile Include="AssignRoleViewModel.cs" />
-    <Compile Include="ApproveRejectViewModel.cs" />
+    <Compile Include="AllApproveRejectModel.cs" />
+    <Compile Include="WeekInfoModel.cs" />
+    <Compile Include="WeeklyApproveRejectModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="ProjectLists.cs" />
     <Compile Include="ProjectModel.cs" />

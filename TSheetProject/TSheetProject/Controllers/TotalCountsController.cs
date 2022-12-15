@@ -33,8 +33,8 @@ namespace TSheetProject.Controllers
         }
         public ActionResult TotalApproved()
         {
-
             var approved=dB.TimeSheetAuditTBs.Where(x=>x.Status=="Approved" && x.Registration.Email== User.Identity.Name).ToList();
+           
             return View(approved);
         }
         public ActionResult TotalRejected()
