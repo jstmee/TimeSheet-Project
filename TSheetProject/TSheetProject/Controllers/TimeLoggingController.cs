@@ -72,6 +72,7 @@ namespace TSheetProject.Controllers
                 }
                 else
                 {
+
                     List<AddTimeSheetModel> addTimeSheetModelsList = new List<AddTimeSheetModel>();
                     //fetch the user data and pass that data to addtime controller
                     foreach (var timeSheetMaster in timeSheetMasterlist)
@@ -193,36 +194,37 @@ namespace TSheetProject.Controllers
                 if (userLogData != null)
                 {
 
+
+                    //1st working method
                     foreach (var filleddata in userLogData)
                     {
                         for (int i = 0; i < projectModels.Count(); i++)
                         {
                             if (addTimeSheetModels[i].ProjectName == filleddata.ProjectName)
                             {
+
+
+                                addTimeSheetModels[i] = filleddata;
                                 addTimeSheetModels[i].id = 5;
-                                addTimeSheetModels[i].ProjectId = filleddata.ProjectId;
-                                addTimeSheetModels[i].ProjectName = filleddata.ProjectName;
-                                addTimeSheetModels[i].MondayLogTime = filleddata.MondayLogTime;
-                                addTimeSheetModels[i].MondayLogTimeId = filleddata.MondayLogTimeId;
-                                addTimeSheetModels[i].TuesdayLogTime = filleddata.TuesdayLogTime;
-                                addTimeSheetModels[i].TuesdayLogTimeId = filleddata.TuesdayLogTimeId;
-                                addTimeSheetModels[i].WednesdayLogTime = filleddata.WednesdayLogTime;
-                                addTimeSheetModels[i].WednesdayLogTimeId = filleddata.WednesdayLogTimeId;
-                                addTimeSheetModels[i].ThursdayLogTime = filleddata.ThursdayLogTime;
-                                addTimeSheetModels[i].ThursdayLogTimeId = filleddata.ThursdayLogTimeId;
-                                addTimeSheetModels[i].FridayLogTime = filleddata.FridayLogTime;
-                                addTimeSheetModels[i].FridayLogTimeId = filleddata.FridayLogTimeId;
-                                addTimeSheetModels[i].SaturdayLogTime = filleddata.SaturdayLogTime;
-                                addTimeSheetModels[i].SaturdayLogTimeId = filleddata.SaturdayLogTimeId;
-                                addTimeSheetModels[i].SundayLogTime = filleddata.SundayLogTime;
-                                addTimeSheetModels[i].SundayLogTimeId = filleddata.SundayLogTimeId;
-                                addTimeSheetModels[i].Description = filleddata.Description;
-                                addTimeSheetModels[i].DescriptionId = filleddata.DescriptionId;
+
+
                             }
 
                         }
 
                     }
+
+                    /*//second method
+
+                    for (int i = 0; i < userLogData.Count; i++)
+                    {
+                        if (addTimeSheetModels[i].ProjectName == userLogData[i].ProjectName)
+                        {
+                            addTimeSheetModels[i] = userLogData[i];
+                            addTimeSheetModels[i].id = 5;
+                        }
+                    }*/
+
                 }
 
             }
@@ -515,7 +517,6 @@ namespace TSheetProject.Controllers
             {
                 DaysWiseHrsUserDataInDB[vv.Date] = vv.Hours;
             }
-
             return DaysWiseHrsUserDataInDB;
 
         }
