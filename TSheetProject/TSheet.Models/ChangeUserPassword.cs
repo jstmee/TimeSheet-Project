@@ -9,8 +9,11 @@ namespace TSheet.Models
 {
     public class ChangeUserPassword
     {
+        [Required(ErrorMessage ="Email is Required")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
+        [Required(ErrorMessage ="Password is Required")]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]

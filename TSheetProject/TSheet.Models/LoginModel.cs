@@ -11,7 +11,7 @@ namespace TSheet.Models
     public class LoginModel
     {
 
-        [Required(ErrorMessage = "The email address is required")]
+        [Required(ErrorMessage = "Email address is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
