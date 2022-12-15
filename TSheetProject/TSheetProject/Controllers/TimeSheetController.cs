@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -166,8 +167,18 @@ namespace TSheetProject.Controllers
                 timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
                 timeSheetAuditTB.TimeSheetDetailID = data.TimeSheetDetailID;
                 timeSheetAuditTB.UserID = data.TimeSheetMaster.UserID;
-                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
-                dB.SaveChanges();
+
+                var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == data.TimeSheetDetailID).SingleOrDefault();
+                if (rowexist != null)
+                {
+                    dB.Entry(timeSheetAuditTB).State = EntityState.Modified;
+                    dB.SaveChanges();
+                }
+                else
+                {
+                    dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
+                    dB.SaveChanges();
+                }
             }
               return RedirectToAction("WeeklyStatus");
         }
@@ -185,8 +196,17 @@ namespace TSheetProject.Controllers
                 timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
                 timeSheetAuditTB.TimeSheetDetailID = data.TimeSheetDetailID;
                 timeSheetAuditTB.UserID = data.TimeSheetMaster.UserID;
-                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
-                dB.SaveChanges();
+                var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == data.TimeSheetDetailID).SingleOrDefault();
+                if (rowexist != null)
+                {
+                    dB.Entry(timeSheetAuditTB).State = EntityState.Modified;
+                    dB.SaveChanges();
+                }
+                else
+                {
+                    dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
+                    dB.SaveChanges();
+                }
             }
             return RedirectToAction("WeeklyStatus");
         }
@@ -274,12 +294,13 @@ namespace TSheetProject.Controllers
             TSheetDB dB= new TSheetDB();
             var detail= dB.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==id2).ToList();
             List<WeekInfoModel> weekInfoModels= new List<WeekInfoModel>();
+            
             foreach(var detailitem in detail)
             {
                 WeekInfoModel model=new WeekInfoModel();
                 model.Id = detailitem.TimeSheetDetailID;
                 model.Date = detailitem.Date;
-                model.Hours = detailitem.Hours;
+                model.Hours = (int?)detailitem.Hours;
                 var onedaylog = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == detailitem.TimeSheetDetailID).FirstOrDefault();
 
                 if (onedaylog!=null)
@@ -289,12 +310,14 @@ namespace TSheetProject.Controllers
                         model.Status= onedaylog.Status;
                     }
                 }
+                
                  weekInfoModels.Add(model);
             }
+
             return View(weekInfoModels);
         }
         [HttpGet]
-        public ActionResult ApproveDay(int id)
+        public ActionResult ApproveDay(int? id)
         {
             TSheetDB dB= new TSheetDB();
             var oneauditrow= dB.TimeSheetAuditTBs.Where(x=>x.TimeSheetDetailID==id).FirstOrDefault();
@@ -307,8 +330,10 @@ namespace TSheetProject.Controllers
                 timeSheetAuditTB.UserID = userid;
                     timeSheetAuditTB.Status = "Approved";
                 timeSheetAuditTB.TimeSheetDetailID= id;
-                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
-                dB.SaveChanges();
+                var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID==id).SingleOrDefault();
+                    dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
+                    dB.SaveChanges();
+                
                 
             }
             return RedirectToAction("WeekApproveReject");

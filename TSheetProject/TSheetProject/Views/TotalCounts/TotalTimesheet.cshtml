@@ -10,7 +10,6 @@
  <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <div class="container">
         <table id="table_id" class="table-bordered">
             <thead class="bg-dark text-white">
 
@@ -19,7 +18,7 @@
                         @Html.DisplayNameFor(model => model.Date)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.CreatedOn)
+                        Project
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Hours)
@@ -27,11 +26,6 @@
                     <th>
                         @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
                     </th>
-
-
-
-
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +37,7 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                            @Html.DisplayFor(modelItem=>item.TimeSheetMaster.ProjectMaster.ProjectName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Hours)
@@ -60,7 +54,6 @@
                 }
             </tbody>
         </table>
-    </div>
     <script type="text/javascript"
             charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
