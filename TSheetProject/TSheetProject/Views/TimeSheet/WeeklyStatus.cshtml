@@ -1,0 +1,77 @@
+﻿@model List<TSheet.Models.WeeklyApproveRejectModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="container">
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class="table-bordered">
+        <thead class="bg-dark text-white">
+            <tr class="">
+                <th scope="col">Name</th>
+                <th scope="col">Week Filled</th>
+                <th scope="col">Total Hrs</th>
+                <th scope="col">Project</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Status</th>
+
+                <th>Day Logs</th>
+                <th>Approve/Reject</th>
+                @*<th scope="col">Details</th>
+        <th scope="col">Delete</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white">
+
+                    <td class="bg-white">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+
+
+                    <td>@Html.DisplayFor(modelItem => item.FromDate)<p>to</p>@Html.DisplayFor(modelItem => item.ToDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalHours)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Project)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.ActionLink("View", "WeekApproveReject", "TimeSheet", new { id2 = item.Id }, null)</td>
+                    <td>
+                        @Html.ActionLink("Approve", "Approve", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, null) |
+                    @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, null)
+                </td>
+                @* <td><button type="button" class="btn btn-success">Approve</button> <button type="button" class="btn btn-danger">Reject</button></td>*@
+                @*<td>@Html.ActionLink("Approve","Approve", new {id=item.Id},null</td>*@
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+</div>

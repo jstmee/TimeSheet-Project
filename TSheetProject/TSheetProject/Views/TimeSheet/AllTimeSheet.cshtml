@@ -10,118 +10,78 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
-    </style>
+   
 
 <div class="container">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-
-    <table id="table_id" class="table-bordered table-striped">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th class>Project Name</th>
-                @if (ViewBag.Showname == true)
-                {
-                    <th>Name</th>
-                }
-
-                <th> Hours</th>
-                <th>Date</th>
-                <th>Created On</th>
-
-                @if (ViewBag.b == true)
-                {
-                    <th>Approve/Reject</th>
-
-                }
-                <th>Status</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-
-
-                <tr class="bg-white">
-                    <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
-                    @Html.HiddenFor(modelItem=>item.TimeSheetDetailID)
+   
+        <table id="table_id" class="table-bordered table-striped">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th class>Project Name</th>
                     @if (ViewBag.Showname == true)
                     {
-                        <td class="p-3 bg-white">
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
+                        <th>Name</th>
                     }
 
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
-                    @Html.HiddenFor(modelItem => item.TimeSheetDetailID, new { id = "id" })
-                    @Html.HiddenFor(modeItem => item.UserUniqueId, new { id = "id2" })
+                    <th> Hours</th>
+                    <th>Date</th>
+                    <th>Created On</th>
 
                     @if (ViewBag.b == true)
                     {
-                        <td class="p-3">
-
-
-                            <button type="button" class="btn btn-success" onclick="BtnClick()">Approve</button>
-                            <button type="button" class="btn btn-danger" onclick="BtnClickReject()">Reject</button>
-                            @* @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new {@class="approve"})|*@
-
-                            @*@Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })*@
-                        </td>
-
+                        <th>Approve/Reject</th>
+                        <th>Status</th>
                     }
-                    <td>@ViewBag.Value</td>
+
 
                 </tr>
-            }
-        </tbody>
-    </table>
-    <script>
-        function BtnClick() {
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
 
-            var id = $('#id').val();
-            var id2 = $('#id2').val();
 
-            console.log(id);
-           $.ajax({
-               type: 'POST',
-               dataType: 'JSON',
-               url: '/TimeSheet/ApproveTimesheet',
-               data: { Id: id, Id2: id2, Identity: '@User.Identity.Name' },
-                success: function (data) {
-                    console.log(data);
+                    <tr class="bg-white">
+                        <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
+                        @* @Html.HiddenFor(modelItem=>item.TimeSheetDetailID)*@
+                        @if (ViewBag.Showname == true)
+                        {
+                            <td class="p-3 bg-white">
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                        }
+
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                        @Html.HiddenFor(modelItem => item.TimeSheetDetailID, new { @id = "timeSheetDetailId" })
+                        @Html.HiddenFor(modeItem => item.UserUniqueId, new { @id = "id2" })
+                        @*<input type="hidden" value="@item.TimeSheetDetailID" id="timeSheetDetailId"/>*@
+
+                        @if (ViewBag.b == true)
+                        {
+                            <td class="p-3">
+
+
+                                <button type="button" class="btn btn-success" onclick="BtnClick(@item.TimeSheetDetailID, @item.UserUniqueId)">Approve</button> |
+                                <button type="button" class="btn btn-danger rejectTimeSheet" onclick="BtnClickReject(@item.TimeSheetDetailID)">Reject</button>
+                                @* @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new {@class="approve"})|*@
+
+                                @*@Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })*@
+                            </td>
+                            <td class="p-3">@Html.DisplayFor(modelItem => item.Status)</td>
+                        }
+
+
+                    </tr>
                 }
-                })
-            }
-    </script>
-    <script>
-        function BtnClickReject() {
-
-            var id = $('#id').val();
-            var id2 = $('#id2').val();
-
-            console.log(id);
-           $.ajax({
-               type: 'POST',
-               dataType: 'JSON',
-               url: '/TimeSheet/RejectTimesheet',
-               data: { Id: id, Id2: id2, Identity: '@User.Identity.Name' },
-                success: function (data,value) {
-                    console.log(data);
-
-
-                }
-                })
-            }
-    </script>
-
-
-
-
+            </tbody>
+        </table>
+    
     <script type="text/javascript"
             charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
@@ -133,29 +93,52 @@
             $("#table_id").dataTable();
         });
     </script>
+
     <script>
-        $(document).ready(function () {
-            $(".reject").click(function () {
-                return false;
-            })
-        })
-        $(document).ready(function () {
-            $(".reject").click(function () {
-                alert("Rejected")
-            })
-        })
+        function BtnClick(val) {
+            console.log(val);
+            debugger;
+            var id = $('#TimeSheetDetailID').val();
+            console.log(id);
+            var id2 = $('#id2').val();
+           /* console.log(id2);
+
+            console.log(id);*/
+           $.ajax({
+               type: 'POST',
+               dataType: 'JSON',
+               url: '/TimeSheet/ApproveTimesheet',
+               data: { Id: id, Id2: id2, Identity: '@User.Identity.Name' },
+                success: function (data) {
+                    console.log(data);
+                }
+                })
+
+
+            }
     </script>
     <script>
-        $(document).ready(function () {
-            $(".approve").click(function () {
-                return false;
-            })
-        })
-        $(document).ready(function () {
-            $(".approve").click(function () {
-                alert("Approved")
-            })
-        })
+        function BtnClickReject(val) {
+            console.log(val);
+            debugger;
+            var id = $('#TimeSheetDetailID').val();
+            console.log(id);
+            var id2 = $('#id2').val();
+
+            console.log(id);
+           $.ajax({
+               type: 'POST',
+               dataType: 'JSON',
+               url: '/TimeSheet/RejectTimesheet',
+               data: { Id: id, Id2: id2, Identity: '@User.Identity.Name' },
+                success: function (data,value) {
+                    console.log(data);
+                 }
+                })
+            }
     </script>
+
+
+
 
 </div>
