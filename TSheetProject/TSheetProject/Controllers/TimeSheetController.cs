@@ -279,7 +279,7 @@ namespace TSheetProject.Controllers
                 WeekInfoModel model=new WeekInfoModel();
                 model.Id = detailitem.TimeSheetDetailID;
                 model.Date = detailitem.Date;
-                model.Hours = detailitem.Hours;
+                model.Hours = (int?)detailitem.Hours;
                 var onedaylog = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == detailitem.TimeSheetDetailID).FirstOrDefault();
 
                 if (onedaylog!=null)
