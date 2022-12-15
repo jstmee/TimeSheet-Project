@@ -11,7 +11,7 @@ namespace TSheet.Models
     {
         public string ProjectName { get; set; } 
 
-        public int Hours { get; set; }  
+        public Decimal Hours { get; set; }  
 
         public DateTime Date { get; set; }
 

@@ -15,57 +15,41 @@ namespace TSheet.Models
         public int? ProjectId { get; set; }
         public string ProjectName { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? MondayLogTime { get; set; }
+        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
+        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
+        /*[DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
+        public float? MondayLogTime { get; set; }
         public int? MondayLogTimeId { get; set; }
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        /*[DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        public decimal? TuesdayLogTime { get; set; }
+        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
+        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
+        public float? TuesdayLogTime { get; set; }
         public int? TuesdayLogTimeId { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? WednesdayLogTime { get; set; }
+        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
+        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
+        /*[DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
+        public float? WednesdayLogTime { get; set; }
 
         public int? WednesdayLogTimeId { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? ThursdayLogTime { get; set; }
+        public float? ThursdayLogTime { get; set; }
 
         public int? ThursdayLogTimeId { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? FridayLogTime { get; set; }
+        public float? FridayLogTime { get; set; }
 
         public int? FridayLogTimeId { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? SaturdayLogTime { get; set; }
+        public float? SaturdayLogTime { get; set; }
 
         public int? SaturdayLogTimeId { get; set; }
 
-        [RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public decimal? SundayLogTime { get; set; }
+        public float? SundayLogTime { get; set; }
 
         public int? SundayLogTimeId { get; set; }
 

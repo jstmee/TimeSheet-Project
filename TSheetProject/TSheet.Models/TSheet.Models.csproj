@@ -77,14 +77,14 @@
     <Compile Include="UserTimeSheetModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
-      <Project>{a769194b-3ed0-46ca-9b62-8e4967b3e623}</Project>
-      <Name>TSheet.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TSheet.Data\TSheet.Data.csproj">
+      <Project>{A769194B-3ED0-46CA-9B62-8E4967B3E623}</Project>
+      <Name>TSheet.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

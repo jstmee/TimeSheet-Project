@@ -11,7 +11,7 @@ namespace TSheet.Data
     {
         public int TimeSheetDetailID { get; set; }
 
-        public int? Hours { get; set; }
+        public decimal? Hours { get; set; }
 
         public int TimeSheetMasterID { get; set; }
 

@@ -97,9 +97,21 @@
     <Compile Include="Migrations\202211272029593_LittleChangeInRegistraionTb.designer.cs">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212091216127_tablecolumnadded.cs" />
-    <Compile Include="Migrations\202212091216127_tablecolumnadded.designer.cs">
-      <DependentUpon>202212091216127_tablecolumnadded.cs</DependentUpon>
+    <Compile Include="Migrations\202212121027104_datatypeData.cs" />
+    <Compile Include="Migrations\202212121027104_datatypeData.designer.cs">
+      <DependentUpon>202212121027104_datatypeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212121034129_ChnageDataType.cs" />
+    <Compile Include="Migrations\202212121034129_ChnageDataType.designer.cs">
+      <DependentUpon>202212121034129_ChnageDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212121135345_ChangeMasterDataType.cs" />
+    <Compile Include="Migrations\202212121135345_ChangeMasterDataType.designer.cs">
+      <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212130747174_changedviewdatatype.cs" />
+    <Compile Include="Migrations\202212130747174_changedviewdatatype.designer.cs">
+      <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
@@ -147,8 +159,17 @@
     <EmbeddedResource Include="Migrations\202211272029593_LittleChangeInRegistraionTb.resx">
       <DependentUpon>202211272029593_LittleChangeInRegistraionTb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212091216127_tablecolumnadded.resx">
-      <DependentUpon>202212091216127_tablecolumnadded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212121027104_datatypeData.resx">
+      <DependentUpon>202212121027104_datatypeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212121034129_ChnageDataType.resx">
+      <DependentUpon>202212121034129_ChnageDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212121135345_ChangeMasterDataType.resx">
+      <DependentUpon>202212121135345_ChangeMasterDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212130747174_changedviewdatatype.resx">
+      <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

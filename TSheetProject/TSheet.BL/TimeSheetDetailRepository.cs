@@ -14,11 +14,13 @@ namespace TSheet.BL
         public TimeSheetDetailRepository() 
         {
             _tsheetdb=new TSheetDB();
+            
         }
         public int AddTimeSheetDetail(TimeSheetDetail obj)
         {
             
             _tsheetdb.TimeSheetDetails.Add(obj);
+
             return _tsheetdb.SaveChanges();
 
         }

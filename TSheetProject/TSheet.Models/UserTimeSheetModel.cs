@@ -10,7 +10,7 @@ namespace TSheet.Models
     {
         public int Id { get; set; }
 
-        public int? TotalHrs { get; set; }
+        public Decimal? TotalHrs { get; set; }
 
         public DateTime? FromDate { get; set; }
 
