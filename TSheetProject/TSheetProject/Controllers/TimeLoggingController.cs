@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
 using TSheet.BL;
@@ -148,8 +149,10 @@ namespace TSheetProject.Controllers
 
         //Get Method for user time logging page
         [HttpGet]
+
         public ActionResult AddTime()
         {
+           
             //fetching list of projects from database for showing it on dropdownlist in view
             List<ProjectModel> projectModels = DisplayProjectList();
 
@@ -234,6 +237,7 @@ namespace TSheetProject.Controllers
 
         //post method for the user time logging ie submiting the time logging by the user
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddTime(List<AddTimeSheetModel> addTime)
         {
             string message = "";

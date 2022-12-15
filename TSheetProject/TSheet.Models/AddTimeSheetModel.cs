@@ -13,42 +13,55 @@ namespace TSheet.Models
         public int id { get; set; }
 
         public int? ProjectId { get; set; }
+    
         public string ProjectName { get; set; }
 
-        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
-        /*[DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
-        public float? MondayLogTime { get; set; }
-        public int? MondayLogTimeId { get; set; }
-        /*[DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
 
-        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
+        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]*/
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
+        public float? MondayLogTime { get; set; }
+
+        /*[Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]*/
+        public int? MondayLogTimeId { get; set; }
+
+        /*[RegularExpression(@"^\d+(\.\d+)?$" , ErrorMessage = "Enter Only Decimal")]*/
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? TuesdayLogTime { get; set; }
         public int? TuesdayLogTimeId { get; set; }
 
-        /*[RegularExpression(@"^\d+$", ErrorMessage = "Enter Only Numbers")]
-        [Range(0, 24, ErrorMessage = "Enter Valid Hours")]*/
-        /*[DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]*/
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? WednesdayLogTime { get; set; }
 
         public int? WednesdayLogTimeId { get; set; }
 
+
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? ThursdayLogTime { get; set; }
 
         public int? ThursdayLogTimeId { get; set; }
 
+
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? FridayLogTime { get; set; }
 
         public int? FridayLogTimeId { get; set; }
 
+
+       [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? SaturdayLogTime { get; set; }
 
         public int? SaturdayLogTimeId { get; set; }
 
+
+        [Range(0.0, 24.0, ErrorMessage = "Enter Valid Hours")]
+        [RegularExpression(@"^\d+(\.\d+)?$")]
         public float? SundayLogTime { get; set; }
 
         public int? SundayLogTimeId { get; set; }
