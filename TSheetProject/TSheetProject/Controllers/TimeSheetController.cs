@@ -207,7 +207,9 @@ namespace TSheetProject.Controllers
                 var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == data.TimeSheetDetailID).SingleOrDefault();
                 if (rowexist != null)
                 {
-                    dB.Entry(timeSheetAuditTB).State = EntityState.Modified;
+                    timeSheetAuditTB.TimeSheetAuditID = rowexist.TimeSheetAuditID;
+                    dB.TimeSheetAuditTBs.AddOrUpdate(timeSheetAuditTB);
+                    /*dB.Entry(timeSheetAuditTB).State = EntityState.Modified;*/
                     dB.SaveChanges();
                 }
                 else
