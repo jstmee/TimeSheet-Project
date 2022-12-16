@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Web;
@@ -154,15 +155,20 @@ namespace TSheetProject.Controllers
             db.SaveChanges();
             return RedirectToAction("RejectTimeSheet");
         }
+
         [HttpGet]
         public ActionResult Approve(int masterid)
         {
-         
-            TSheetDB dB= new TSheetDB();
-            var alldatesdata=dB.TimeSheetMasters.Where(x=>x.TimeSheetMasterID== masterid).SingleOrDefault().TimeSheetDetails.ToList();
-            foreach(var data in alldatesdata)
+
+            TSheetDB dB = new TSheetDB();
+            var alldatesdata = dB.TimeSheetMasters.Where(x => x.TimeSheetMasterID == masterid).SingleOrDefault().TimeSheetDetails.ToList();
+            foreach (var data in alldatesdata)
             {
                 TimeSheetAuditTB timeSheetAuditTB = new TimeSheetAuditTB();
+                if (timeSheetAuditTB.Status == "Approved" || timeSheetAuditTB.Status=="Rejected") 
+                {
+                    continue;
+                }
                 timeSheetAuditTB.Status = "Approved";
                 timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
                 timeSheetAuditTB.TimeSheetDetailID = data.TimeSheetDetailID;
@@ -171,7 +177,9 @@ namespace TSheetProject.Controllers
                 var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == data.TimeSheetDetailID).SingleOrDefault();
                 if (rowexist != null)
                 {
-                    dB.Entry(timeSheetAuditTB).State = EntityState.Modified;
+                    timeSheetAuditTB.TimeSheetAuditID = rowexist.TimeSheetAuditID;
+                    dB.TimeSheetAuditTBs.AddOrUpdate(timeSheetAuditTB);
+                    //dB.Entry(timeSheetAuditTB).State = EntityState.Modified;
                     dB.SaveChanges();
                 }
                 else
@@ -180,7 +188,8 @@ namespace TSheetProject.Controllers
                     dB.SaveChanges();
                 }
             }
-              return RedirectToAction("WeeklyStatus");
+            return RedirectToAction("WeeklyStatus");
+
         }
 
         [HttpGet]
@@ -216,7 +225,10 @@ namespace TSheetProject.Controllers
         public ActionResult WeeklyStatus()
         {
             TSheetDB db = new TSheetDB();
+
+            //Retriving The Data Of The Master Table For The Users
             var masterdata = db.TimeSheetMasters.ToList();
+
             TimeSheetDetail timeSheetDetail= new TimeSheetDetail();
             
 
@@ -234,7 +246,7 @@ namespace TSheetProject.Controllers
                 modellist.Comment = masterdataitem.Comment;
                 
                var oneweeklog = db.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==masterdataitem.TimeSheetMasterID).ToList();
-                int c = 0,d=0;
+                int approvedcounter = 0,rejectedcounter=0;
                 foreach(var day in oneweeklog)
                 {
                     var timesheetauditstatus = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == day.TimeSheetDetailID).FirstOrDefault();
@@ -242,44 +254,42 @@ namespace TSheetProject.Controllers
                     {
                         if (timesheetauditstatus.Status == "Approved")
                         {
-                            c++;
+                            approvedcounter++;
                         }
 
                         if (timesheetauditstatus.Status == "Rejected")
                         {
-                            d++;
+                            rejectedcounter++;
                         }
                     }
                 }
-                if (c == oneweeklog.Count())
+
+                if (approvedcounter == oneweeklog.Count() && approvedcounter>0)
                 {
                     modellist.Status = "Week Approved";
+                }
+                else if(rejectedcounter == oneweeklog.Count() && rejectedcounter>0) 
+                {
+                    modellist.Status = "Week Rejected";
+                }
+                else if(approvedcounter>0 || rejectedcounter>0)
+                {
+                    modellist.Status = "Some days are approved/rejected";
                 }
                 else
                 {
                     modellist.Status = "No Action";
                 }
 
-                if(d == oneweeklog.Count())
-                {
-                   
-                    modellist.Status = "Week Rejected";
-                }
-                else
-                {
-                    if (modellist.Status == null)
-                    { 
-                        modellist.Status = "No Action"; 
-                    }
-                    
-                }
 
 
-                /*var matchedid = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == timeSheetDetail.TimeSheetDetailID).FirstOrDefault();
-                if (matchedid != null)
-                {
-                    modellist.Status = matchedid.Status;
-                }*/
+
+                
+                
+                
+
+
+                
                 
 
 
@@ -289,9 +299,14 @@ namespace TSheetProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult WeekApproveReject(int id2)
+        public ActionResult WeekApproveReject(int? id2)
         {
+
             TSheetDB dB= new TSheetDB();
+            /*if(id2 == null)
+            {
+                id2 = masterid;
+            }*/
             var detail= dB.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==id2).ToList();
             List<WeekInfoModel> weekInfoModels= new List<WeekInfoModel>();
             
@@ -321,6 +336,7 @@ namespace TSheetProject.Controllers
         {
             TSheetDB dB= new TSheetDB();
             var oneauditrow= dB.TimeSheetAuditTBs.Where(x=>x.TimeSheetDetailID==id).FirstOrDefault();
+            int? masterid=null;
             if(oneauditrow==null)
             {
                     TimeSheetAuditTB timeSheetAuditTB = new TimeSheetAuditTB();
@@ -330,31 +346,41 @@ namespace TSheetProject.Controllers
                 timeSheetAuditTB.UserID = userid;
                     timeSheetAuditTB.Status = "Approved";
                 timeSheetAuditTB.TimeSheetDetailID= id;
+                masterid = user;
                 var rowexist = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID==id).SingleOrDefault();
                     dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
                     dB.SaveChanges();
                 
                 
             }
-            return RedirectToAction("WeekApproveReject");
+            if (masterid == null)
+            {
+                var user = dB.TimeSheetDetails.Where(x => x.TimeSheetDetailID == id).FirstOrDefault().TimeSheetMasterID;
+                masterid = user;
+            }
+            
+            return RedirectToAction("WeekApproveReject", new { id2 = masterid });
         }
         [HttpGet]
-        public ActionResult RejectDay(int id)
+        public ActionResult RejectDay(int? id)
         {
             TSheetDB dB = new TSheetDB();
             var oneauditrow = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == id).FirstOrDefault();
+            int? masterid = null;
             if (oneauditrow == null)
             {
                 TimeSheetAuditTB timeSheetAuditTB = new TimeSheetAuditTB();
                 timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
                 var user = dB.TimeSheetDetails.Where(x => x.TimeSheetDetailID == id).FirstOrDefault().TimeSheetMasterID;
+                masterid = user;
                 var userid = dB.TimeSheetMasters.Where(x => x.TimeSheetMasterID == user).FirstOrDefault().UserID;
                 timeSheetAuditTB.UserID = userid;
                 timeSheetAuditTB.TimeSheetDetailID = id;
                 timeSheetAuditTB.Status = "Rejected";
+                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
                 dB.SaveChanges();
             }
-            return RedirectToAction("WeekApproveReject");
+            return RedirectToAction("WeekApproveReject", new { id2 = masterid });
         }
         [NonAction]
         public List<AllTimeSheetModel> alltsheetdata()

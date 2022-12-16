@@ -13,6 +13,7 @@ namespace TSheetProject.Controllers
     public class AdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
+        
         public AdminController()
         {
             _registrationRepository = new RegistrationRepository();

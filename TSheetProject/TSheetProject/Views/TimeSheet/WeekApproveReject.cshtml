@@ -36,7 +36,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
                     <td>
                         @Html.ActionLink("Approve", "ApproveDay", new { id = item.Id}, null) |
-                        @Html.ActionLink("Reject", "Reject", new { masterid = item.Id }, null)
+                        @Html.ActionLink("Reject", "RejectDay", new { id = item.Id }, null)
                         
                     </td>
 
