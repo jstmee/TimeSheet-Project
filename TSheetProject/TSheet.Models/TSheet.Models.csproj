@@ -60,6 +60,7 @@
     <Compile Include="AddTimeSheetModel.cs" />
     <Compile Include="AssignRoleViewModel.cs" />
     <Compile Include="AllApproveRejectModel.cs" />
+    <Compile Include="MinimumAgeAttribute.cs" />
     <Compile Include="WeekInfoModel.cs" />
     <Compile Include="WeeklyApproveRejectModel.cs" />
     <Compile Include="LoginModel.cs" />

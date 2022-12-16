@@ -138,6 +138,7 @@ namespace TSheetProject.Controllers
 
                 
                 AssignedRole assignedRole = new AssignedRole();
+                
                 assignedRole.RoleID = (int)user.AssignedRole;
                 assignedRole.UserID = user.Id;
 
@@ -205,8 +206,8 @@ namespace TSheetProject.Controllers
         public ActionResult DeleteProject(int id)
         {
             TSheetDB dB = new TSheetDB();
-            var delproject = dB.ProjectMasters.Where(x => x.ProjectID == id).First();
-            dB.ProjectMasters.Remove(delproject);
+            var deleteproject = dB.ProjectMasters.Where(x => x.ProjectID == id).First();
+            dB.ProjectMasters.Remove(deleteproject);
             dB.SaveChanges();
             var list = dB.ProjectMasters.ToList();
             return View("ProjectList", list);
@@ -221,9 +222,9 @@ namespace TSheetProject.Controllers
             string message = "";
             using (TSheetDB dB = new TSheetDB())
             {
-                var v = dB.Registrations.Where(a => a.UserID == id).FirstOrDefault();
+                var user = dB.Registrations.Where(a => a.UserID == id).SingleOrDefault();
                 /*Crypto crypto=new Crypto();*/
-                v.Password = Crypto.Hash(resetPassword.Password);
+                user.Password = Crypto.Hash(resetPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";
                
@@ -236,6 +237,13 @@ namespace TSheetProject.Controllers
             TSheetDB dB = new TSheetDB();
             var seedetail = dB.Registrations.Where(x => x.UserID == id).First();
             return View(seedetail);
+        }
+        public ActionResult ProjectsAssigned()
+        {
+            TSheetDB dB= new TSheetDB();
+            var allassignedprojects=dB.DescriptionAndProjectMappings.ToList();
+
+            return View(allassignedprojects);
         }
        
         //a non action method for initializing the dropdownlist in view of timehseetadd

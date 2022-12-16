@@ -170,12 +170,12 @@ namespace TSheetProject.Controllers
             //initializing the empty timesheetmodal for use in view
             List<AddTimeSheetModel> addTimeSheetModels = new List<AddTimeSheetModel>();
 
-            for (int i = 0; i < projectModels.Count(); i++)
+            for (int projectadd = 0; projectadd< projectModels.Count(); projectadd++)
             {
                 AddTimeSheetModel addTimeSheetobj = new AddTimeSheetModel();
                 addTimeSheetobj.id = 0;
-                addTimeSheetobj.ProjectId = projectModels[i].Id;
-                addTimeSheetobj.ProjectName = projectModels[i].Name;
+                addTimeSheetobj.ProjectId = projectModels[projectadd].Id;
+                addTimeSheetobj.ProjectName = projectModels[projectadd].Name;
 
                 //initializing the row of the time logging by no of projects
                 addTimeSheetModels.Add(addTimeSheetobj);
@@ -507,9 +507,9 @@ namespace TSheetProject.Controllers
         public Dictionary<DateTime?, decimal?> GetDaysWiseHrsUserDataInDB(IList<TimeSheetDetail> timeSheetDetail)
         {
             Dictionary<DateTime?, decimal?> DaysWiseHrsUserDataInDB = new Dictionary<DateTime?, decimal?>();
-            foreach (var vv in timeSheetDetail)
+            foreach (var detaildata in timeSheetDetail)
             {
-                DaysWiseHrsUserDataInDB[vv.Date] = vv.Hours;
+                DaysWiseHrsUserDataInDB[detaildata.Date] = detaildata.Hours;
             }
 
             return DaysWiseHrsUserDataInDB;

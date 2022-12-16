@@ -195,6 +195,8 @@
     <Content Include="Views\SuperAdmin\ProjectList.cshtml" />
     <Content Include="Views\TimeSheet\WeeklyStatus.cshtml" />
     <Content Include="Views\TimeSheet\WeekApproveReject.cshtml" />
+    <Content Include="Views\SuperAdmin\ProjectsAssigned.cshtml" />
+    <Content Include="Views\Admin\ProjectsAssigned.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

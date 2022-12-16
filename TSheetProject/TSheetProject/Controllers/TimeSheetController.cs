@@ -64,11 +64,10 @@ namespace TSheetProject.Controllers
                     List<int> listOfHrs = li(allrowdata);
                     var totalhrs = 0;
                     var count = 0;
-                    foreach (var v in listOfHrs)
+                    foreach (var addhours in listOfHrs)
                     {
-
                         count++;
-                        totalhrs += v;
+                        totalhrs += addhours;
                     }
                     if (count == 5)
                     {
@@ -78,15 +77,15 @@ namespace TSheetProject.Controllers
                     /*TSheetDB db = new TSheetDB();*/
                     db.TimeSheetMasters.Add(masterobj);
                     db.SaveChanges();
-                    var dayys = 0;
-                    for (int i = 0; i < count; i++)
+                    var days = 0;
+                    for (int hours = 0; hours < count; hours++)
                     {
-                        dayys++;
+                        days++;
                         TimeSheetDetail detailobj = new TimeSheetDetail();
-                        detailobj.Hours = listOfHrs[i];
+                        detailobj.Hours = listOfHrs[hours];
 
                         detailobj.TimeSheetMasterID = masterobj.TimeSheetMasterID;
-                        detailobj.Date = obj.Date1.AddDays(dayys - 1);
+                        detailobj.Date = obj.Date1.AddDays(days - 1);
                         detailobj.CreatedOn = DateTime.Now;
                         db.TimeSheetDetails.Add(detailobj);
                         db.SaveChanges();
@@ -133,8 +132,8 @@ namespace TSheetProject.Controllers
         public ActionResult RejectTimeSheet()
         {
             ViewBag.rejectview = true;
-            var v = alltsheetdata();
-            return View("AllTimeSheet",v);
+            var alldata = alltsheetdata();
+            return View("AllTimeSheet",alldata);
            
         }
         [HttpPost]
@@ -234,7 +233,7 @@ namespace TSheetProject.Controllers
                 modellist.Comment = masterdataitem.Comment;
                 
                var oneweeklog = db.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==masterdataitem.TimeSheetMasterID).ToList();
-                int c = 0,d=0;
+                int countofapprove = 0,countofrejected=0;
                 foreach(var day in oneweeklog)
                 {
                     var timesheetauditstatus = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == day.TimeSheetDetailID).FirstOrDefault();
@@ -242,16 +241,16 @@ namespace TSheetProject.Controllers
                     {
                         if (timesheetauditstatus.Status == "Approved")
                         {
-                            c++;
+                            countofapprove++;
                         }
 
                         if (timesheetauditstatus.Status == "Rejected")
                         {
-                            d++;
+                            countofrejected++;
                         }
                     }
                 }
-                if (c == oneweeklog.Count())
+                if (countofapprove == oneweeklog.Count())
                 {
                     modellist.Status = "Week Approved";
                 }
@@ -260,7 +259,7 @@ namespace TSheetProject.Controllers
                     modellist.Status = "No Action";
                 }
 
-                if(d == oneweeklog.Count())
+                if(countofrejected == oneweeklog.Count())
                 {
                    
                     modellist.Status = "Week Rejected";
@@ -273,26 +272,17 @@ namespace TSheetProject.Controllers
                     }
                     
                 }
-
-
-                /*var matchedid = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == timeSheetDetail.TimeSheetDetailID).FirstOrDefault();
-                if (matchedid != null)
-                {
-                    modellist.Status = matchedid.Status;
-                }*/
-                
-
-
+             
                 viewmodellists.Add(modellist);
             }
              return View(viewmodellists);
         }
 
         [HttpGet]
-        public ActionResult WeekApproveReject(int id2)
+        public ActionResult WeekApproveReject(int id)
         {
             TSheetDB dB= new TSheetDB();
-            var detail= dB.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==id2).ToList();
+            var detail= dB.TimeSheetDetails.Where(x=>x.TimeSheetMasterID==id).ToList();
             List<WeekInfoModel> weekInfoModels= new List<WeekInfoModel>();
             
             foreach(var detailitem in detail)

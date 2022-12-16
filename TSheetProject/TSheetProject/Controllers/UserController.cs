@@ -71,7 +71,7 @@ namespace TSheetProject.Controllers
             using (TSheetDB dB = new TSheetDB())
             {
 
-                var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).FirstOrDefault();
+                var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).SingleOrDefault();
                 getuser.Password= Crypto.Hash(userPassword.Password);
                 dB.SaveChanges();
                 message = "Password Changed successfully";

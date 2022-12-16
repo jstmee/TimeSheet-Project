@@ -34,7 +34,7 @@
                 {
                     <tr class="bg-white">
                         <td class="bg-white">
-                            @Html.DisplayFor(modelItem => item.Date)
+                            @String.Format("{0:dd/MM/yyyy}", item.Date)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem=>item.TimeSheetMaster.ProjectMaster.ProjectName)

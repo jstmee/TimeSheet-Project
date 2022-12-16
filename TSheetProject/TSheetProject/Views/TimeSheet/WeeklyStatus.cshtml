@@ -48,7 +48,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Project)</td>
                     <td>@Html.DisplayFor(modelItem => item.Comment)</td>
                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                    <td>@Html.ActionLink("View", "WeekApproveReject", "TimeSheet", new { id2 = item.Id }, null)</td>
+                    <td>@Html.ActionLink("View", "WeekApproveReject", "TimeSheet", new { id = item.Id }, null)</td>
                     <td>
                         @Html.ActionLink("Approve", "Approve", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, null) |
                     @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, null)
