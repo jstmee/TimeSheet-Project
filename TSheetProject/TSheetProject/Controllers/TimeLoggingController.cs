@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace TSheetProject.Controllers
                 TempData["WeekNo"] = week;
                 /*int month = */
                 var FirstDays = FirstDateOfWeek(year, week);
-                TempData["FirstDateOfWeek"] = FirstDays;
+                TempData["FirstDateOfWeek"] =FirstDays;
                 List<DateTime> ListOfDates = GetListOfDates(FirstDays);
                 TempData["LastDateOfWeek"] = ListOfDates;
 
@@ -164,7 +165,7 @@ namespace TSheetProject.Controllers
             ViewBag.year = TempData["Year"];
             ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
             ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
-            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
+          /*  ViewBag.monthName = GetMonthName(ViewBag.userWeek);*/
 
 
             //initializing the empty timesheetmodal for use in view
@@ -222,9 +223,6 @@ namespace TSheetProject.Controllers
                 }
 
             }
-
-        
-
 
             else
             {

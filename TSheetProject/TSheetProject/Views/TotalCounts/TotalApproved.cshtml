@@ -9,11 +9,11 @@
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-<div class="container">
+<div class="">
     <table id="table_id" class="table-bordered">
         <thead class="bg-dark text-white">
             <tr>
-                <th>
+                <th class="p-3">
                     Name
                 </th>
                 <th>
@@ -30,18 +30,18 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white">
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Registration.FirstName)
                         @Html.DisplayFor(modelItem => item.Registration.LastName)
                     </td>
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.ApprovedBy)
                     </td>
-                    <td>@Html.DisplayFor(modelItem => item.TimeSheetDetail.Date)</td>
-                    <td>@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
+                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Date)</td>
+                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
 
                 </tr>
             }
@@ -59,3 +59,5 @@
         $("#table_id").dataTable();
     });
 </script>
+
+<button class="btn bg-success"> <h5 class="pl-2">@Html.ActionLink("Dashboard", "DashBoard", "User", "User", new { @class = "text-white", @id = "SideBar-items" })</h5></button>

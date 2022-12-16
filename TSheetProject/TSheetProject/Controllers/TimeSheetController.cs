@@ -279,7 +279,7 @@ namespace TSheetProject.Controllers
                 WeekInfoModel model=new WeekInfoModel();
                 model.Id = detailitem.TimeSheetDetailID;
                 model.Date = detailitem.Date;
-                model.Hours = detailitem.Hours;
+                model.Hours = (int?)detailitem.Hours;
                 var onedaylog = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == detailitem.TimeSheetDetailID).FirstOrDefault();
 
                 if (onedaylog!=null)
@@ -294,7 +294,7 @@ namespace TSheetProject.Controllers
             return View(weekInfoModels);
         }
         [HttpGet]
-        public ActionResult ApproveDay(int id)
+        public ActionResult ApproveDay(int? id)
         {
             TSheetDB dB= new TSheetDB();
             var oneauditrow= dB.TimeSheetAuditTBs.Where(x=>x.TimeSheetDetailID==id).FirstOrDefault();
@@ -314,7 +314,7 @@ namespace TSheetProject.Controllers
             return RedirectToAction("WeekApproveReject");
         }
         [HttpGet]
-        public ActionResult RejectDay(int id)
+        public ActionResult RejectDay(int? id)
         {
             TSheetDB dB = new TSheetDB();
             var oneauditrow = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == id).FirstOrDefault();

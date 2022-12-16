@@ -15,7 +15,7 @@
         Add New Project
     </button>
 </a>
-<div class="container pt-3">
+<div class=" pt-3">
 
     
     <link rel="stylesheet"
@@ -23,8 +23,8 @@
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
     <table id="table_id" class="table-bordered pt-3">
         <thead class="bg-dark text-white">
-            <tr>
-                <th>
+            <tr class="">
+                <th class="p-3">
                     @Html.DisplayNameFor(model => model.ProjectName)
                 </th>
                 <th>
@@ -37,10 +37,10 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white">
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.ProjectName)
                     </td>
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.ProjectDescription)
                     </td>
                     @* <td>
@@ -48,7 +48,7 @@
                             @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
                             @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
                         </td>*@
-                    <td> @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID }, null)</td>
+                    <td class="bg-white p-3"> @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID }, null)</td>
                 </tr>
             }
         </tbody>

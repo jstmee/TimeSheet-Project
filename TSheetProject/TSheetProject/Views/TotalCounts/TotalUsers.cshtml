@@ -7,39 +7,69 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>TotalUsers</title>
-</head>
-<body>
 
-    <table class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Role
-            </th>
 
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                    @Html.DisplayFor(modelItem => item.Registration.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role.RoleName)
-                </td>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="">
+
+    <script>
+        $(Document).ready(function () {
+            $("#UserVirePopup").click(function () {
+                alert
+            })
+        })
+    </script>
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class="table-bordered p-3">
+        <thead class="bg-dark text-white p-4">
+            <tr class="">
+                <th class="p-3">
+                    Name
+                </th>
+
+                <th>
+                    Role
+                </th>
 
 
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white">
+                    <td class="bg-white p-3">
+                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
+                        @Html.DisplayFor(modelItem => item.Registration.LastName)
+                    </td>
+                    <td class="bg-white p-3">
+                        @Html.DisplayFor(modelItem => item.Role.RoleName)
+                    </td>
+
+
+                </tr>
+
+            }
+        </tbody>
 
     </table>
-</body>
-</html>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+</div>
+
+<button class="btn bg-success ml-4" type="submit">
+    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
+</button>
