@@ -15,9 +15,7 @@
     <table id="table_id" class="table-bordered">
         <thead class="bg-dark text-white">
             <tr>
-                <th>
-                    Name
-                </th>
+                <th>Project</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
                 </th>
@@ -31,18 +29,16 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                        @Html.DisplayFor(modelItem => item.Registration.LastName)
-                    </td>
+                <tr class="bg-white">
+                    <td class="bg-white">@Html.DisplayFor(modelItem => item.TimeSheetDetail.TimeSheetMaster.ProjectMaster.ProjectName)</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApprovedBy)
                     </td>
-                    <td>@Html.DisplayFor(modelItem => item.TimeSheetDetail.Date)</td>
+                    <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.TimeSheetDetail.Date)</td>
                     <td>@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
                 </tr>
             }

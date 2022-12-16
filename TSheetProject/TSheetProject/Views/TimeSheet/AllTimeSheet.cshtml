@@ -15,7 +15,7 @@
         <table id="table_id" class="table-bordered table-striped">
             <thead class="bg-dark text-white">
                 <tr>
-                    <th class>Project Name</th>
+                    <th>Project Name</th>
                     @if (ViewBag.Showname == true)
                     {
                         <th>Name</th>
@@ -51,8 +51,8 @@
                         }
 
                         <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
-                        <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
-                        <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                        <td class="p-3">  @String.Format("{0:dd/MM/yyyy}", item.Date)</td>
+                        <td class="p-3">  @String.Format("{0:dd/MM/yyyy}", item.CreatedOn)</td>
                         @Html.HiddenFor(modelItem => item.TimeSheetDetailID, new { @id = "timeSheetDetailId" })
                         @Html.HiddenFor(modeItem => item.UserUniqueId, new { @id = "id2" })
                         @*<input type="hidden" value="@item.TimeSheetDetailID" id="timeSheetDetailId"/>*@

@@ -9,7 +9,7 @@ using TSheet.Models;
 
 namespace TSheetProject.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize]
     public class AdminController : Controller
     {
         private RegistrationRepository _registrationRepository;
@@ -66,8 +66,8 @@ namespace TSheetProject.Controllers
       public ActionResult DeleteProject(int id)
       {
             TSheetDB dB = new TSheetDB();
-            var delproject=dB.ProjectMasters.Where(x=>x.ProjectID==id).First();
-            dB.ProjectMasters.Remove(delproject);
+            var deleteproject=dB.ProjectMasters.Where(x=>x.ProjectID==id).First();
+            dB.ProjectMasters.Remove(deleteproject);
             dB.SaveChanges();
             var list = dB.ProjectMasters.ToList();
             return View("ProjectList", list);
@@ -88,6 +88,13 @@ namespace TSheetProject.Controllers
             
             return View(seedetail);
         }
+        public ActionResult ProjectsAssigned()
+        {
+            TSheetDB dB = new TSheetDB();
+            var allassignedprojects = dB.DescriptionAndProjectMappings.ToList();
 
-  }
+            return View(allassignedprojects);
+        }
+
+    }
 }

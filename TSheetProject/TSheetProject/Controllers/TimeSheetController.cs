@@ -65,11 +65,10 @@ namespace TSheetProject.Controllers
                     List<int> listOfHrs = li(allrowdata);
                     var totalhrs = 0;
                     var count = 0;
-                    foreach (var v in listOfHrs)
+                    foreach (var addhours in listOfHrs)
                     {
-
                         count++;
-                        totalhrs += v;
+                        totalhrs += addhours;
                     }
                     if (count == 5)
                     {
@@ -79,15 +78,15 @@ namespace TSheetProject.Controllers
                     /*TSheetDB db = new TSheetDB();*/
                     db.TimeSheetMasters.Add(masterobj);
                     db.SaveChanges();
-                    var dayys = 0;
-                    for (int i = 0; i < count; i++)
+                    var days = 0;
+                    for (int hours = 0; hours < count; hours++)
                     {
-                        dayys++;
+                        days++;
                         TimeSheetDetail detailobj = new TimeSheetDetail();
-                        detailobj.Hours = listOfHrs[i];
+                        detailobj.Hours = listOfHrs[hours];
 
                         detailobj.TimeSheetMasterID = masterobj.TimeSheetMasterID;
-                        detailobj.Date = obj.Date1.AddDays(dayys - 1);
+                        detailobj.Date = obj.Date1.AddDays(days - 1);
                         detailobj.CreatedOn = DateTime.Now;
                         db.TimeSheetDetails.Add(detailobj);
                         db.SaveChanges();
@@ -134,8 +133,8 @@ namespace TSheetProject.Controllers
         public ActionResult RejectTimeSheet()
         {
             ViewBag.rejectview = true;
-            var v = alltsheetdata();
-            return View("AllTimeSheet",v);
+            var alldata = alltsheetdata();
+            return View("AllTimeSheet",alldata);
            
         }
         [HttpPost]

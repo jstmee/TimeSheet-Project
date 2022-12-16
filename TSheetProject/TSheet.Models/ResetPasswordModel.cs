@@ -9,10 +9,11 @@ namespace TSheet.Models
 {
     public class ResetPasswordModel
     {
-       
-        
+
+        [Required(ErrorMessage ="Password is Required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required(ErrorMessage ="Confirm Password is Required")]
         [Display(Name ="Confirm Password")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
