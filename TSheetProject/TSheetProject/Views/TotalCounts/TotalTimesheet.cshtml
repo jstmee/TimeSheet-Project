@@ -10,11 +10,12 @@
  <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <div class="">
         <table id="table_id" class="table-bordered">
             <thead class="bg-dark text-white">
 
                 <tr>
-                    <th>
+                    <th  class="p-3">
                         @Html.DisplayNameFor(model => model.Date)
                     </th>
                     <th>
@@ -26,6 +27,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
                     </th>
+
                 </tr>
             </thead>
             <tbody>
@@ -33,21 +35,18 @@
                 @foreach (var item in Model)
                 {
                     <tr class="bg-white">
-                        <td class="bg-white">
-                            @String.Format("{0:dd/MM/yyyy}", item.Date)
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.Date)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem=>item.TimeSheetMaster.ProjectMaster.ProjectName)
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
                         </td>
-                        <td>
+                        <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.Hours)
                         </td>
-                        <td>
+                        <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.TimeSheetMaster.Comment)
                         </td>
-
-
-
 
 
                     </tr>
@@ -65,3 +64,5 @@
             $("#table_id").dataTable();
         });
     </script>
+
+    <button class="btn bg-success"> <h5 class="pl-2">@Html.ActionLink("Dashboard", "DashBoard", "User", "User", new { @class = "text-white", @id = "SideBar-items" })</h5></button>

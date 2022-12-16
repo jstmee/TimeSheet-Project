@@ -7,17 +7,28 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="">
+
+    <script>
+        $(Document).ready(function () {
+            $("#UserVirePopup").click(function () {
+                alert
+            })
+        })
+    </script>
+
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
     <table id="table_id" class="table-bordered">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th>
+        <thead class="bg-dark text-white p-4">
+            <tr class="">
+                <th class="p-3">
                     Name
                 </th>
 
                 <th>
+                   
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
 
@@ -40,19 +51,19 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white">
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
 
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.MobileNumber)
                     </td>
 
-                    <td>
+                    <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Gender)
                     </td>
 
@@ -64,18 +75,8 @@
                     {
                         <td>No</td>
                     }
-                    <td>@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
-
-
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })*@
-
-
-
-
-
-
+                    <td class="bg-white p-3 UserVirePopup">@Html.ActionLink("View", "ViewUser", new { id = item.UserID } )</td>
+                  
                 </tr>
 
             }
@@ -93,3 +94,8 @@
             $("#table_id").dataTable();
         });
     </script>
+</div>
+
+<button class="btn bg-success ml-4" type="submit">
+    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
+</button>

@@ -3,40 +3,70 @@
 @{
     Layout = null;
 }
+
+
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>TotalProjects</title>
-</head>
-<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<div class="">
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectDescription)
-            </th>
+    <script>
+        $(Document).ready(function () {
+            $("#UserVirePopup").click(function () {
+                alert
+            })
+        })
+    </script>
 
-        </tr>
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class="table-bordered">
+        <thead class="bg-dark text-white p-4">
+            <tr class="">
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectDescription)
-                </td>
+
+                <th class="p-3">
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectDescription)
+                </th>
+
+
             </tr>
-        }
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="p-3 bg-white">
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td class="p-3 bg-white">
+                        @Html.DisplayFor(modelItem => item.ProjectDescription)
+                    </td>
+                </tr>
+            }
+        </tbody>
 
     </table>
-</body>
-</html>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+</div>
+
+<button class="btn bg-success ml-4" type="submit">
+    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
+</button>

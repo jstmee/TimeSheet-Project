@@ -4,47 +4,73 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+
+<style>
+    .center {
+        margin: auto;
+        width: 30%;
+        border: 1px solid;
+        padding: 10px;
+    }
+
+    .hedding {
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+    }
+</style>
+
+<button class="  btn bg-success ml-4 " type="submit">
+    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
+</button>
+
 <div class="container-fluid">
-<h3>User's Info</h3>
+    <h3 class="text-center">User's Info</h3>
 
-<dl class="dl-horizontal">
-    <dt>
-        Name:
-    </dt>
+    <div class="center container">
+        <dt>
+            Name:
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Email) :
-    </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email) :
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Email)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.DateOfJoining) :
-    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfJoining) :
+        </dt>
 
-    <dd>
-        @Convert.ToDateTime(Model.DateOfJoining).ToString("dd/MM/yyyy")
-        @* @Html.DisplayFor(model => model.DateOfJoining)*@
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Gender) :
-    </dt>
+        <dd>
+            @Convert.ToDateTime(Model.DateOfJoining).ToString("dd/MM/yyyy")
+            @* @Html.DisplayFor(model => model.DateOfJoining)*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender) :
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Gender)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.DateOfbirth) :
-    </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfbirth) :
+        </dt>
 
-    <dd>
-        @Convert.ToDateTime(Model.DateOfbirth).ToString("dd/MM/yyyy")
-    </dd>
+        <dd>
+            @Convert.ToDateTime(Model.DateOfbirth).ToString("dd/MM/yyyy")
+        </dd>
 
-</dl>
+        </dl>
+
+
     </div>
+
+
+

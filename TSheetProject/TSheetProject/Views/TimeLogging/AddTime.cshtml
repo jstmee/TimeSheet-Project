@@ -136,76 +136,77 @@
 
 <table class="table">
  
-        <tr>
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">
-                        Projects
+    <tr>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">
+                    Projects
 
-                    </div>
+                </div>
 
-                }
-            </th>
+            }
+        </th>
 
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">Monday</div>
-                    <div class="TSheetTitle">@ViewBag.userDates[0].ToShortDateString();</div>
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">Tuesday</div> <div class="TSheetTitle">@ViewBag.userDates[1].ToShortDateString()</div>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Monday</div>
+                <div class="TSheetTitle">@ViewBag.userDates[0].ToShortDateString()</div>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Tuesday</div> <div class="TSheetTitle">@ViewBag.userDates[1].ToShortDateString()</div>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">Thursday</div> <div class="TSheetTitle">@ViewBag.userDates[2].ToShortDateString()</div>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Wednesday</div><div class="TSheetTitle"> @ViewBag.userDates[2].ToShortDateString()</div>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">Wednesday</div><div  class="TSheetTitle"> @ViewBag.userDates[3].ToShortDateString()</div>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Thursday</div> <div class="TSheetTitle">@ViewBag.userDates[3].ToShortDateString()</div>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div  class="TSheetTitle">Friday</div> <div  class="TSheetTitle">@ViewBag.userDates[4].ToShortDateString()</div>
+            }
+        </th>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div  class="TSheetTitle">Saturday</div> <div  class="TSheetTitle">@ViewBag.userDates[5].ToShortDateString()</div>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Friday</div> <div class="TSheetTitle">@ViewBag.userDates[4].ToShortDateString()</div>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div class="TSheetTitle">Sunday</div> <div class="TSheetTitle">@ViewBag.userDates[6].ToShortDateString()</div>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Saturday</div> <div class="TSheetTitle">@ViewBag.userDates[5].ToShortDateString()</div>
 
-                }
-            </th>
-            <th>
-                @if (i == 0)
-                {
-                    <div  class="TSheetTitle"> Description</div>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle">Sunday</div> <div class="TSheetTitle">@ViewBag.userDates[6].ToShortDateString()</div>
 
-                }
-            </th>
-   
-        <tr>
+            }
+        </th>
+        <th>
+            @if (i == 0)
+            {
+                <div class="TSheetTitle"> Description</div>
+
+            }
+        </th>
+
+<tr>
             <td>
 
                 @Html.HiddenFor(m => Model[i].ProjectId)
@@ -221,7 +222,7 @@
             <td>
                 @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
                 @Html.TextBoxFor(m => Model[i].TuesdayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger">  @Html.ValidationMessageFor(model => model[i].ThursdayLogTime)</div>
+                <div class="text-danger">  @Html.ValidationMessageFor(model => model[i].TuesdayLogTime)</div>
             </td>
             <td>
 
@@ -239,7 +240,7 @@
 
                 @Html.HiddenFor(m => Model[i].FridayLogTimeId)
                 @Html.TextBoxFor(m => Model[i].FridayLogTime, new { placeholder = "0.0",  @class = "rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].FridayLogTime, "", new { htmlAttributes = new { @class = "validationTsheet" } })</div>
+                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].FridayLogTime )</div>
             </td>
             <td>
 
@@ -251,7 +252,7 @@
 
                 @Html.HiddenFor(m => Model[i].SundayLogTimeId)
                 @Html.TextBoxFor(m => Model[i].SundayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].SaturdayLogTime) </div>
+                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].SundayLogTime) </div>
             </td>
             <td>
                 @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@

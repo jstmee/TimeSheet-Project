@@ -5,10 +5,22 @@
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 
 }
+<style>
+    .createUserHedding{
+        font-family:'Times New Roman', Times, serif;
+        font-weight:600;
+        color:black
+    }
+    .control-label {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 600;
+        color: black
+    }
+</style>
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-<h4 class="text-center pt-3">Create an Account</h4>
+<h4 class="text-center createUserHedding pt-3">Create an Account</h4>
 
 <div class="pt-3 container">
     <div class="container-fluid ">
@@ -123,9 +135,9 @@
                                 <div class="row">
                                     <div class="">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-sm" })</div>
 
-                                    <div class=""> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
+                                    <div class="control-label"> @Html.RadioButtonFor(model => model.Gender, "Male") Male </div>
 
-                                    <div class="pl-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
+                                    <div class="control-label pl-2">@Html.RadioButtonFor(model => model.Gender, "Female") Female</div>
                                 </div>
                             </div>
                         </div>

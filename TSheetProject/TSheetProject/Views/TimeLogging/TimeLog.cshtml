@@ -34,17 +34,13 @@
 
     @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post))
     {
-
+        <h5 class="pl-3">Select Week</h5>
         <div class="p-3">
            @* <input type="submit" value="Submit" id="AddTimeBtn" class="btn  text-white ">*@
 
             <input type="week" id="date_id" name="userweek" required class="weekdata" onchange="this.form.submit()"/>
         </div>
-
     }
-    
-
-
-
+  
 
 </div>
