@@ -170,7 +170,7 @@ namespace TSheetProject.Controllers
             ViewBag.year = TempData["Year"];
             ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
             ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
-          /*  ViewBag.monthName = GetMonthName(ViewBag.userWeek);*/
+           ViewBag.monthName = GetMonthName(ViewBag.userWeek);
 
 
             //initializing the empty timesheetmodal for use in view
@@ -247,6 +247,10 @@ namespace TSheetProject.Controllers
             string message = "";
             // again initializing the dropdownlist so the if anything goes wrong he can again select them
             ViewBag.Projects = DisplayProjectList();
+            /*if (TempData["userDates"] == null)
+            {
+                return RedirectToAction("Timelog");
+            }*/
             ViewBag.userDates = TempData["Dates"];
             var userdate = ViewBag.userDates[0];
             ViewBag.userWeek = TempData["WeekNo"];
