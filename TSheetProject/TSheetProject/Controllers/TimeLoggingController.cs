@@ -33,66 +33,85 @@ namespace TSheetProject.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult TimeLog()
-        {
-            return View();
-        }
-
-        [HttpPost]
+        
         public ActionResult TimeLog(string userweek)
         {
 
-           
-            if (ModelState.IsValid)
-
+            if (userweek == null)
             {
-                //convert userweek to dates
-                int year = int.Parse(userweek.Substring(0, 4));
-                TempData["Year"] = year;
-                int week = int.Parse(userweek.Substring(6));
-                TempData["WeekNo"] = week;
-                /*int month = */
-                var FirstDays = FirstDateOfWeek(year, week);
-                TempData["FirstDateOfWeek"] =FirstDays;
-                List<DateTime> ListOfDates = GetListOfDates(FirstDays);
-                TempData["LastDateOfWeek"] = ListOfDates;
+                
+                userweek = GetCurrentWeek();
 
-                var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
+            }
+            
+            //convert userweek to dates
+            int year = int.Parse(userweek.Substring(0, 4));
 
-                var timeSheetMasterlist = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, FirstDays);
 
-                //if user has already data
-                //fetching of data required
-                if (timeSheetMasterlist.Count == 0)
+            /*TempData["Year"] = year;*/
+            Session["Year"] = year;
+
+            
+            int week = int.Parse(userweek.Substring(6));
+
+
+            /*TempData["WeekNo"] = week;*/
+            Session["WeekNo"] = week;
+
+
+            /*int month = */
+            var FirstDays = FirstDateOfWeek(year, week);
+
+            /*TempData["FirstDateOfWeek"] =FirstDays;*/
+            Session["FirstDateOfWeek"]=FirstDays;
+
+
+            List<DateTime> ListOfDates = GetListOfDates(FirstDays);
+
+            /*TempData["LastDateOfWeek"] = ListOfDates;*/
+            Session["LastDateOfWeek"] = ListOfDates;
+
+            var UserIdLogged = _RegistrationRepository.GetRegistrationByEmail(HttpContext.User?.Identity.Name).UserID;
+
+            var timeSheetMasterlist = _timesheetmasterRepository.GetTimeSheetMasterByUserIDFromDate(UserIdLogged, FirstDays);
+
+            //if user has already data
+            //fetching of data required
+            if (timeSheetMasterlist.Count == 0)
+            {
+
+                /*TempData["userDates"] = ListOfDates;
+                TempData["UserTimeLogData"] = null;*/
+
+                Session["userDates"] = ListOfDates;
+                Session["UserTimeLogData"] = null;
+                return RedirectToAction("AddTime");
+
+            }
+            else
+            {
+
+                List<AddTimeSheetModel> addTimeSheetModelsList = new List<AddTimeSheetModel>();
+                //fetch the user data and pass that data to addtime controller
+                foreach (var timeSheetMaster in timeSheetMasterlist)
                 {
-                    TempData["userDates"] = ListOfDates;
-                    TempData["UserTimeLogData"] = null;
-                    return RedirectToAction("AddTime");
+                     AddTimeSheetModel addTimeSheetModel = new AddTimeSheetModel();
+                     var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
+                     addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
+                     addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
 
-                }
-                else
-                {
+                     if (timeSheetMaster.Comment != null)
+                     {
 
-                    List<AddTimeSheetModel> addTimeSheetModelsList = new List<AddTimeSheetModel>();
-                    //fetch the user data and pass that data to addtime controller
-                    foreach (var timeSheetMaster in timeSheetMasterlist)
-                    {
-                        AddTimeSheetModel addTimeSheetModel = new AddTimeSheetModel();
-                        var timesheetmasterid = timeSheetMaster.TimeSheetMasterID;
-                        addTimeSheetModel.ProjectId = timeSheetMaster.ProjectId;
-                        addTimeSheetModel.ProjectName = timeSheetMaster.ProjectMaster.ProjectName;
 
-                        if (timeSheetMaster.Comment != null)
-                        {
-                            addTimeSheetModel.Description = timeSheetMaster.Comment;
-                            addTimeSheetModel.DescriptionId = 1;
-                        }
-                        var timeSheetDetail = _TimeSheetDetailRepository.GetAllTimeSheetDetailByMasterId(timesheetmasterid);
+                        addTimeSheetModel.Description = timeSheetMaster.Comment;
+                        addTimeSheetModel.DescriptionId = 1;
+                     }
+                     var timeSheetDetail = _TimeSheetDetailRepository.GetAllTimeSheetDetailByMasterId(timesheetmasterid);
 
-                        if (timeSheetDetail != null)
-                        {
-                            Dictionary<DateTime?, decimal?> DaysWiseHrsUserDataInDB = GetDaysWiseHrsUserDataInDB(timeSheetDetail);
+                     if (timeSheetDetail != null)
+                     {
+                         Dictionary<DateTime?, decimal?> DaysWiseHrsUserDataInDB = GetDaysWiseHrsUserDataInDB(timeSheetDetail);
                             #region 
                             if (DaysWiseHrsUserDataInDB.TryGetValue(FirstDays, out decimal? value1) != false)
                             {
@@ -138,15 +157,20 @@ namespace TSheetProject.Controllers
                             #endregion
                             addTimeSheetModelsList.Add(addTimeSheetModel);
 
-                        }
-                    }
-                    TempData["userDates"] = ListOfDates;
-                    TempData["UserTimeLogData"] = addTimeSheetModelsList;
-                    return RedirectToAction("AddTime");
-
+                     }
                 }
+                /*TempData["userDates"] = ListOfDates;
+                TempData["UserTimeLogData"] = addTimeSheetModelsList;*/
+
+                Session["userDates"] = ListOfDates;
+                Session["UserTimeLogData"] = addTimeSheetModelsList;
+
+
+                return RedirectToAction("AddTime");
+
             }
-            return View(userweek);
+            /*}*/
+            /*return View(userweek);*/
         }
 
         //Get Method for user time logging page
@@ -159,18 +183,36 @@ namespace TSheetProject.Controllers
             List<ProjectModel> projectModels = DisplayProjectList();
 
             ViewBag.Projects = projectModels;
-            if (TempData["userDates"] == null)
+            /*if (TempData["userDates"] == null)
             {
-                return RedirectToAction("Timelog");
+                *//*userweek = GetCurrentWeek();*//*
+                return RedirectToAction("Timelog", "TimeLogging", new { userweek = GetCurrentWeek() });
+            }*/
+            if (Session["userDates"] == null)
+            {
+                /*userweek = GetCurrentWeek();*/
+                return RedirectToAction("Timelog", "TimeLogging", new { userweek = GetCurrentWeek() });
             }
-            ViewBag.userDates = TempData["userDates"];
+
+
+            /*ViewBag.userDates = TempData["userDates"];
             TempData["Dates"] = TempData["userDates"];
             ViewBag.userWeek = TempData["WeekNo"];
             TempData["WeekNo"] = ViewBag.userWeek;
             ViewBag.year = TempData["Year"];
             ViewBag.FirstDayOfWeek = TempData["FirstDateOfWeek"];
             ViewBag.LastDateOfWeek = TempData["LastDateOfWeek"];
-           ViewBag.monthName = GetMonthName(ViewBag.userWeek);
+           ViewBag.monthName = GetMonthName(ViewBag.userWeek);*/
+
+
+            ViewBag.userDates = Session["userDates"];
+            Session["Dates"] = Session["userDates"];
+            ViewBag.userWeek = Session["WeekNo"];
+            Session["WeekNo"] = ViewBag.userWeek;
+            ViewBag.year = Session["Year"];
+            ViewBag.FirstDayOfWeek = Session["FirstDateOfWeek"];
+            ViewBag.LastDateOfWeek = Session["LastDateOfWeek"];
+            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
 
 
             //initializing the empty timesheetmodal for use in view
@@ -188,9 +230,9 @@ namespace TSheetProject.Controllers
 
 
             }
-            if (TempData["UserTimeLogData"] != null)
+            if (Session["UserTimeLogData"] != null)
             {
-                List<AddTimeSheetModel> userLogData = (List<AddTimeSheetModel>)TempData["UserTimeLogData"];
+                List<AddTimeSheetModel> userLogData = (List<AddTimeSheetModel>)Session["UserTimeLogData"];
 
                 if (userLogData != null)
                 {
@@ -215,16 +257,7 @@ namespace TSheetProject.Controllers
 
                     }
 
-                    /*//second method
-
-                    for (int i = 0; i < userLogData.Count; i++)
-                    {
-                        if (addTimeSheetModels[i].ProjectName == userLogData[i].ProjectName)
-                        {
-                            addTimeSheetModels[i] = userLogData[i];
-                            addTimeSheetModels[i].id = 5;
-                        }
-                    }*/
+                    
 
                 }
 
@@ -251,9 +284,15 @@ namespace TSheetProject.Controllers
             {
                 return RedirectToAction("Timelog");
             }*/
-            ViewBag.userDates = TempData["Dates"];
+            ViewBag.userDates = Session["Dates"];
             var userdate = ViewBag.userDates[0];
-            ViewBag.userWeek = TempData["WeekNo"];
+            ViewBag.userWeek = Session["WeekNo"];
+
+
+
+            ViewBag.monthName = GetMonthName(ViewBag.userWeek);
+            ViewBag.year = Session["Year"];
+
             //checking views model state is valid or not
             if (ModelState.IsValid)
             {
@@ -534,6 +573,35 @@ namespace TSheetProject.Controllers
 
             // Get the name of the month that the target week belongs to
             return targetWeek.ToString("MMMM");
+        }
+
+        [NonAction]
+        // This presumes that weeks start with Monday.
+        // Week 1 is the 1st week of the year with a Thursday in it.
+        public int GetIso8601WeekOfYear(DateTime time)
+        {
+            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
+            // be the same week# as whatever Thursday, Friday or Saturday are,
+            // and we always get those right
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+
+            // Return the week of our adjusted day
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        }
+
+        [NonAction]
+        public string GetCurrentWeek()
+        {
+            
+            DateTime now = DateTime.Now;
+            int GetcurrentWeekNo = GetIso8601WeekOfYear(now);
+            int curyear = now.Year;
+            string userweek = string.Format("{0:0000}-W{1:00}", curyear, GetcurrentWeekNo);
+            return userweek;    
         }
 
 
