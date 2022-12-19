@@ -1,0 +1,15 @@
+﻿.center {
+    margin: auto;
+    width: 30%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.hedding {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+#backButtonViewUser {
+    font-size: 16px;

@@ -7,19 +7,9 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<style>
-    td {
-        border: solid 1px black;
-        background-color: white;
-    }
 
-    th {
-        border: solid 1px black;
-        background-color: white;
-    }
-</style>
-
-<div class="">
+<link href="~/Content/css/superAdmins.css" rel="stylesheet" />
+<div class="pt-3">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
@@ -41,13 +31,13 @@
                         @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Email)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.RoleName)</td>
-                    <td class="pt-3">
-                        @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Gender, item.FirstName, item.LastName, item.MobileNumber, item.IsActive, item.DateOfBirth, item.DateOfJoining, item.Email,item.RoleName} ,null) |
+                    <td  class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.Email)</td>
+                    <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.RoleName)</td>
+                    <td  class="p-3 bg-white text-center">
+                        @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Gender, item.FirstName, item.LastName, item.MobileNumber, item.IsActive, item.DateOfBirth, item.DateOfJoining, item.Email }, null) |
                         @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
                     </td>
-                    <td>@Html.ActionLink("View", "ViewUser",new { id = item.UserID })</td>
+                    <td  class="p-3 bg-white text-center">@Html.ActionLink("View Info", "ViewUser",new { id = item.UserID })</td>
                 </tr>
             }
         </tbody>

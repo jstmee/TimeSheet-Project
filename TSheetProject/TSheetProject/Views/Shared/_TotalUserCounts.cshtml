@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TSheet.Data.AssignedRole>
+
+<table id="table_id" class="table-bordered p-3">
+    <thead class="bg-dark text-white p-4">
+        <tr class="">
+            <th class="p-3">
+                Name
+            </th>
+
+            <th>
+                Role
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="bg-white">
+                <td class="bg-white p-3">
+                    @Html.DisplayFor(modelItem => item.Registration.FirstName)
+                    @Html.DisplayFor(modelItem => item.Registration.LastName)
+                </td>
+                <td class="bg-white p-3">
+                    @Html.DisplayFor(modelItem => item.Role.RoleName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    @RenderBody();
+</div>
+

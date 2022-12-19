@@ -26,6 +26,11 @@ namespace TSheetProject.Controllers
             var projects = dB.ProjectMasters.ToList();
             return View(projects);
         }
+        public ActionResult TotalProjectsSuperAdmin()
+        {
+            var projects = dB.ProjectMasters.ToList();
+            return View(projects);
+        }
         public ActionResult TotalTimesheet()
         {
             var tsheet = dB.TimeSheetDetails.Where(x => x.TimeSheetMaster.Registration.Email == User.Identity.Name).ToList();

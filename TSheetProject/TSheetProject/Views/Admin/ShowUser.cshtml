@@ -7,20 +7,26 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<div class="">
 
-    <script>
-        $(Document).ready(function () {
-            $("#UserVirePopup").click(function () {
-                alert
-            })
+<script>
+    $(Document).ready(function () {
+        $("#UserVirePopup").click(function () {
+            alert
         })
-    </script>
+    })
+</script>
 
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" class="table-bordered">
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+
+<div class=" pt-3" >
+    <button class="btn bg-success " type="submit">
+        @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
+    </button>
+</div>
+<div class=" p-2">
+    <table id="table_id" class="table-bordered ">
         <thead class="bg-dark text-white p-4">
             <tr class="">
                 <th class="p-3">
@@ -28,7 +34,7 @@
                 </th>
 
                 <th>
-                   
+
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
 
@@ -63,20 +69,20 @@
                         @Html.DisplayFor(modelItem => item.MobileNumber)
                     </td>
 
-                    <td class="bg-white p-3">
+                    <td class="bg-white p-3 text-center">
                         @Html.DisplayFor(modelItem => item.Gender)
                     </td>
 
                     @if (item.IsActive == true)
                     {
-                        <td>Yes</td>
+                        <td class="bg-white p-3 text-center">Yes</td>
                     }
                     else
                     {
-                        <td>No</td>
+                        <td class="bg-white text-center p-3">No</td>
                     }
-                    <td class="bg-white p-3 UserVirePopup">@Html.ActionLink("View", "ViewUser", new { id = item.UserID } )</td>
-                  
+                    <td class="bg-white p-3 UserVirePopup text-center">@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
+
                 </tr>
 
             }
@@ -96,6 +102,3 @@
     </script>
 </div>
 
-<button class="btn bg-success ml-4" type="submit">
-    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
-</button>

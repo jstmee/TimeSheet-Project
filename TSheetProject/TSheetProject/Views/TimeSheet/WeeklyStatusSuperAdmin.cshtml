@@ -1,7 +1,10 @@
 ﻿@model List<TSheet.Models.WeeklyApproveRejectModel>
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "WeeklyStatusSuperAdmin";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
+
+
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -14,18 +17,19 @@
             // Get the scroll position from the cookie or sessionStorage object
             var scrollX = ~~(document.cookie.split("scrollX=")[1] || sessionStorage.getItem("scrollX"));
             var scrollY = ~~(document.cookie.split("scrollY=")[1] || sessionStorage.getItem("scrollY"));
-            
+
             // Scroll to the saved scroll position
             window.scrollTo(scrollX, scrollY);
         })
     })
-   
+
 </script>
 
 <style>
     #approve {
         color: white
     }
+
     #reject {
         color: white
     }
@@ -33,7 +37,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <div class="p-3">
-    
+
     <table id="table_id" class="table-bordered">
         <thead class="bg-dark text-white p-4">
             <tr>
@@ -54,21 +58,21 @@
             {
                 <tr class="bg-white">
 
-                    <td class="bg-white " id="NameWeeklyStetus" >
-                        @Html.DisplayFor(modelItem => item.FirstName) 
+                    <td class="bg-white " id="NameWeeklyStetus">
+                        @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
 
                     <td class="text-center  bg-white "><div>@Html.DisplayFor(modelItem => item.FromDate)</div><div>To</div><div>@Html.DisplayFor(modelItem => item.ToDate)</div></td>
                     <td class="text-center  bg-white ">@Html.DisplayFor(modelItem => item.TotalHours)</td>
                     <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Project)</td>
-                    <td class="text-center bg-white " >@Html.DisplayFor(modelItem => item.Comment)</td>
+                    <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Comment)</td>
                     <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Status)</td>
 
-                    <td class="text-center bg-white ">@Html.ActionLink("View", "WeekApproveReject", "TimeSheet", new { id2 = item.Id }, null)</td>
+                    <td class="text-center bg-white ">@Html.ActionLink("View", "WeekApproveRejectSuperAdmin", "TimeSheet", new { id2 = item.Id }, null)</td>
                     <td class="text-center bg-white ">
-                        <div > <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "Approve", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve" })</button> </div>
-                        <div  pt-2"><button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject" })</button></div>
+                        <div> <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "ApproveSuperAdmin", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve" })</button> </div>
+                        <div pt-2"><button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject" })</button></div>
                     </td>
                     @* <td><button type="button" class="btn btn-success">Approve</button> <button type="button" class="btn btn-danger">Reject</button></td>*@
                     @*<td>@Html.ActionLink("Approve","Approve", new {id=item.Id},null</td>*@
@@ -88,4 +92,4 @@
             $("#table_id").dataTable();
         });
     </script>
-
+</div>

@@ -10,21 +10,26 @@
  <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <div class="">
+
+
+ <div class="">
+     <button class="btn bg-success"> @Html.ActionLink("Go To Dashboard", "DashBoard", "User", "User", new { @class = "text-white" })</button>
+ </div>
+    <div class="pt-2">
         <table id="table_id" class="table-bordered">
             <thead class="bg-dark text-white">
 
                 <tr>
-                    <th  class="p-3">
+                    <th class="p-3">
                         @Html.DisplayNameFor(model => model.Date)
                     </th>
-                    <th>
+                    <th class="p-3">
                         Project
                     </th>
-                    <th>
+                    <th class="p-3">
                         @Html.DisplayNameFor(model => model.Hours)
                     </th>
-                    <th>
+                    <th class="p-3">
                         @Html.DisplayNameFor(model => model.TimeSheetMaster.Comment)
                     </th>
 
@@ -39,15 +44,14 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td class="bg-white p-3">
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                        </td>
+                            @Html.DisplayFor(modelItem => item.TimeSheetMaster.ProjectMaster.ProjectName)
+                        </td >
                         <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.Hours)
                         </td>
                         <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.TimeSheetMaster.Comment)
                         </td>
-
 
                     </tr>
                 }
@@ -64,5 +68,4 @@
             $("#table_id").dataTable();
         });
     </script>
-
-    <button class="btn bg-success"> <h5 class="pl-2">@Html.ActionLink("Dashboard", "DashBoard", "User", "User", new { @class = "text-white", @id = "SideBar-items" })</h5></button>
+    

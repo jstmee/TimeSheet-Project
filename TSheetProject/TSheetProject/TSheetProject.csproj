@@ -102,6 +102,14 @@
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\superAdmins.css" />
     <Content Include="Content\css\Timesheet.css" />
+    <Content Include="Content\css\TSheetCSS\AdminDashBoard.css" />
+    <Content Include="Content\css\TSheetCSS\AdminLayout.css" />
+    <Content Include="Content\css\TSheetCSS\ChangePass.css" />
+    <Content Include="Content\css\TSheetCSS\demodemo.css" />
+    <Content Include="Content\css\TSheetCSS\ShowUser_ViewUser.css" />
+    <Content Include="Content\css\TSheetCSS\SuperAdminLayout.css" />
+    <Content Include="Content\css\TSheetCSS\UserDashboard.css" />
+    <Content Include="Content\css\TSheetCSS\UserLayout.css" />
     <Content Include="Content\css\TsheetImg\Group 35579 %281%29.png" />
     <Content Include="Content\css\TsheetImg\MicrosoftTeams-image %283%29 %281%29 %281%29.png" />
     <Content Include="Content\css\user.css" />
@@ -148,11 +156,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddProjectForAdminController.cs" />
     <Compile Include="Controllers\TimeLoggingController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TimeSheetController.cs" />
     <Compile Include="Controllers\TotalCountsController.cs" />
+    <Compile Include="Controllers\TotalUserConuntController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +205,14 @@
     <Content Include="Views\SuperAdmin\ProjectList.cshtml" />
     <Content Include="Views\TimeSheet\WeeklyStatus.cshtml" />
     <Content Include="Views\TimeSheet\WeekApproveReject.cshtml" />
+    <Content Include="Views\Shared\_TotalUserCounts.cshtml" />
+    <Content Include="Views\TotalUserConunt\TotalUserCountsForAdmin.cshtml" />
+    <Content Include="Views\AddProjectForAdmin\AddProjects.cshtml" />
+    <Content Include="Views\TotalCounts\TotalProjectsSuperAdmin.cshtml" />
+    <Content Include="Views\TimeSheet\AllTimeSheetAdmin.cshtml" />
+    <Content Include="Views\TimeSheet\AllTimeSheetSuperAdmin.cshtml" />
+    <Content Include="Views\TimeSheet\WeeklyStatusSuperAdmin.cshtml" />
+    <Content Include="Views\TimeSheet\WeekApproveRejectSuperAdmin.cshtml" />
     <Content Include="Views\SuperAdmin\ProjectsAssigned.cshtml" />
     <Content Include="Views\Admin\ProjectsAssigned.cshtml" />
     <None Include="Web.Debug.config">
@@ -207,6 +225,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\WeekApproveReject\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSheet.BL\TSheet.BL.csproj">

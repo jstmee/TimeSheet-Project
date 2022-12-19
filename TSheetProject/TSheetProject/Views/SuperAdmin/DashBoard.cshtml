@@ -7,31 +7,10 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<style>
-    #user-Card {
-        background-color: red
-    }
 
-    .count {
-        font-size: 28px;
-        font-weight: 600;
-        font-family: 'Times New Roman', Times, serif
-    }
+<link href="~/Content/css/superAdmins.css" rel="stylesheet" />
 
-    #text-cart {
-        font-size: 22px;
-        font-weight: 500;
-        font-family: 'Times New Roman', Times, serif;
-    }
-    #superAdminHedding{
-        color:black;
-        font-family:'Times New Roman', Times, serif;
-        font-weight:600
-    }
-</style>
-
-
-<h3 id="superAdminHedding">Super Admin Dashboard</h3>
+<h3 id="superAdminHedding" class="pt-5">Super Admin Dashboard</h3>
 <div class="row pt-3">
     <div class="col-lg-3 col-md-6 ">
         <div class="card border-left-dark shadow  py-2">
@@ -63,7 +42,7 @@
         <div class="card border-left-dark shadow  py-2">
             <div class="card-body">
                 <div class=" row">
-                    <div class="col-lg-8" id="text-cart"> <button type="button" class="btn btn-dark" onclick="location.href='@Url.Action("TotalProjects", "TotalCounts")'">
+                    <div class="col-lg-8" id="text-cart"> <button type="button" class="btn btn-dark" onclick="location.href='@Url.Action("TotalProjectsSuperAdmin", "TotalCounts")'">
     Total Project Count
 </button> </div>
                     <div class=" col-lg-4"> <h4 class="count pt-3 pl-4 text-primary">@ViewBag.NoOfProjects</h4></div>

@@ -1,58 +1,66 @@
-﻿
-@model IEnumerable<TSheet.Data.ProjectMaster>
+﻿@model IEnumerable<TSheet.Data.ProjectMaster>
+
 @{
-    ViewBag.Title = "DashBoard";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "TotalProjectsSuperAdmin";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
+
+
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<div  class="pt-3">
-    <button class="btn bg-success text-white">
-        @Html.ActionLink("Add New Projects", "AddProjects", "AddProjectForAdmin" ,"", new {@class="text-white"})
+
+<script>
+    $(Document).ready(function () {
+        $("#UserVirePopup").click(function () {
+            alert
+        })
+    })
+</script>
+
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<div class="p-3">
+    <button class="btn bg-success " type="submit">
+        @Html.ActionLink("Go To Dashboard", "DashBoard", "SuperAdmin", "SuperAdmin", new { @class = "text-white", @id = "SideBar-items" })
     </button>
-   
 </div>
-<div class=" pt-3">
+<div class="p-3">
+
+    <table id="table_id" class="table-bordered">
+        <thead class="bg-dark text-white p-4">
+            <tr class="">
 
 
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" class="table-bordered pt-3">
-        <thead class="bg-dark text-white">
-            <tr>
                 <th class="p-3">
                     @Html.DisplayNameFor(model => model.ProjectName)
                 </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.ProjectDescription)
                 </th>
-                <th>Action</th>
+
+
             </tr>
         </thead>
         <tbody>
+
             @foreach (var item in Model)
             {
-                <tr class="bg-white">
-                    <td class="bg-white p-3">
+                <tr>
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.ProjectName)
                     </td>
-                    <td class="bg-white p-3">
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.ProjectDescription)
                     </td>
-                    @* <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
-                        </td>*@
-                    <td class="bg-white p-3"> @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectID }, null)</td>
                 </tr>
             }
         </tbody>
+
     </table>
     <script type="text/javascript"
             charset="utf8"
@@ -65,3 +73,6 @@
             $("#table_id").dataTable();
         });
     </script>
+</div>
+
+

@@ -1,29 +1,33 @@
 ﻿@model IEnumerable<TSheet.Data.AssignedRole>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <!DOCTYPE html>
 
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<div class="">
-
-    <script>
-        $(Document).ready(function () {
-            $("#UserVirePopup").click(function () {
-                alert
-            })
+<script>
+    $(Document).ready(function () {
+        $("#UserVirePopup").click(function () {
+            alert
         })
-    </script>
+    })
+</script>
 
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<div class="mt-3">
+    <button class="btn bg-success " type="submit">
+        @Html.ActionLink("Go To Dashboard", "DashBoard", "SuperAdmin", "SuperAdmin", new { @class = "text-white", @id = "SideBar-items" })
+    </button>
+</div>
+<div class="p-3">
+
+
     <table id="table_id" class="table-bordered p-3">
         <thead class="bg-dark text-white p-4">
             <tr class="">
@@ -34,7 +38,6 @@
                 <th>
                     Role
                 </th>
-
 
             </tr>
         </thead>
@@ -49,10 +52,7 @@
                     <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Role.RoleName)
                     </td>
-
-
                 </tr>
-
             }
         </tbody>
 
@@ -70,6 +70,3 @@
     </script>
 </div>
 
-<button class="btn bg-success ml-4" type="submit">
-    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
-</button>
