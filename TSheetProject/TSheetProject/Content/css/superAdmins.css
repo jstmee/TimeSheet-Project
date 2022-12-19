@@ -18,3 +18,64 @@ a {
     font-size: 20px;
     
 }
+
+td {
+    border: solid 1px black;
+    background-color: white;
+}
+
+th {
+    border: solid 1px black;
+    background-color: white;
+}
+
+/*create USer*/
+.createUserHedding {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: black
+}
+
+.control-label {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: black
+}
+
+/*Adshboard*/
+#user-Card {
+    background-color: red
+}
+
+.count {
+    font-size: 28px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif
+}
+
+#text-cart {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#superAdminHedding {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600
+}
+
+/*viewUser*/
+*/
+.center {
+    margin: auto;
+    width: 30%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.hedding {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}

@@ -20,6 +20,11 @@
     
 </style>
 
+<div class="mt-3">
+    <button class="btn bg-success">
+        @Html.ActionLink("Go To Back", "AssignRoles", "SuperAdmin", "", new { @class = "text-white", @id = "SideBar-items" })
+    </button>
+</div>
 <div class="center container">
     <h3 class="text-dark text-center" style="font-weight:700;">User's Info</h3>
 
@@ -53,6 +58,4 @@
 
     </dl>
 </div>
-<div class="">
-    <button class="btn bg-primary"> @Html.ActionLink("Dashboard", "DashBoard", "SuperAdmin", new { @class = "text-white", @id = "SideBar-items " })</button>
-  </div>
+

@@ -97,7 +97,7 @@ namespace TSheetProject.Controllers
             
             return View(obj);
         }
-        
+
 
         [HttpGet]
         public ActionResult AllTimeSheet()
@@ -106,7 +106,23 @@ namespace TSheetProject.Controllers
             var alldatatsheet = alltsheetdata();
             return View(alldatatsheet);
         }
-         public ActionResult ApproveTimeSheet()
+
+        public ActionResult AllTimeSheetAdmin()
+        {
+            ViewBag.b = false;
+            var alldatatsheet = alltsheetdata();
+            return View(alldatatsheet);
+        }
+
+        public ActionResult AllTimeSheetSuperAdmin()
+        {
+            ViewBag.b = false;
+            var alldatatsheet = alltsheetdata();
+            return View(alldatatsheet);
+        }
+
+
+        public ActionResult ApproveTimeSheet()
          {
              ViewBag.b = true;
              var alldatatsheet = alltsheetdata();
@@ -172,6 +188,25 @@ namespace TSheetProject.Controllers
               return RedirectToAction("WeeklyStatus");
         }
 
+
+        public ActionResult ApproveSuperAdmin(int masterid)
+        {
+
+            TSheetDB dB = new TSheetDB();
+            var alldatesdata = dB.TimeSheetMasters.Where(x => x.TimeSheetMasterID == masterid).SingleOrDefault().TimeSheetDetails.ToList();
+            foreach (var data in alldatesdata)
+            {
+                TimeSheetAuditTB timeSheetAuditTB = new TimeSheetAuditTB();
+                timeSheetAuditTB.Status = "Approved";
+                timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
+                timeSheetAuditTB.TimeSheetDetailID = data.TimeSheetDetailID;
+                timeSheetAuditTB.UserID = data.TimeSheetMaster.UserID;
+                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
+                dB.SaveChanges();
+            }
+            return RedirectToAction("WeeklyStatusSuperAdmin");
+        }
+
         [HttpGet]
         public ActionResult Reject(int masterid)
         {
@@ -188,9 +223,26 @@ namespace TSheetProject.Controllers
                 dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
                 dB.SaveChanges();
             }
-            return RedirectToAction("WeeklyStatus");
+            return RedirectToAction("WeeklyStatusSuperAdmin");
         }
 
+        public ActionResult RejectSuperAdmin(int masterid)
+        {
+
+            TSheetDB dB = new TSheetDB();
+            var alldatesdata = dB.TimeSheetMasters.Where(x => x.TimeSheetMasterID == masterid).SingleOrDefault().TimeSheetDetails.ToList();
+            foreach (var data in alldatesdata)
+            {
+                TimeSheetAuditTB timeSheetAuditTB = new TimeSheetAuditTB();
+                timeSheetAuditTB.Status = "Rejected";
+                timeSheetAuditTB.ApprovedBy = HttpContext.User.Identity.Name;
+                timeSheetAuditTB.TimeSheetDetailID = data.TimeSheetDetailID;
+                timeSheetAuditTB.UserID = data.TimeSheetMaster.UserID;
+                dB.TimeSheetAuditTBs.Add(timeSheetAuditTB);
+                dB.SaveChanges();
+            }
+            return RedirectToAction("WeeklyStatus");
+        }
 
         [HttpGet]
         public ActionResult WeeklyStatus()
@@ -268,6 +320,82 @@ namespace TSheetProject.Controllers
              return View(viewmodellists);
         }
 
+        public ActionResult WeeklyStatusSuperAdmin()
+        {
+            TSheetDB db = new TSheetDB();
+            var masterdata = db.TimeSheetMasters.ToList();
+            TimeSheetDetail timeSheetDetail = new TimeSheetDetail();
+
+
+            List<WeeklyApproveRejectModel> viewmodellists = new List<WeeklyApproveRejectModel>();
+            foreach (var masterdataitem in masterdata)
+            {
+                WeeklyApproveRejectModel modellist = new WeeklyApproveRejectModel();
+                modellist.TotalHours = masterdataitem.TotalHours;
+                modellist.FromDate = masterdataitem.FromDate;
+                modellist.ToDate = masterdataitem.ToDate;
+                modellist.FirstName = masterdataitem.Registration.FirstName;
+                modellist.LastName = masterdataitem.Registration.LastName;
+                modellist.Id = masterdataitem.TimeSheetMasterID;
+                modellist.Project = masterdataitem.ProjectMaster.ProjectName;
+                modellist.Comment = masterdataitem.Comment;
+
+                var oneweeklog = db.TimeSheetDetails.Where(x => x.TimeSheetMasterID == masterdataitem.TimeSheetMasterID).ToList();
+                int c = 0, d = 0;
+                foreach (var day in oneweeklog)
+                {
+                    var timesheetauditstatus = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == day.TimeSheetDetailID).FirstOrDefault();
+                    if (timesheetauditstatus != null)
+                    {
+                        if (timesheetauditstatus.Status == "Approved")
+                        {
+                            c++;
+                        }
+
+                        if (timesheetauditstatus.Status == "Rejected")
+                        {
+                            d++;
+                        }
+                    }
+                }
+                if (c == oneweeklog.Count())
+                {
+                    modellist.Status = "Week Approved";
+                }
+                else
+                {
+                    modellist.Status = "No Action";
+                }
+
+                if (d == oneweeklog.Count())
+                {
+
+                    modellist.Status = "Week Rejected";
+                }
+                else
+                {
+                    if (modellist.Status == null)
+                    {
+                        modellist.Status = "No Action";
+                    }
+
+                }
+
+
+                /*var matchedid = db.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == timeSheetDetail.TimeSheetDetailID).FirstOrDefault();
+                if (matchedid != null)
+                {
+                    modellist.Status = matchedid.Status;
+                }*/
+
+
+
+                viewmodellists.Add(modellist);
+            }
+            return View(viewmodellists);
+        }
+
+
         [HttpGet]
         public ActionResult WeekApproveReject(int id2)
         {
@@ -290,6 +418,31 @@ namespace TSheetProject.Controllers
                     }
                 }
                  weekInfoModels.Add(model);
+            }
+            return View(weekInfoModels);
+        }
+
+        public ActionResult WeekApproveRejectSuperAdmin(int id2)
+        {
+            TSheetDB dB = new TSheetDB();
+            var detail = dB.TimeSheetDetails.Where(x => x.TimeSheetMasterID == id2).ToList();
+            List<WeekInfoModel> weekInfoModels = new List<WeekInfoModel>();
+            foreach (var detailitem in detail)
+            {
+                WeekInfoModel model = new WeekInfoModel();
+                model.Id = detailitem.TimeSheetDetailID;
+                model.Date = detailitem.Date;
+                model.Hours = (int?)detailitem.Hours;
+                var onedaylog = dB.TimeSheetAuditTBs.Where(x => x.TimeSheetDetailID == detailitem.TimeSheetDetailID).FirstOrDefault();
+
+                if (onedaylog != null)
+                {
+                    if (onedaylog.Status != null)
+                    {
+                        model.Status = onedaylog.Status;
+                    }
+                }
+                weekInfoModels.Add(model);
             }
             return View(weekInfoModels);
         }

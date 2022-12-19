@@ -1,0 +1,18 @@
+﻿
+#ChangePassword_btn {
+    width: 250px;
+    background-color: #03703A
+}
+
+#PassHedding {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:600;
+    color: black
+}
+
+.control-label {
+    font-family: 'Times New Roman', Times, serif;
+    color: black
+}
+
+

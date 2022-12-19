@@ -1,14 +1,23 @@
 ﻿@model List<TSheet.Models.WeekInfoModel>
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "WeekApproveRejectSuperAdmin";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
+
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <style>
     #backbutton {
         float: left;
-        width:180px;
+        width: 180px;
+    }
 
+    #approve {
+        color: white
+    }
+
+    #reject {
+        color: white
     }
 </style>
 <link rel="stylesheet"
@@ -17,7 +26,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <div class="p-3 ">
-    <button id="backbutton" class="btn bg-success ">@Html.ActionLink("Go To Back", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })
+    <button id="backbutton" class="btn bg-success ">
+        @Html.ActionLink("Go To Back", "WeeklyStatusSuperAdmin", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })
     </button>
 </div>
 <div class="p-3 mt-4 ">
@@ -40,8 +50,8 @@
                     <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Hours)</td>
                     <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Status)</td>
                     <td class="bg-white p-3  pl-5">
-                        <button class="btn bg-success w-25 ml-3">@Html.ActionLink("Approve", "Approve", new { id = item.Id }, null) </button>
-                        <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject", new { masterid = item.Id }, null)</button>
+                        <button class="btn bg-success w-25 ml-3">@Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @id = "approve" }) </button>
+                        <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject", new { masterid = item.Id }, new { @id = "reject" })</button>
 
                     </td>
                 </tr>
