@@ -70,11 +70,19 @@ namespace TSheetProject.Controllers
             string message = "";
             using (TSheetDB dB = new TSheetDB())
             {
-
-                var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).SingleOrDefault();
-                getuser.Password= Crypto.Hash(userPassword.Password);
-                dB.SaveChanges();
-                message = "Password Changed successfully";
+                if (ModelState.IsValid)
+                {
+                    var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).SingleOrDefault();
+                    getuser.Password = Crypto.Hash(userPassword.Password);
+                    dB.SaveChanges();
+                    message = "Password Changed successfully";
+                  
+                }
+                else
+                {
+                    message = "Invalid request";
+                    return View(userPassword);
+                }
             }
             ViewBag.Message = message;
             return View();
@@ -82,6 +90,7 @@ namespace TSheetProject.Controllers
 
         [NonAction]
         public int TotalSheet()
+
         {
             int Number;
             TSheetDB db = new TSheetDB();

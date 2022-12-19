@@ -222,12 +222,19 @@ namespace TSheetProject.Controllers
             string message = "";
             using (TSheetDB dB = new TSheetDB())
             {
-                var user = dB.Registrations.Where(a => a.UserID == id).SingleOrDefault();
-                /*Crypto crypto=new Crypto();*/
-                user.Password = Crypto.Hash(resetPassword.Password);
-                dB.SaveChanges();
-                message = "Password Changed successfully";
-               
+                if (ModelState.IsValid)
+                {
+                    var user = dB.Registrations.Where(a => a.UserID == id).SingleOrDefault();
+                    /*Crypto crypto=new Crypto();*/
+                    user.Password = Crypto.Hash(resetPassword.Password);
+                    dB.SaveChanges();
+                    message = "Password Changed successfully";
+                }
+                else
+                {
+                    message = "Invalid Request";
+                    return View(resetPassword);
+                }
             }
             ViewBag.message = message;
             return View();

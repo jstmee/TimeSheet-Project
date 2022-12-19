@@ -245,6 +245,8 @@ namespace TSheetProject.Controllers
             ViewBag.Projects = DisplayProjectList();
             ViewBag.userDates = TempData["Dates"];
             var userdate = ViewBag.userDates[0];
+
+
             ViewBag.userWeek = TempData["WeekNo"];
             //checking views model state is valid or not
             if (ModelState.IsValid)
