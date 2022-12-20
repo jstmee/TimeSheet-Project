@@ -29,9 +29,11 @@
 
     #weekValue {
         font-size: 24px;
-        color: forestgreen;
+        color: white;
         font-family: 'Times New Roman', Times, serif;
         font-weight: 800;
+        background-color: #298029;
+        border-color: #298029;
     }
 
     #date_id-input {
@@ -108,7 +110,7 @@
                     <div class="" id="firstdate"></div>
                 </div>
                 <div class="col-sm-7  " id="weekDate">
-                    <div id="weekValue" class=" col ">Week - @ViewBag.UserWeek  </div>
+                    <button id="weekValue" class=" col w-25">Week - @ViewBag.UserWeek  </button>
                     <div class=" col-md-10"><input type="week" id="date_id" name="userweek" required class="weekdata h-50 w-25  rounded col" onchange="this.form.submit()" placeholder="Select Week" /></div>
                 </div>
             </div>
@@ -213,7 +215,7 @@
     <td>
 
         @Html.HiddenFor(m => Model[i].ProjectId)
-        @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "border-white" })
+        @Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white" })
         @Html.HiddenFor(m => Model[i].ProjectName)
         @*@Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white", @readonly = "true" })*@
 

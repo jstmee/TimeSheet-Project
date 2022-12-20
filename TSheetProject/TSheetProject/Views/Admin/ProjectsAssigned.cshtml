@@ -6,48 +6,60 @@
 
 
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<link rel="stylesheet"
-      type="text/css"
-      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-<table id="table_id" class=" table-bordered">
-    <thead class="bg-dark text-white">
+<style>
+    #hedding {
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        font-weight: 600
+    }
+</style>
 
-        <tr>
-            <th class="p-3">
-                Name
-            </th>
-            <th>
-                Project
-            </th>
+<link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<h4 class="pt-4  ml-3 pl-2" id="hedding">Projects Assigned To Users</h4>
+<div class="pt-1 pl-4 mr-2 ml-2">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+    <table id="table_id" class=" table-bordered">
+        <thead class="bg-dark text-white">
 
-        </tr>
-    </thead>
-    <tbody>
+            <tr>
+                <th class="p-3">
+                    Name
+                </th>
+                <th>
+                    Project
+                </th>
 
-        @foreach (var item in Model)
-        {
-            <tr class="bg-white">
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white">
                     <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Registration.FirstName) @Html.DisplayFor(modelItwm => item.Registration.LastName)
                     </td>
 
-                <td class="p-3">
-                    @Html.DisplayFor(modelItem => item.ProjectMaster.ProjectName)
-                </td>
+                    <td class="p-3">
+                        @Html.DisplayFor(modelItem => item.ProjectMaster.ProjectName)
+                    </td>
 
 
-            </tr>
-        }
-    </tbody>
-</table>
-<script type="text/javascript"
-        charset="utf8"
-        src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-<script type="text/javascript"
-        charset="utf8"
-        src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-<script>
-    $(function () {
-        $("#table_id").dataTable();
-    });
-</script>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript"
+            charset="utf8"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#table_id").dataTable();
+        });
+    </script>

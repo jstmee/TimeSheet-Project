@@ -217,6 +217,7 @@
     <Content Include="Views\TimeSheet\WeekApproveRejectSuperAdmin.cshtml" />
     <Content Include="Views\SuperAdmin\ProjectsAssigned.cshtml" />
     <Content Include="Views\Admin\ProjectsAssigned.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

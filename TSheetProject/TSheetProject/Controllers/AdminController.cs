@@ -95,7 +95,33 @@ namespace TSheetProject.Controllers
 
             return View(allassignedprojects);
         }
-        
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(ChangeUserPassword userPassword)
+        {
+            string message = "";
+            using (TSheetDB dB = new TSheetDB())
+            {
+                if (ModelState.IsValid)
+                {
+                    var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).SingleOrDefault();
+                    getuser.Password = Crypto.Hash(userPassword.Password);
+                    dB.SaveChanges();
+                    message = "Password Changed successfully";
+
+                }
+                else
+                {
+                    message = "Invalid request";
+                    return View(userPassword);
+                }
+            }
+            ViewBag.Message = message;
+            return View();
+        }
 
     }
 }

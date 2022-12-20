@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="~/Content/css/TSheetCSS/css/demo.css" rel="stylesheet" />
     <link href="~/Content/css/TSheetCSS/css/styles.css" rel="stylesheet" />
-    <title> CSS Sidebar Menu with icons Example</title>
+    <title> User</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <!-- jQuery -->
@@ -26,20 +26,27 @@
     </script>
     <style>
         .loginName{
-            padding-left:1250px;
+            padding-left:100%;
+            float:left
         }
         button{
             margin-left:100px;
+        }
+        .Tm {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight:700;
+            color: #06479A;
+            font-size:18px
         }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <div class="top_navbar bg-white shadow-sm">
-            
-            <button id="go" class=" pl-3 pr-3 ml-4"><i class="fa-solid fa-bars h2"></i></button>
-            <ul class="nav navbar-nav navbar-right ">
+        <div class="top_navbar bg-white shadow-sm row">
+           <h4 class="pl-3 pt-2 Tm">TIME <br /> MANAGE</h4>
+            <button id="go" class="col-lg-1 col-md-2 ml-2 bg-white border-white "><i class="fa-solid fa-bars h2"></i></button>
+            <ul class="nav navbar-nav navbar-right col-lg-8 col-md-7">
                 <li class="loginName">@HttpContext.Current.User.Identity.Name</li>
                 <li class="loginName">@Html.ActionLink("Logout", "Logout", "Account")</li>
             </ul>
@@ -60,9 +67,9 @@
                         <li>
                             @Html.ActionLink("Time Sheet ", "TimeLog", "TimeLogging", "TimeLogging", new { @class = "title" })
                         </li>
-                        <li>
+                        @*<li>
                             @Html.ActionLink("All Time Sheet ", "AllTimeSheet", "TimeSheet", "TimeSheet", new { @class = "title" })
-                        </li>
+                        </li>*@
                         <li>
                             @Html.ActionLink("Change Password", "ChangePassword", "User", "User", new { @class = "title" })
                         </li>
