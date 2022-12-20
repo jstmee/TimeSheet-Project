@@ -212,8 +212,10 @@
 <tr>
     <td>
 
-                @Html.HiddenFor(m => Model[i].ProjectId)
-                @Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white" })
+        @Html.HiddenFor(m => Model[i].ProjectId)
+        @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "border-white" })
+        @Html.HiddenFor(m => Model[i].ProjectName)
+        @*@Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white", @readonly = "true" })*@
 
 
     </td>
