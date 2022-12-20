@@ -571,6 +571,36 @@ namespace TSheetProject.Controllers
             }
             return RedirectToAction("WeekApproveReject", new { id2 = masterid });
         }
+
+
+        public ActionResult approve1(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var details=dB.TimeSheetAuditTBs.Where(a=>a.TimeSheetDetailID==id).SingleOrDefault();
+            if (details != null)
+            {
+                details.Status = "Approved";
+                dB.SaveChanges();
+
+            }
+            var getmasterid = dB.TimeSheetDetails.Where(a => a.TimeSheetDetailID == id).SingleOrDefault().TimeSheetMasterID;
+            /*return RedirectToAction("WeeklyStatus", "TimeSheet");*/
+            return RedirectToAction("WeekApproveReject", "TimeSheet", new { id2 = getmasterid });
+            /*return View();*/
+        }
+        public ActionResult reject1(int id)
+        {
+            TSheetDB dB = new TSheetDB();
+            var details = dB.TimeSheetAuditTBs.Where(a => a.TimeSheetDetailID == id).SingleOrDefault();
+            if (details != null)
+            {
+                details.Status = "Rejected";
+                dB.SaveChanges();
+
+            }
+            var getmasterid = dB.TimeSheetDetails.Where(a => a.TimeSheetDetailID == id).SingleOrDefault().TimeSheetMasterID;
+            return RedirectToAction("WeekApproveReject", "TimeSheet", new { id2 = getmasterid });
+        }
         [NonAction]
         public List<AllTimeSheetModel> alltsheetdata()
         {

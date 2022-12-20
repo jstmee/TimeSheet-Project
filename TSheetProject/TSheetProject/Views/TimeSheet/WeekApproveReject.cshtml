@@ -40,8 +40,8 @@
                     <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Hours)</td>
                     <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Status)</td>
                     <td class="bg-white p-3  pl-5">
-                        <button class="btn bg-success w-25 ml-3">@Html.ActionLink("Approve", "Approve", new { id = item.Id }, null) </button>
-                        <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject", new { masterid = item.Id }, null)</button>
+                        <button class="btn bg-success w-25 ml-3">@Html.ActionLink("Approve", "Approve1", new {id = item.Id }, null) </button>
+                        <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject1", new { id = item.Id }, null)</button>
 
                     </td>
                 </tr>
