@@ -14,27 +14,40 @@
             // Get the scroll position from the cookie or sessionStorage object
             var scrollX = ~~(document.cookie.split("scrollX=")[1] || sessionStorage.getItem("scrollX"));
             var scrollY = ~~(document.cookie.split("scrollY=")[1] || sessionStorage.getItem("scrollY"));
-            
+
             // Scroll to the saved scroll position
             window.scrollTo(scrollX, scrollY);
         })
     })
-   
+
 </script>
 
 <style>
     #approve {
         color: white
     }
+
     #reject {
         color: white
     }
+
+   #table_id {
+        width: 1260px;
+        overflow:scroll;
+    }
+    #hedding {
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        font-weight: 600
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<h4 class="pt-4  ml-4 pl-2" id="hedding">Weekly Aprrove - Reject</h4>
+<div class="pt-2 pl-4 p-2">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 
-<div class="p-3">
-    
-    <table id="table_id" class="table-bordered">
+    <table id="table_id" class="table-bordered table-striped ">
         <thead class="bg-dark text-white p-4">
             <tr>
                 <th scope="col" class="p-3">Name</th>
@@ -44,7 +57,7 @@
                 <th scope="col">Comment</th>
                 <th scope="col">Status</th>
                 <th>Day Logs</th>
-                <th>Approve/Reject</th>
+                <th> Approve-Reject</th>
                 @*<th scope="col">Details</th>
                     <th scope="col">Delete</th>*@
             </tr>
@@ -54,21 +67,21 @@
             {
                 <tr class="bg-white">
 
-                    <td class="bg-white " id="NameWeeklyStetus" >
-                        @Html.DisplayFor(modelItem => item.FirstName) 
+                    <td class="bg-white " id="NameWeeklyStetus">
+                        @Html.DisplayFor(modelItem => item.FirstName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
 
                     <td class="text-center  bg-white "><div>@Html.DisplayFor(modelItem => item.FromDate)</div><div>To</div><div>@Html.DisplayFor(modelItem => item.ToDate)</div></td>
                     <td class="text-center  bg-white ">@Html.DisplayFor(modelItem => item.TotalHours)</td>
                     <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Project)</td>
-                    <td class="text-center bg-white " >@Html.DisplayFor(modelItem => item.Comment)</td>
+                    <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Comment)</td>
                     <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Status)</td>
 
                     <td class="text-center bg-white ">@Html.ActionLink("View", "WeekApproveReject", "TimeSheet", new { id2 = item.Id }, null)</td>
                     <td class="text-center bg-white ">
-                        <div > <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "Approve", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve" })</button> </div>
-                        <div  pt-2"><button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject" })</button></div>
+                        <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "Approve", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve" })</button>
+                        <button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject" })</button>
                     </td>
                     @* <td><button type="button" class="btn btn-success">Approve</button> <button type="button" class="btn btn-danger">Reject</button></td>*@
                     @*<td>@Html.ActionLink("Approve","Approve", new {id=item.Id},null</td>*@
