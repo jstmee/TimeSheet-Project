@@ -22,7 +22,7 @@ namespace TSheet.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
+        public string dob { get; set; }
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Must be at least 6 characters")]
@@ -41,14 +41,14 @@ namespace TSheet.Models
         public string MobileNumber { get; set; }
         [Required(ErrorMessage = "Gender Required")]
         public string Gender { get; set; }
-        [Required(ErrorMessage ="DateOfBirth is Required")]
-        [Display(Name = "Date of Birth")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
-        /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]*/
-        [MinimumAge(18, ErrorMessage ="Age must be older than 18")]
-        public DateTime? DateOfBirth { get; set; }
+        /*[Required(ErrorMessage ="DateOfBirth is Required")]*/
+        [DataType(DataType.Date)]
+        [Display(Name = "Date of Birth")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        /* [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*/
+        /*[MinimumAge(18, ErrorMessage ="Age must be older than 18")]*/
+        public DateTime DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]

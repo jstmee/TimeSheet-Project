@@ -21,6 +21,7 @@
                 <th class="p-3">
                     Name
                 </th>
+                <th>Project</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
                 </th>
@@ -39,14 +40,21 @@
                         @Html.DisplayFor(modelItem => item.Registration.FirstName)
                         @Html.DisplayFor(modelItem => item.Registration.LastName)
                     </td>
-                    <td  class="p-3 bg-white">
+                    
+                    <td class="bg-white">@Html.DisplayFor(modelItem => item.TimeSheetDetail.TimeSheetMaster.ProjectMaster.ProjectName)</td>
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
-                    <td  class="p-3 bg-white">
+                    <td class="p-3 bg-white">
                         @Html.DisplayFor(modelItem => item.ApprovedBy)
                     </td>
-                    <td  class="p-3 bg-white">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Date)</td>
-                    <td  class="p-3 bg-white">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
+                    <td class="p-3 bg-white">
+                        @{
+                            var formattedDate = String.Format("{0:d}", item.TimeSheetDetail.Date);
+                        }
+                        @Html.DisplayFor(modelItem => formattedDate)
+                    </td>
+                    <td class="p-3 bg-white">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
                 </tr>
             }
         </tbody>

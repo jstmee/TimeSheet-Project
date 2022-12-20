@@ -8,6 +8,8 @@ namespace TSheet.Data
 
     public partial class Registration
     {
+        public string dob;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Registration()
         {
