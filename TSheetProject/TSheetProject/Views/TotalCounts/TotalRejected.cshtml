@@ -8,13 +8,19 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+    table {
+        width: 1240px;
+    }
+</style>
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-<div>
+<div class="pt-5 pl-4 ml-3">
     <button class="btn bg-success"> @Html.ActionLink("Go To Dashboard", "DashBoard", "User", "User", new { @class = "text-white", @id = "SideBar-items" })</button>
 </div>
-<div class="pt-2">
+<div class="pt-2 ml-5 mr-3">
     <table id="table_id" class="table-bordered">
         <thead class="bg-dark text-white">
             <tr>

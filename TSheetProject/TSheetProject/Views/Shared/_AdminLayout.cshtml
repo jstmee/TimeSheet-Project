@@ -1,74 +1,96 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/css/TSheetCSS/AdminLayout.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <link href="~/Content/css/TSheetCSS/css/demo.css" rel="stylesheet" />
+    <link href="~/Content/css/TSheetCSS/css/styles.css" rel="stylesheet" />
+    <title> tm</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- SideBar-Menu CSS -->
+
+    <link href="~/Content/css/TSheetCSS/css/demo.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $(".hamburger .hamburger__inner").click(function () {
+                $(".wrapper").toggleClass("active")
+            })
+
+            $(".top_navbar .fas").click(function () {
+                $(".profile_dd").toggleClass("active");
+            });
+        })
+    </script>
+    <style>
+        .loginName {
+            padding-left: 1200px;
+        }
+    </style>
 </head>
 <body>
 
+    <div class="wrapper">
+        <div class="top_navbar bg-white shadow-sm">
 
-    <div id="mySidenav" class="sidenav">
-
-        <h3 class=" sideBarTitle text-center">Time Sheet</h3>
-        <div class="sideBarItems ">
-
-            <h5 class="">  @Html.ActionLink("Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
-
-            <h5 class=""> @Html.ActionLink("Create User", "CreateUser", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
-
-            <h5 class="">  @Html.ActionLink("All Time Sheet", "AllTimeSheetAdmin", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-
-            <h5 class="">@Html.ActionLink("Approve/Reject TimeSheet", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })</h5>
-
-            <h5 class="">@Html.ActionLink("Show Users", "ShowUser", "Admin", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
-
-            <h5 class="">@Html.ActionLink("Projects List", "ProjectList", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
-            <h5 class="">@Html.ActionLink("Projects Assigned", "ProjectAssigned", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })</h5>
-            <h5 class=""> @Html.ActionLink("Change Password", "ChangePassword", "User", "", new { @class = "text-white", @id = "SideBar-items" })</h5>
+            <button id="go" class="ml-2 pl-3 pr-3 ml-4"><i class="fa-solid fa-bars h2"></i></button>
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="loginName">@HttpContext.Current.User.Identity.Name</li>
+                <li class="loginName">@Html.ActionLink("Logout", "Logout", "Account")</li>
+            </ul>
 
         </div>
-    </div>
 
+        <div class="main_container">
+            <div class="sidebar">
+                <div class="sidebar__inner">
 
-    <div id="main" class="">
-        <div class="shadow-sm p-3">
-            <nav class="navbar navbar-inverse  ">
-                <div class="">
-                    <ul class="nav navbar-nav navbar-right ">
-                        <li>@HttpContext.Current.User.Identity.Name</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    <ul>
+                        <li>
+                            <h4 class="text-center" id="timesheetlogo">TIME SHEET</h4>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Dashboard", "DashBoard", "Admin", "Admin", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Create User", "CreateUser", "Admin", "Admin", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("All Time Sheet", "AllTimeSheetAdmin", "TimeSheet", "TimeSheet", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Approve/Reject TSheet", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Show Users", "ShowUser", "Admin", "", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Projects List", "ProjectList", "Admin", "Admin", new { @class = "title" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Change Password", "ChangePassword", "User", "", new { @class = "title" })
+                        </li>
                     </ul>
                 </div>
-            </nav>
-        <a href="javascript:void(0)" class="closebtn pl-2 h1 pt-2" onclick="closeNav()">	&#9666;</a>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-    </div>
-
-        @RenderBody()
+            </div>
+        </div>
+        <div class="userBox">
+            @RenderBody()
+        </div>
 
     </div>
 
     <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            document.body.style.backgroundColor = "rgba(0,0,0,0.)";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-            document.body.style.backgroundColor = "white";
-        }
+        $(document).ready(function () {
+            $("#go").click(function () {
+                $(".main_container").animate({
+                    width: "toggle"
+                });
+            });
+        });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-

@@ -10,12 +10,16 @@
  <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<style>
+   table{
+        width:1240px;
+    }
+</style>
 
-
- <div class="">
+ <div class=" pt-5 ml-4 pl-4">
      <button class="btn bg-success"> @Html.ActionLink("Go To Dashboard", "DashBoard", "User", "User", new { @class = "text-white" })</button>
  </div>
-    <div class="pt-2">
+    <div class="pt-2 pl-4">
         <table id="table_id" class="table-bordered">
             <thead class="bg-dark text-white">
 

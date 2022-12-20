@@ -15,17 +15,23 @@
         })
     })
 </script>
+<style>
+    table{
+        width:1500px;
+    }
+     #hedding {
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        font-weight: 600
+    }
+</style>
 
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 
-<div class=" pt-3" >
-    <button class="btn bg-success " type="submit">
-        @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
-    </button>
-</div>
-<div class=" p-2">
+<h4 class="pt-4  ml-5" id="hedding">All Users</h4>
+<div class=" p-2 pl-5 mr-2 mb-2 pt-2">
     <table id="table_id" class="table-bordered ">
         <thead class="bg-dark text-white p-4">
             <tr class="">

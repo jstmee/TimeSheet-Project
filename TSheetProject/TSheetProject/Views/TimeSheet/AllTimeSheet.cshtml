@@ -9,14 +9,26 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-
-<div class="pt-3 p-2">
+<style>
+    #tabled {
+        width: 1250px;
+       
+        height:42px
+    }
+    #hedding{
+        font-family:'Times New Roman', Times, serif;
+        color:black;
+        font-weight:600
+    }
+   
+</style>
+<h4 class="pt-4  ml-5 pl-3" id="hedding">All Time Sheet</h4>
+<div class="  ml-5 pl-2" id="tabled">
     <link rel="stylesheet"
           type="text/css"
           href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 
-    <table id="table_id" class="table-bordered table-striped">
+    <table id="table_id" class="table-bordered table-striped ">
         <thead class="bg-dark text-white">
             <tr>
                 <th class="p-3">Project Name</th>
@@ -41,7 +53,6 @@
         <tbody>
             @foreach (var item in Model)
             {
-
 
                 <tr class="bg-white">
                     <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
@@ -81,6 +92,7 @@
         </tbody>
     </table>
 
+    </div>
     <script type="text/javascript"
             charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>

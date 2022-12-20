@@ -105,6 +105,8 @@
     <Content Include="Content\css\TSheetCSS\AdminDashBoard.css" />
     <Content Include="Content\css\TSheetCSS\AdminLayout.css" />
     <Content Include="Content\css\TSheetCSS\ChangePass.css" />
+    <Content Include="Content\css\TSheetCSS\css\demo.css" />
+    <Content Include="Content\css\TSheetCSS\css\styles.css" />
     <Content Include="Content\css\TSheetCSS\demodemo.css" />
     <Content Include="Content\css\TSheetCSS\ShowUser_ViewUser.css" />
     <Content Include="Content\css\TSheetCSS\SuperAdminLayout.css" />
