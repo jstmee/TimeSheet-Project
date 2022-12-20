@@ -104,6 +104,7 @@ namespace TSheetProject.Controllers
         [HttpGet]
         public ActionResult EditUser(RegistrationModel user)
         {
+            
             TSheetDB dB = new TSheetDB();
             
             ViewBag.projectlist = GetProjectList();
@@ -118,22 +119,23 @@ namespace TSheetProject.Controllers
         [HttpPost]
         public ActionResult edit1(RegistrationModel user)
         {
-            
+
+            string message = "";
             ViewBag.projectlist = GetProjectList();
             ViewBag.Roles = GetRolesList();
             TSheetDB db=new TSheetDB();
-            if (user.FirstName!=null && user.LastName!=null && user.DateOfBirth!=null && user.Gender!=null && user.Email!=null && user.MobileNumber!=null  && user.AssignProject!=null )
+            if (user.FirstName != null && user.LastName != null && user.DateOfBirth != null && user.Gender != null && user.Email != null && user.MobileNumber != null && ((user.AssignProject != null && user.AssignedRole != null) || (user.AssignedRole != null && user.AssignProject == null)))
             {
 
-                var v = db.Registrations.Where(a => a.UserID == user.Id).FirstOrDefault();
-                v.DateOfbirth = user.DateOfBirth;
-                v.FirstName = user.FirstName;
-                v.LastName = user.LastName;
-                v.Email = user.Email;
-                v.MobileNumber = user.MobileNumber;
-                v.IsActive = user.IsActive;
-                v.Gender = user.Gender;
-                v.DateOfLeaving = user.DateOfLeaving;
+                var registereduser = db.Registrations.Where(a => a.UserID == user.Id).FirstOrDefault();
+                registereduser.DateOfbirth = user.DateOfBirth;
+                registereduser.FirstName = user.FirstName;
+                registereduser.LastName = user.LastName;
+                registereduser.Email = user.Email;
+                registereduser.MobileNumber = user.MobileNumber;
+                registereduser.IsActive = user.IsActive;
+                registereduser.Gender = user.Gender;
+                registereduser.DateOfLeaving = user.DateOfLeaving;
                 
 
                 
@@ -147,8 +149,8 @@ namespace TSheetProject.Controllers
                 var userrow = db.Registrations.Where(r => r.Email == LoggedUser).FirstOrDefault();
                 var UserIdLogged = userrow.UserID;
 
-                v.UpdatedOn = DateTime.Now;
-                v.EditedBy = UserIdLogged.ToString();
+                registereduser.UpdatedOn = DateTime.Now;
+                registereduser.EditedBy = UserIdLogged.ToString();
                 db.SaveChanges();
                 assignedRole.CreatedById = UserIdLogged;
                 assignedRole.UpdatedById = 0;
@@ -161,6 +163,7 @@ namespace TSheetProject.Controllers
                 projectMapping.UserID = user.Id;
                 db.DescriptionAndProjectMappings.Add(projectMapping);
                 db.SaveChanges();
+                message = "Edited Successfully";
                 return RedirectToAction("AssignRoles", "SuperAdmin");
 
 
@@ -168,10 +171,9 @@ namespace TSheetProject.Controllers
             }
             else
             {
+               
                 return View("EditUser");
             }
-
-            
         }
 
         public ActionResult AddProjects()

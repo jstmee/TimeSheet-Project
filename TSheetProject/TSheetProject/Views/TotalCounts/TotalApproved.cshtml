@@ -24,6 +24,7 @@
                 <th class="p-3">
                     Name
                 </th>
+                <th>Project</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
                 </th>
@@ -38,18 +39,25 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                        @Html.DisplayFor(modelItem => item.Registration.LastName)
+                    <td class="bg-white">
+                        @Html.DisplayFor(modelItem => item.TimeSheetDetail.TimeSheetMaster
+                   .ProjectMaster.ProjectName)
                     </td>
+                    <td>@Html.DisplayFor(modelItem =>item.TimeSheetDetail.TimeSheetMaster.ProjectMaster.ProjectName)</td>
                     <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.ApprovedBy)
                     </td>
-                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Date)</td>
-                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
+                    <td class="bg-white p-3">
+                        @{
+                            var formattedDate = String.Format("{0:d}", item.TimeSheetDetail.Date);
+                        }
+                        @Html.DisplayFor(modelItem => formattedDate)
+
+
+<td class="bg-white p-3">@Html.DisplayFor(modelItem => item.TimeSheetDetail.Hours)</td>
 
                 </tr>
             }

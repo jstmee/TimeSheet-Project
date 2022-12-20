@@ -14,7 +14,7 @@
     <thead class="bg-dark text-white">
 
         <tr>
-            <th>
+            <th  class="p-3">
                 Name
             </th>
             <th>
@@ -28,10 +28,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="bg-white">
+                <td class="bg-white p-3">
                     @Html.DisplayFor(modelItem => item.Registration.FirstName) @Html.DisplayFor(modelItem => item.Registration.LastName)
                 </td>
-                <td class="bg-white">
+                <td class="bg-white p-3">
                     @Html.DisplayFor(modelItem => item.ProjectMaster.ProjectName)
                 </td>
             </tr>

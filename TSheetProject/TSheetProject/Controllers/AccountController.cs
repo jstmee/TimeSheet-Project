@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TSheet.BL;
 using TSheet.Data;
 using TSheet.Models;
 
@@ -26,8 +27,8 @@ namespace TSheetProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
-                    bool isValidUser = db.Registrations.Any(u => u.Email == login.Email && u.Password == login.Password);
+                    var encryptedpass = Crypto.Hash(login.Password);
+                    bool isValidUser = db.Registrations.Any(u => u.Email == login.Email && u.Password == encryptedpass);
 
                     if (isValidUser)
                     {
@@ -35,7 +36,8 @@ namespace TSheetProject.Controllers
                         var userlogin = db.Registrations.Where(a => a.Email == login.Email).FirstOrDefault();
                         if (userlogin != null)
                         {
-                            if (userlogin.Password == login.Password)
+                            
+                            if (userlogin.Password == encryptedpass)
                             {
                                 var userloginid = userlogin.UserID;
                                 var userassignedrole = db.AssignedRoles.Where(a => a.UserID == userloginid).FirstOrDefault();
