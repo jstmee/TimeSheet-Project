@@ -12,12 +12,15 @@ namespace TSheet.Models
     public class RegistrationModel
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "First Name is required")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
         [Required(ErrorMessage = "Last Name is required")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
         [Required(ErrorMessage = "The email address is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
@@ -42,13 +45,13 @@ namespace TSheet.Models
         [Required(ErrorMessage = "Gender Required")]
         public string Gender { get; set; }
 
-        /*[Required(ErrorMessage ="DateOfBirth is Required")]*/
-        [DataType(DataType.Date)]
+        [Required(ErrorMessage ="DateOfBirth is Required")]
         [Display(Name = "Date of Birth")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        /* [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]*/
-        /*[MinimumAge(18, ErrorMessage ="Age must be older than 18")]*/
-        public DateTime DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]*/
+        [MinimumAge(18, ErrorMessage ="Age must be older than 18")]
+        public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -65,10 +68,12 @@ namespace TSheet.Models
         public string CreatedBy { get; set; }*/
         [Required(ErrorMessage = "This field is required")]
         public bool IsActive { get; set; }
+
         [Display(Name = "Date of Joining")]
         [DataType(DataType.Date)]
         /*[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]*/
         public DateTime DateOfJoining { get; set; }
+
         [Display(Name = "Date of Leaving")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:yyyy-MM-dd}")]

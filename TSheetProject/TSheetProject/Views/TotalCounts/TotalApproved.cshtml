@@ -35,9 +35,9 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                        @Html.DisplayFor(modelItem => item.Registration.LastName)
+                    <td class="bg-white">
+                        @Html.DisplayFor(modelItem => item.TimeSheetDetail.TimeSheetMaster
+                   .ProjectMaster.ProjectName)
                     </td>
                     <td>@Html.DisplayFor(modelItem =>item.TimeSheetDetail.TimeSheetMaster.ProjectMaster.ProjectName)</td>
                     <td class="bg-white p-3">

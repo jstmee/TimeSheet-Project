@@ -95,19 +95,19 @@
                                     @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-sm" })
                                     <div class="col-md-10">
                                         @*@Html.DisplayFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })*@
-                                        @{ 
+                                       @* @{ 
                                             var formattedDate = String.Format("{0:d}", Model.DateOfBirth);
                                         }
                                        <input type="text", value="@formattedDate" />
-
+*@
 
                                       @* @Html.TextBoxFor(model => formattedDate)*@
-                                       @* @Html.TextBoxFor(model => model.DateOfBirth, "{0:d}", new
+                                        @Html.EditorFor(model => model.DateOfBirth, "{0:d}", new
                                    {
                                        @class = "form-control",
 
                                    })
-                                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })*@
+                                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
 
 
                                     </div>

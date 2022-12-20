@@ -207,13 +207,15 @@
         </th>
 
 <tr>
-            <td>
+    <td>
 
-                @Html.HiddenFor(m => Model[i].ProjectId)
-                @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "border-white" })
+        @Html.HiddenFor(m => Model[i].ProjectId)
+        @Html.DisplayFor(m => Model[i].ProjectName, new { @class = "border-white" })
+        @Html.HiddenFor(m => Model[i].ProjectName)
+        @*@Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white", @readonly = "true" })*@
 
 
-            </td>
+    </td>
             <td>
                 @Html.HiddenFor(m => Model[i].MondayLogTimeId)
                 @Html.TextBoxFor(m => Model[i].MondayLogTime, new { placeholder = "0.0" ,@class="rounded1" })
