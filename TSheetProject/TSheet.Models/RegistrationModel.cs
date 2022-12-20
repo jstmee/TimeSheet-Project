@@ -50,7 +50,7 @@ namespace TSheet.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         /*[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]*/
-        [MinimumAge(18, ErrorMessage ="Age must be older than 18")]
+        /*[MinimumAge(18, ErrorMessage ="Age must be older than 18")]*/
         public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
