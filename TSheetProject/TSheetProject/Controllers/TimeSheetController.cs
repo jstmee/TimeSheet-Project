@@ -269,7 +269,7 @@ namespace TSheetProject.Controllers
                     dB.SaveChanges();
                 }
             }
-            return RedirectToAction("WeeklyStatusSuperAdmin");
+            return RedirectToAction("WeeklyStatus");
         }
 
         public ActionResult RejectSuperAdmin(int masterid)
@@ -361,18 +361,6 @@ namespace TSheetProject.Controllers
                     modellist.Status = "No Action";
                 }
 
-
-
-
-                
-                
-                
-
-
-                
-                
-
-
                 viewmodellists.Add(modellist);
             }
              return View(viewmodellists);
@@ -436,19 +424,6 @@ namespace TSheetProject.Controllers
                 {
                     modellist.Status = "No Action";
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
                 viewmodellists.Add(modellist);
             }
             return View(viewmodellists);

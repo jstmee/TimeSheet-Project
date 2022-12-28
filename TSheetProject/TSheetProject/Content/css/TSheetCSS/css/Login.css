@@ -1,0 +1,44 @@
+﻿#Login-Box {
+    width: 420px;
+    background-color: #EEF8FE;
+    border-radius: 17px;
+    margin-left: 700px;
+    margin-top: 200px
+}
+
+#Login-input {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#input-box-btn {
+    background-color: #054973;
+    width: 385px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#login-hedding {
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.control-label {
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#llc {
+    font-weight: 500;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+i {
+    font-size: 28px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-image: url('../../content/css/tsheetimg/group 35579 (1).png');
+    background-repeat: no-repeat;
+    margin-left: 20px;
+}

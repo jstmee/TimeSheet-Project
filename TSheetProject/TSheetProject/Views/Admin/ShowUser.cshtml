@@ -5,6 +5,7 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/TSheetCSS/css/AllAdmin.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -16,95 +17,87 @@
     })
 </script>
 <style>
-    table{
-        width:1500px;
-    }
-     #hedding {
-        font-family: 'Times New Roman', Times, serif;
-        color: black;
-        font-weight: 600
-    }
 </style>
-
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<body id="adminBody">
+    <h4 class=" ml-4 AdminTitle " id="Adminhedding">All Users</h4>
+    <div class=" p-2 pl-4 mr-3 mb-2 pt-2">
+        <table id="table_id" class="table-bordered shadow ">
+            <thead class="bg-dark text-white p-4">
+                <tr class="">
+                    <th class="p-3">
+                        Name
+                    </th>
 
-<h4 class="pt-4  ml-5" id="hedding">All Users</h4>
-<div class=" p-2 pl-5 mr-2 mb-2 pt-2">
-    <table id="table_id" class="table-bordered ">
-        <thead class="bg-dark text-white p-4">
-            <tr class="">
-                <th class="p-3">
-                    Name
-                </th>
+                    <th>
 
-                <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
 
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNumber)
+                    </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.MobileNumber)
-                </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
-                </th>
-
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white">
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.MobileNumber)
-                    </td>
-
-                    <td class="bg-white p-3 text-center">
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-
-                    @if (item.IsActive == true)
-                    {
-                        <td class="bg-white p-3 text-center">Yes</td>
-                    }
-                    else
-                    {
-                        <td class="bg-white text-center p-3">No</td>
-                    }
-                    <td class="bg-white p-3 UserVirePopup text-center">@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
-
+                    <th>Action</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
 
-            }
-        </tbody>
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.MobileNumber)
+                        </td>
 
-    </table>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
-</div>
+                        <td class="bg-white p-3 text-center">
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+
+                        @if (item.IsActive == true)
+                        {
+                            <td class="bg-white p-3 text-center">Yes</td>
+                        }
+                        else
+                        {
+                            <td class="bg-white text-center p-3">No</td>
+                        }
+                        <td class="bg-white p-3 UserVirePopup text-center">@Html.ActionLink("View", "ViewUser", new { id = item.UserID })</td>
+
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#table_id").dataTable();
+            });
+        </script>
+    </div>
+</body>
 

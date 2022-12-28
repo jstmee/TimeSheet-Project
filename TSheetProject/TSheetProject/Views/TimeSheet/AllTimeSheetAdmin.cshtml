@@ -6,102 +6,95 @@
 }
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
-<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" /><style>
-    table {
-        width: 1250px;
-    }
-    #hedding {
-        font-family: 'Times New Roman', Times, serif;
-        color: black;
-        font-weight: 600
-    }
-</style>
+<link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/TSheetCSS/css/AllAdmin.css" rel="stylesheet" />
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<h4 class="pt-4  ml-5" id="hedding">All Time Sheet</h4>
-<div class="pt-3 p-2 pt-4 pl-4 ml-2">
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<body id="adminBody">
+    <h4 class="  ml-4" id="Adminhedding">All Time Sheet</h4>
+    <div class="pt-3 p-2 pt-4 pl-4 pr-4 ml-2">
 
-    <table id="table_id" class="table-bordered table-striped">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th class="p-3">Project Name</th>
-                @if (ViewBag.Showname == true)
-                {
-                    <th>Name</th>
-                }
-
-                <th class="p-3"> Hours</th>
-                <th class="p-3">Date</th>
-                <th class="p-3">Created On</th>
-
-                @if (ViewBag.b == true)
-                {
-                    <th>Approve/Reject</th>
-                    <th>Status</th>
-                }
-
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-
-
-                <tr class="bg-white">
-                    <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
-                    @* @Html.HiddenFor(modelItem=>item.TimeSheetDetailID)*@
+        <table id="table_id" class="table-bordered table-striped ">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th class="p-3">Project Name</th>
                     @if (ViewBag.Showname == true)
                     {
-                        <td class="p-3 bg-white">
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
+                        <th>Name</th>
                     }
 
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
-                    <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
-                    @Html.HiddenFor(modelItem => item.TimeSheetDetailID, new { @id = "timeSheetDetailId" })
-                    @Html.HiddenFor(modeItem => item.UserUniqueId, new { @id = "id2" })
-                    @*<input type="hidden" value="@item.TimeSheetDetailID" id="timeSheetDetailId"/>*@
+                    <th class="p-3"> Hours</th>
+                    <th class="p-3">Date</th>
+                    <th class="p-3">Created On</th>
 
                     @if (ViewBag.b == true)
                     {
-                        <td class="p-3">
-
-
-                            <button type="button" class="btn btn-success" onclick="BtnClick(@item.TimeSheetDetailID, @item.UserUniqueId)">Approve</button> |
-                            <button type="button" class="btn btn-danger rejectTimeSheet" onclick="BtnClickReject(@item.TimeSheetDetailID)">Reject</button>
-                            @* @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new {@class="approve"})|*@
-
-                            @*@Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })*@
-                        </td>
-                        <td class="p-3">@Html.DisplayFor(modelItem => item.Status)</td>
+                        <th>Approve/Reject</th>
+                        <th>Status</th>
                     }
 
 
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
 
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
 
-    <script>
+                    <tr class="bg-white">
+                        <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.ProjectName)</td>
+                        @* @Html.HiddenFor(modelItem=>item.TimeSheetDetailID)*@
+                        @if (ViewBag.Showname == true)
+                        {
+                            <td class="p-3 bg-white">
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                        }
+
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.Hours)</td>
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.Date)</td>
+                        <td class="p-3"> @Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                        @Html.HiddenFor(modelItem => item.TimeSheetDetailID, new { @id = "timeSheetDetailId" })
+                        @Html.HiddenFor(modeItem => item.UserUniqueId, new { @id = "id2" })
+                        @*<input type="hidden" value="@item.TimeSheetDetailID" id="timeSheetDetailId"/>*@
+
+                        @if (ViewBag.b == true)
+                        {
+                            <td class="p-3">
+
+
+                                <button type="button" class="btn btn-success" onclick="BtnClick(@item.TimeSheetDetailID, @item.UserUniqueId)">Approve</button> |
+                                <button type="button" class="btn btn-danger rejectTimeSheet" onclick="BtnClickReject(@item.TimeSheetDetailID)">Reject</button>
+                                @* @Html.ActionLink("Approve Timesheet", "ApproveTimesheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new {@class="approve"})|*@
+
+                                @*@Html.ActionLink("Reject Timesheet", "RejectSheet", new { id = item.AllTimesheetId, Email = HttpContext.Current.User.Identity.Name, id2 = item.UserUniqueId }, new { @class = "reject " })*@
+                            </td>
+                            <td class="p-3">@Html.DisplayFor(modelItem => item.Status)</td>
+                        }
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#table_id").dataTable();
+            });
+        </script>
+
+        <script>
         function BtnClick(val) {
             console.log(val);
             debugger;
@@ -123,8 +116,8 @@
 
 
             }
-    </script>
-    <script>
+        </script>
+        <script>
         function BtnClickReject(val) {
             console.log(val);
             debugger;
@@ -143,9 +136,11 @@
                  }
                 })
             }
-    </script>
+        </script>
 
 
 
 
-</div>
+    </div>
+
+</body>

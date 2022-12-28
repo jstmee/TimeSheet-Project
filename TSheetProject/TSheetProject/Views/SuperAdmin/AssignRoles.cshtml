@@ -5,51 +5,49 @@
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 
 }
-<style>
-    #hedding {
-        font-family: 'Times New Roman', Times, serif;
-        color: black;
-        font-weight: 600
-    }
-    
-</style>
 
+<link href="~/Content/css/TSheetCSS/css/superAdmin.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<h4 class="pt-4  ml-3 pl-2" id="hedding">All Users</h4>
-<div class="pt-1 pl-4 mr-2 ml-2">
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" class=" table-bordered">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th class="p-3">Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white">
-                    <td class="p-3 bg-white">
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td  class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.Email)</td>
-                    <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.RoleName)</td>
-                    <td  class="p-3 bg-white text-center">
-                        @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Gender, item.FirstName, item.LastName, item.MobileNumber, item.IsActive, item.DateOfBirth, item.DateOfJoining, item.Email }, null) |
-                        @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
-                    </td>
-                    <td  class="p-3 bg-white text-center">@Html.ActionLink("View Info", "ViewUser",new { id = item.UserID })</td>
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+
+<body class="adminBody">
+    <h4 class=" ml-3 pl-2" id="Adminhedding">All Users</h4>
+    <div class="pt-1 pl-4 mr-4 ml-2">
+
+        <table id="table_id" class=" table-bordered">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th class="p-3">Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                    <th>Details</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
+                        <td class="p-3 bg-white">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.Email)</td>
+                        <td class="p-3 bg-white"> @Html.DisplayFor(modelItem => item.RoleName)</td>
+                        <td class="p-3 bg-white text-center">
+                            @Html.ActionLink("Edit", "EditUser", "SuperAdmin", new { id = item.UserID, item.Gender, item.FirstName, item.LastName, item.MobileNumber, item.IsActive, item.DateOfBirth, item.DateOfJoining, item.Email }, null) |
+                            @Html.ActionLink("Reset Password", "ResetPassword", "SuperAdmin", new { id = item.UserID }, null)
+                        </td>
+                        <td class="p-3 bg-white text-center">@Html.ActionLink("View Info", "ViewUser", new { id = item.UserID })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
     <script type="text/javascript"
             charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>

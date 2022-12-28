@@ -5,49 +5,50 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<style>
-    #hedding {
-        font-family: 'Times New Roman', Times, serif;
-        color: black;
-        font-weight: 600
-    }
-</style>
-
+<link href="~/Content/css/TSheetCSS/css/superAdmin.css" rel="stylesheet" />
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<h4 class="pt-4  ml-3 pl-2" id="hedding">Projects Assigned To Users</h4>
-<div class="pt-1 pl-4 mr-2 ml-2">
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" class=" table-bordered">
-        <thead class="bg-dark text-white">
 
-            <tr>
-                <th class="p-3">
-                    Name
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProjectMaster.ProjectName)
-                </th>
+<body id="adminBody">
 
+    <h4 class=" ml-3 pl-2" id="Adminhedding">Projects Assigned To Users</h4>
+    <div class="pt-1 pl-4 mr-4 ml-2">
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <table id="table_id" class=" table-bordered">
+            <thead class="bg-dark text-white">
+
                 <tr>
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName) @Html.DisplayFor(modelItem => item.Registration.LastName)
-                    </td>
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.ProjectMaster.ProjectName)
-                    </td>
+                    <th class="p-3">
+                        Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectMaster.ProjectName)
+                    </th>
+
+
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.Registration.FirstName) @Html.DisplayFor(modelItem => item.Registration.LastName)
+                        </td>
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.ProjectMaster.ProjectName)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
     <script type="text/javascript"
             charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>

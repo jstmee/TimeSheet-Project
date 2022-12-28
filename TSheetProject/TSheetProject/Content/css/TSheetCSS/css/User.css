@@ -1,0 +1,55 @@
+﻿#UserDashboarTitle {
+    font-size: 28px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: #434241
+}
+#text-cart {
+    width: 300px;
+    height: 80px
+}
+.count {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    
+}
+#usetextbtn {
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:400;
+}
+.body-Bg {
+    background-color: #F1EFEE;
+}
+/*
+chage Password*/
+.ChangePassInput {
+    height: 32px;
+}
+
+#ChangePassword_btn {
+    height: 32px;
+    font-size: 18px;
+}
+/*Total Rrject*/
+
+.TotalTimeSheetTitle {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+
+/*totle Approve*/
+.TotalTimeSheetTitle {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+
+/*totle time Sheet */
+
+
+

@@ -7,6 +7,7 @@
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/TSheetCSS/css/superAdmin.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet"
       type="text/css"
@@ -40,61 +41,62 @@
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<h4 class="pt-4  ml-3 pl-5" id="hedding">Weekly Approve - Reject</h4>
-<div class="p-3 ml-5 mr-2">
-
-    <table id="table_id" class="table-bordered">
-        <thead class="bg-dark text-white p-4">
-            <tr>
-                <th scope="col" class="p-3">Name</th>
-                <th scope="col">Week Filled</th>
-                <th scope="col">Total Hrs</th>
-                <th scope="col">Project</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Status</th>
-                <th>Day Logs</th>
-                <th>Approve/Reject</th>
-                @*<th scope="col">Details</th>
-                    <th scope="col">Delete</th>*@
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white">
-
-                    <td class="bg-white " id="NameWeeklyStetus">
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-
-                    <td class="text-center  bg-white "><div>@Html.DisplayFor(modelItem => item.FromDate)</div><div>To</div><div>@Html.DisplayFor(modelItem => item.ToDate)</div></td>
-                    <td class="text-center  bg-white ">@Html.DisplayFor(modelItem => item.TotalHours)</td>
-                    <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Project)</td>
-                    <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Comment)</td>
-                    <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Status)</td>
-
-                    <td class="text-center bg-white ">@Html.ActionLink("View", "WeekApproveRejectSuperAdmin", "TimeSheet", new { id2 = item.Id }, null)</td>
-                    <td class="text-center bg-white ">
-                        <div> <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "ApproveSuperAdmin", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve" })</button> </div>
-                        <div pt-2"><button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "Reject", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject" })</button></div>
-                    </td>
-                    @* <td><button type="button" class="btn btn-success">Approve</button> <button type="button" class="btn btn-danger">Reject</button></td>*@
-                    @*<td>@Html.ActionLink("Approve","Approve", new {id=item.Id},null</td>*@
+<body id="adminBody">
+    <h4 class=" pl-4" id="Adminhedding">Weekly Approve - Reject</h4>
+    <div class=" ml-4 mr-3">
+        <table id="table_id" class="table-bordered">
+            <thead class="bg-dark text-white p-4">
+                <tr>
+                    <th scope="col" class="p-3">Name</th>
+                    <th scope="col">Week Filled</th>
+                    <th scope="col">Total Hrs</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Status</th>
+                    <th>Day Logs</th>
+                    <th>Approve/Reject</th>
+                    @*<th scope="col">Details</th>
+                        <th scope="col">Delete</th>*@
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
 
-        </tbody>
-    </table>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
-</div>
+                        <td class="bg-white " id="NameWeeklyStetus">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+                        <td class="text-center  bg-white "><div>@Html.DisplayFor(modelItem => item.FromDate)</div><div>To</div><div>@Html.DisplayFor(modelItem => item.ToDate)</div></td>
+                        <td class="text-center  bg-white ">@Html.DisplayFor(modelItem => item.TotalHours)</td>
+                        <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Project)</td>
+                        <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Comment)</td>
+                        <td class="text-center bg-white ">@Html.DisplayFor(modelItem => item.Status)</td>
+
+                        <td class="text-center bg-white ">@Html.ActionLink("View", "WeekApproveRejectSuperAdmin", "TimeSheet", new { id2 = item.Id }, null)</td>
+                        <td class="text-center bg-white ">
+                            <div> <button class="btn bg-success w-50 m-1 text-white ">  @Html.ActionLink("Approve", "ApproveSuperAdmin", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "approve"  ,@class="h4"})</button> </div>
+                            <div pt-2"><button class="btn bg-danger w-50 m-1 text-white"> @Html.ActionLink("Reject", "ApproveSuperAdmin", new { masterid = item.Id, Email = HttpContext.Current.User.Identity }, new { @id = "reject", @class = "h4" })</button></div>
+                        </td>
+                        @* <td><button type="button" class="btn btn-success">Approve</button> <button type="button" class="btn btn-danger">Reject</button></td>*@
+                        @*<td>@Html.ActionLink("Approve","Approve", new {id=item.Id},null</td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#table_id").dataTable();
+            });
+        </script>
+    </div>
+    </body>

@@ -7,20 +7,27 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
- <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 <style>
-   table{
-        width:1240px;
+    .body-tts {
+        background-color: #F1EFEE
+    }
+    .TotalTimeSheetTitle {
+        font-size: 22px;
+        font-weight: 600;
+        font-family: 'Times New Roman', Times, serif;
+        color: #115C8C
     }
 </style>
-
- <div class=" pt-5 ml-4 pl-4">
-     <button class="btn bg-success"> @Html.ActionLink("Go To Dashboard", "DashBoard", "User", "User", new { @class = "text-white" })</button>
- </div>
-    <div class="pt-2 pl-4">
-        <table id="table_id" class="table-bordered">
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<link href="~/Content/css/user.css" rel="stylesheet" />
+<body class="body-tts">
+    <div class="TotalTimeSheetTitle pl-3">
+        Total Time-Sheet
+    </div>
+    <div class="pt-2 pl-4 pr-4">
+        <table id="table_id" class="table-bordered shadow-sm">
             <thead class="bg-dark text-white">
 
                 <tr>
@@ -54,7 +61,7 @@
                         </td>
                         <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.TimeSheetMaster.ProjectMaster.ProjectName)
-                        </td >
+                        </td>
                         <td class="bg-white p-3">
                             @Html.DisplayFor(modelItem => item.Hours)
                         </td>
@@ -65,16 +72,17 @@
                     </tr>
                 }
             </tbody>
-        </table></div>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
-    
+        </table>
+    </div>
+</body>
+<script type="text/javascript"
+        charset="utf8"
+        src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript"
+        charset="utf8"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script>
+    $(function () {
+        $("#table_id").dataTable();
+    });
+</script>

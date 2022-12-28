@@ -9,123 +9,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="" />
     <title>Login</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Custom styles for this template-->
-    <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
-    <link href="~/Content/css/userLogin.css" rel="stylesheet" />
-    <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-    <style>
-        #Login-Box {
-            width: 420px;
-            background-color: #EEF8FE;
-            border-radius: 17px;
-            margin-left: 700px;
-            margin-top: 100px
-        }
 
-        #Login-input {
-            cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        #input-box-btn {
-            background-color: #054973;
-            width: 385px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        #login-hedding {
-            font-weight: 800;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-        }
-
-        .control-label {
-            font-weight: 800;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-        }
-
-        #llc {
-            font-weight: 500;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-        i {
-            font-size: 28px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-        body {
-            background-image: url('../../content/css/tsheetimg/group 35579 (1).png');
-            background-repeat: no-repeat;
-            margin-left: 20px;
-        }
-    </style>
+    <!-- ValidationEngine CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-engine/2.6.4/jquery.validationEngine.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-engine/2.6.4/validationEngine.jquery.min.css">
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jQuery-Validation-Engine-master (2)/jQuery-Validation-Engine-master/js/jquery.validationEngine.js"></script>
+    <script>
+        $("document").ready(function () {
+            $("#UserLoginForm").validationEngine('attach');
+        })
+    </script>
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+   
 </head>
 
 <body>
-    <div class="container pt-5 ">
-        <div class="bg-white" id="Login-Box" >
-            <div class="pt-3 bt-5 pl-2 pr-2 ">
-                <div class="text-center">
-                    <h1 class="h4 mb-4" id="login-hedding">Welcome</h1>
-                </div>
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group pt-2">
-                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control  rounded " ,@id="Login-input" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group pt-1">
-                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded ", @id = "Login-input" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group  pt-3 pl-2">
-                            <input type="submit" value="Login" class="btn  rounded text-white" id="input-box-btn">
-                        </div>
-                        <div class="text-center  pt-3">
-                            <h5>Follow Us On</h5>
-                            <i class="fa-brands fa-square-facebook "></i>
-                            <i class="fa-brands fa-square-twitter pl-2"></i>
-                            <i class="fa-brands fa-linkedin pl-2"></i>
-                        </div>
-                        <div class="text-center pt-5 pb-3" id="llc">
-                            ⓒ Fusionstak LLC, 2022
-                        </div>
+   <div class="container pt-5 ">
+            <div class="bg-white p-3" id="Login-Box">
+                <div class="pt-3 bt-5 pl-2 pr-2 ">
+                    <div class="text-center">
+                        <h1 class="h4 mb-4" id="login-hedding">Welcome</h1>
                     </div>
-                }
+
+                    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "UserLoginForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group pt-2">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Email, "Email", new { htmlAttributes = new { @class = "form-control validate[required]  rounded ", @id = "Login-Email" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group pt-1">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded  validate[required]", @id = "Login-input" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group  pt-3 pl-2">
+                                <input type="submit" value="Login" class="btn  rounded text-white" id="input-box-btn">
+                            </div>
+                            <div class="text-center  pt-3">
+                                <h5>Follow Us On</h5>
+                                <i class="fa-brands fa-square-facebook "></i>
+                                <i class="fa-brands fa-square-twitter pl-2"></i>
+                                <i class="fa-brands fa-linkedin pl-2"></i>
+                            </div>
+                            <div class="text-center pt-5 pb-3" id="llc">
+                                ⓒ Fusionstak LLC, 2022
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
-
         </div>
-
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
 </body>
-
 </html>

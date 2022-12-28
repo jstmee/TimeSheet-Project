@@ -4,61 +4,59 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-<style>
-    #backbutton {
-        float: left;
-        width:180px;
+<link href="~/Content/css/TSheetCSS/css/AllAdmin.css" rel="stylesheet" />
 
-    }
-</style>
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-<div class="p-3 pt-5 pl-5">
-    <button id="backbutton" class="btn bg-success ">@Html.ActionLink("Go To Back", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "text-white", @id = "SideBar-items" })
-    </button>
-</div>
-<div class="p-3 mt-4 pl-4 ml-4 ">
-    <table id="table_id" class="table-bordered ">
-        <thead class="bg-dark text-white p-3">
-            <tr class="p-3">
-                <th scope="col" class="p-3">Date</th>
-                <th scope="col">Hours</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-                @*<th scope="col">Details</th>
-                    <th scope="col">Delete</th>*@
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white">
-                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Date)</td>
-                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Hours)</td>
-                    <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Status)</td>
-                    <td class="bg-white p-3  pl-5">
-                        <button class="btn bg-success w-25 ml-3">@Html.ActionLink("Approve", "Approve1", new {id = item.Id }, null) </button>
-                        <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject1", new { id = item.Id }, null)</button>
-
-                    </td>
+<body id="adminBody">
+    <div class="p-3 pl-3">
+        <button id="backbutton" class="btn bg-success ">
+            @Html.ActionLink("Go To Back", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "text-white h3", @id = "SideBar-items" })
+        </button>
+    </div>
+    <div class=" mt-1 pl-4 ml-1 mr-4 ">
+        <table id="table_id" class="table-bordered ">
+            <thead class="bg-dark text-white p-3">
+                <tr class="p-3">
+                    <th scope="col" class="p-3">Date</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                    @*<th scope="col">Details</th>
+                        <th scope="col">Delete</th>*@
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
+                        <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Date)</td>
+                        <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Hours)</td>
+                        <td class="bg-white p-3">@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td class="bg-white p-3  pl-5">
+                            <button class="btn bg-success w-25 ml-3" >@Html.ActionLink("Approve", "Approve1", new { id = item.Id }, new {@id="DayApprove"}) </button>
+                            <button class="btn bg-danger w-25 ml-3">  @Html.ActionLink("Reject", "Reject1", new { id = item.Id }, new {@id="DayReject"})</button>
 
-        </tbody>
-    </table>
+                        </td>
+                    </tr>
+                }
 
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
-</div>
+            </tbody>
+        </table>
+
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#table_id").dataTable();
+            });
+        </script>
+    </div>
+
+</body>

@@ -1,0 +1,84 @@
+﻿#weekCounts {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color: #097DCD;
+    padding-left: 10px;
+}
+
+.MonthYear {
+    font-size: 25px;
+    color: forestgreen;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+}
+
+#weekValue {
+    font-size: 24px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    background-color: #298029;
+    border-color: #298029;
+}
+
+#date_id-input {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+}
+
+#weekDate {
+    float: left;
+}
+
+#weekFirstDateMonth {
+    float: left
+}
+
+#firstdate {
+    font-weight: 700;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+#AddTimeBtn {
+    background-color: forestgreen;
+    border: forestgreen;
+    border-radius: 3px;
+    width: 250px;
+}
+
+.rounded1 {
+    width: 100px;
+    text-align: center;
+}
+
+.TSheetTitle {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+/* #topSection{
+        background-color:aquamarine;
+
+    }*/
+.validationTsheet {
+    color: red;
+}
+
+#addTimeSheet {
+    width: 1250px;
+}
+
+.validarionbox {
+    height: 70px;
+}
+
+.body-Bg {
+    background-color: #F1EFEE;
+}
+
+.thTable {
+    background-color: #D4D1D0;
+}

@@ -1,109 +1,163 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
+﻿<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <head>
-    <meta charset="UTF-8">
-    <link href="~/Content/css/TSheetCSS/css/demo.css" rel="stylesheet" />
-    <link href="~/Content/css/TSheetCSS/css/styles.css" rel="stylesheet" />
-    <title>Admin </title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- SideBar-Menu CSS -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/TSheetCSS/demodemo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-    <link href="~/Content/css/TSheetCSS/css/demo.css" rel="stylesheet" />
-    <script>
-        $(document).ready(function () {
-            $(".hamburger .hamburger__inner").click(function () {
-                $(".wrapper").toggleClass("active")
-            })
 
-            $(".top_navbar .fas").click(function () {
-                $(".profile_dd").toggleClass("active");
-            });
-        })
-    </script>
-    <style>
-        .loginName {
-            padding-left: 100%;
-            float: left
-        }
 
-        button {
-            margin-left: 100px;
-        }
-        .Tm {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: 700;
-            color: #06479A;
-            font-size: 18px
-        }
-    </style>
 </head>
-<body>
-
-    <div class="wrapper">
-        <div class="top_navbar bg-white shadow-sm row">
-            <h4 class="pl-3 pt-2 Tm">TIME <br /> MANAGE</h4>
-            <button id="go" class="col-lg-1 col-md-2 ml-2 bg-white border-white "><i class="fa-solid fa-bars h2"></i></button>
-            <ul class="nav navbar-nav navbar-right col-lg-8 col-md-7">
-                <li class="loginName">@HttpContext.Current.User.Identity.Name</li>
-                <li class="loginName">@Html.ActionLink("Logout", "Logout", "Account")</li>
-            </ul>
-
-        </div>
-        <div class="main_container">
-            <div class="sidebar">
-                <div class="sidebar__inner">
-
-                    <ul>
-                        <li>
-                            <h4 class="text-center" id="timesheetlogo">TIME SHEET</h4>
-                        </li>
-                        <li>
-                            @Html.ActionLink("Dashboard", "DashBoard", "Admin", "Admin", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Create User", "CreateUser", "Admin", "Admin", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("All Time Sheet", "AllTimeSheetAdmin", "TimeSheet", "TimeSheet", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Approve/Reject TSheet", "WeeklyStatus", "TimeSheet", "TimeSheet", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Show Users", "ShowUser", "Admin", "", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Projects List", "ProjectList", "Admin", "Admin", new { @class = "title" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Projects Assigned", "ProjectsAssigned", "Admin", "Admin", new { @class = "title" })
-                        </li>
-                       @* <li>
-                            @Html.ActionLink("Change Password", "ChangePassword", "Admin", "Admin", new { @class = "title" })
-                        </li>*@
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="userBox">
-            @RenderBody()
-        </div>
-
+<div class="w3-bar w3-light-grey bg-white p-2 shadow">
+    <img src="~/Content/css/TsheetImg/hourglass.png" id="NavLogo" /><span class="NvaTitle pl-3">TIME MANAGE</span>
+    <div id="loginName">
+        <div class="h4 pr-5 " id="userLoginEmail"><i class="fa-solid fa-user"></i> @HttpContext.Current.User.Identity.Name</div>
+        <div class="h4 pr-5"> <i class="fa-solid fa-right-to-bracket"></i> @Html.ActionLink("Logout", "Logout", "Account")</div>
     </div>
+</div>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="pt-4">
+                <a href="">  <i class=""></i> <span style="margin-left:10px;" id="TimeSheetLogo"> TIME SHEET </span> </a>
+            </li>
 
-    <script>
-        $(document).ready(function () {
-            $("#go").click(function () {
-                $(".main_container").animate({
-                    width: "toggle"
-                });
-            });
+            <li class="pt-3">
+                <a href="@Url.Action("Dashboard", "Admin")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;"> Dashboard</span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("CreateUser", "Admin")"><i class="fa-solid fa-square-plus"></i> <span style="margin-left:10px;">Create User </span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("AllTimeSheetAdmin", "TimeSheet")"> <i class="fa-regular fa-calendar-days"></i> <span style="margin-left:10px;"> All Time Sheet</span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("WeeklyStatus", "TimeSheet")">  <i class="fa-solid fa-person-circle-check"></i> <span style="margin-left:10px;"> Approve/Reject</span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("ShowUser", "Admin")"><i class="fa-solid fa-users"></i> <span style="margin-left:10px;">Show Users </span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("ProjectList", "Admin")"><i class="fa-solid fa-folder"></i> <span style="margin-left:10px;">Projects List</span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("ProjectsAssigned", "Admin")"> <i class="fa-solid fa-user-check"></i> <span style="margin-left:10px;">Projects Assigned </span> </a>
+            </li>
+            <li class="pt-3">
+                <a href="@Url.Action("ChangePassword", "Admin")"> <i class="fa-sharp fa-solid fa-unlock-keyhole"></i> <span style="margin-left:10px;">Change Password</span> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
+<div>
+
+    <div class="userBody">
+        @RenderBody()
+    </div>
+</div>
+
+
+<style>
+    #NavLogo {
+        width: 53px;
+        height: 53px;
+    }
+
+    .NvaTitle {
+        font-weight: 600;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 25px;
+        color: #622F90;
+        text-decoration-line: underline;
+        text-decoration-style: double;
+    }
+
+    #loginName {
+        float: right
+    }
+
+    .navimg {
+        width: 300px;
+        height: 100px
+    }
+
+    #LogigLogo {
+        float: right;
+    }
+
+    .userBody {
+        padding-left: 200px;
+    }
+
+    span {
+        font-size: 17px
+    }
+
+    i {
+        font-size: 17px
+    }
+
+    #navBar {
+        height: 60px;
+        background-color: white;
+    }
+
+    #menu-toggle {
+        padding-left: 200px;
+    }
+
+    #TimeSheetLogo {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 600;
+        color: white;
+        font-size: 23px;
+    }
+
+    nav {
+        float: left
+    }
+</style>
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function () {
+        $("#userLoginEmail").hover(function () {
+            $(this).css("background-color", "yellow");
+        }, function () {
+            $(this).css("background-color", "pink");
         });
-    </script>
+    });
 
-</body>
-</html>
+</script>
+
+<script>
+
+    /*  $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("i").css('font-size', '35px');
+
+          });
+      });
+      $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("#i").css('font-size', '17px');
+
+          });
+      });*/
+</script>
+

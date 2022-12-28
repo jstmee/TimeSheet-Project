@@ -7,83 +7,218 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 <link href="~/Content/css/Addtime.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link href="~/Content/css/TSheetCSS/css/AddTime.css" rel="stylesheet" />
 <style>
-    #weekCounts {
-        font-size: 25px;
-        font-family: 'Times New Roman', Times, serif;
-        font-weight: 700;
-        color: #097DCD;
-        padding-left: 10px;
-    }
-
-    .MonthYear {
-        font-size: 25px;
-        color: forestgreen;
-        font-family: 'Times New Roman', Times, serif;
-        font-weight: 800;
-    }
-
-    #weekValue {
-        font-size: 24px;
-        color: white;
-        font-family: 'Times New Roman', Times, serif;
-        font-weight: 800;
-        background-color: #298029;
-        border-color: #298029;
-    }
-
-    #date_id-input {
-        width: 200px;
-        height: 30px;
-        font-size: 16px;
-    }
-
-    #weekDate {
-        float: left;
-    }
-
-    #weekFirstDateMonth {
-        float: left
-    }
-
-    #firstdate {
-        font-weight: 700;
-        color: black;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 18px;
-    }
-
-    #AddTimeBtn {
-        background-color: forestgreen;
-        border: forestgreen;
-        border-radius:3px;
-        width:250px;
-        
-    }
-    .rounded1{
-        width:100px;
-        text-align:center;
-    }
-   
-    .TSheetTitle{
-        font-family:'Times New Roman', Times, serif;
-        color:black;
-    }
-   /* #topSection{
-        background-color:aquamarine;
-        
-    }*/
-    .validationTsheet{
-        color:red;
-    }
-    #addTimeSheet{
-        width:1250px;
+    #topSection {
+        height:80px;
     }
 </style>
+<body class="body-Bg">
+    <div class="mt-2 ml-4 mr-4 shadow bg-white" id="addTimeSheet ">
+        @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post, new { @id = "FormData" }))
+        {
+            <div class="p-3 " id="topSection">
+                <div class="row">
+                    <div class="col-sm-5" id="weekFirstDateMonth">
+                        <div class="MonthYear ">@ViewBag.monthName - @ViewBag.year</div>
+                        <div class="" id="firstdate"></div>
+                    </div>
+                    <div class="col-sm-7  " id="weekDate">
+                        <button id="weekValue" class=" col w-25">Week - @ViewBag.UserWeek  </button>
+                        <div class=" col-md-10"><input type="week" id="date_id" name="userweek" required class="weekdata h5 h-50 w-25  rounded col" onchange="this.form.submit()" placeholder="Select Week" /></div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                <strong>
+                </strong>@ViewBag.Message
+            </div>
+            @Html.ActionLink("Go Back", "TimeLog", "TimeLogging")
+        }
+
+        else
+        {
+            using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post) )
+
+            {
+                @Html.AntiForgeryToken()
+
+                if (Model != null)
+                {
+                    for (var i = 0; i < Model.Count; i++)
+                    {
+
+
+                        <table class="table ">
+
+                            <tr>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">
+                                            Projects
+
+                                        </div>
+
+                                    }
+                                </th>
+
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Monday</div>
+                                        <div class="TSheetTitle">@ViewBag.userDates[0].ToShortDateString()</div>
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Tuesday</div> <div class="TSheetTitle">@ViewBag.userDates[1].ToShortDateString()</div>
+
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Wednesday</div><div class="TSheetTitle"> @ViewBag.userDates[2].ToShortDateString()</div>
+
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Thursday</div> <div class="TSheetTitle">@ViewBag.userDates[3].ToShortDateString()</div>
+
+                                    }
+                                </th>
+
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Friday</div> <div class="TSheetTitle">@ViewBag.userDates[4].ToShortDateString()</div>
+
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Saturday</div> <div class="TSheetTitle">@ViewBag.userDates[5].ToShortDateString()</div>
+
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle">Sunday</div> <div class="TSheetTitle">@ViewBag.userDates[6].ToShortDateString()</div>
+
+                                    }
+                                </th>
+                                <th>
+                                    @if (i == 0)
+                                    {
+                                        <div class="TSheetTitle"> Description</div>
+
+                                    }
+                                </th>
+                            <tr>
+                                <td class="border-white">
+                                    @Html.HiddenFor(m => Model[i].ProjectId)
+                                    @Html.TextBoxFor(m => Model[i].ProjectName, new { @readonly = "readonly" })
+                                    @Html.HiddenFor(m => Model[i].ProjectName)
+                                </td>
+                                <td class="validarionbox border-white">
+                                    @Html.HiddenFor(m => Model[i].MondayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].MondayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "MondayTime", @type = "number" })
+                               <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].MondayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+                                    @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].TuesdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "TuesdayTime", @type = "number" })
+                             <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].TuesdayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+                                    @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].WednesdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "WednsdayTime", @type = "number" })
+                                    <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].WednesdayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+
+                                    @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].ThursdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "ThursdayTime", @type = "number" })
+                            <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].ThursdayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+                                    @Html.HiddenFor(m => Model[i].FridayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].FridayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "FridayTime", @type = "number" })
+                                    <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].FridayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+
+                                    @Html.HiddenFor(m => Model[i].SaturdayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].SaturdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "SaturdayTime", @type = "number" })
+                                    <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].SaturdayLogTime)</div>
+                                </td>
+                                <td class="validarionbox border-white">
+
+                                    @Html.HiddenFor(m => Model[i].SundayLogTimeId)
+                                    @Html.TextBoxFor(m => Model[i].SundayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "SundayTime", @type = "number" })
+                                    <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].SundayLogTime) </div>
+                                </td>
+                                <td class="validarionbox border-white">
+                                    @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
+                                    @Html.HiddenFor(m => Model[i].DescriptionId)
+                                    @Html.TextBoxFor(m => Model[i].Description, new { placeholder = "TEXT", @class = "rounded2 w-100" })
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+
+                    }
+                }
+                <input type="submit" value="Save Details" id="AddTimeBtn" class=" text-white  p-2 mt-3 mr-1 h3">
+
+            }
+
+        }
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#AddTimeBtn").click(function () {
+            ValidationData();
+        })
+    })
+
+    function ValidationData() {
+        if (!$("#FormData").valid()) {
+            return false;
+        }
+    }
+
+</script>
+
+<script>
+    function validateInput() {
+        var input = document.getElementById("MondayTime").value;
+
+        // Check for the presence of special characters
+        if (/^[a-zA-Z0-9\s]*$/.test(input) === false) {
+            alert("Input contains special characters!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
 <script>
     $(document).ready(function () {
@@ -91,193 +226,15 @@
         $("#date_id").hide();
 
         // Show
-        $("#weekValue").click(function () {
+        $("#weekValue").hover(function () {
             $("#date_id").show().slideDown();
         });
     });
 
+    $(document).ready(function () {
+        ("#btndemo").click(function () {
+            alert("hi")
+        })
+    })
+
 </script>
-
-
-<div class="mt-4 ml-4 " id="addTimeSheet">
-
-    @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post))
-    {
-        <div class="p-3 " id="topSection">
-            <div class="row">
-                <div class="col-sm-5" id="weekFirstDateMonth">
-                    <div class="MonthYear ">@ViewBag.monthName - @ViewBag.year</div>
-                    <div class="" id="firstdate"></div>
-                </div>
-                <div class="col-sm-7  " id="weekDate">
-                    <button id="weekValue" class=" col w-25">Week - @ViewBag.UserWeek  </button>
-                    <div class=" col-md-10"><input type="week" id="date_id" name="userweek" required class="weekdata h-50 w-25  rounded col" onchange="this.form.submit()" placeholder="Select Week" /></div>
-                </div>
-            </div>
-        </div>
-    }
-
-    @if (ViewBag.Message != null)
-    {
-        <div class="alert alert-success">
-            <strong>
-            </strong>@ViewBag.Message
-        </div>
-        @Html.ActionLink("Go Back", "TimeLog", "TimeLogging")
-    }
-
-    else
-    {
-        using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
-
-        {
-            @Html.AntiForgeryToken()
-
-            if (Model != null)
-            {
-                for (var i = 0; i < Model.Count; i++)
-                {
-
-
-<table class="table">
- 
-    <tr>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">
-                    Projects
-
-                </div>
-
-            }
-        </th>
-
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Monday</div>
-                <div class="TSheetTitle">@ViewBag.userDates[0].ToShortDateString()</div>
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Tuesday</div> <div class="TSheetTitle">@ViewBag.userDates[1].ToShortDateString()</div>
-
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Wednesday</div><div class="TSheetTitle"> @ViewBag.userDates[2].ToShortDateString()</div>
-
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Thursday</div> <div class="TSheetTitle">@ViewBag.userDates[3].ToShortDateString()</div>
-
-            }
-        </th>
-
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Friday</div> <div class="TSheetTitle">@ViewBag.userDates[4].ToShortDateString()</div>
-
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Saturday</div> <div class="TSheetTitle">@ViewBag.userDates[5].ToShortDateString()</div>
-
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle">Sunday</div> <div class="TSheetTitle">@ViewBag.userDates[6].ToShortDateString()</div>
-
-            }
-        </th>
-        <th>
-            @if (i == 0)
-            {
-                <div class="TSheetTitle"> Description</div>
-
-            }
-        </th>
-
-<tr>
-    <td>
-
-        @Html.HiddenFor(m => Model[i].ProjectId)
-        @Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white" })
-        @Html.HiddenFor(m => Model[i].ProjectName)
-        @*@Html.TextBoxFor(m => Model[i].ProjectName, new { @class = "border-white", @readonly = "true" })*@
-
-
-    </td>
-            <td>
-                @Html.HiddenFor(m => Model[i].MondayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].MondayLogTime, new { placeholder = "0.0" ,@class="rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].MondayLogTime)</div>
-            </td>
-            <td>
-                @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].TuesdayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger">  @Html.ValidationMessageFor(model => model[i].TuesdayLogTime)</div>
-            </td>
-            <td>
-
-                @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].WednesdayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].WednesdayLogTime)</div>
-            </td>
-            <td>
-
-                @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].ThursdayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger">  @Html.ValidationMessageFor(model => model[i].ThursdayLogTime)</div>
-            </td>
-            <td>
-
-                @Html.HiddenFor(m => Model[i].FridayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].FridayLogTime, new { placeholder = "0.0",  @class = "rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].FridayLogTime )</div>
-            </td>
-            <td>
-
-                @Html.HiddenFor(m => Model[i].SaturdayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].SaturdayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div> @Html.ValidationMessageFor(model => model[i].SaturdayLogTime)</div>
-            </td>
-            <td>
-
-                @Html.HiddenFor(m => Model[i].SundayLogTimeId)
-                @Html.TextBoxFor(m => Model[i].SundayLogTime, new { placeholder = "0.0", @class = "rounded1" })
-                <div class="text-danger"> @Html.ValidationMessageFor(model => model[i].SundayLogTime) </div>
-            </td>
-            <td>
-                @* <b>Description</b> @Html.EditorFor(m => Model[i].Description, "", new { htmlAttributes = new { @class = "Input-Entry-discription" } })*@
-                 @Html.HiddenFor(m => Model[i].DescriptionId)
-                @Html.TextBoxFor(m => Model[i].Description, new { placeholder = "TEXT", @class = "rounded2 w-100" })
-               
-            </td>
-
-        </tr>
-  
-</table>
-
-
-                }
-            }
-            <input type="submit" value="Save Details" id="AddTimeBtn" class=" text-white  p-2 mt-3 mr-3">
-
-        }
-
-    }
-</div>

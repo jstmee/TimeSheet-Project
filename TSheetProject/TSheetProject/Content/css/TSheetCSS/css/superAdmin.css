@@ -1,0 +1,21 @@
+﻿@import url('superadmin.css');
+#Adminhedding {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+
+#adminBody {
+    background-color: #FBFBFB;
+}
+
+#text-cart{
+    width:150px;
+    height:40px;
+    font-size:18px
+}
+
+#BtnSuperAdminEdit{
+    height:32px;
+}

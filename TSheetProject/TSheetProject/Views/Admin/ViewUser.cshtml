@@ -6,60 +6,40 @@
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 <link href="~/Content/css/TSheetCSS/ShowUser_ViewUser.css" rel="stylesheet" />
-
-
-<div class="p-3 pl-4 ml-4 mt-3 ">
-    <button class="btn bg-success " type="submit">
-        <h5 class="">@Html.ActionLink("Go To Back", "ShowUser", "Admin", "", new { @class = "text-white" ,@id="backButtonViewUser"})</h5>
-    </button>
-</div>
-
-<div class="container-fluid">
-    <h3 class="text-center">User's Info</h3>
-
-    <div class="center container">
-        <dt>
-            Name:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email) :
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfJoining) :
-        </dt>
-
-        <dd>
-            @Convert.ToDateTime(Model.DateOfJoining).ToString("dd/MM/yyyy")
-            @* @Html.DisplayFor(model => model.DateOfJoining)*@
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender) :
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfbirth) :
-        </dt>
-
-        <dd>
-            @Convert.ToDateTime(Model.DateOfbirth).ToString("dd/MM/yyyy")
-        </dd>
-
-        </dl>
-
-
+<link href="~/Content/css/TSheetCSS/css/Admin.css" rel="stylesheet" />
+<body id="">
+    <div class=" pl-4 ml-4 mt-3 ">
+        <button class="btn bg-success " type="submit">
+            <h5 class="">@Html.ActionLink("Go To Back", "ShowUser", "Admin", "", new { @class = "text-white", @id = "backButtonViewUser" })</h5>
+        </button>
     </div>
 
+    <div class="container-fluid">
+        <h3 class="text-center AdminTitle">User's Info</h3>
 
+        <div class="center container bg-white p-3">
+            <div class="pt-2">
+                <span class="h3 text-dark">Name :-</span>     <span>@Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)</span>
+            </div>
+
+
+            <div class="pt-3">
+                <span class="text-dark h3">@Html.DisplayNameFor(model => model.Email)  :- </span>     <span>@Html.DisplayFor(model => model.Email)</span>
+            </div>
+
+            <div class="pt-3">
+                <span class="h3 text-dark">@Html.DisplayNameFor(model => model.DateOfJoining) : </span>    <span>@Convert.ToDateTime(Model.DateOfJoining).ToString("dd/MM/yyyy")</span>
+            </div>
+
+            <div class="pt-3">
+                <span class="text-dark h3">@Html.DisplayNameFor(model => model.Gender) :- </span>    <span> @Html.DisplayFor(model => model.Gender)</span>
+            </div>
+
+            <div class="pt-3">
+                <span class="h3 text-dark"> @Html.DisplayNameFor(model => model.DateOfbirth) :-</span>    <span> @Convert.ToDateTime(Model.DateOfbirth).ToString("dd/MM/yyyy")</span>
+            </div>
+
+        </div>
+
+</body>
 

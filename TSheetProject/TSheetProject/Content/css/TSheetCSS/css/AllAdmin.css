@@ -1,0 +1,47 @@
+﻿#Adminhedding {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+
+#adminBody {
+    background-color: #FCFCFC;
+}
+
+#DayApprove{
+    color:white;
+    font-size:16px;
+}
+#DayReject {
+    color: white;
+    font-size: 16px;
+}
+
+/*CreateUSer*/
+.boxint {
+    height: 80px;
+}
+
+#createUserInt {
+    width: 420px;
+    height: 34px;
+    font-size: 15px;
+}
+
+#AdminCreatebtn {
+    width: 280px;
+    height: 34px;
+    font-size: 15px;
+}
+
+.control-label {
+    color: black;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif
+}
+
+/*SuperAdminEditUser*/
+/*#BtnSuperAdminEdit{
+    height:32px;
+}*/

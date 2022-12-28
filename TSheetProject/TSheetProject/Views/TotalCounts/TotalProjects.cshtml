@@ -7,7 +7,7 @@
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
+<link href="~/Content/css/TSheetCSS/css/AllAdmin.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script>
@@ -21,56 +21,57 @@
 <link rel="stylesheet"
       type="text/css"
       href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-<div class="p-3">
-<button class="btn bg-success mt-3 ml-4" type="submit">
-    @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
-</button>
+<body id="adminBody">
+    <div class="p-3">
+        <button class="btn bg-success  ml-4" type="submit">
+            @Html.ActionLink("Go To Dashboard", "DashBoard", "Admin", "Admin", new { @class = "text-white h3", @id = "SideBar-items" })
+        </button>
     </div>
-<div class="p-3 ml-4">
-
-    <table id="table_id" class="table-bordered ">
-        <thead class="bg-dark text-white p-4">
-            <tr class="">
-
-
-                <th class="p-3">
-                    @Html.DisplayNameFor(model => model.ProjectName)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.ProjectDescription)
-                </th>
+    <div class="p-3 ml-3 mr-2">
+        <table id="table_id" class="table-bordered bg-white">
+            <thead class="bg-dark text-white p-4">
+                <tr class="">
 
 
-            </tr>
-        </thead>
-        <tbody>
+                    <th class="p-3">
+                        @Html.DisplayNameFor(model => model.ProjectName)
+                    </th>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="p-3 bg-white">
-                        @Html.DisplayFor(modelItem => item.ProjectName)
-                    </td>
-                    <td class="p-3 bg-white">
-                        @Html.DisplayFor(modelItem => item.ProjectDescription)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectDescription)
+                    </th>
+
+
                 </tr>
-            }
-        </tbody>
+            </thead>
+            <tbody>
 
-    </table>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
-</div>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="p-3 bg-white">
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </td>
+                        <td class="p-3 bg-white">
+                            @Html.DisplayFor(modelItem => item.ProjectDescription)
+                        </td>
+                    </tr>
+                }
+            </tbody>
 
+        </table>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript"
+                charset="utf8"
+                src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#table_id").dataTable();
+            });
+        </script>
+    </div>
+
+    </body>
 

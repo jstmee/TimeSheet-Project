@@ -13,7 +13,7 @@ namespace TSheet.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "First Name is required")]
+       [Required(ErrorMessage = "First Name is required")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
@@ -54,6 +54,7 @@ namespace TSheet.Models
         public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
+       
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreatedOn { get; set; }
         [Display(Name = "Updated On")]
@@ -85,6 +86,8 @@ namespace TSheet.Models
 
         [Display(Name = "Assign Project")]
         public int? AssignProject { get; set; }
+
+        public List<int?> AssignedPro { get ; set; }
 
     }
 

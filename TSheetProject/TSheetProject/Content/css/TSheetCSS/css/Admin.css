@@ -1,0 +1,72 @@
+﻿.AdminTitle {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+
+.userDashBtn {
+    font-size: 18px;
+}
+.count{
+    font-size:23px;
+    font-weight:600;
+    font-family:'Times New Roman', Times, serif
+}
+
+/*create User*/
+.form-control {
+    height: 42px;
+    font-size: 15px;
+}
+
+#btn-submit {
+    height: 33px;
+    font-size: 18px;
+    background-color: #3A922A;
+}
+
+.control-label{
+   color:black;
+   font-weight:400;
+
+}
+#createUserInt{
+    height:36px;
+    font-size:15px;
+}
+/*admin layout*/
+#adminBodu {
+    background-color: #115C8C;
+}
+
+/*Weekly App/reject*/
+#approve {
+    color: white
+}
+
+#reject {
+    color: white
+}
+
+#table_id {
+    width: 1260px;
+    overflow: scroll;
+}
+
+#hedding {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-weight: 600
+}
+/*
+ShowUSer Admin*/
+table {
+    width: 1500px;
+}
+
+#hedding {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-weight: 600
+}

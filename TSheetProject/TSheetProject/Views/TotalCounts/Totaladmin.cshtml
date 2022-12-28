@@ -7,71 +7,72 @@
 }
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/TSheetCSS/css/superAdmin.css" rel="stylesheet" />
+<script>
+    $(Document).ready(function () {
+        $("#UserVirePopup").click(function () {
+            alert
+        })
+    })
+</script>
 
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<div class="p-3 pt-5 pl-5">
-    <button class="btn bg-success " type="submit">
-        @Html.ActionLink("Go To Dashboard", "DashBoard", "SuperAdmin", "SuperAdmin", new { @class = "text-white", @id = "SideBar-items" })
-    </button>
-</div>
-<div class="p-3 ml-4">
+<body id="adminBody">
+    <div class=" pl-5">
+        <button class="btn bg-success " type="submit">
+            @Html.ActionLink("Go To Dashboard", "DashBoard", "SuperAdmin", "SuperAdmin", new { @class = "text-white h4", @id = "SideBar-items" })
+        </button>
+    </div>
+    <div class="p-3  ml-3">
 
-    <script>
-        $(Document).ready(function () {
-            $("#UserVirePopup").click(function () {
-                alert
-            })
-        })
-    </script>
-
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
-    <table id="table_id" class="table-bordered">
-        <thead class="bg-dark text-white p-4">
-            <tr class="">
-                <th class="p-3">
-                    Name
-                </th>
-                <th>
-                    Role
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white">
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Registration.FirstName)
-                        @Html.DisplayFor(modelItem => item.Registration.LastName)
-                    </td>
-                    <td class="bg-white p-3">
-                        @Html.DisplayFor(modelItem => item.Role.RoleName)
-                    </td>
-
-
+        <table id="table_id" class="table-bordered">
+            <thead class="bg-dark text-white p-4">
+                <tr class="">
+                    <th class="p-3">
+                        Name
+                    </th>
+                    <th>
+                        Role
+                    </th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="bg-white">
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.Registration.FirstName)
+                            @Html.DisplayFor(modelItem => item.Registration.LastName)
+                        </td>
+                        <td class="bg-white p-3">
+                            @Html.DisplayFor(modelItem => item.Role.RoleName)
+                        </td>
 
-            }
-        </tbody>
 
-    </table>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+</body>
 
 
-
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript"
-            charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <script>
-        $(function () {
-            $("#table_id").dataTable();
-        });
-    </script>
+<script type="text/javascript"
+        charset="utf8"
+        src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript"
+        charset="utf8"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script>
+    $(function () {
+        $("#table_id").dataTable();
+    });
+</script>
 </div>
 

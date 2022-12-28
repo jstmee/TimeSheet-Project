@@ -7,21 +7,17 @@
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
-
-
+<link href="~/Content/css/TSheetCSS/css/admin1.css" rel="stylesheet" />
+<link rel="stylesheet"
+      type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<div  class="pt-5 ml-5 ml-2">
+<div class=" ml-3 ml-2">
     <button class="btn bg-success text-white">
-        @Html.ActionLink("Add New Projects", "AddProjects", "AddProjectForAdmin" ,"", new {@class="text-white"})
+        @Html.ActionLink("Add New Projects", "AddProjects", "AddProjectForAdmin", "", new { @class = "text-white h3" })
     </button>
-   
 </div>
-<div class=" pt-3 ml-5 ml-2 mr-3">
-
-
-    <link rel="stylesheet"
-          type="text/css"
-          href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<div class=" pt-2 ml-3 ml-2 mr-3">
     <table id="table_id" class="table-bordered pt-3">
         <thead class="bg-dark text-white">
             <tr>

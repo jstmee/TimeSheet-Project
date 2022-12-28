@@ -6,61 +6,54 @@
 
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/css/TSheetCSS/css/admin1.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-    .btn {
-        width: 180px;
-    }
-</style>
-<div class="pt-3 mt-3 ml-5">
-    <button class="btn bg-success ml-3" type="submit">
-        @Html.ActionLink("Go To Back", "ProjectList", "Admin", "Admin", new { @class = "text-white", @id = "SideBar-items" })
-    </button>
-</div>
-<div class=" ml-5">
-    <h3 class="font-weight-bold pt-3 pl-3">Add Projects</h3>
-    @if (ViewBag.Message != null)
-    {
-        <div class="alert alert-success">
-            <strong>
-                @ViewBag.Message
-            </strong>
-        </div>
-    }
-    else
-    {
-        using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post))
+<body id="adminBody">
+    <div class=" ml-4">
+        <button class="btn bg-success ml-3" type="submit">
+            @Html.ActionLink("Go To Back", "ProjectList", "Admin", "Admin", new { @class = "text-white h3", @id = "SideBar-items" })
+        </button>
+    </div>
+    <div class=" ml-5 ml-2">
+        <h3 class="font-weight-bold pt-3 pl-1" id="Adminhedding">Add Projects</h3>
+        @if (ViewBag.Message != null)
         {
-
-            <div class="form-horizontal">
-                <div class="col-sm-6">
-
-                    <div class="form-group pt-4">
-                        @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-sm" })
-                        <div class="col-lg">
-                            @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control w-75" } })
-                            @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label col-sm" })
-                        <div class="col-lg">
-                            @Html.TextAreaFor(model => model.ProjectDescription, new { @class = "whatever-class w-75", @cols = 50, @rows = 7 })
-
-                            @*@Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })*@
-                            @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+            <div class="alert alert-success">
+                <strong>
+                    @ViewBag.Message
+                </strong>
             </div>
-            <div class="form-group">
-                <div class="pl-4">
-                    <input type="submit" value="Save" class="btn btn-default btn-primary w-25" />
-                </div>
-            </div>
-            @* </div>*@
         }
-    }
+        else
+        {
+            using (Html.BeginForm("AddProjects", "SuperAdmin", FormMethod.Post))
+            {
 
-</div>
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label h3" })
+                    <div class="">
+                        @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control w-25 " } })
+                        @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger " })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label h3" })
+                    <div class="">
+                        @Html.TextAreaFor(model => model.ProjectDescription, new { @class = "whatever-class w-25", @cols = 50, @rows = 7 })
+
+                        @*@Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-default btn-primary w-25 h3"  id/>
+                </div>
+
+
+            }
+
+        }
+
+    </div>
+    </body>
 

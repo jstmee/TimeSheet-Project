@@ -137,8 +137,6 @@ namespace TSheetProject.Controllers
                 registereduser.Gender = user.Gender;
                 registereduser.DateOfLeaving = user.DateOfLeaving;
                 
-
-                
                 AssignedRole assignedRole = new AssignedRole();
                 
                 assignedRole.RoleID = (int)user.AssignedRole;
@@ -159,14 +157,16 @@ namespace TSheetProject.Controllers
                 db.SaveChanges();
 
                 DescriptionAndProjectMapping projectMapping = new DescriptionAndProjectMapping();
-                projectMapping.ProjectID = (int)user.AssignProject;
-                projectMapping.UserID = user.Id;
-                db.DescriptionAndProjectMappings.Add(projectMapping);
-                db.SaveChanges();
+                foreach(var projects in user.AssignedPro)
+                {
+                    projectMapping.ProjectID = (int)projects;
+                    projectMapping.UserID = user.Id;
+                    db.DescriptionAndProjectMappings.Add(projectMapping);
+                    db.SaveChanges();
+                }
+                
                 message = "Edited Successfully";
                 return RedirectToAction("AssignRoles", "SuperAdmin");
-
-
 
             }
             else
