@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "TotalTimeSheets1";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+}
+
+<h2>TotalTimeSheets1</h2>
+<table id="myytable">
+    <thead>
+        <tr>Date</tr>
+        <tr>Hours</tr>
+    </thead>
+</table>
+<link href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*<link href="~/Content/Scripts/dataTablesScripts/dataTables.bootstrap.min.css" rel="stylesheet" />*@
+@section scripts{
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#myytable").DataTable({
+                "ajax": {
+                    "url": "/TotalCounts/LoadData",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Date", "name": "Date" },
+                    { "data": "Hours", "name": "Hours" },
+
+
+                ],
+                "serverSide": "true",
+                "order": [0, "asc"]
+
+            });
+
+        });
+    </script>
+}
+
+
+

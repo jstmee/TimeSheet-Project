@@ -17,9 +17,9 @@
     <table id="table_id" class="table-bordered">
         <thead class="bg-dark text-white">
             <tr>
-                <th class="p-3">
+                @*<th class="p-3">
                     Name
-                </th>
+                </th>*@
                 <th>Project</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
@@ -35,10 +35,10 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white">
-                    <td class="bg-white">
+                    @*<td class="bg-white">
                         @Html.DisplayFor(modelItem => item.TimeSheetDetail.TimeSheetMaster
                    .ProjectMaster.ProjectName)
-                    </td>
+                    </td>*@
                     <td>@Html.DisplayFor(modelItem =>item.TimeSheetDetail.TimeSheetMaster.ProjectMaster.ProjectName)</td>
                     <td class="bg-white p-3">
                         @Html.DisplayFor(modelItem => item.Status)
