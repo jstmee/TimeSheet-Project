@@ -141,7 +141,6 @@ namespace TSheetProject.Controllers
             obj.TimeSheetDetailID = Id;
            /* obj.Status=allTimeSheetModel.Status;*/
             db.TimeSheetAuditTBs.Add(obj);
-          
             db.SaveChanges();
             return RedirectToAction("ApproveTimeSheet");
         }
@@ -151,7 +150,6 @@ namespace TSheetProject.Controllers
             ViewBag.rejectview = true;
             var alldata = alltsheetdata();
             return View("AllTimeSheet",alldata);
-           
         }
         [HttpPost]
         public ActionResult RejectTimeSheet(int Id, string Identity,int Id2)
@@ -305,7 +303,6 @@ namespace TSheetProject.Controllers
         public ActionResult WeeklyStatus()
         {
             TSheetDB db = new TSheetDB();
-
             //Retriving The Data Of The Master Table For The Users
             var masterdata = db.TimeSheetMasters.ToList();
 

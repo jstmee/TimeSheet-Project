@@ -23,4 +23,10 @@ namespace TSheet.Data
 
         public virtual TimeSheetMaster TimeSheetMaster1 { get; set; }
     }
+
+    public class TimeSheetDetailModel
+    {
+        public decimal? Hours { get; set; }
+        public DateTime? Date { get; set; }
+    }
 }
