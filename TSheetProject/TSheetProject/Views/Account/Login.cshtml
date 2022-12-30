@@ -26,53 +26,99 @@
         })
     </script>
     <link href="~/Content/css/login.css" rel="stylesheet" />
-   
+   <style>
+       #Login-Box{
+           width:400px;
+           height:400px;
+           margin-top:200px;
+           margin-left:900px;
+       }
+       #input-box-btn {
+           width: 250px;
+           margin-top: 50px;
+           height: 32px;
+           border-radius: 5px;
+           margin-left: 50px;
+       }
+       #Login-input {
+           width: 250px;
+           height:32px;
+           border-radius:5px;
+           margin-left:50px;
+          
+       }
+       .control-label {
+           margin-left: 50px;
+       }
+       #login-hedding {
+           margin-left: 90px;
+          
+       }
+       .container{
+           margin-top:50px;
+       }
+       #llc{
+           margin-top:70px;
+           margin-left:90px;
+       }
+       #top-box{
+           margin-top:10px;
+       }
+       #validationLogin {
+           margin-left: 50px;
+           color:red
+       }
+   </style>
 </head>
 
 <body>
    <div class="container pt-5 ">
             <div class="bg-white p-3" id="Login-Box">
-                <div class="pt-3 bt-5 pl-2 pr-2 ">
+                <div class="pt-5 bt-5 pl-2 pr-2 ">
                     <div class="text-center">
-                        <h1 class="h4 mb-4" id="login-hedding">Welcome</h1>
+                        <h1 class="h4 text-center" id="login-hedding">Welcome</h1>
                     </div>
 
                     @using (Html.BeginForm("", "", FormMethod.Post, new { id = "UserLoginForm" }))
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
+                <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group pt-2">
-                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-12">
-                                    @Html.EditorFor(model => model.Email, "Email", new { htmlAttributes = new { @class = "form-control validate[required]  rounded ", @id = "Login-Email" } })
-                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group pt-1">
-                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
-                                <div class="col-md-12">
-                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded  validate[required]", @id = "Login-input" } })
-                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group  pt-3 pl-2">
-                                <input type="submit" value="Login" class="btn  rounded text-white" id="input-box-btn">
-                            </div>
-                            <div class="text-center  pt-3">
-                                <h5>Follow Us On</h5>
-                                <i class="fa-brands fa-square-facebook "></i>
-                                <i class="fa-brands fa-square-twitter pl-2"></i>
-                                <i class="fa-brands fa-linkedin pl-2"></i>
-                            </div>
-                            <div class="text-center pt-5 pb-3" id="llc">
-                                ⓒ Fusionstak LLC, 2022
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group pt-2" id="top-box">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Email, "Email", new { htmlAttributes = new { @class = "form-control validate[required]  rounded ", @id = "Login-input" } })
+                            <div>
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" ,@id="validationLogin"})
                             </div>
                         </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-sm" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded  validate[required]", @id = "Login-input" } })
+                            <div>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @id = "validationLogin" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group  pt-5 pl-2">
+                        <input type="submit" value="Login" class="btn  rounded text-white " id="input-box-btn">
+                    </div>
+                    @*  <div class="text-center  pt-3">
+            <h5>Follow Us On</h5>
+            <i class="fa-brands fa-square-facebook "></i>
+            <i class="fa-brands fa-square-twitter pl-2"></i>
+            <i class="fa-brands fa-linkedin pl-2"></i>
+        </div*@
+                    <div class="text-center pt-5 pb-3" id="llc">
+                        ⓒ Fusionstak LLC, 2022
+                    </div>
+                </div>
                     }
                 </div>
             </div>

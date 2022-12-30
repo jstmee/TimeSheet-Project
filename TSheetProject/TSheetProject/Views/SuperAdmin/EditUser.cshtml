@@ -14,6 +14,13 @@
     .form-control {
         height: 32px;
     }
+
+
+    .chosen-results {
+        border: red solid 1px;
+        height: 40px;
+        overflow: hidden
+    }
 </style>
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
@@ -21,6 +28,8 @@
 <link href="~/Content/css/TSheetCSS/css/AllAdmin.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/chosen.jquery.min.js"></script>
+<link href="~/Content/example-styles.css" rel="stylesheet" />
+<link href="~/Content/demo-styles.css" rel="stylesheet" />
 <div class=" ml-5 ">
     <button class="btn bg-success">
         @Html.ActionLink("Go To Back", "AssignRoles", "SuperAdmin", "", new { @class = "text-white h4", @id = "SideBar-items" })
@@ -79,10 +88,11 @@
                                 <div>
                                     @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label h3" })
                                 </div>
-                                @Html.TextBoxFor(model => model.DateOfBirth, "{0:d}", new { @class = "form-controlw-75", @id = "createUserInt" })
-                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
 
+                                @Html.EditorFor(model => model.DateOfBirth, "{0:d}", new { @class = "form-controlw-75", @id = "createUserInt" })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                             </div>
+
                             <div class="col-lg-6 boxint row">
                                 <div col-lg-12>
                                     @Html.LabelFor(model => model.DateOfLeaving, htmlAttributes: new { @class = "control-label h3" })
@@ -101,14 +111,22 @@
                                  new SelectList(ViewBag.Roles, "Id", "RoleName"), "Select Roles", new { @class = "form-control w-75", @id = "createUserInt" })
                                 @Html.ValidationMessageFor(model => model.AssignedRole, "", new { @class = "text-danger" })
                             </div>
+
                             <div class="col-lg-6 boxint ">
+                             
                                 @Html.LabelFor(model => model.AssignedPro, htmlAttributes: new { @class = "control-label  h3" })
-                                @Html.DropDownListFor(model => model.AssignedPro, new SelectList(ViewBag.projectlist, "Id", "Name"), "Select Projects", new { @class = "form-control w-100 h-50", @Multiple = "", @id = "DropList" })
-
-
+                                <div>
+                                    @Html.DropDownListFor(model => model.AssignedPro, new SelectList(ViewBag.projectlist, "Id", "Name"), "Select All", new { @class = "form-control dropdownlist ", @multiple = "", @id = "createUserInt" ,placeholder = "Enter your name" , @onclick = "SelectAllProjects" })
+                                    
+                                </div>
                                 @Html.ValidationMessageFor(model => model.AssignProject, "", new { @class = "text-danger" })
                             </div>
+
+                            <div>
+
+                            </div>
                         </div>
+
 
                         @*<div class="row">
                                 <div class="col-sm-6">
@@ -220,18 +238,18 @@
                                 </span>
                             </div>
 
-                            <div class="col-6">
-                                <div class="col-sm-8 ">
-                                    <div class="row">
-                                        <div class="">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2 h3" })</div>
+                           <div class="col-6">
+                                    <div class="col-sm-8 ">
+                                        <div class="row">
+                                            <div class="">@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2 h3" })</div>
 
-                                        <div class=" pt-5 pl-3"> @Html.RadioButtonFor(model => model.Gender, "Male")<span>Male</span>  </div>
+                                            <div class=" pt-5 pl-3"> @Html.RadioButtonFor(model => model.Gender, "Male")<span>Male</span>  </div>
 
-                                        <div class="pl-4 pt-5">@Html.RadioButtonFor(model => model.Gender, "Female")<span>Female</span> </div>
+                                            <div class="pl-4 pt-5">@Html.RadioButtonFor(model => model.Gender, "Female")<span>Female</span> </div>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
+                                </div>
                         </div>
 
 
@@ -241,16 +259,64 @@
                             <input type="submit" value="Save Changes" class="btn btn-default btn-primary w-25 " id="BtnSuperAdminEdit" />
                         </div>
                     </div>
-
+                   
                 }
             }
         }
     </div>
 </div>
-
-
-<script type="">
-    $(document).ready(function () {
-        $("#DropList").chosen();
-    })
+<style>
+    .multi-select-button {
+        width: 500px;
+        height:30px
+    }
+    #AssignedPro_0{
+        padding:200px;
+    }
+    .multi-select-menuitem{
+      
+    }
+</style>
+<script>
+    function SelectAllProjects()
+    var projectCheck = document.getElementById('#multi-select-menuitem');
+    var projectLen = projectCheck.length;
+    for (var x = 0; x < projectLen; x++) {
+        projectCheck[x].checked = true;
+    }
 </script>
+
+@*Multiple Projects Selection.................................*@
+<script type="text/javascript">
+    $(function () {
+        $('.dropdownlist').multiSelect();
+        $('#ice-cream').multiSelect();
+        $('#line-wrap-example').multiSelect({
+            positionMenuWithin: $('.position-menu-within')
+        });
+        $('#categories').multiSelect({
+            noneText: 'All categories',
+            presets: [
+                {
+                    name: 'All categories',
+                    all: true
+                },
+                {
+                    name: 'My categories',
+                    options: ['a', 'c']
+                }
+            ]
+        });
+        $('#modal-example').multiSelect({
+            'modalHTML': '<div class="multi-select-modal">'
+        });
+    });
+</script>
+@*
+    <script type="">
+        $(".dropdownlist").chosen();
+
+    </script>*@
+<script src="~/Content/jquery-2.2.4.min.js"></script>
+<script src="~/Content/jquery.multi-select.js"></script>
+<script src="~/Content/jquery.multi-select.min.js"></script>

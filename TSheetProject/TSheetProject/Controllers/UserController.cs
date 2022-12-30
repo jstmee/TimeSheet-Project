@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using TSheet.BL;
 using TSheet.Data;
 using TSheet.Models;
 
@@ -87,6 +87,39 @@ namespace TSheetProject.Controllers
             ViewBag.Message = message;
             return View();
         }
+
+
+        public ActionResult ChangePasswordAdmin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePasswordAdmin(ChangeUserPassword userPassword)
+        {
+            string message = "";
+            using (TSheetDB dB = new TSheetDB())
+            {
+                if (ModelState.IsValid)
+                {
+                    var getuser = dB.Registrations.Where(x => x.Email == userPassword.Email).SingleOrDefault();
+                    getuser.Password = Crypto.Hash(userPassword.Password);
+                    dB.SaveChanges();
+                    message = "Password Changed successfully";
+
+                }
+                else
+                {
+                    message = "Invalid request";
+                    return View(userPassword);
+                }
+            }
+            ViewBag.Message = message;
+            return View();
+        }
+
+
+
+
 
         [NonAction]
         public int TotalSheet()

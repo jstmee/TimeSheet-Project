@@ -14,11 +14,15 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <style>
+        ul li a.active {
+            background-color: #C4C0C0;
+            color: black
+        }
     </style>
     <link href="~/Content/css/user.css" rel="stylesheet" />
 </head>
 <div class="w3-bar w3-light-grey bg-white p-2 shadow">
-    <img src="~/Content/css/TsheetImg/hourglass.png" id="NavLogo"/><span class="NvaTitle pl-3">TIME MANAGE</span>
+    <img src="~/Content/css/TsheetImg/hourglass.png" id="NavLogo" /><span class="NvaTitle pl-3">TIME MANAGE</span>
     <div id="loginName">
         <div class="h4 pr-5 " id="userLoginEmail"><i class="fa-solid fa-user"></i> @HttpContext.Current.User.Identity.Name</div>
         <div class="h4 pr-5"> <i class="fa-solid fa-right-to-bracket"></i> @Html.ActionLink("Logout", "Logout", "Account")</div>
@@ -27,37 +31,36 @@
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="pt-4">
-                <a href="">  <i class=""></i> <span style="margin-left:10px;" id="TimeSheetLogo" > TIME SHEET </span> </a>
-            </li>
-
+            
+                <h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
+            
             <li class="pt-5">
-                <a href="@Url.Action("Dashboard", "User")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;"> Dashboard</span> </a>
-            </li>
-            <li class="pt-5">
-                <a href="@Url.Action("TimeLog", "TimeLogging")"> <i class="fa-solid fa-calendar-plus" id="i"></i> <span style="margin-left:10px;">Time Sheet </span> </a>
+                <a href="@Url.Action("Dashboard", "User")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;" class="active"> Dashboard</span> </a>
             </li>
             <li class="pt-5">
-                <a href="@Url.Action("ChangePassword", "User")"> <i class="fa-solid fa-lock" id="i"></i> <span style="margin-left:10px;"> Change Password</span> </a>
+                <a href="@Url.Action("TimeLog", "TimeLogging")"> <i class="fa-solid fa-calendar-plus" id="i"></i> <span style="margin-left:10px;" class="active">Time Sheet </span> </a>
+            </li>
+            <li class="pt-5">
+                <a href="@Url.Action("ChangePassword", "User")"> <i class="fa-solid fa-lock" id="i"></i> <span style="margin-left:10px;" class="active"> Change Password</span> </a>
             </li>
         </ul>
     </div>
 </div>
 
-<h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
-<div>
-    
-    <div class="userBody">
+
+
+    <div class="userBody" id="wrapper">
         @RenderBody()
     </div>
-</div>
+
 
 
 <style>
-    #NavLogo{
-        width:53px;
-        height:53px;
+    #NavLogo {
+        width: 53px;
+        height: 53px;
     }
+
     .NvaTitle {
         font-weight: 600;
         font-family: 'Times New Roman', Times, serif;
@@ -66,43 +69,55 @@
         text-decoration-line: underline;
         text-decoration-style: double;
     }
+
     #loginName {
         float: right
     }
+
     .navimg {
         width: 300px;
         height: 100px
     }
+
     #LogigLogo {
         float: right;
     }
+
     .userBody {
         padding-left: 200px;
     }
-    span{
-        font-size:17px
+
+    span {
+        font-size: 17px
     }
+
     i {
         font-size: 17px
     }
-    #navBar{
-        height:60px;
-        background-color:white;
+
+    #navBar {
+        height: 60px;
+        background-color: white;
     }
+
     #menu-toggle {
         padding-left: 200px;
     }
-    #TimeSheetLogo{
-        font-family:'Times New Roman', Times, serif;
-        font-weight:600;
-        color:white;
-        font-size:23px;
 
+    #TimeSheetLogo {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 600;
+        color: white;
+        font-size: 23px;
     }
-    nav{
-        float:left
+
+    nav {
+        float: left
     }
-    
+    ul li a.active {
+        background-color: #C4C0C0;
+        color: black
+    }
 </style>
 
 <script>
@@ -111,6 +126,10 @@
         $("#wrapper").toggleClass("toggled");
     });
 
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $(".userBody").toggleClass("toggled");
+    });
 
     /*$(document).ready(function () {
         $("#userLoginEmail").hover(function () {
@@ -119,26 +138,37 @@
             $(this).css("background-color", "pink");
         });
     });*/
-   
+
 </script>
 
 <script>
-   
-    document.getElementById("span").addEventListener("click", function() {
-            this.style.color = "red";
+
+    document.getElementById("span").addEventListener("click", function () {
+        this.style.color = "red";
     });
 
-  /*  $(document).ready(function () {
-        $('#menu-toggle').click(function () {
-            $("i").css('font-size', '35px');
-           
-        });
-    });
-    $(document).ready(function () {
-        $('#menu-toggle').click(function () {
-            $("#i").css('font-size', '17px');
+    /*  $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("i").css('font-size', '35px');
 
-        });
-    });*/
+          });
+      });
+      $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("#i").css('font-size', '17px');
+
+          });
+      });*/
+</script>
+
+<script type="text/javascript">
+    const currentLoaction = location.href;
+    const menuItem = document.querySelectorAll('a');
+    const menuLength = menuItem.length
+    for (let i = 0; i < menuLength; i++) {
+        if (menuItem[i].href == currentLoaction) {
+            menuItem[i].className = 'active'
+        }
+    }
 </script>
 

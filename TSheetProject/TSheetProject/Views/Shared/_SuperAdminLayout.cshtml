@@ -13,7 +13,12 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
- 
+    <style>
+        ul li a.active {
+            background-color: #C4C0C0;
+            color: black
+        }
+    </style>
 
 </head>
 <div class="w3-bar w3-light-grey bg-white p-2 shadow">
@@ -25,13 +30,13 @@
 </div>
 <div id="wrapper">
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="pt-4">
-                <a href="">  <i class=""></i> <span style="margin-left:10px;" id="TimeSheetLogo"> TIME SHEET </span> </a>
-            </li>
+        <ul class="sidebar-nav" link="white" , alink="red" , vlink="black">
+            @*<li class="pt-4">
+                    <a href="">  <i class=""></i> <span style="margin-left:10px;" id="TimeSheetLogo"> TIME SHEET </span> </a>
+                </li>*@
 
             <li class="pt-3">
-                <a href="@Url.Action("Dashboard", "SuperAdmin")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;"> Dashboard</span> </a>
+                <a href="@Url.Action("Dashboard", "SuperAdmin")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;" id="titleTag" class="active"> Dashboard</span> </a>
             </li>
             <li class="pt-3">
                 <a href="@Url.Action("CreateUser", "SuperAdmin")"><i class="fa-solid fa-square-plus"></i> <span style="margin-left:10px;">Create User </span> </a>
@@ -48,7 +53,7 @@
             <li class="pt-3">
                 <a href="@Url.Action("ProjectList", "SuperAdmin")"><i class="fa-solid fa-folder"></i> <span style="margin-left:10px;">Projects List</span> </a>
             </li>
-           
+
             <li class="pt-3">
                 <a href="@Url.Action("ProjectsAssigned", "SuperAdmin")"> <i class="fa-solid fa-user-check"></i> <span style="margin-left:10px;">Projects Assigned </span> </a>
             </li>
@@ -60,104 +65,156 @@
 </div>
 
 <h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
-<div>
     <div class="userBody">
         @RenderBody()
     </div>
 </div>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#menu-toggle").click(function () {
+            $(".userBody").animate({ left: '1000px;' })
+        })
+    })
+</script>
 
-    <style>
-        #NavLogo {
-            width: 53px;
-            height: 53px;
-        }
+<style>
+    #NavLogo {
+        width: 53px;
+        height: 53px;
+    }
 
-        .NvaTitle {
-            font-weight: 600;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 25px;
-            color: #622F90;
-            text-decoration-line: underline;
-            text-decoration-style: double;
-        }
+    .NvaTitle {
+        font-weight: 600;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 25px;
+        color: #622F90;
+        text-decoration-line: underline;
+        text-decoration-style: double;
+    }
 
-        #loginName {
-            float: right
-        }
+    #loginName {
+        float: right
+    }
 
-        .navimg {
-            width: 300px;
-            height: 100px
-        }
+    .navimg {
+        width: 300px;
+        height: 100px
+    }
 
-        #LogigLogo {
-            float: right;
-        }
+    #LogigLogo {
+        float: right;
+    }
 
-        .userBody {
-            padding-left: 200px;
-        }
+    .userBody {
+        padding-left: 200px;
+    }
 
-        span {
-            font-size: 17px
-        }
+    span {
+        font-size: 17px
+    }
 
-        i {
-            font-size: 17px
-        }
+    i {
+        font-size: 17px
+    }
 
-        #navBar {
-            height: 60px;
-            background-color: white;
-        }
+    #navBar {
+        height: 60px;
+        background-color: white;
+    }
 
-        #menu-toggle {
-            padding-left: 200px;
-        }
+    #menu-toggle {
+        padding-left: 200px;
+    }
 
-        #TimeSheetLogo {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: 600;
-            color: white;
-            font-size: 23px;
-        }
+    #TimeSheetLogo {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 600;
+        color: white;
+        font-size: 23px;
+    }
 
-        nav {
-            float: left
-        }
-    </style>
+    nav {
+        float: left
+    }
+    .userBody {
+     
+        position: relative;
+        left: 0;
+    }
 
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
+
+</style>
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function () {
+        $("#userLoginEmail").hover(function () {
+            $(this).css("background-color", "yellow");
+        }, function () {
+            $(this).css("background-color", "pink");
         });
+    });
 
-        $(document).ready(function () {
-            $("#userLoginEmail").hover(function () {
-                $(this).css("background-color", "yellow");
-            }, function () {
-                $(this).css("background-color", "pink");
-            });
-        });
+</script>
 
-    </script>
+<script>
+    const varLocation = window.location.pathname;
+    console.log(varLocation)
 
-    <script>
+    // Get all nav links
+    var navLinks = document.querySelectorAll("li a");
 
-        /*  $(document).ready(function () {
-              $('#menu-toggle').click(function () {
-                  $("i").css('font-size', '35px');
+    // Get the current URL
+    var currentURL = window.location.href;
 
-              });
+    // Loop through the nav links and add the active class to the current link
+    navLinks.forEach(function (link) {
+        if (link.href === currentURL) {
+            link.classList.add("active");
+        }
+    });
+
+
+
+    /*  $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("i").css('font-size', '35px');
+
           });
-          $(document).ready(function () {
-              $('#menu-toggle').click(function () {
-                  $("#i").css('font-size', '17px');
+      });
+      $(document).ready(function () {
+          $('#menu-toggle').click(function () {
+              $("#i").css('font-size', '17px');
 
-              });
-          });*/
-    </script>
+          });
+      });*/
+</script>
+<script>
+    const changeLocation = localStorage.href;
+    const SideBarItem = document.querySelectorAll('a');
+    const itemLength = SideBarItem.length
+    for (let i = 0; i < itemLength; i++) {
+        if (SideBarItem[i].href === changeLocation) {
+            SideBarItem[i].className = 'active'
+        }
+    }
+
+</script>
+<script>
+    const button = document.getElementById('menu-toggle');
+    const box = document.getElementsByClassName('userBody');
+
+    button.addEventListener('click', function () {
+        box.style.left = '-100px';
+    });
+
+
+</script>
+
 

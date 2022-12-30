@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Addtime.css" />
+    <Content Include="Content\css\AddTimeUser.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
@@ -125,6 +126,7 @@
     <Content Include="Content\css\TsheetImg\MicrosoftTeams-image %283%29 %281%29 %281%29.png" />
     <Content Include="Content\css\TsheetImg\time.jpg" />
     <Content Include="Content\css\user.css" />
+    <Content Include="Content\css\UserAllCss.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap.min.css" />
     <Content Include="Content\datatablecss\dataTables.bootstrap4.css" />
@@ -143,6 +145,11 @@
     <Content Include="Content\datatablecss\dataTables.semanticui.min.css" />
     <Content Include="Content\datatablecss\jquery.dataTables.css" />
     <Content Include="Content\datatablecss\jquery.dataTables.min.css" />
+    <Content Include="Content\demo-styles.css" />
+    <Content Include="Content\example-styles.css" />
+    <Content Include="Content\jquery-2.2.4.min.js" />
+    <Content Include="Content\jquery.multi-select.js" />
+    <Content Include="Content\jquery.multi-select.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
@@ -233,6 +240,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\sb-admin-2.js" />
     <Content Include="Scripts\sb-admin-2.min.js" />
+    <Content Include="Scripts\virtual-select.min.css" />
+    <Content Include="Scripts\virtual-select.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +307,7 @@
     <Content Include="Views\SuperAdmin\ProjectsAssigned.cshtml" />
     <Content Include="Views\Admin\ProjectsAssigned.cshtml" />
     <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\User\ChangePasswordAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,7 +11,6 @@ namespace TSheet.BL
 	public class Crypto
 	{
 
-
 		public static string Hash(string value)
 		{
 			return Convert.ToBase64String(
