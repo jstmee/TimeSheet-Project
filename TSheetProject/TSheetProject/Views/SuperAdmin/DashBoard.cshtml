@@ -6,12 +6,21 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link href="~/Content/css/TSheetCSS/css/superAdmin.css" rel="stylesheet" />
-
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
 <link href="~/Content/css/TSheetCSS/css/Admin.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    #box {
+        position: relative;
+        left: 0;
+    }
+
+</style>
+
 <body id="adminBody">
     <h3 id="Adminhedding" class=" ml-5 pl-2">Super Admin Dashboard</h3>
-   
+
 
     <div class="row pt-3 ml-5 pl-2">
         <div class="col-lg-3 col-md-12 ">
@@ -38,7 +47,7 @@
                                 Admin Count
                             </button>
                         </div>
-                        <div class=" col-lg-4 col-md-5" > <h4 class=" count pt-3 pl-4 text-primary">@ViewBag.NoOfAdmin</h4></div>
+                        <div class=" col-lg-4 col-md-5"> <h4 class=" count pt-3 pl-4 text-primary">@ViewBag.NoOfAdmin</h4></div>
                     </div>
                 </div>
             </div>
@@ -61,6 +70,15 @@
 
     </div>
 
+    <script>
+        const button = document.getElementById('move-left');
+        const box = document.getElementById('box');
 
+        button.addEventListener('click', function () {
+            box.style.left = '-100px';
+        });
+
+
+    </script>
 
 </body>

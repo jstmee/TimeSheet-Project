@@ -1,0 +1,16 @@
+﻿#Adminhedding {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: #115C8C
+}
+.ChangePassInput{
+    height:32px;
+    width:400px;
+}
+#UserChangePassword_btn {
+    background-color: #13486C;
+    font-size: 16px;
+    height: 32px;
+    width: 400px;
+}

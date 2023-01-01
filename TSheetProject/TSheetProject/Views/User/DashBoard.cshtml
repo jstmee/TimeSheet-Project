@@ -9,16 +9,50 @@
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="~/Content/css/TSheetCSS/css/User.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        // Select the button and add a click event handler
+        $('#slideButton').click(function () {
+            // Select the div element to slide
+            var $div = $('#slideDiv');
+
+            // Check the current position of the div
+            if ($div.css('left') === '0px') {
+                // If the div is currently at the left, slide it to the right
+                $div.animate({ left: '+=200px' }, 'slow');
+            } else {
+                // If the div is not at the left, slide it back to the left
+                $div.animate({ left: '-=200px' }, 'slow');
+            }
+        });
+    });
+
+</script>
+<style>
+    #topBox{
+        margin-left:100px;
+    }
+    #cardData{
+        width:300px;
+        height:80px;
+    }
+    #topDivCard{
+        margin-left:65px;
+    }
+    #usetextbtn{
+        font-size:16px;
+    }
+</style>
+
 <body class="body-Bg">
-    <h4 class="  pl-5 ml-2" id="UserDashboarTitle">User Dashboard</h4>
-    <div class="row p-3 pt-3 pl-2 ml-4 ">
-        <div class="col-lg-3  col-md-12 ">
-            <div class="card border-left-dark h-75  shadow-sm p-3  py-2" id="cardData">
+    <div class="row p-3 pt-3 " id="topBox">
+        <div class="col-lg-3  col-md-12 " id="">
+            <div class="card border-left-dark   shadow-sm p-3  py-2" id="cardData">
                 <div class="card-body id=" user-Card"">
                     <div class=" row">
                         <div class="col-lg-8 col-sm-7" id="text-cart">
-                            <button type="button" class="btn btn-dark w-75 h-50 " id="usetextbtn" onclick="location.href='@Url.Action("TotalTimeSheet", "TotalCounts")'">
+                            <button type="button" class="btn btn-dark w-100 h-100 " id="usetextbtn" onclick="location.href='@Url.Action("TotalTimeSheet", "TotalCounts")'">
                                 Time  Sheets
                             </button>
                         </div>
@@ -28,12 +62,12 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-12">
-            <div class="card border-left-dark shadow-sm p-3 h-75 py-2" id="cardData">
+        <div class="col-lg-3 col-md-12 " id="topDivCard">
+            <div class="card border-left-dark shadow-sm p-3  py-2" id="cardData">
                 <div class="card-body">
                     <div class=" row">
                         <div class="col-lg-8 col-sm-7 " id="text-cart">
-                            <button type="button" class="btn btn-dark w-75 h-50 " id="usetextbtn" onclick="location.href='@Url.Action("TotalApproved", "TotalCounts")'">
+                            <button type="button" class="btn btn-dark w-100 h-100 " id="usetextbtn" onclick="location.href='@Url.Action("TotalApproved", "TotalCounts")'">
                                 Total Approved
                             </button>
                         </div>
@@ -43,12 +77,12 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-12">
-            <div class="card border-left-dark shadow-sm p-3 h-75   py-2" id="cardData">
+        <div class="col-lg-3 col-md-12 " id="topDivCard">
+            <div class="card border-left-dark shadow-sm p-3   py-2" id="cardData">
                 <div class="card-body">
                     <div class=" row">
                         <div class="col-lg-8 col-sm-7 " id="text-cart">
-                            <button type="button" class="btn btn-dark w-75 h-50" id="usetextbtn" onclick="location.href='@Url.Action("TotalRejected", "TotalCounts")'">
+                            <button type="button" class="btn btn-dark w-100 h-100" id="usetextbtn" onclick="location.href='@Url.Action("TotalRejected", "TotalCounts")'">
                                 Total Rejected
                             </button>
                         </div>

@@ -10,13 +10,13 @@
 <link href="~/Content/css/Addtime.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="~/Content/css/TSheetCSS/css/AddTime.css" rel="stylesheet" />
+<link href="~/Content/css/UserAllCss.css" rel="stylesheet" />
+<link href="~/Content/css/AddTimeUser.css" rel="stylesheet" />
 <style>
-    #topSection {
-        height:80px;
-    }
+   
 </style>
 <body class="body-Bg">
-    <div class="mt-2 ml-4 mr-4 shadow bg-white" id="addTimeSheet ">
+    <div class="mt-2mr-4 shadow bg-white w-100" id="addTimeSheet ">
         @using (Html.BeginForm("TimeLog", "TimeLogging", FormMethod.Post, new { @id = "FormData" }))
         {
             <div class="p-3 " id="topSection">
@@ -44,7 +44,7 @@
 
         else
         {
-            using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post) )
+            using (Html.BeginForm("AddTime", "TimeLogging", FormMethod.Post))
 
             {
                 @Html.AntiForgeryToken()
@@ -135,12 +135,12 @@
                                 <td class="validarionbox border-white">
                                     @Html.HiddenFor(m => Model[i].MondayLogTimeId)
                                     @Html.TextBoxFor(m => Model[i].MondayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "MondayTime", @type = "number" })
-                               <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].MondayLogTime)</div>
+                                    <div class="text-danger text-center"> @Html.ValidationMessageFor(model => model[i].MondayLogTime)</div>
                                 </td>
                                 <td class="validarionbox border-white">
                                     @Html.HiddenFor(m => Model[i].TuesdayLogTimeId)
                                     @Html.TextBoxFor(m => Model[i].TuesdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "TuesdayTime", @type = "number" })
-                             <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].TuesdayLogTime)</div>
+                                    <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].TuesdayLogTime)</div>
                                 </td>
                                 <td class="validarionbox border-white">
                                     @Html.HiddenFor(m => Model[i].WednesdayLogTimeId)
@@ -151,7 +151,7 @@
 
                                     @Html.HiddenFor(m => Model[i].ThursdayLogTimeId)
                                     @Html.TextBoxFor(m => Model[i].ThursdayLogTime, new { placeholder = "0.0", @class = "rounded1", @id = "ThursdayTime", @type = "number" })
-                            <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].ThursdayLogTime)</div>
+                                    <div class="text-danger text-center">  @Html.ValidationMessageFor(model => model[i].ThursdayLogTime)</div>
                                 </td>
                                 <td class="validarionbox border-white">
                                     @Html.HiddenFor(m => Model[i].FridayLogTimeId)

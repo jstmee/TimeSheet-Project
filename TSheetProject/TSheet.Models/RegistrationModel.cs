@@ -84,8 +84,8 @@ namespace TSheet.Models
 
         [Display(Name = "Assign Project")]
         public int? AssignProject { get; set; }
-
-        public List<int?> AssignedPro { get ; set; }
+        [Display(Name = "Assigned Projects")]
+        public List<int?> AssignedPro { get; set; }
 
     }
 

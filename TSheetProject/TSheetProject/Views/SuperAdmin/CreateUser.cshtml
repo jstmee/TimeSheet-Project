@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
 
-<link href="~/Content/css/TSheetCSS/css/Admin.css" rel="stylesheet" />
+
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 
@@ -16,9 +16,14 @@
         height: 110px;
         overflow: scroll;
     }
+    #btn-submit {
+        height: 32px;
+        font-size: 15px;
+        background-color: #133E6C
+    }
 </style>
 <body id="adminBody">
-    <h4 class="text-center createUserHedding h1 AdminTitle">Create an Account</h4>
+    <h4 class="text-center createUserHedding h1 AdminTitle" id="Adminhedding">Create an Account</h4>
 
     <div class="pt-3 container">
         <div class="container-fluid ">
@@ -107,7 +112,7 @@
             </div>
 
             <div class="pt-5 ">
-                <input type="submit" value="Create" class="btn btn-default btn-block btn-dark rounded w-25 mr-2" id="btn-submit" />
+                <input type="submit" value="Create" class="btn btn-default btn-block btn-dark rounded  w-25 mr-2" id="btn-submit" />
             </div>
         </div>
                     }

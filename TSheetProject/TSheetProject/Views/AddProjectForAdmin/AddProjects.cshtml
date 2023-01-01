@@ -3,7 +3,13 @@
     ViewBag.Title = "DashBoard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<style>
+    #addProjectAdminbtn {
+        height: 32px;
+        font-size: 15px;
+        background-color: #133E6C
+    }
+</style>
 <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet" />
 <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
 <link href="~/Content/css/TSheetCSS/css/admin1.css" rel="stylesheet" />
@@ -30,14 +36,14 @@
             {
 
                 <div class="form-group ">
-                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label h3" })
+                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label h2" })
                     <div class="">
                         @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control w-25 " } })
                         @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger " })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label h3" })
+                    @Html.LabelFor(model => model.ProjectDescription, htmlAttributes: new { @class = "control-label h2" })
                     <div class="">
                         @Html.TextAreaFor(model => model.ProjectDescription, new { @class = "whatever-class w-25", @cols = 50, @rows = 7 })
 
@@ -46,7 +52,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" value="Save" class="btn btn-default btn-primary w-25 h3"  id/>
+                    <input type="submit" value="Save" class="btn btn-default btn-primary w-25 h3"  id="addProjectAdminbtn"/>
                 </div>
 
 

@@ -1,0 +1,101 @@
+﻿#topSection {
+    height: 80px;
+}
+
+#MondayTime-error {
+    font-size: 0px;
+}
+
+#MondayTime-error {
+    display: none;
+}
+
+    #MondayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }
+
+#TuesdayTime-error {
+    font-size: 0px;
+}
+
+#TuesdayTime-error {
+    display: none;
+}
+
+    #TuesdayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }
+
+#WednsdayTime-error {
+    font-size: 0px;
+}
+
+#WednsdayTime-error {
+    display: none;
+}
+
+#WednsdayTime-error::before {
+    content: "0 - 24";
+    font-size: 15px;
+}
+
+
+#ThursdayTime-error {
+    font-size: 0px;
+}
+
+#ThursdayTime-error {
+    display: none;
+}
+
+    #ThursdayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }
+
+
+
+#FridayTime-error {
+    font-size: 0px;
+}
+
+#FridayTime-error {
+    display: none;
+}
+
+    #FridayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }
+
+
+
+#SaturdayTime-error {
+    font-size: 0px;
+}
+
+#SaturdayTime-error {
+    display: none;
+}
+
+    #SaturdayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }
+
+
+
+#SundayTime-error {
+    font-size: 0px;
+}
+
+#SundayTime-error {
+    display: none;
+}
+
+    #SundayTime-error::before {
+        content: "0 - 24";
+        font-size: 15px;
+    }

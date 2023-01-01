@@ -126,7 +126,7 @@ namespace TSheetProject.Controllers
             TSheetDB db=new TSheetDB();
             if (user.FirstName != null && user.LastName != null && user.DateOfBirth != null && user.Gender != null && user.Email != null && user.MobileNumber != null && ((user.AssignProject != null && user.AssignedRole != null) || (user.AssignedRole != null && user.AssignProject == null)))
             {
-
+                var AssignedProjects = db.AssignedRoles.Where(a => a.UserID == user.Id).FirstOrDefault();
                 var registereduser = db.Registrations.Where(a => a.UserID == user.Id).FirstOrDefault();
                 registereduser.DateOfbirth = user.DateOfBirth;
                 registereduser.FirstName = user.FirstName;
@@ -136,7 +136,9 @@ namespace TSheetProject.Controllers
                 registereduser.IsActive = user.IsActive;
                 registereduser.Gender = user.Gender;
                 registereduser.DateOfLeaving = user.DateOfLeaving;
-                
+                AssignedProjects.AssignRole = user.AssignedRole;
+
+
                 AssignedRole assignedRole = new AssignedRole();
                 
                 assignedRole.RoleID = (int)user.AssignedRole;

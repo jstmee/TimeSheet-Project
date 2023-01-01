@@ -22,5 +22,6 @@ namespace TSheet.Data
         public virtual Registration Registration { get; set; }
 
         public virtual Role Role { get; set; }
+        public int? AssignRole { get; set; }
     }
 }

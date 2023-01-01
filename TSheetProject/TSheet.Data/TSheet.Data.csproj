@@ -116,6 +116,10 @@
     <Compile Include="Migrations\202212130747174_changedviewdatatype.designer.cs">
       <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212301038561_addmultipleproject.cs" />
+    <Compile Include="Migrations\202212301038561_addmultipleproject.designer.cs">
+      <DependentUpon>202212301038561_addmultipleproject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationsTB.cs" />
     <Compile Include="ProjectMaster.cs" />
@@ -173,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212130747174_changedviewdatatype.resx">
       <DependentUpon>202212130747174_changedviewdatatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212301038561_addmultipleproject.resx">
+      <DependentUpon>202212301038561_addmultipleproject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
