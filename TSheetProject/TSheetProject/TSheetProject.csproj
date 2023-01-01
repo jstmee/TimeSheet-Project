@@ -218,9 +218,6 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\.github\ISSUE_TEMPLATE.md" />
-    <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\.github\PULL_REQUEST_TEMPLATE.md" />
-    <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\.gitignore" />
     <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\bower.json" />
     <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\CHANGELOG.md" />
     <Content Include="Scripts\jQuery-Validation-Engine-master %282%29\jQuery-Validation-Engine-master\js\languages\jquery.validationEngine-uk" />
