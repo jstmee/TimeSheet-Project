@@ -31,14 +31,17 @@
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            
-                <h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
-            
+
+            <h1 href="#menu-toggle" id="menu-toggle"> <i class="fa fa-bars " style="font-size:28px !Important;" aria-hidden="true" aria-hidden="true"></i> </h1>
+
             <li class="pt-5">
                 <a href="@Url.Action("Dashboard", "User")">  <i class="fa-solid fa-house-chimney " id="i"></i> <span style="margin-left:10px;" class="active"> Dashboard</span> </a>
             </li>
             <li class="pt-5">
                 <a href="@Url.Action("TimeLog", "TimeLogging")"> <i class="fa-solid fa-calendar-plus" id="i"></i> <span style="margin-left:10px;" class="active">Time Sheet </span> </a>
+            </li>
+            <li class="pt-5">
+                <a href="@Url.Action("TotalTimeSheets1", "TotalCounts")"> <i class="fa-solid fa-calendar-plus" id="i"></i> <span style="margin-left:10px;" class="active">Time Sheet </span> </a>
             </li>
             <li class="pt-5">
                 <a href="@Url.Action("ChangePassword", "User")"> <i class="fa-solid fa-lock" id="i"></i> <span style="margin-left:10px;" class="active"> Change Password</span> </a>
@@ -49,9 +52,9 @@
 
 
 
-    <div class="userBody" id="wrapper">
-        @RenderBody()
-    </div>
+<div class="userBody" id="wrapper">
+    @RenderBody()
+</div>
 
 
 
@@ -114,6 +117,7 @@
     nav {
         float: left
     }
+
     ul li a.active {
         background-color: #C4C0C0;
         color: black
@@ -170,5 +174,10 @@
             menuItem[i].className = 'active'
         }
     }
+
+
 </script>
 
+<script src="~/Content/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Content/Scripts/bootstrap.min.js"></script>
+@RenderSection("Scripts", required: false)
